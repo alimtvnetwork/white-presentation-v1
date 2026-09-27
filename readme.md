@@ -1,6 +1,6 @@
 # White Presentation System (v1)
 
-> Next-Generation Declarative Presentation Engine, Multi-Deck Synthesis, and High-Profile White Slide System.
+> Next-Generation Declarative Presentation Engine, Multi-Deck Synthesis, High-Profile White Slide System, and Live Visual Builder.
 
 ---
 
@@ -8,6 +8,7 @@
 
 All architectural specifications are documented sequentially in [02-spec/21-app/readme.md](02-spec/21-app/readme.md):
 
+### Foundations & Master Architecture
 - [00-Overview: Next-Generation White Presentation System](02-spec/21-app/00-overview.md) — Architectural pillars, pure DOM text mandate, virtual canvas coordinates.
 - [01-Flat Slide System & Builder Mode Spec](02-spec/21-app/01-flat-slide-system-spec.md) — Declarative JSON schema, 17 slide types, builder mode stores, layering, audio cue parameters.
 - [02-Global PPT Corporate Presentation Spec](02-spec/21-app/02-global-ppt-corporate-spec.md) — 6-phase narrative arc, Ubuntu/Poppins typography hierarchy, section dividers, talent funnels.
@@ -18,6 +19,17 @@ All architectural specifications are documented sequentially in [02-spec/21-app/
 - [07-Animation, Audio Sound, Export Quality & Multi-User Architecture](02-spec/21-app/07-animation-sound-and-export-quality-spec.md) — Motion curves, audio ducking, 4K/60fps headless capture, multi-tenant relational SQL database schema.
 - [08-Multi-Deck Comprehensive Compare & Contrast Analysis](02-spec/21-app/08-multi-deck-compare-contrast-matrix.md) — Deep comparative audit across 5 platforms (`flat-slide-show`, `global-ppt-v1`, `bsrm-hiltrax`, `ki-health-ppt`, `wp-exam`).
 - [09-Blind-AI Audit & Release Readiness Specification](02-spec/21-app/09-comprehensive-audit-specification.md) — Release sign-off, verbatim verification matrix, 100/100 score.
+
+### Granular Slide Archetypes & Builder
+- [10-Title & Hero Slide Archetype](02-spec/21-app/10-title-hero-slide-spec.md) — Editorial headline typography ($78\text{px}$), presenter credentials, top-right brand logo.
+- [11-Executive Persona & Founder Slide](02-spec/21-app/11-executive-persona-ceo-slide-spec.md) — Asymmetric portrait plate with feathered mask, character-level shaded name, achievement metric pills.
+- [12-Key Player & Technical Leadership Bio](02-spec/21-app/12-key-player-bio-slide-spec.md) — 3 competency cards with circular icon badges, rounded portrait frame, skill badges.
+- [13-Before / After Comparison Showcase](02-spec/21-app/13-before-after-showcase-slide-spec.md) — Asymmetric side-by-side pain vs solution cards, contrast color coding (Rose vs Violet/Emerald).
+- [14-Talent Funnel & Pyramid Slide](02-spec/21-app/14-talent-funnel-and-pyramid-slide-spec.md) — 4-tier trapezoidal qualification stages, pass-rate metrics, enterprise talent selectivity standards.
+- [15-SaaS Pricing & USP Proof Slide](02-spec/21-app/15-saas-pricing-and-metric-proof-slide-spec.md) — 3-column tiered commercial model, highlighted featured tier, feature checkmarks, CTA buttons.
+- [16-Steps Chain & Process Roadmap](02-spec/21-app/16-steps-chain-and-roadmap-slide-spec.md) — 4 connected horizontal timeline nodes, milestone delivery estimates, step badges and progress line.
+- [17-Social Proof & Client Testimonials](02-spec/21-app/17-social-proof-testimonials-slide-spec.md) — Dual executive quote cards, partner logo marquee, verified endorsement credentials.
+- [18-Builder Mode Interactive Canvas & Inspector](02-spec/21-app/18-builder-mode-interactive-canvas-spec.md) — Decoupled stores (`useDeck` vs `useEditMode`), 7-layer visual stack, live property inspector, hotkeys.
 
 ---
 
