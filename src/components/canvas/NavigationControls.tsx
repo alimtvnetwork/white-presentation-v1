@@ -42,7 +42,7 @@ export const NavigationControls: React.FC = () => {
         className={`p-1.5 rounded-full transition-colors cursor-pointer ${
           isSoundEnabled ? 'text-violet-400 hover:bg-slate-800' : 'text-slate-500 hover:bg-slate-800'
         }`}
-        title={isSoundEnabled ? 'Mute' : 'Unmute'}
+        title={isSoundEnabled ? 'Mute Audio (M)' : 'Unmute Audio (M)'}
       >
         {isSoundEnabled ? <Volume2 size={16} /> : <VolumeX size={16} />}
       </button>
@@ -82,7 +82,7 @@ export const NavigationControls: React.FC = () => {
       <button
         onClick={handleFullscreen}
         className="p-1 text-slate-400 hover:text-white cursor-pointer transition-colors"
-        title="Fullscreen"
+        title="Fullscreen (F)"
       >
         <Maximize2 size={15} />
       </button>

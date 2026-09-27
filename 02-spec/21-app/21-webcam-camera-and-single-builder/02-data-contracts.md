@@ -61,15 +61,30 @@ export interface WebcamSettings {
 
 ## 4. Keyboard Interaction Contract
 
+### 4.1 Deck Navigation Shortcuts
+| Key | Action | Scope | Notes |
+|:---|:---|:---|:---|
+| `→` / `Space` / `Enter` / `PageDown` | Advance Slide | Canvas | Moves forward 1 slide |
+| `←` / `Backspace` / `PageUp` | Previous Slide | Canvas | Moves backward 1 slide |
+| `F` / `f` | Toggle Fullscreen | Deck | Native browser fullscreen toggle |
+| `G` / `g` | Toggle Overview Grid | Deck | Opens full slide thumbnail gallery |
+| `T` / `t` | Cycle Theme | Deck | Cycles through 5 color themes |
+| `M` / `m` | Toggle Mute | Deck | Toggles sound effects on/off |
+| `B` / `b` | Toggle Builder | Deck | Toggles Slide Builder inspector |
+| `Home` / `End` | First / Last Slide | Deck | Direct jump to slide 0 / slide N-1 |
+| `?` / `/` | Open Shortcuts Map | Deck | Opens interactive modal |
+| `Escape` | Close / Exit | Global | Closes open modals, exits fullscreen |
+| `1` – `5` | Set Theme 1–5 | Global | Direct jump to palette |
+
+### 4.2 Presenter Webcam Shortcuts
 | Key | Action | Scope | Notes |
 |:---|:---|:---|:---|
 | `I` / `i` | Acquire ↔ Suppress | Global | Turns camera hardware on/off |
 | `O` / `o` | Shape Toggle | Active/Minimized | Switches Circle avatar ↔ Rounded rectangle |
 | `E` / `e` | Expand Toggle | Active/Fullscreen | Expands to full screen / exits back to box |
-| `M` / `m` | Minimize Toggle | Active | Collapses to 96px circular puck ↔ restores |
 | `+` / `=` | Step Size Up | Floating | S → M → L → XL |
 | `-` / `_` | Step Size Down | Floating | XL → L → M → S |
-| `Escape` | Exit Fullscreen | Fullscreen | Restores prior floating coordinates |
 
-**Input Guard:** Keyboard handlers MUST strictly ignore keystrokes when the active focused element is `input`, `textarea`, or `isContentEditable`.
-**Modifier Guard:** Keystrokes with `ctrlKey`, `metaKey`, or `altKey` MUST NOT trigger camera actions to preserve OS shortcuts.
+**Input Guard:** Keyboard handlers MUST strictly ignore keystrokes when the active focused element is `input`, `textarea`, or `isContentEditable`.  
+**Modifier Guard:** Keystrokes with `ctrlKey`, `metaKey`, or `altKey` MUST NOT trigger shortcuts to preserve OS functionality.
+

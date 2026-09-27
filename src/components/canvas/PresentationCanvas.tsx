@@ -6,16 +6,31 @@ import { NavigationControls } from './NavigationControls';
 import { SlideIndicator } from './SlideIndicator';
 import { SlideCreatorModal } from '../builder/SlideCreatorModal';
 import { ExportModal } from '../builder/ExportModal';
+import { KeyboardShortcutsModal } from '../navigation/KeyboardShortcutsModal';
+import { OverviewGridModal } from '../navigation/OverviewGridModal';
+import { useDeckShortcuts } from '../../hooks/useDeckShortcuts';
 import { THEME_PALETTES } from '../../themes/gradientTokens';
 
 export const PresentationCanvas: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const { deck, activeSlideIndex, nextSlide, prevSlide, activeThemeId } = useDeckStore();
-  const { isEditMode, toggleEditMode, cameraPreset } = useEditStore();
+  const [isShortcutsOpen, setIsShortcutsOpen] = useState(false);
+  const [isOverviewOpen, setIsOverviewOpen] = useState(false);
+
+  const { deck, activeSlideIndex, activeThemeId } = useDeckStore();
+  const { isEditMode, cameraPreset } = useEditStore();
   const activeSlide = deck.slides[activeSlideIndex];
   const theme = THEME_PALETTES[activeThemeId] || THEME_PALETTES['white-brand'];
+
+  useDeckShortcuts({
+    onToggleShortcutsModal: () => setIsShortcutsOpen((prev) => !prev),
+    onToggleOverviewGrid: () => setIsOverviewOpen((prev) => !prev),
+    onCloseModals: () => {
+      setIsShortcutsOpen(false);
+      setIsOverviewOpen(false);
+    },
+  });
 
   useEffect(() => {
     const handleResize = () => {
@@ -35,19 +50,6 @@ export const PresentationCanvas: React.FC = () => {
       document.removeEventListener('fullscreenchange', handleResize);
     };
   }, [isEditMode]);
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      const el = e.target as HTMLElement | null;
-      if (el?.tagName === 'INPUT' || el?.tagName === 'TEXTAREA' || el?.isContentEditable) return;
-      if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
-      if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
-      if (e.key === 'b' || e.key === 'B') { e.preventDefault(); toggleEditMode(); }
-    };
-    window.addEventListener('keydown', onKey);
-
-    return () => window.removeEventListener('keydown', onKey);
-  }, [nextSlide, prevSlide, toggleEditMode]);
 
   let camScale = scale;
   let camOrigin = 'center center';
@@ -77,6 +79,8 @@ export const PresentationCanvas: React.FC = () => {
       <NavigationControls />
       <SlideCreatorModal />
       <ExportModal />
+      <KeyboardShortcutsModal isOpen={isShortcutsOpen} onClose={() => setIsShortcutsOpen(false)} />
+      <OverviewGridModal isOpen={isOverviewOpen} onClose={() => setIsOverviewOpen(false)} />
     </div>
   );
 };

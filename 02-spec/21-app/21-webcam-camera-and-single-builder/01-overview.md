@@ -44,3 +44,39 @@ The user provided photographic proof of the three duplicate builder mode trigger
 - **Task-03:** Implement `PresenterWebcam.tsx` component with drag repositioning, circle ↔ rect framing, and fullscreen expansion.
 - **Task-04:** Implement global keyboard shortcuts listener (`I`, `O`, `E`, `M`, `+`, `-`, `Esc`) with form-field input guards and modifier bypass.
 - **Task-05:** Integrate the Camera/Webcam button into `NavigationControls.tsx` dock with live status indicators, replacing the duplicate Builder button.
+
+---
+
+## 4. Root Cause Analysis: Mistakes & Missing Shortcuts from Global PPT
+
+### 4.1 Mistake Analysis
+In earlier iterations, the system implemented only the camera-specific overlay hotkeys (`I`, `O`, `E`) while mistakenly omitting the core presentation navigation shortcuts present in `global-ppt-v1` (`src/components/presentation/navigation/shortcuts.ts`):
+1. **Missing `F` (Fullscreen):** Presentation fullscreen was only clickable in the dock and not bound to the `F`/`f` key.
+2. **Missing `G` (Overview Grid):** The full-deck slide overview grid (`OverviewGridModal`) was missing.
+3. **Missing `T` (Theme Cycle):** Quick theme switching via `T`/`t` was missing.
+4. **Missing `M` (Audio Mute):** Sound muting via `M`/`m` was missing.
+5. **Missing `?` / `/` (Shortcuts Help Map):** The interactive shortcuts modal (`KeyboardShortcutsModal`) was missing.
+6. **Missing `Home` / `End`:** Instant jumping to the first and last slides was missing.
+7. **Missing `1`–`5` Direct Theme Jump:** Number keys 1–5 were not hooked up to direct palette selection.
+
+### 4.2 Comprehensive Normative Shortcuts Standard
+All presentation shortcuts are now unified in `src/types/shortcuts.ts` and managed by `src/hooks/useDeckShortcuts.ts` and `src/hooks/useWebcamHotkeys.ts`:
+
+| Group | Key | Action | Scope |
+|:---|:---|:---|:---|
+| **Deck Navigation** | `→` / `Space` / `Enter` / `PageDown` | Advance to next slide | Presentation Canvas |
+| **Deck Navigation** | `←` / `Backspace` / `PageUp` | Return to previous slide | Presentation Canvas |
+| **Deck Navigation** | `F` / `f` | Toggle presentation fullscreen | Presentation Canvas |
+| **Deck Navigation** | `G` / `g` | Toggle slide overview grid modal | Presentation Canvas |
+| **Deck Navigation** | `T` / `t` | Cycle color theme (White, Dark, Emerald, Purple, Midnight) | Presentation Canvas |
+| **Deck Navigation** | `M` / `m` | Toggle audio mute / unmute | Presentation Canvas |
+| **Deck Navigation** | `B` / `b` | Toggle Builder mode | Presentation Canvas |
+| **Deck Navigation** | `Home` / `End` | Jump to first / last slide | Presentation Canvas |
+| **Deck Navigation** | `?` / `/` | Open interactive keyboard shortcuts map | Presentation Canvas |
+| **Deck Navigation** | `Escape` | Close modals / exit fullscreen | Global |
+| **Themes** | `1` – `5` | Direct jump to theme palette 1–5 | Global |
+| **Presenter Camera** | `I` / `i` | Acquire ↔ stop webcam video hardware | Global |
+| **Presenter Camera** | `O` / `o` | Toggle circle avatar ↔ rounded rectangle card | Active Webcam |
+| **Presenter Camera** | `E` / `e` | Expand camera to full viewport stage | Active Webcam |
+| **Presenter Camera** | `+` / `-` | Step camera size up / down (S, M, L, XL) | Active Webcam |
+
