@@ -36,7 +36,7 @@ export const KeyPlayerSlide: React.FC<{ slide: KeyPlayerSlideData }> = ({ slide 
             {slide.kicker || 'TECHNICAL LEADERSHIP'}
           </div>
           <h1
-            style={{ color: theme.textColor }}
+            style={{ color: theme.textColor, textShadow: theme.headerShadow }}
             className="font-ubuntu text-[52px] font-extrabold tracking-tight leading-tight slide-up-anim"
             contentEditable={isEditMode}
             suppressContentEditableWarning

@@ -62,7 +62,7 @@ export const WhiteMasterSlide: React.FC<{ slide: WhiteMasterSlideData }> = ({ sl
         )}
 
         <h1
-          style={{ color: theme.textColor }}
+          style={{ color: theme.textColor, textShadow: theme.headerShadow }}
           className={`font-ubuntu text-[68px] font-extrabold tracking-tight leading-[1.08] mb-6 slide-up-anim ${getSelectClass('headline')}`}
           contentEditable={isEditMode}
           suppressContentEditableWarning

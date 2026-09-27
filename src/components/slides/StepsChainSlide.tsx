@@ -31,7 +31,7 @@ export const StepsChainSlide: React.FC<{ slide: StepsChainSlideData }> = ({ slid
 
       <div className="flex items-center gap-14 my-auto z-20">
         <div className="w-[480px] shrink-0 flex flex-col gap-6">
-          <h1 style={{ color: theme.textColor }} className="font-ubuntu text-[50px] font-black tracking-tight leading-tight slide-up-anim" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => ({ ...s, title: e.currentTarget.textContent || '' }))}>
+          <h1 style={{ color: theme.textColor, textShadow: theme.headerShadow }} className="font-ubuntu text-[50px] font-black tracking-tight leading-tight slide-up-anim" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => ({ ...s, title: e.currentTarget.textContent || '' }))}>
             {slide.title}
           </h1>
           {slide.subtitle && (

@@ -23,3 +23,26 @@ When `isEditMode === true`:
 2. **Tech Stack Matrix (`tech-stack`):**
    - 4-column card grid categorizing Enterprise Architecture, AI/Autonomous Agents, Cloud Infrastructure, and Frontend Frameworks.
    - Embedded Lucide icons and seniority level tags.
+
+## 5. High-Definition Header Text-Shadow Contrast Specification
+
+To guarantee maximum typographic crispness and legibility across all display devices, 4K monitors, and presentation projectors, all title headers (`h1`, featured `h3`) and prominent white typographic elements MUST adhere to the canonical high-definition micro-shadow standard:
+
+### Exact Shadow Formulas:
+1. **Light or White Typography (on Dark / Medium Canvases):**
+   ```css
+   text-shadow: rgb(0 0 0) 1px 0.7px 0px;
+   ```
+   - Applied when the text color is white (`#FFFFFF`) or luminous light tints (`#F8FAFC`, `#F5F3FF`, `#ECFDF5`).
+   - Creates a deterministic, razor-sharp 1px horizontal / 0.7px vertical edge definition without fuzzy blur, anchoring text against photographic gradients, dark backgrounds, and visual noise.
+
+2. **Dark Typography (on Light / Pure White Canvases):**
+   ```css
+   text-shadow: rgb(255 255 255) 1px 0.7px 0px;
+   ```
+   - Applied when the text color is dark slate (`#0F172A`, `#1E293B`).
+   - Produces a subtle luminous bevel / sub-pixel edge lift that prevents text bleed on ultra-bright displays.
+
+3. **General White Text Elements:**
+   - Any white text elements, such as callout badges, primary action buttons with white labels, or kickers over image plates, should also leverage `text-shadow: rgb(0 0 0) 1px 0.7px 0px;` for enhanced definition.
+

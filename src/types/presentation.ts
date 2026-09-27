@@ -56,6 +56,7 @@ export interface ThemePalette {
   cardBorder: string;
   accentColor: string;
   dotMatrix?: boolean;
+  headerShadow: string;
   stops: GradientStop[];
 }
 

@@ -66,6 +66,7 @@ The slide is architected into 6 discrete, non-overlapping visual zones on a stan
   - Font Weight: `700` (Bold)
   - Line Height: `1.15`
   - Color: Deep Midnight Slate `#0B192C` (`hsl(215 60% 11%)`).
+  - High-Definition Micro-Shadow: `text-shadow: rgb(255 255 255) 1px 0.7px 0px;` (for dark typography on light canvases) or `text-shadow: rgb(0 0 0) 1px 0.7px 0px;` (when rendered in light/white on dark themes).
 - **Subtitle Coordinates:** `left: 120px, top: 370px`.
 - **Subtitle Styling:**
   - Content: `They Share Your <span class="accent-text">Emotions</span>`

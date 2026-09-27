@@ -18,7 +18,7 @@ export const CeoPersonaSlide: React.FC<{ slide: PersonaSlideData }> = ({ slide }
           <div className="text-[13px] font-bold tracking-[0.25em] uppercase text-violet-500 mb-3 font-mono" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => ({ ...s, title: e.currentTarget.textContent || '' }))}>
             {slide.title || 'TECHNICAL LEADERSHIP'}
           </div>
-          <h1 className="font-ubuntu text-[68px] font-black tracking-tight leading-none mb-3 slide-up-anim">
+          <h1 style={{ textShadow: theme.headerShadow }} className="font-ubuntu text-[68px] font-black tracking-tight leading-none mb-3 slide-up-anim">
             {shadedName.map((item, idx) => (<span key={idx} style={{ color: item.hex }}>{item.char}</span>))}
           </h1>
           <p style={{ color: theme.subtextColor }} className="font-poppins text-[22px] font-medium mb-6" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => (s.type === 'persona' ? { ...s, role: e.currentTarget.textContent || '' } : s))}>

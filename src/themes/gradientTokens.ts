@@ -13,6 +13,7 @@ export const THEME_PALETTES: Record<string, ThemePalette> = {
     cardBorder: '#E2E8F0',
     accentColor: '#7C3AED',
     dotMatrix: false,
+    headerShadow: 'rgb(255 255 255) 1px 0.7px 0px',
     stops: [
       { step: 0, label: 'Base Light', hsl: 'hsl(250, 100%, 98%)', rgb: 'rgb(245, 243, 255)', hex: '#F5F3FF', luma: 0.96, contrastOnWhite: 1.08 },
       { step: 1, label: 'Wash Sub-Surface', hsl: 'hsl(252, 95%, 94%)', rgb: 'rgb(237, 233, 254)', hex: '#EDE9FE', luma: 0.92, contrastOnWhite: 1.18 },
@@ -38,6 +39,7 @@ export const THEME_PALETTES: Record<string, ThemePalette> = {
     cardBorder: 'rgba(99, 102, 241, 0.35)',
     accentColor: '#6366F1',
     dotMatrix: true,
+    headerShadow: 'rgb(0 0 0) 1px 0.7px 0px',
     stops: [
       { step: 0, label: 'Luminous Glow', hsl: 'hsl(210, 40%, 98%)', rgb: 'rgb(248, 250, 252)', hex: '#F8FAFC', luma: 0.98, contrastOnWhite: 1.04 },
       { step: 1, label: 'Muted Slate', hsl: 'hsl(214, 32%, 91%)', rgb: 'rgb(226, 232, 240)', hex: '#E2E8F0', luma: 0.91, contrastOnWhite: 1.21 },
@@ -63,6 +65,7 @@ export const THEME_PALETTES: Record<string, ThemePalette> = {
     cardBorder: 'rgba(52, 211, 153, 0.35)',
     accentColor: '#10B981',
     dotMatrix: true,
+    headerShadow: 'rgb(0 0 0) 1px 0.7px 0px',
     stops: [
       { step: 0, label: 'Mint Tint', hsl: 'hsl(152, 81%, 96%)', rgb: 'rgb(236, 253, 245)', hex: '#ECFDF5', luma: 0.96, contrastOnWhite: 1.08 },
       { step: 1, label: 'Light Sage', hsl: 'hsl(149, 80%, 90%)', rgb: 'rgb(209, 250, 229)', hex: '#D1FAE5', luma: 0.90, contrastOnWhite: 1.23 },
@@ -88,6 +91,7 @@ export const THEME_PALETTES: Record<string, ThemePalette> = {
     cardBorder: 'rgba(168, 85, 247, 0.35)',
     accentColor: '#A855F7',
     dotMatrix: true,
+    headerShadow: 'rgb(0 0 0) 1px 0.7px 0px',
     stops: [
       { step: 0, label: 'Lavender Whisper', hsl: 'hsl(250, 100%, 98%)', rgb: 'rgb(245, 243, 255)', hex: '#F5F3FF', luma: 0.96, contrastOnWhite: 1.08 },
       { step: 1, label: 'Light Violet', hsl: 'hsl(252, 95%, 94%)', rgb: 'rgb(237, 233, 254)', hex: '#EDE9FE', luma: 0.92, contrastOnWhite: 1.18 },
@@ -113,6 +117,7 @@ export const THEME_PALETTES: Record<string, ThemePalette> = {
     cardBorder: 'rgba(59, 130, 246, 0.35)',
     accentColor: '#3B82F6',
     dotMatrix: false,
+    headerShadow: 'rgb(0 0 0) 1px 0.7px 0px',
     stops: [
       { step: 0, label: 'Luminous Highlight', hsl: 'hsl(210, 40%, 98%)', rgb: 'rgb(248, 250, 252)', hex: '#F8FAFC', luma: 0.98, contrastOnWhite: 1.04 },
       { step: 1, label: 'Muted Slate', hsl: 'hsl(214, 32%, 91%)', rgb: 'rgb(226, 232, 240)', hex: '#E2E8F0', luma: 0.91, contrastOnWhite: 1.21 },
@@ -158,4 +163,13 @@ export function shadeTextByCharacter(
       hsl: stop.hsl,
     };
   });
+}
+
+/**
+ * Canonical high-definition text-shadow contrast standard:
+ * Light/white text: rgb(0 0 0) 1px 0.7px 0px
+ * Dark text: rgb(255 255 255) 1px 0.7px 0px
+ */
+export function getHeaderShadow(isLightOrWhiteText: boolean): string {
+  return isLightOrWhiteText ? 'rgb(0 0 0) 1px 0.7px 0px' : 'rgb(255 255 255) 1px 0.7px 0px';
 }

@@ -28,7 +28,7 @@ export const TitleSlide: React.FC<{ slide: TitleSlideData }> = ({ slide }) => {
 
       <div className="max-w-[1400px] z-20 my-auto">
         <h1
-          style={{ color: theme.textColor }}
+          style={{ color: theme.textColor, textShadow: theme.headerShadow }}
           className="font-ubuntu text-[82px] font-black tracking-tight leading-[1.05] mb-8 slide-up-anim"
           contentEditable={isEditMode}
           suppressContentEditableWarning
