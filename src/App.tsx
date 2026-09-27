@@ -5,7 +5,7 @@ import { ThemeSelector } from './components/theme/ThemeSelector';
 import { useDeckStore } from './stores/deckStore';
 import { useEditStore } from './stores/editStore';
 import { Sparkles, Edit3 } from 'lucide-react';
-import { FloatingBuilderButton } from './components/builder/FloatingBuilderButton';
+import { PresenterWebcam } from './components/webcam/PresenterWebcam';
 
 export const App: React.FC = () => {
   const { deck } = useDeckStore();
@@ -57,7 +57,7 @@ export const App: React.FC = () => {
 
       <main className="flex-1 relative flex overflow-hidden">
         <PresentationCanvas />
-        <FloatingBuilderButton />
+        <PresenterWebcam />
         <BuilderPanel />
       </main>
     </div>

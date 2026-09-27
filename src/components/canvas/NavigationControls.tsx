@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useDeckStore } from '../../stores/deckStore';
 import { useEditStore } from '../../stores/editStore';
-import { ChevronLeft, ChevronRight, Edit3, Volume2, VolumeX, Maximize2, LayoutGrid } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Volume2, VolumeX, Maximize2, LayoutGrid } from 'lucide-react';
 import { DockPosition } from '../../types/presentation';
 import { DockPositionPopover } from './DockPositionPopover';
+import { PresenterWebcamButton } from '../webcam/PresenterWebcamButton';
 
 export const NavigationControls: React.FC = () => {
   const { activeSlideIndex, deck, nextSlide, prevSlide, isSoundEnabled, toggleSound } = useDeckStore();
-  const { isEditMode, toggleEditMode, dockPosition } = useEditStore();
+  const { dockPosition } = useEditStore();
   const [showLayout, setShowLayout] = useState(false);
 
   const handleFullscreen = () => {
@@ -24,8 +25,8 @@ export const NavigationControls: React.FC = () => {
     'bottom-center': 'bottom-6 left-1/2 -translate-x-1/2 flex-row',
     'bottom-left': 'bottom-6 left-8 flex-row',
     'bottom-right': 'bottom-6 right-8 flex-row',
-    'left': 'top-1/2 left-6 -translate-y-1/2 flex-col',
-    'right': 'top-1/2 right-6 -translate-y-1/2 flex-col',
+    left: 'top-1/2 left-6 -translate-y-1/2 flex-col',
+    right: 'top-1/2 right-6 -translate-y-1/2 flex-col',
   };
 
   return (
@@ -46,18 +47,7 @@ export const NavigationControls: React.FC = () => {
         {isSoundEnabled ? <Volume2 size={16} /> : <VolumeX size={16} />}
       </button>
 
-      <button
-        onClick={toggleEditMode}
-        className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium transition-all cursor-pointer ${
-          isEditMode
-            ? 'bg-violet-600 text-white shadow-md shadow-violet-600/30'
-            : 'text-slate-300 hover:bg-slate-800'
-        }`}
-        title="Toggle Builder Mode (B)"
-      >
-        <Edit3 size={14} />
-        <span>Builder</span>
-      </button>
+      <PresenterWebcamButton />
 
       <button
         onClick={() => setShowLayout(!showLayout)}

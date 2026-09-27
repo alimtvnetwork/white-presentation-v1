@@ -67,13 +67,13 @@ The following table provides an exhaustive enumeration of all twenty `.md` speci
 - **`mirror`**: Read-only copies mirroring external upstream specifications.
 
 ### 3.2 Quantitative Distribution
-- **Normative Specifications:** **18** files (Modules `01` through `18`).  
+- **Normative Specifications:** **18** files (Modules `01` through `18`).
   *Note:* If `00-overview.md` is classified as normative due to Section 2 architectural mandates (Pure DOM text, 1920x1080 canvas, 10-step gradient rules), the count is **19 normative files**.
-- **Index Documents:** **2** files (`readme.md`, `00-overview.md`).  
+- **Index Documents:** **2** files (`readme.md`, `00-overview.md`).
   *Note:* If `00-overview.md` is classified as normative, the count is **1 index file** (`readme.md`).
-- **Fixture Files:** **0** files within `02-spec/21-app/`.  
+- **Fixture Files:** **0** files within `02-spec/21-app/`.
   *Note:* The canonical concrete sample fixture is maintained externally at `schemas/white-presentation-slide.json` (134 lines).
-- **Diagram Files:** **0** standalone files.  
+- **Diagram Files:** **0** standalone files.
   *Note:* Architectural ASCII wireframes are embedded within Modules 10–18, and SVG wave/heart paths are embedded in Module 05.
 - **Mirror Files:** **0** files. All 20 files are original canonical specifications with zero duplicate mirrors.
 

@@ -34,6 +34,7 @@ This directory houses the canonical, sequential specifications for the **White P
 | [18-builder-mode-interactive-canvas-spec.md](18-builder-mode-interactive-canvas-spec.md) | **Builder Mode Canvas & Inspector** | Decoupled stores (`useDeck` vs `useEditMode`), 7-layer visual stack, live property inspector, hotkeys. |
 | [19-interactive-builder-and-slide-system/01-overview.md](19-interactive-builder-and-slide-system/01-overview.md) | **Interactive Builder & Universal System** | Draggable/minimizable inspector, in-place text authoring, True Dark/Emerald/Purple theme matrix, camera focal zoom, PPTX/AI prompt export. |
 | [20-advanced-slide-system-and-canvas-engine/01-overview.md](20-advanced-slide-system-and-canvas-engine/01-overview.md) | **Advanced Canvas Engine & Multi-Archetypes** | Freeform canvas item dragging, movable FAB launcher, sequential audio step reveal, Competitive Edge & Tech Stack archetypes. |
+| [21-webcam-camera-and-single-builder/01-overview.md](21-webcam-camera-and-single-builder/01-overview.md) | **Presenter Webcam & Consolidated Builder** | Live video stream overlay, shortcuts (I, O, E, M, +), single canonical builder trigger, dock camera button. |
 
 ---
 

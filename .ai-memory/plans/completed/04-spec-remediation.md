@@ -1,8 +1,8 @@
 # 04-Specification Remediation Ledger
 
-> **Audit Source:** `02-spec/25-app-spec-audit/02-audit-2026-09-27-v2.md`  
-> **Creation Date:** 2026-09-27  
-> **Status:** CLOSED (100% Remediated)  
+> **Audit Source:** `02-spec/25-app-spec-audit/02-audit-2026-09-27-v2.md`
+> **Creation Date:** 2026-09-27
+> **Status:** CLOSED (100% Remediated)
 > **Total Findings:** 9
 
 ---

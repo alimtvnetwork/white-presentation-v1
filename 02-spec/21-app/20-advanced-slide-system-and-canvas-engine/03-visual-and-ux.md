@@ -45,4 +45,3 @@ To guarantee maximum typographic crispness and legibility across all display dev
 
 3. **General White Text Elements:**
    - Any white text elements, such as callout badges, primary action buttons with white labels, or kickers over image plates, should also leverage `text-shadow: rgb(0 0 0) 1px 0.7px 0px;` for enhanced definition.
-

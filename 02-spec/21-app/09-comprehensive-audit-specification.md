@@ -31,5 +31,5 @@ This document serves as the in-folder sequential audit specification within `02-
 4. **Multi-User Database Architecture:**
    Verified complete relational SQL schema (`users`, `decks`, `slides`, `deck_collaborators`, `assets`) with RBAC and JWT/session security.
 
-For full test scenarios and simulation logs, refer to the master audit directory:  
+For full test scenarios and simulation logs, refer to the master audit directory:
 👉 [02-spec/25-app-spec-audit/readme.md](../25-app-spec-audit/readme.md)
