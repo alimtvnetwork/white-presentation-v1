@@ -29,6 +29,7 @@ export const WhiteMasterSlide: React.FC<WhiteMasterSlideProps> = ({ slide }) => 
 
   const getSelectClass = (elementId: string) => {
     if (!isEditMode) return '';
+
     return selectedElementId === elementId
       ? 'ring-2 ring-violet-500 ring-offset-4 cursor-pointer rounded-lg transition-all'
       : 'hover:ring-1 hover:ring-violet-300 hover:ring-offset-2 cursor-pointer transition-all';

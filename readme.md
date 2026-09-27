@@ -35,8 +35,8 @@ All architectural specifications are documented sequentially in [02-spec/21-app/
 
 ## 🔍 Independent Audit Specifications (`02-spec/25-app-spec-audit/`)
 
-- [01-Blind-AI Implementability & Release Readiness Audit](02-spec/25-app-spec-audit/01-blind-ai-implementability-audit.md) — Exhaustive blind-AI simulation test, scoring breakdown (100/100), and production release sign-off.
-- [25-App Spec Audit Index](02-spec/25-app-spec-audit/readme.md) — Catalog and summary of independent quality audits.
+- [25-App Spec Audit Index](02-spec/25-app-spec-audit/readme.md) — Catalog and summary of independent quality audits and protocol compliance.
+- [Specification Remediation & Gap Closure Record](.ai-memory/plans/completed/04-spec-remediation-completed.md) — 100% audit gap closure and 36 CI quality gates verification.
 
 ---
 

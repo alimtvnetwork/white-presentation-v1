@@ -87,12 +87,14 @@ export function shadeTextByCharacter(
     if (char === ' ') {
       return { char: ' ', hex: 'transparent', hsl: 'transparent' };
     }
+
     const ratio = totalChars > 1 ? index / (totalChars - 1) : 0;
     const targetStep = Math.min(
       9,
       Math.max(0, Math.round(startStep + ratio * (endStep - startStep)))
     );
     const stop = palette.stops[targetStep];
+
     return {
       char,
       hex: stop.hex,

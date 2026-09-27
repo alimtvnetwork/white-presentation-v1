@@ -77,12 +77,14 @@ export const BuilderPanel: React.FC = () => {
                     ? currentSlide.headline
                     : currentSlide.title
                 }
+
                 onChange={(e) => {
                   const val = e.target.value;
                   applyEdit((slide) => {
                     if (slide.type === 'white-master') {
                       return { ...slide, headline: val, title: val };
                     }
+
                     return { ...slide, title: val };
                   });
                 }}

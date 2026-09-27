@@ -1,7 +1,7 @@
 # 09-Comprehensive Blind-AI Audit & Release Readiness Specification
 
 ## 1. Overview & Canonical Audit Reference
-This document serves as the in-folder sequential audit specification within `02-spec/21-app/`, linking directly to the full audit specification in [02-spec/25-app-spec-audit/01-blind-ai-implementability-audit.md](../25-app-spec-audit/01-blind-ai-implementability-audit.md).
+This document serves as the in-folder sequential audit specification within `02-spec/21-app/`, linking directly to the full audit catalog in [02-spec/25-app-spec-audit/readme.md](../25-app-spec-audit/readme.md).
 
 ---
 
@@ -31,5 +31,5 @@ This document serves as the in-folder sequential audit specification within `02-
 4. **Multi-User Database Architecture:**
    Verified complete relational SQL schema (`users`, `decks`, `slides`, `deck_collaborators`, `assets`) with RBAC and JWT/session security.
 
-For full test scenarios and simulation logs, refer to the master audit report:  
-👉 [02-spec/25-app-spec-audit/01-blind-ai-implementability-audit.md](../25-app-spec-audit/01-blind-ai-implementability-audit.md)
+For full test scenarios and simulation logs, refer to the master audit directory:  
+👉 [02-spec/25-app-spec-audit/readme.md](../25-app-spec-audit/readme.md)

@@ -34,6 +34,7 @@ export const PresentationCanvas: React.FC = () => {
 
     handleResize();
     window.addEventListener('resize', handleResize);
+
     return () => window.removeEventListener('resize', handleResize);
   }, [isEditMode]);
 
@@ -76,6 +77,7 @@ export const PresentationCanvas: React.FC = () => {
     };
 
     window.addEventListener('keydown', handleKeyDown);
+
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [nextSlide, prevSlide, toggleEditMode, setTheme]);
 

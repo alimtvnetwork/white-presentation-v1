@@ -12,9 +12,11 @@ class PresentationSoundEngine {
         this.ctx = new AudioCtx();
       }
     }
+
     if (this.ctx && this.ctx.state === 'suspended') {
       this.ctx.resume();
     }
+
     return this.ctx;
   }
 
@@ -39,6 +41,7 @@ class PresentationSoundEngine {
     if (now - this.lastSlideChangeMs < 120) {
       return; // Debounce rapid keydown
     }
+
     this.lastSlideChangeMs = now;
 
     const ctx = this.initContext();
