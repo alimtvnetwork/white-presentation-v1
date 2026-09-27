@@ -9,7 +9,8 @@ export type SlideType =
   | 'steps-chain'
   | 'testimonials'
   | 'competitive-edge'
-  | 'tech-stack';
+  | 'tech-stack'
+  | 'steps';
 
 export type DockPosition =
   | 'bottom-center'
@@ -214,6 +215,23 @@ export interface TechStackSlideData extends BaseSlide {
   }>;
 }
 
+export interface StepsSlideItem {
+  label: string;
+  title?: string;
+  detail: string;
+  media?: {
+    src: string;
+    alt?: string;
+    caption?: string;
+  };
+}
+
+export interface StepsSlideData extends BaseSlide {
+  type: 'steps';
+  heading: string;
+  steps: StepsSlideItem[];
+}
+
 export type SlideData =
   | WhiteMasterSlideData
   | TitleSlideData
@@ -225,7 +243,8 @@ export type SlideData =
   | StepsChainSlideData
   | TestimonialsSlideData
   | CompetitiveEdgeSlideData
-  | TechStackSlideData;
+  | TechStackSlideData
+  | StepsSlideData;
 
 export interface PresentationDeck {
   id: string;

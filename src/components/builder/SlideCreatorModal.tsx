@@ -11,6 +11,7 @@ export const SlideCreatorModal: React.FC = () => {
   if (!isSlideCreatorOpen) return null;
 
   const archetypes: Array<{ type: SlideType; label: string; desc: string; icon: React.ReactNode }> = [
+    { type: 'steps', label: 'Steps Reveal Roadmap', desc: '2-column interactive sequential step progression', icon: <ListOrdered size={16} /> },
     { type: 'steps-chain', label: 'Steps Chain Roadmap', desc: 'Process milestones with sound cues', icon: <ListOrdered size={16} /> },
     { type: 'before-after', label: 'Before & After Contrast', desc: 'Dual-column transformation comparison', icon: <GitCompare size={16} /> },
     { type: 'competitive-edge', label: 'Competitive Benchmark', desc: 'Side-by-side sovereignty matrix', icon: <UserCheck size={16} /> },
@@ -21,32 +22,30 @@ export const SlideCreatorModal: React.FC = () => {
   const handleCreate = (type: SlideType) => {
     const id = `slide-${Date.now()}`;
     let newSlide: SlideData;
-    if (type === 'competitive-edge') {
+    if (type === 'steps') {
+      newSlide = {
+        id, type: 'steps', title: 'Execution Roadmap', kicker: 'AUTONOMOUS WORKFLOW', heading: 'Three phases, one goal',
+        steps: [
+          { label: 'Discover', title: 'Analyze requirements', detail: 'Evaluate pain points, specifications, and architecture requirements.' },
+          { label: 'Prototype', title: 'Build core slice', detail: 'Develop minimal sovereign implementation with zero fluff.' },
+          { label: 'Ship', title: 'Verify and release', detail: 'Execute deterministic automated verification gates and deploy to production.' },
+        ],
+      };
+    } else if (type === 'competitive-edge') {
       newSlide = {
         id, type: 'competitive-edge', title: 'Competitive Advantage', subtitle: 'Measurable enterprise superiority matrix',
         headers: ['Capability', 'Legacy Models', 'Riseup Sovereign Standard'],
-        rows: [
-          { feature: 'Autonomous Loop QA', competitor: 'Manual review', us: '100% Deterministic CI' },
-          { feature: 'Zero-Defect Latency', competitor: 'Days/weeks', us: '< 2-minute auto-repair' },
-        ],
+        rows: [{ feature: 'Autonomous Loop QA', competitor: 'Manual review', us: '100% Deterministic CI' }, { feature: 'Zero-Defect Latency', competitor: 'Days/weeks', us: '< 2-minute auto-repair' }],
       };
     } else if (type === 'tech-stack') {
       newSlide = {
         id, type: 'tech-stack', title: 'Production Architecture', subtitle: 'Battle-tested enterprise engineering stack',
-        categories: [
-          { name: 'Core Engine', icon: 'cpu', technologies: [{ name: 'React 19', level: 'Core' }, { name: 'Vite 7', level: 'Core' }] },
-          { name: 'Design System', icon: 'zap', technologies: [{ name: 'Less CSS', level: 'Enterprise' }, { name: 'Tailwind 4', level: 'Core' }] },
-        ],
+        categories: [{ name: 'Core Engine', icon: 'cpu', technologies: [{ name: 'React 19', level: 'Core' }, { name: 'Vite 7', level: 'Core' }] }, { name: 'Design System', icon: 'zap', technologies: [{ name: 'Less CSS', level: 'Enterprise' }, { name: 'Tailwind 4', level: 'Core' }] }],
       };
     } else if (type === 'steps-chain') {
       newSlide = {
         id, type: 'steps-chain', title: 'Implementation Architecture', subtitle: '4-phase sequential deployment timeline',
-        steps: [
-          { stepNumber: 1, title: 'Intake & Discovery', description: 'Deep architecture evaluation' },
-          { stepNumber: 2, title: 'Engine Synthesis', description: 'Core Less and layout orchestration' },
-          { stepNumber: 3, title: 'Interactive Staging', description: 'Builder mode verification' },
-          { stepNumber: 4, title: 'Enterprise Release', description: '4K production export' },
-        ],
+        steps: [{ stepNumber: 1, title: 'Intake & Discovery', description: 'Deep architecture evaluation' }, { stepNumber: 2, title: 'Engine Synthesis', description: 'Core Less and layout orchestration' }, { stepNumber: 3, title: 'Interactive Staging', description: 'Builder mode verification' }, { stepNumber: 4, title: 'Enterprise Release', description: '4K production export' }],
       };
     } else {
       newSlide = {
@@ -71,18 +70,11 @@ export const SlideCreatorModal: React.FC = () => {
             <X size={16} />
           </button>
         </div>
-
         <div className="p-4 flex flex-col gap-2.5 max-h-[420px] overflow-y-auto">
           {archetypes.map((a) => (
-            <div
-              key={a.type}
-              onClick={() => handleCreate(a.type)}
-              className="p-3 bg-slate-950 border border-slate-800 hover:border-violet-500 rounded-xl flex items-center justify-between cursor-pointer transition-all group"
-            >
+            <div key={a.type} onClick={() => handleCreate(a.type)} className="p-3 bg-slate-950 border border-slate-800 hover:border-violet-500 rounded-xl flex items-center justify-between cursor-pointer transition-all group">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-lg bg-violet-950/60 border border-violet-800/50 flex items-center justify-center text-violet-400 group-hover:scale-105 transition-transform">
-                  {a.icon}
-                </div>
+                <div className="w-9 h-9 rounded-lg bg-violet-950/60 border border-violet-800/50 flex items-center justify-center text-violet-400 group-hover:scale-105 transition-transform">{a.icon}</div>
                 <div>
                   <div className="text-xs font-ubuntu font-bold text-slate-100 group-hover:text-violet-300">{a.label}</div>
                   <div className="text-[11px] text-slate-400">{a.desc}</div>

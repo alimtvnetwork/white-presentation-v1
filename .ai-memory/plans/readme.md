@@ -11,3 +11,4 @@
 - [05-interactive-builder-and-slide-system.md](completed/05-interactive-builder-and-slide-system.md)
 - [06-advanced-slide-system.md](completed/06-advanced-slide-system.md)
 - [07-webcam-camera-and-single-builder.md](completed/07-webcam-camera-and-single-builder.md)
+- [22-steps-slides-from-flat-slide.md](completed/22-steps-slides-from-flat-slide.md)

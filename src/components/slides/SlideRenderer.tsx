@@ -12,6 +12,7 @@ import { TestimonialsSlide } from './TestimonialsSlide';
 
 import { CompetitiveEdgeSlide } from './CompetitiveEdgeSlide';
 import { TechStackSlide } from './TechStackSlide';
+import { StepsSlide } from './StepsSlide';
 
 interface SlideRendererProps {
   slide: SlideData;
@@ -41,6 +42,8 @@ export const SlideRenderer: React.FC<SlideRendererProps> = ({ slide }) => {
       return <CompetitiveEdgeSlide slide={slide} />;
     case 'tech-stack':
       return <TechStackSlide slide={slide} />;
+    case 'steps':
+      return <StepsSlide slide={slide as any} />;
     default:
       return <WhiteMasterSlide slide={slide as any} />;
   }

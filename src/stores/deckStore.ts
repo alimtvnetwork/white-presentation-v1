@@ -329,6 +329,30 @@ const INITIAL_DECK: PresentationDeck = {
         },
       ],
     },
+    {
+      id: 'slide-09-how-we-ship',
+      type: 'steps',
+      title: 'How We Ship',
+      kicker: 'AUTONOMOUS DELIVERY',
+      heading: 'Three phases, one week each',
+      steps: [
+        { label: 'Discover', title: 'Talk to 5 users', detail: 'Interview five real users. Extract architectural pain points and write specifications within 24 hours.' },
+        { label: 'Prototype', title: 'One click, one screen', detail: 'Build the thinnest sovereign slice that solves the mission. Zero fluff, pure DOM performance.' },
+        { label: 'Ship', title: 'Behind a flag', detail: 'Continuous production deployment every Friday. Immediate real-time validation across active teams.' },
+      ],
+    },
+    {
+      id: 'slide-10-architecture-reveals',
+      type: 'steps',
+      title: 'Architecture, in Three Reveals',
+      kicker: 'DISTRIBUTED TOPOLOGY',
+      heading: 'From request to response',
+      steps: [
+        { label: 'Client', title: 'What the user sees', detail: 'The browser loads declarative JSON presentation state in sub-10ms with zero hydration lag.' },
+        { label: 'Edge', title: 'Cache & Prerender', detail: 'Distributed edge workers validate access tokens and stream vector canvas components instantaneously.' },
+        { label: 'Origin', title: 'State & Persistence', detail: 'Autonomous backend services process real-time DOM mutations and persist state with zero data loss.' },
+      ],
+    },
   ],
 };
 
