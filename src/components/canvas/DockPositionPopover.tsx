@@ -11,10 +11,10 @@ export const DockPositionPopover: React.FC<DockPositionPopoverProps> = ({ onClos
   const { dockPosition, setDockPosition, indicatorPosition, setIndicatorPosition } = useEditStore();
 
   const dockOptions: Array<{ id: DockPosition; label: string; icon: React.ReactNode }> = [
-    { id: 'top-center', label: 'Top', icon: <ArrowUp size={12} /> },
-    { id: 'bottom-center', label: 'Bottom', icon: <ArrowDown size={12} /> },
-    { id: 'left', label: 'Left', icon: <ArrowLeft size={12} /> },
-    { id: 'right', label: 'Right', icon: <ArrowRight size={12} /> },
+    { id: 'top-center', label: 'Top', icon: <ArrowUp size={11} /> },
+    { id: 'bottom-center', label: 'Bottom', icon: <ArrowDown size={11} /> },
+    { id: 'left', label: 'Left', icon: <ArrowLeft size={11} /> },
+    { id: 'right', label: 'Right', icon: <ArrowRight size={11} /> },
   ];
 
   const indicatorOptions: Array<{ id: IndicatorPosition; label: string }> = [
@@ -24,53 +24,63 @@ export const DockPositionPopover: React.FC<DockPositionPopoverProps> = ({ onClos
   ];
 
   return (
-    <div className="absolute bottom-full mb-3 bg-slate-900/95 border border-slate-700/90 rounded-2xl p-3 shadow-2xl backdrop-blur-md flex flex-col gap-2.5 min-w-[220px] text-xs z-50 animate__animated animate__fadeIn">
+    <div className="absolute bottom-full mb-3 bg-slate-900/95 border border-slate-700/90 rounded-2xl p-3 shadow-2xl backdrop-blur-md flex flex-col gap-3 w-64 text-xs z-50 animate__animated animate__fadeIn">
       <div className="flex items-center justify-between border-b border-slate-800 pb-2">
         <div className="flex items-center gap-1.5 font-ubuntu font-bold text-slate-200">
           <LayoutGrid size={14} className="text-violet-400" />
           <span>Screen Layout</span>
         </div>
-        <button onClick={onClose} className="p-0.5 text-slate-400 hover:text-white cursor-pointer">
+        <button onClick={onClose} className="p-0.5 text-slate-400 hover:text-white cursor-pointer" title="Close">
           <X size={13} />
         </button>
       </div>
 
       <div>
         <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 mb-1.5">Controller Position</div>
-        <div className="grid grid-cols-4 gap-1">
-          {dockOptions.map((opt) => (
-            <button
-              key={opt.id}
-              onClick={() => setDockPosition(opt.id)}
-              className={`flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg border text-[11px] font-medium transition-all cursor-pointer ${
-                dockPosition === opt.id
-                  ? 'bg-violet-600 border-violet-500 text-white font-bold'
-                  : 'bg-slate-950 border-slate-800 text-slate-300 hover:bg-slate-800'
-              }`}
-            >
-              {opt.icon}
-              <span>{opt.label}</span>
-            </button>
-          ))}
+        <div className="grid grid-cols-4 bg-slate-950/90 p-0.5 rounded-lg border border-slate-800 w-full">
+          {dockOptions.map((opt) => {
+            const isSelected = dockPosition === opt.id;
+
+            return (
+              <button
+                key={opt.id}
+                type="button"
+                onClick={() => setDockPosition(opt.id)}
+                className={`flex items-center justify-center gap-1 py-1.5 px-0.5 rounded-md text-[11px] font-medium transition-all cursor-pointer ${
+                  isSelected
+                    ? 'bg-violet-600 text-white font-semibold shadow-sm'
+                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
+                }`}
+              >
+                {opt.icon}
+                <span>{opt.label}</span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
       <div className="border-t border-slate-800 pt-2">
         <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 mb-1.5">Slider Numbers</div>
-        <div className="grid grid-cols-3 gap-1">
-          {indicatorOptions.map((opt) => (
-            <button
-              key={opt.id}
-              onClick={() => setIndicatorPosition(opt.id)}
-              className={`py-1 px-2 rounded-lg border text-center text-[11px] font-medium transition-all cursor-pointer ${
-                indicatorPosition === opt.id
-                  ? 'bg-violet-600 border-violet-500 text-white font-bold'
-                  : 'bg-slate-950 border-slate-800 text-slate-300 hover:bg-slate-800'
-              }`}
-            >
-              {opt.label}
-            </button>
-          ))}
+        <div className="grid grid-cols-3 bg-slate-950/90 p-0.5 rounded-lg border border-slate-800 w-full">
+          {indicatorOptions.map((opt) => {
+            const isSelected = indicatorPosition === opt.id;
+
+            return (
+              <button
+                key={opt.id}
+                type="button"
+                onClick={() => setIndicatorPosition(opt.id)}
+                className={`py-1.5 px-1 rounded-md text-center text-[11px] font-medium transition-all cursor-pointer ${
+                  isSelected
+                    ? 'bg-violet-600 text-white font-semibold shadow-sm'
+                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
+                }`}
+              >
+                {opt.label}
+              </button>
+            );
+          })}
         </div>
       </div>
     </div>
