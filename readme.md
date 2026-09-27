@@ -17,6 +17,14 @@ All architectural specifications are documented sequentially in [02-spec/21-app/
 - [06-Color Theme 10-Step Gradient Precision System](02-spec/21-app/06-color-theme-10-step-gradient-system.md) — 10-step mathematical ramps ($S_0$–$S_9$) in HSL, RGB, and HEX coordinates across White, Dark, Green, Purple, and WP Exam Blue themes.
 - [07-Animation, Audio Sound, Export Quality & Multi-User Architecture](02-spec/21-app/07-animation-sound-and-export-quality-spec.md) — Motion curves, audio ducking, 4K/60fps headless capture, multi-tenant relational SQL database schema.
 - [08-Multi-Deck Comprehensive Compare & Contrast Analysis](02-spec/21-app/08-multi-deck-compare-contrast-matrix.md) — Deep comparative audit across 5 platforms (`flat-slide-show`, `global-ppt-v1`, `bsrm-hiltrax`, `ki-health-ppt`, `wp-exam`).
+- [09-Blind-AI Audit & Release Readiness Specification](02-spec/21-app/09-comprehensive-audit-specification.md) — Release sign-off, verbatim verification matrix, 100/100 score.
+
+---
+
+## 🔍 Independent Audit Specifications (`02-spec/25-app-spec-audit/`)
+
+- [01-Blind-AI Implementability & Release Readiness Audit](02-spec/25-app-spec-audit/01-blind-ai-implementability-audit.md) — Exhaustive blind-AI simulation test, scoring breakdown (100/100), and production release sign-off.
+- [25-App Spec Audit Index](02-spec/25-app-spec-audit/readme.md) — Catalog and summary of independent quality audits.
 
 ---
 

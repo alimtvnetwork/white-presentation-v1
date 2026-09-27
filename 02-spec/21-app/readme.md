@@ -17,6 +17,7 @@ This directory houses the canonical, sequential specifications for the **White P
 | [06-color-theme-10-step-gradient-system.md](06-color-theme-10-step-gradient-system.md) | **10-Step Color Gradient System** | Mathematical 10-step ramps in HSL/RGB/HEX across White, Dark, Green, Purple, and WP Exam Blue palettes. |
 | [07-animation-sound-and-export-quality-spec.md](07-animation-sound-and-export-quality-spec.md) | **Animation, Audio & Multi-User Architecture** | Motion curves, whoosh/click debouncing, audio ducking, 4K/60fps headless export, multi-tenant relational database schema. |
 | [08-multi-deck-compare-contrast-matrix.md](08-multi-deck-compare-contrast-matrix.md) | **Multi-Deck Compare & Contrast Matrix** | Deep audit across 5 platforms (`flat-slide-show`, `global-ppt-v1`, `bsrm-hiltrax`, `ki-health-ppt`, `wp-exam`): strengths, gaps, anti-patterns. |
+| [09-comprehensive-audit-specification.md](09-comprehensive-audit-specification.md) | **Blind-AI Audit & Release Readiness** | Release sign-off, verbatim verification matrix, 100/100 confidence score, cross-link to `02-spec/25-app-spec-audit/`. |
 
 ---
 
