@@ -9,6 +9,16 @@ export const CompetitiveEdgeSlide: React.FC<{ slide: CompetitiveEdgeSlideData }>
   const { activeThemeId, applyEdit } = useDeckStore();
   const { isEditMode } = useEditStore();
   const theme = THEME_PALETTES[activeThemeId] || THEME_PALETTES['white-brand'];
+  const isDark = theme.isDark;
+
+  const logoSrc = isDark
+    ? '/assets/logos/5 - Riseup Asia Logo Transparent Only WT.png'
+    : '/assets/logos/6 - Riseup Asia Logo Transparent Only BK.png';
+
+  const borderClass = isDark ? 'border-slate-700/60' : 'border-slate-200/90';
+  const divideClass = isDark ? 'divide-slate-800/80' : 'divide-slate-200/70';
+  const headerBgClass = isDark ? 'bg-white/[0.04]' : 'bg-slate-50/80';
+  const rowHoverClass = isDark ? 'hover:bg-violet-500/15' : 'hover:bg-violet-50/90';
 
   return (
     <div
@@ -46,25 +56,28 @@ export const CompetitiveEdgeSlide: React.FC<{ slide: CompetitiveEdgeSlideData }>
             </p>
           )}
         </div>
-        <img src="/assets/logos/6 - Riseup Asia Logo Transparent Only BK.png" alt="Logo" className="h-[42px] w-auto object-contain filter contrast-125" />
+        <img src={logoSrc} alt="Logo" className="h-[42px] w-auto object-contain filter contrast-125" />
       </div>
 
-      <div style={{ backgroundColor: theme.cardBg, borderColor: theme.cardBorder }} className="my-auto z-20 max-w-[1640px] w-full mx-auto rounded-3xl border overflow-hidden shadow-xl">
-        <div className="grid grid-cols-12 p-6 border-b border-white/10 font-ubuntu font-bold text-sm tracking-wider uppercase opacity-80">
-          <div className="col-span-5">{slide.headers[0] || 'Feature & Capability'}</div>
-          <div className="col-span-3 text-center">{slide.headers[1] || 'Traditional Model'}</div>
+      <div
+        style={{ backgroundColor: theme.cardBg, borderColor: theme.cardBorder }}
+        className="my-auto z-20 w-full rounded-2xl border overflow-hidden shadow-2xl backdrop-blur-md"
+      >
+        <div className={`grid grid-cols-12 px-8 py-5 border-b ${borderClass} ${headerBgClass} font-ubuntu font-bold text-sm tracking-wider uppercase`}>
+          <div className={`col-span-5 ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>{slide.headers[0] || 'Feature & Capability'}</div>
+          <div className={`col-span-3 text-center ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>{slide.headers[1] || 'Traditional Model'}</div>
           <div style={{ color: theme.accentColor }} className="col-span-4 text-center font-extrabold">{slide.headers[2] || 'Riseup Sovereign Platform'}</div>
         </div>
-        <div className="flex flex-col divide-y divide-white/5 font-poppins text-[16px]">
+        <div className={`flex flex-col divide-y ${divideClass} font-poppins text-[16px]`}>
           {slide.rows.map((row, idx) => (
-            <div key={idx} className="grid grid-cols-12 p-5 items-center hover:bg-white/[0.02] transition-colors">
-              <div style={{ color: theme.textColor }} className="col-span-5 font-medium">{row.feature}</div>
-              <div style={{ color: theme.subtextColor }} className="col-span-3 flex items-center justify-center gap-2 text-center opacity-75">
-                <X size={16} className="text-rose-400 shrink-0" />
+            <div key={idx} className={`grid grid-cols-12 px-8 py-5 items-center transition-all duration-150 cursor-pointer ${rowHoverClass}`}>
+              <div className={`col-span-5 font-semibold ${isDark ? 'text-slate-100' : 'text-slate-900'}`}>{row.feature}</div>
+              <div className={`col-span-3 flex items-center justify-center gap-2 text-center ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+                <X size={17} className={isDark ? 'text-rose-400 shrink-0' : 'text-rose-600 shrink-0'} />
                 <span>{row.competitor}</span>
               </div>
-              <div style={{ color: theme.accentColor }} className="col-span-4 flex items-center justify-center gap-2 text-center font-semibold">
-                <Check size={16} className="text-emerald-400 shrink-0" />
+              <div style={{ color: theme.accentColor }} className="col-span-4 flex items-center justify-center gap-2 text-center font-bold">
+                <Check size={17} className={isDark ? 'text-emerald-400 shrink-0' : 'text-emerald-600 shrink-0'} />
                 <span>{row.us}</span>
               </div>
             </div>

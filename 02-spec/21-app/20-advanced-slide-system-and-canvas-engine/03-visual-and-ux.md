@@ -18,8 +18,12 @@ When `isEditMode === true`:
 
 ## 4. Extended Slide Layouts
 1. **Competitive Edge (`competitive-edge`):**
-   - 3-column side-by-side comparison matrix with high-contrast badge highlighting for the proprietary Sovereign model.
-   - Clean editorial headers with check/cross markers.
+   - **Boundary Alignment:** Table outer card spans `w-full` (1720px across the viewport), perfectly flush with the slide kicker/title on the left (x = 100px) and the Riseup Asia logo on the right (x = 1820px).
+   - **Interactive Row Hover:** Every table row features an interactive, high-visibility hover state with a smooth 150ms transition (`hover:bg-violet-500/15` on dark themes, `hover:bg-violet-50/90` on light themes, `cursor-pointer`).
+   - **Dynamic Dark/Light Contrast Switching:**
+     - On dark backgrounds/themes: Typography switches to luminous light hues (`text-slate-100` for features, `text-slate-300` for competitor data, `text-slate-200` for column headers), dividers switch to subtle dark borders (`border-slate-700/60`, `divide-slate-800/80`), the Riseup Asia logo switches dynamically to the white variant (`5 - Riseup Asia Logo Transparent Only WT.png`), and header micro-shadow `rgb(0 0 0) 1px 0.7px 0px` is applied.
+     - On light/white backgrounds/themes: Typography switches to high-contrast dark tones (`text-slate-900` for features, `text-slate-600` for competitor data, `text-slate-700` for column headers), dividers switch to crisp light borders (`border-slate-200/90`, `divide-slate-200/70`), the Riseup Asia logo switches dynamically to the black variant (`6 - Riseup Asia Logo Transparent Only BK.png`), and bevel shadow `rgb(255 255 255) 1px 0.7px 0px` is applied.
+   - **Proprietary Pillar Highlighting:** The sovereign platform column is rendered with the active theme's accent color (`theme.accentColor`), bold font weight, and emerald confirmation icons.
 2. **Tech Stack Matrix (`tech-stack`):**
    - 4-column card grid categorizing Enterprise Architecture, AI/Autonomous Agents, Cloud Infrastructure, and Frontend Frameworks.
    - Embedded Lucide icons and seniority level tags.
