@@ -5,13 +5,26 @@ import { IndicatorPosition } from '../../types/presentation';
 
 export const SlideIndicator: React.FC = () => {
   const { deck, activeSlideIndex, goToSlide } = useDeckStore();
-  const { indicatorPosition } = useEditStore();
+  const { indicatorPosition, setIndicatorPosition, dockPosition } = useEditStore();
+
+  const cyclePosition = () => {
+    const sequence: IndicatorPosition[] = ['bottom-left', 'bottom-center', 'bottom-right'];
+    const currIdx = sequence.indexOf(indicatorPosition);
+    const nextPos = sequence[(currIdx + 1) % sequence.length];
+    setIndicatorPosition(nextPos);
+  };
+
+  const isStackedWithControls =
+    (indicatorPosition === 'bottom-center' && dockPosition === 'bottom-center') ||
+    (indicatorPosition === 'bottom-left' && dockPosition === 'bottom-left') ||
+    (indicatorPosition === 'bottom-right' && dockPosition === 'bottom-right');
 
   const posMap: Record<IndicatorPosition, string> = {
-    'bottom-left': 'bottom-6 left-8 flex-row',
-    'bottom-center': 'bottom-6 left-1/2 -translate-x-1/2 flex-row',
-    'bottom-right': 'bottom-6 right-8 flex-row',
+    'bottom-left': isStackedWithControls ? 'bottom-20 left-8 flex-row' : 'bottom-6 left-8 flex-row',
+    'bottom-center': isStackedWithControls ? 'bottom-20 left-1/2 -translate-x-1/2 flex-row' : 'bottom-6 left-1/2 -translate-x-1/2 flex-row',
+    'bottom-right': isStackedWithControls ? 'bottom-20 right-8 flex-row' : 'bottom-6 right-8 flex-row',
     'top-center': 'top-6 left-1/2 -translate-x-1/2 flex-row',
+    'left': 'top-1/2 left-6 -translate-y-1/2 flex-col',
     'right': 'top-1/2 right-6 -translate-y-1/2 flex-col',
   };
 
@@ -21,13 +34,19 @@ export const SlideIndicator: React.FC = () => {
         posMap[indicatorPosition] || posMap['bottom-left']
       }`}
     >
-      <span className="text-violet-400 font-bold">
-        {String(activeSlideIndex + 1).padStart(2, '0')}
-      </span>
-      <span className="text-slate-500">/</span>
-      <span className="text-slate-400">
-        {String(deck.slides.length).padStart(2, '0')}
-      </span>
+      <button
+        onClick={cyclePosition}
+        title="Click to move slide numbers (Left / Center / Right)"
+        className="flex items-center gap-1 hover:text-white transition-colors cursor-pointer"
+      >
+        <span className="text-violet-400 font-bold">
+          {String(activeSlideIndex + 1).padStart(2, '0')}
+        </span>
+        <span className="text-slate-500">/</span>
+        <span className="text-slate-400">
+          {String(deck.slides.length).padStart(2, '0')}
+        </span>
+      </button>
 
       <div className="flex items-center gap-1.5 ml-2 border-l border-slate-700 pl-3">
         {deck.slides.map((_, i) => (

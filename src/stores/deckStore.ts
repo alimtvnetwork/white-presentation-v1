@@ -286,6 +286,49 @@ const INITIAL_DECK: PresentationDeck = {
         },
       ],
     } as any,
+    {
+      id: 'slide-10',
+      type: 'competitive-edge',
+      title: 'Architectural Superiority Matrix',
+      subtitle: 'Side-by-side verification of sovereign engineering vs fragmented legacy agencies.',
+      kicker: 'COMPETITIVE BENCHMARK',
+      headers: ['Core Dimension', 'Traditional IT & Agency Vendors', 'Riseup Sovereign Standard'],
+      rows: [
+        { feature: 'Autonomous Loop Quality Gates', competitor: 'Manual review, days-long turnaround', us: 'Deterministic 36-gate automated CI' },
+        { feature: 'Component Size Discipline', competitor: 'Bloated 800+ line spaghetti files', us: 'Strict <= 100 line architectural cap' },
+        { feature: 'In-Place Authoring Latency', competitor: 'Recompile & redeploy cycle', us: 'Zero-latency direct DOM mutation' },
+        { feature: 'Pure DOM Typography Fidelity', competitor: 'Pixelated raster slide renders', us: 'Vector 4K Ubuntu & Poppins layout' },
+      ],
+    },
+    {
+      id: 'slide-11',
+      type: 'tech-stack',
+      title: 'Enterprise Technology Stack',
+      subtitle: 'Modern, high-leverage toolchain engineered for sovereign reliability and speed.',
+      kicker: 'CORE INFRASTRUCTURE',
+      categories: [
+        {
+          name: 'Core Application Engine',
+          icon: 'cpu',
+          technologies: [{ name: 'React 19', level: 'Core' }, { name: 'TypeScript 5', level: 'Core' }, { name: 'Vite 7', level: 'Enterprise' }],
+        },
+        {
+          name: 'Styling & Motion',
+          icon: 'zap',
+          technologies: [{ name: 'Less CSS', level: 'Core' }, { name: 'Tailwind 4', level: 'Core' }, { name: 'Animate.css', level: 'Advanced' }],
+        },
+        {
+          name: 'Autonomous Verification',
+          icon: 'shield',
+          technologies: [{ name: 'Parallel CI Runner', level: 'Enterprise' }, { name: 'RCA Diagnostician', level: 'Advanced' }, { name: 'Zustand Store', level: 'Core' }],
+        },
+        {
+          name: 'Audio & Hardware Engine',
+          icon: 'terminal',
+          technologies: [{ name: 'Web Audio API', level: 'Enterprise' }, { name: 'CSS 3D Transforms', level: 'Advanced' }, { name: 'OpenXML Serializer', level: 'Core' }],
+        },
+      ],
+    },
   ],
 };
 

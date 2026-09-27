@@ -18,6 +18,7 @@ export const CameraEditor: React.FC = () => {
   ];
 
   const dockPositions: Array<{ id: DockPosition; label: string }> = [
+    { id: 'top-center', label: 'Top Center' },
     { id: 'bottom-center', label: 'Bottom Center' },
     { id: 'bottom-left', label: 'Bottom Left' },
     { id: 'bottom-right', label: 'Bottom Right' },
@@ -31,22 +32,23 @@ export const CameraEditor: React.FC = () => {
     { id: 'bottom-center', label: 'Bottom Center' },
     { id: 'bottom-right', label: 'Bottom Right' },
     { id: 'top-center', label: 'Top Center' },
+    { id: 'left', label: 'Left Dock' },
     { id: 'right', label: 'Right Dock' },
   ];
 
   return (
-    <div className="flex flex-col gap-5 slide-up-anim text-xs">
+    <div className="flex flex-col gap-4 slide-up-anim text-xs">
       <div className="font-mono uppercase tracking-wider text-slate-400 font-semibold flex items-center gap-1.5">
         <Camera size={14} className="text-violet-400" />
         <span>Camera & Viewport Presets</span>
       </div>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-1.5">
         {presets.map((p) => (
           <button
             key={p.id}
             onClick={() => setCameraPreset(p.id)}
-            className={`p-2.5 rounded-lg border text-left flex items-center justify-between transition-all cursor-pointer ${
+            className={`p-2 rounded-lg border text-left flex items-center justify-between transition-all cursor-pointer ${
               cameraPreset === p.id
                 ? 'border-violet-500 bg-violet-950/40 text-violet-200'
                 : 'border-slate-800 bg-slate-950 hover:border-slate-700 text-slate-400'
@@ -61,7 +63,7 @@ export const CameraEditor: React.FC = () => {
         ))}
       </div>
 
-      <div className="flex flex-col gap-2 pt-2 border-t border-slate-800">
+      <div className="flex flex-col gap-1.5 pt-2 border-t border-slate-800">
         <div className="font-medium text-slate-300 flex items-center gap-1.5">
           <Navigation size={14} className="text-violet-400" />
           <span>Navigation Controller Dock</span>
@@ -71,13 +73,11 @@ export const CameraEditor: React.FC = () => {
           onChange={(e) => setDockPosition(e.target.value as DockPosition)}
           className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-200 cursor-pointer"
         >
-          {dockPositions.map((d) => (
-            <option key={d.id} value={d.id}>{d.label}</option>
-          ))}
+          {dockPositions.map((d) => (<option key={d.id} value={d.id}>{d.label}</option>))}
         </select>
       </div>
 
-      <div className="flex flex-col gap-2 pt-2 border-t border-slate-800">
+      <div className="flex flex-col gap-1.5 pt-2 border-t border-slate-800">
         <div className="font-medium text-slate-300 flex items-center gap-1.5">
           <Layout size={14} className="text-violet-400" />
           <span>Slide Indicator Position</span>
@@ -87,9 +87,7 @@ export const CameraEditor: React.FC = () => {
           onChange={(e) => setIndicatorPosition(e.target.value as IndicatorPosition)}
           className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-200 cursor-pointer"
         >
-          {indicatorPositions.map((i) => (
-            <option key={i.id} value={i.id}>{i.label}</option>
-          ))}
+          {indicatorPositions.map((i) => (<option key={i.id} value={i.id}>{i.label}</option>))}
         </select>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useEditStore, InspectorPanelType } from '../../stores/editStore';
 import { ColorPalettePicker } from './ColorPalettePicker';
 import { ContentEditor } from './ContentEditor';
@@ -11,6 +11,22 @@ export const BuilderPanel: React.FC = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
 
+  useEffect(() => {
+    if (!isDragging) return;
+    const onMove = (e: MouseEvent) => setPanelPos({
+      x: Math.min(window.innerWidth - 80, Math.max(10, e.clientX - dragOffset.x)),
+      y: Math.min(window.innerHeight - 80, Math.max(10, e.clientY - dragOffset.y)),
+    });
+    const onUp = () => setIsDragging(false);
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseup', onUp);
+
+    return () => {
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseup', onUp);
+    };
+  }, [isDragging, dragOffset, setPanelPos]);
+
   if (!isEditMode) return null;
 
   const onMouseDown = (e: React.MouseEvent) => {
@@ -18,27 +34,12 @@ export const BuilderPanel: React.FC = () => {
     setDragOffset({ x: e.clientX - panelPos.x, y: e.clientY - panelPos.y });
   };
 
-  const onMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging) return;
-    setPanelPos({ x: Math.max(10, e.clientX - dragOffset.x), y: Math.max(10, e.clientY - dragOffset.y) });
-  };
-
-  const onMouseUp = () => setIsDragging(false);
-
   if (isMinimized) {
     return (
-      <div
-        style={{ top: panelPos.y, left: panelPos.x }}
-        className="fixed z-50 flex items-center gap-2 p-2 bg-slate-900/95 border border-violet-500/80 rounded-full shadow-2xl backdrop-blur-md cursor-move animate__animated animate__fadeIn"
-        onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={onMouseUp}
-      >
-        <button onClick={toggleMinimize} className="p-1.5 text-violet-400 hover:text-white cursor-pointer" title="Expand Builder">
-          <Maximize2 size={16} />
-        </button>
+      <div style={{ top: panelPos.y, left: panelPos.x }} className="fixed z-50 flex items-center gap-2 p-2 bg-slate-900/95 border border-violet-500/80 rounded-full shadow-2xl backdrop-blur-md cursor-move animate__animated animate__fadeIn" onMouseDown={onMouseDown}>
+        <button onClick={toggleMinimize} className="p-1.5 text-violet-400 hover:text-white cursor-pointer" title="Expand Builder"><Maximize2 size={16} /></button>
         <span className="text-xs font-ubuntu font-bold text-slate-200 pr-2">Builder Inspector</span>
-        <button onClick={toggleEditMode} className="p-1 text-slate-400 hover:text-white cursor-pointer" title="Close">
-          <X size={14} />
-        </button>
+        <button onClick={toggleEditMode} className="p-1 text-slate-400 hover:text-white cursor-pointer" title="Close"><X size={14} /></button>
       </div>
     );
   }
@@ -51,15 +52,8 @@ export const BuilderPanel: React.FC = () => {
   ];
 
   return (
-    <div
-      style={{ top: panelPos.y, left: panelPos.x }}
-      className="fixed w-[370px] max-h-[85vh] bg-slate-900/95 border border-slate-700/80 rounded-2xl flex flex-col z-50 shadow-2xl backdrop-blur-md overflow-hidden animate__animated animate__fadeIn"
-      onMouseMove={onMouseMove} onMouseUp={onMouseUp}
-    >
-      <div
-        onMouseDown={onMouseDown}
-        className="p-3 bg-slate-950/80 border-b border-slate-800 flex items-center justify-between cursor-move select-none"
-      >
+    <div style={{ top: panelPos.y, left: panelPos.x }} className="fixed w-[370px] max-h-[85vh] bg-slate-900/95 border border-slate-700/80 rounded-2xl flex flex-col z-50 shadow-2xl backdrop-blur-md overflow-hidden animate__animated animate__fadeIn">
+      <div onMouseDown={onMouseDown} className="p-3 bg-slate-950/80 border-b border-slate-800 flex items-center justify-between cursor-move select-none">
         <div className="flex items-center gap-2 text-xs font-ubuntu font-bold text-slate-100">
           <GripHorizontal size={16} className="text-violet-400" />
           <span>Slide Builder Inspector</span>

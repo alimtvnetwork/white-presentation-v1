@@ -10,6 +10,9 @@ import { KeyPlayerSlide } from './KeyPlayerSlide';
 import { StepsChainSlide } from './StepsChainSlide';
 import { TestimonialsSlide } from './TestimonialsSlide';
 
+import { CompetitiveEdgeSlide } from './CompetitiveEdgeSlide';
+import { TechStackSlide } from './TechStackSlide';
+
 interface SlideRendererProps {
   slide: SlideData;
 }
@@ -23,7 +26,7 @@ export const SlideRenderer: React.FC<SlideRendererProps> = ({ slide }) => {
     case 'persona':
       return <CeoPersonaSlide slide={slide} />;
     case 'key-player':
-      return <KeyPlayerSlide slide={slide as any} />;
+      return <KeyPlayerSlide slide={slide} />;
     case 'before-after':
       return <BeforeAfterSlide slide={slide} />;
     case 'talent-funnel':
@@ -31,9 +34,13 @@ export const SlideRenderer: React.FC<SlideRendererProps> = ({ slide }) => {
     case 'pricing':
       return <PricingProofSlide slide={slide} />;
     case 'steps-chain':
-      return <StepsChainSlide slide={slide as any} />;
+      return <StepsChainSlide slide={slide} />;
     case 'testimonials':
-      return <TestimonialsSlide slide={slide as any} />;
+      return <TestimonialsSlide slide={slide} />;
+    case 'competitive-edge':
+      return <CompetitiveEdgeSlide slide={slide} />;
+    case 'tech-stack':
+      return <TechStackSlide slide={slide} />;
     default:
       return <WhiteMasterSlide slide={slide as any} />;
   }

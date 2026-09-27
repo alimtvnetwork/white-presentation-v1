@@ -11,41 +11,48 @@ export const SlideCreatorModal: React.FC = () => {
   if (!isSlideCreatorOpen) return null;
 
   const archetypes: Array<{ type: SlideType; label: string; desc: string; icon: React.ReactNode }> = [
-    { type: 'steps-chain', label: 'Steps Chain Roadmap', desc: '4 horizontal process milestones with sound cues', icon: <ListOrdered size={18} /> },
-    { type: 'before-after', label: 'Before & After Contrast', desc: 'Dual-column transformation comparison', icon: <GitCompare size={18} /> },
-    { type: 'persona', label: 'Technical Leadership', desc: 'Executive persona with metrics and bio', icon: <UserCheck size={18} /> },
-    { type: 'pricing', label: 'SaaS Pricing & Proof', desc: '3-tier commercial model with featured plan', icon: <DollarSign size={18} /> },
-    { type: 'white-master', label: 'Editorial Master Slide', desc: 'Flagship narrative with photographic plate', icon: <Layers size={18} /> },
+    { type: 'steps-chain', label: 'Steps Chain Roadmap', desc: 'Process milestones with sound cues', icon: <ListOrdered size={16} /> },
+    { type: 'before-after', label: 'Before & After Contrast', desc: 'Dual-column transformation comparison', icon: <GitCompare size={16} /> },
+    { type: 'competitive-edge', label: 'Competitive Benchmark', desc: 'Side-by-side sovereignty matrix', icon: <UserCheck size={16} /> },
+    { type: 'tech-stack', label: 'Tech Stack Matrix', desc: 'Categorized enterprise framework grid', icon: <Layers size={16} /> },
+    { type: 'pricing', label: 'SaaS Pricing & Proof', desc: '3-tier commercial model with featured plan', icon: <DollarSign size={16} /> },
   ];
 
   const handleCreate = (type: SlideType) => {
     const id = `slide-${Date.now()}`;
     let newSlide: SlideData;
-
-    switch (type) {
-      case 'steps-chain':
-        newSlide = {
-          id, type: 'steps-chain', title: 'Implementation Architecture', subtitle: '4-phase sequential deployment timeline',
-          steps: [
-            { stepNumber: 1, title: 'Intake & Discovery', description: 'Deep architecture evaluation', status: 'completed' },
-            { stepNumber: 2, title: 'Engine Synthesis', description: 'Core Less and layout orchestration', status: 'current' },
-            { stepNumber: 3, title: 'Interactive Staging', description: 'Builder mode and dynamic dock verification', status: 'upcoming' },
-            { stepNumber: 4, title: 'Enterprise Release', description: '4K production export and documentation', status: 'upcoming' },
-          ],
-        };
-        break;
-      case 'before-after':
-        newSlide = {
-          id, type: 'before-after', title: 'Operational Paradigm Shift', subtitle: 'Quantifiable migration to automated slide delivery',
-          before: { title: 'Legacy Manual Layouts', tag: 'BEFORE', points: ['Static PowerPoint templates', 'Rigid un-animated slides'] },
-          after: { title: 'Autonomous Slide Engine', tag: 'AFTER', points: ['Declarative JSON & Less architecture', 'In-place canvas authoring'] },
-        };
-        break;
-      default:
-        newSlide = {
-          id, type: 'title', title: 'New Strategic Keynote', subtitle: 'High-leverage enterprise presentation',
-          presenter: { name: 'Alim Ul Karim', role: 'Chief Software Engineer', company: 'Riseup Asia LLC' },
-        };
+    if (type === 'competitive-edge') {
+      newSlide = {
+        id, type: 'competitive-edge', title: 'Competitive Advantage', subtitle: 'Measurable enterprise superiority matrix',
+        headers: ['Capability', 'Legacy Models', 'Riseup Sovereign Standard'],
+        rows: [
+          { feature: 'Autonomous Loop QA', competitor: 'Manual review', us: '100% Deterministic CI' },
+          { feature: 'Zero-Defect Latency', competitor: 'Days/weeks', us: '< 2-minute auto-repair' },
+        ],
+      };
+    } else if (type === 'tech-stack') {
+      newSlide = {
+        id, type: 'tech-stack', title: 'Production Architecture', subtitle: 'Battle-tested enterprise engineering stack',
+        categories: [
+          { name: 'Core Engine', icon: 'cpu', technologies: [{ name: 'React 19', level: 'Core' }, { name: 'Vite 7', level: 'Core' }] },
+          { name: 'Design System', icon: 'zap', technologies: [{ name: 'Less CSS', level: 'Enterprise' }, { name: 'Tailwind 4', level: 'Core' }] },
+        ],
+      };
+    } else if (type === 'steps-chain') {
+      newSlide = {
+        id, type: 'steps-chain', title: 'Implementation Architecture', subtitle: '4-phase sequential deployment timeline',
+        steps: [
+          { stepNumber: 1, title: 'Intake & Discovery', description: 'Deep architecture evaluation' },
+          { stepNumber: 2, title: 'Engine Synthesis', description: 'Core Less and layout orchestration' },
+          { stepNumber: 3, title: 'Interactive Staging', description: 'Builder mode verification' },
+          { stepNumber: 4, title: 'Enterprise Release', description: '4K production export' },
+        ],
+      };
+    } else {
+      newSlide = {
+        id, type: 'title', title: 'New Strategic Keynote', subtitle: 'High-leverage enterprise presentation',
+        presenter: { name: 'Alim Ul Karim', role: 'Chief Software Engineer', company: 'Riseup Asia LLC' },
+      };
     }
 
     addSlide(newSlide);

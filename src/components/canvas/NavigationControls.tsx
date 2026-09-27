@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDeckStore } from '../../stores/deckStore';
 import { useEditStore } from '../../stores/editStore';
-import { ChevronLeft, ChevronRight, Edit3, Volume2, VolumeX, Maximize2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Edit3, Volume2, VolumeX, Maximize2, LayoutGrid } from 'lucide-react';
 import { DockPosition } from '../../types/presentation';
+import { DockPositionPopover } from './DockPositionPopover';
 
 export const NavigationControls: React.FC = () => {
   const { activeSlideIndex, deck, nextSlide, prevSlide, isSoundEnabled, toggleSound } = useDeckStore();
   const { isEditMode, toggleEditMode, dockPosition } = useEditStore();
+  const [showLayout, setShowLayout] = useState(false);
 
   const handleFullscreen = () => {
     if (!document.fullscreenElement) {
@@ -17,10 +19,11 @@ export const NavigationControls: React.FC = () => {
   };
 
   const dockClassMap: Record<DockPosition, string> = {
+    'top-center': 'top-6 left-1/2 -translate-x-1/2 flex-row',
+    'top-right': 'top-6 right-8 flex-row',
     'bottom-center': 'bottom-6 left-1/2 -translate-x-1/2 flex-row',
     'bottom-left': 'bottom-6 left-8 flex-row',
     'bottom-right': 'bottom-6 right-8 flex-row',
-    'top-right': 'top-6 right-8 flex-row',
     'left': 'top-1/2 left-6 -translate-y-1/2 flex-col',
     'right': 'top-1/2 right-6 -translate-y-1/2 flex-col',
   };
@@ -31,6 +34,8 @@ export const NavigationControls: React.FC = () => {
         dockClassMap[dockPosition] || dockClassMap['bottom-center']
       }`}
     >
+      {showLayout && <DockPositionPopover onClose={() => setShowLayout(false)} />}
+
       <button
         onClick={toggleSound}
         className={`p-1.5 rounded-full transition-colors cursor-pointer ${
@@ -52,6 +57,16 @@ export const NavigationControls: React.FC = () => {
       >
         <Edit3 size={14} />
         <span>Builder</span>
+      </button>
+
+      <button
+        onClick={() => setShowLayout(!showLayout)}
+        className={`p-1.5 rounded-full transition-colors cursor-pointer ${
+          showLayout ? 'bg-violet-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'
+        }`}
+        title="Choose Controller & Slide Number Position"
+      >
+        <LayoutGrid size={15} />
       </button>
 
       <div className="w-[1px] h-4 bg-slate-700 mx-0.5" />

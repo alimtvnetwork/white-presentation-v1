@@ -7,12 +7,15 @@ export type SlideType =
   | 'talent-funnel'
   | 'pricing'
   | 'steps-chain'
-  | 'testimonials';
+  | 'testimonials'
+  | 'competitive-edge'
+  | 'tech-stack';
 
 export type DockPosition =
   | 'bottom-center'
   | 'bottom-left'
   | 'bottom-right'
+  | 'top-center'
   | 'top-right'
   | 'left'
   | 'right';
@@ -22,6 +25,7 @@ export type IndicatorPosition =
   | 'bottom-left'
   | 'bottom-right'
   | 'top-center'
+  | 'left'
   | 'right';
 
 export type CameraPreset =
@@ -85,6 +89,7 @@ export interface WhiteMasterSlideData extends BaseSlide {
     color: string;
     shape: 'heart' | 'star' | 'circle';
     pulseRateSeconds: number;
+    enabled?: boolean;
   };
   logo: {
     src: string;
@@ -193,6 +198,21 @@ export interface TestimonialsSlideData extends BaseSlide {
   partnerLogos?: string[];
 }
 
+export interface CompetitiveEdgeSlideData extends BaseSlide {
+  type: 'competitive-edge';
+  headers: string[];
+  rows: Array<{ feature: string; competitor: string; us: string; isHighlight?: boolean; }>;
+}
+
+export interface TechStackSlideData extends BaseSlide {
+  type: 'tech-stack';
+  categories: Array<{
+    name: string;
+    icon: string;
+    technologies: Array<{ name: string; level: string; badgeColor?: string; }>;
+  }>;
+}
+
 export type SlideData =
   | WhiteMasterSlideData
   | TitleSlideData
@@ -202,7 +222,9 @@ export type SlideData =
   | TalentFunnelSlideData
   | PricingSlideData
   | StepsChainSlideData
-  | TestimonialsSlideData;
+  | TestimonialsSlideData
+  | CompetitiveEdgeSlideData
+  | TechStackSlideData;
 
 export interface PresentationDeck {
   id: string;

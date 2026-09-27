@@ -157,21 +157,12 @@ export const WhiteMasterSlide: React.FC<{ slide: WhiteMasterSlideData }> = ({ sl
           }}
         />
 
-        <div
-          className="absolute top-[44%] left-[48%] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-          style={{ filter: `drop-shadow(0 0 16px ${slide.neonGlow.color}) drop-shadow(0 0 32px ${slide.neonGlow.color}66)` }}
-        >
-          <svg className="w-[180px] h-[180px] neon-pulse-anim" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-              stroke="#F43F5E" strokeWidth="2.5" fill="rgba(244, 63, 94, 0.15)"
-            />
-            <path
-              d="M12 18.5l-1.1-1.01C6.2 13.2 3.5 10.8 3.5 8 3.5 5.8 5.3 4 7.5 4c1.4 0 2.8.7 3.6 1.7L12 6.8l.9-1.1C13.7 4.7 15.1 4 16.5 4 18.7 4 20.5 5.8 20.5 8c0 2.8-2.7 5.2-7.4 9.5L12 18.5z"
-              stroke="#FFF" strokeWidth="1.2" fill="rgba(255, 255, 255, 0.2)"
-            />
-          </svg>
-        </div>
+        {slide.neonGlow?.enabled && (
+          <div
+            className="absolute top-[44%] left-[48%] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+            style={{ filter: `drop-shadow(0 0 16px ${slide.neonGlow.color})` }}
+          />
+        )}
       </div>
 
       <div className="absolute bottom-0 left-0 w-full h-[180px] z-15 pointer-events-none">
