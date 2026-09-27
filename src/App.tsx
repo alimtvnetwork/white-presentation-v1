@@ -42,14 +42,15 @@ export const App: React.FC = () => {
             <ThemeSelector />
             <button
               onClick={toggleEditMode}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${
+              title="Builder Mode (B)"
+              className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium border transition-all cursor-pointer ${
                 isEditMode
-                  ? 'bg-violet-600 border-violet-500 text-white shadow-md shadow-violet-600/30'
-                  : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700'
+                  ? 'bg-violet-600 border-violet-500 text-white shadow-sm shadow-violet-600/30'
+                  : 'bg-slate-800/80 border-slate-700/80 text-slate-300 hover:bg-slate-700 hover:text-white'
               }`}
             >
-              <Edit3 size={14} />
-              <span>{isEditMode ? 'Exit Builder' : 'Builder Mode (B)'}</span>
+              <Edit3 size={13} />
+              <span>Builder</span>
             </button>
           </div>
         </header>
