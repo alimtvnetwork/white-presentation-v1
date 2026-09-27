@@ -1,9 +1,9 @@
 # 05-White Presentation Master System Specification
 
 ## 1. System Overview & Sample Ground Truth
-The **White Presentation Master System** is the flagship design paradigm for clean, modern, ultra-high-contrast slide decks. Grounded in the canonical sample (`assets/screenshots/white-presentation-sample-01.png`), it combines a crisp white background with expressive violet/indigo brand curves, structured 3-point bullet cards, an illuminated visual focal point, and an authoritative top-right transparent logo.
+The **White Presentation Master System** is the flagship design paradigm for clean, modern, ultra-high-contrast slide decks. Grounded in the canonical sample ([white-presentation-sample-01.png](../../assets/screenshots/white-presentation-sample-01.png)), it combines a crisp white background with expressive violet/indigo brand curves, structured 3-point bullet cards, an illuminated visual focal point, and an authoritative top-right transparent logo.
 
-![Sample White Presentation](assets/screenshots/white-presentation-sample-01.png)
+![Sample White Presentation](../../assets/screenshots/white-presentation-sample-01.png)
 
 ---
 
