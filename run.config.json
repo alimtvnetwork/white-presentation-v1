@@ -2,7 +2,7 @@
   "projectName": "white-presentation-v1",
   "frontend": {
     "dir": ".",
-    "port": 5173
+    "port": 5180
   },
   "host": "127.0.0.1",
   "commands": {

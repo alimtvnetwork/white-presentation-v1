@@ -8,7 +8,7 @@
 
 [CmdletBinding()]
 param (
-    [int]$Port = 5173,
+    [int]$Port = 5180,
     [switch]$NoBrowser,
     [switch]$CI,
     [switch]$Install,
