@@ -1,0 +1,27 @@
+// ============================================================================
+// Main Application Stylesheet (Less)
+// Consolidates Tailwind CSS, Animate.css, Design Tokens & Custom Keyframes
+// ============================================================================
+
+@import 'animate.css/animate.min.css';
+@import './variables.less';
+@import './animations.less';
+@import './presentation.less';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: @font-body;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: @font-heading;
+  }
+}

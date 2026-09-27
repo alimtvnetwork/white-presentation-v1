@@ -1,0 +1,14 @@
+{
+  "projectName": "white-presentation-v1",
+  "frontend": {
+    "dir": ".",
+    "port": 5173
+  },
+  "host": "127.0.0.1",
+  "commands": {
+    "install:frontend": "npm install",
+    "dev:frontend": "npm run dev",
+    "build:frontend": "npm run build",
+    "test:ci": "python 03-ai-scripts/06-cicd-local-runner.py --all"
+  }
+}

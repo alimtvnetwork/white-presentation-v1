@@ -78,10 +78,6 @@
       "lines": 242
     },
     {
-      "path": "src/components/builder/BuilderPanel.tsx",
-      "lines": 138
-    },
-    {
       "path": "src/components/slides/KeyPlayerSlide.tsx",
       "lines": 119
     },

@@ -37,7 +37,7 @@ export const WhiteMasterSlide: React.FC<WhiteMasterSlideProps> = ({ slide }) => 
 
   return (
     <div
-      className="relative w-[1920px] h-[1080px] bg-white overflow-hidden text-slate-900 select-none"
+      className="relative w-[1920px] h-[1080px] bg-white overflow-hidden text-slate-900 select-none animate__animated animate__fadeIn"
       onClick={() => isEditMode && selectElement(null)}
     >
       {/* 1. Subtle Concentric Arc Watermark in Top-Left */}
@@ -80,7 +80,7 @@ export const WhiteMasterSlide: React.FC<WhiteMasterSlideProps> = ({ slide }) => 
             }
           }}
         >
-          <span className="w-2 h-2 rounded-full bg-violet-600 animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-violet-600 neon-pulse-anim" />
           <span className="text-[15px] font-bold tracking-[0.2em] uppercase text-violet-700 bg-violet-50 px-3 py-1 rounded-full border border-violet-200/60">
             {slide.kicker}
           </span>
@@ -88,7 +88,7 @@ export const WhiteMasterSlide: React.FC<WhiteMasterSlideProps> = ({ slide }) => 
 
         {/* Main Editorial Headline (Pure DOM Text) */}
         <h1
-          className={`font-ubuntu text-[68px] font-extrabold tracking-tight leading-[1.08] text-slate-900 mb-6 ${getSelectClass(
+          className={`font-ubuntu text-[68px] font-extrabold tracking-tight leading-[1.08] text-slate-900 mb-6 slide-up-anim ${getSelectClass(
             'headline'
           )}`}
           onClick={(e) => {
@@ -103,7 +103,7 @@ export const WhiteMasterSlide: React.FC<WhiteMasterSlideProps> = ({ slide }) => 
 
         {/* Subtitle */}
         <p
-          className={`font-poppins text-[24px] text-slate-600 leading-[1.45] mb-12 max-w-[840px] font-normal ${getSelectClass(
+          className={`font-poppins text-[24px] text-slate-600 leading-[1.45] mb-12 max-w-[840px] font-normal slide-up-anim stagger-1 ${getSelectClass(
             'subtitle'
           )}`}
           onClick={(e) => {
@@ -118,7 +118,7 @@ export const WhiteMasterSlide: React.FC<WhiteMasterSlideProps> = ({ slide }) => 
 
         {/* 3 Structured Icon-Bullet Points with Vertical Dividers */}
         <div
-          className={`flex flex-col gap-6 mt-2 ${getSelectClass('bullets')}`}
+          className={`flex flex-col gap-6 mt-2 slide-up-anim stagger-2 ${getSelectClass('bullets')}`}
           onClick={(e) => {
             if (isEditMode) {
               e.stopPropagation();
@@ -183,7 +183,7 @@ export const WhiteMasterSlide: React.FC<WhiteMasterSlideProps> = ({ slide }) => 
             filter: 'drop-shadow(0 0 16px rgba(244, 63, 94, 0.8)) drop-shadow(0 0 32px rgba(244, 63, 94, 0.4))',
           }}
         >
-          <svg className="w-[180px] h-[180px] animate-pulse" viewBox="0 0 24 24" fill="none">
+          <svg className="w-[180px] h-[180px] neon-pulse-anim" viewBox="0 0 24 24" fill="none">
             {/* Outer Glow Ring */}
             <path
               d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
