@@ -9,6 +9,27 @@ export type SlideType =
   | 'steps-chain'
   | 'testimonials';
 
+export type DockPosition =
+  | 'bottom-center'
+  | 'bottom-left'
+  | 'bottom-right'
+  | 'top-right'
+  | 'left'
+  | 'right';
+
+export type IndicatorPosition =
+  | 'bottom-center'
+  | 'bottom-left'
+  | 'bottom-right'
+  | 'top-center'
+  | 'right';
+
+export type CameraPreset =
+  | 'overview'
+  | 'focus-left'
+  | 'focus-right'
+  | 'zoom-in';
+
 export interface GradientStop {
   step: number;
   label: string;
@@ -23,6 +44,14 @@ export interface ThemePalette {
   id: string;
   name: string;
   description: string;
+  isDark?: boolean;
+  canvasBg: string;
+  textColor: string;
+  subtextColor: string;
+  cardBg: string;
+  cardBorder: string;
+  accentColor: string;
+  dotMatrix?: boolean;
   stops: GradientStop[];
 }
 
@@ -43,7 +72,7 @@ export interface WhiteMasterSlideData extends BaseSlide {
   kicker: string;
   bulletPoints: Array<{
     id: string;
-    icon: 'heart' | 'users' | 'chat';
+    icon: string;
     title: string;
     description: string;
   }>;
@@ -86,6 +115,19 @@ export interface PersonaSlideData extends BaseSlide {
     label: string;
   }>;
   bioBullets: string[];
+}
+
+export interface KeyPlayerSlideData extends BaseSlide {
+  type: 'key-player';
+  name: string;
+  role: string;
+  avatarUrl: string;
+  skills: string[];
+  pillars: Array<{
+    title: string;
+    description: string;
+    icon: string;
+  }>;
 }
 
 export interface BeforeAfterSlideData extends BaseSlide {
@@ -131,9 +173,11 @@ export interface StepsChainSlideData extends BaseSlide {
   steps: Array<{
     stepNumber: number;
     title: string;
-    duration: string;
-    deliverables: string[];
+    description?: string;
+    duration?: string;
+    deliverables?: string[];
     isCompleted?: boolean;
+    status?: string;
   }>;
 }
 
@@ -153,6 +197,7 @@ export type SlideData =
   | WhiteMasterSlideData
   | TitleSlideData
   | PersonaSlideData
+  | KeyPlayerSlideData
   | BeforeAfterSlideData
   | TalentFunnelSlideData
   | PricingSlideData

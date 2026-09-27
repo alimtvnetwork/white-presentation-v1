@@ -1,26 +1,12 @@
 import React from 'react';
 import { useDeckStore } from '../../stores/deckStore';
 import { useEditStore } from '../../stores/editStore';
-import {
-  ChevronLeft,
-  ChevronRight,
-  Edit3,
-  Volume2,
-  VolumeX,
-  Palette,
-  Maximize2,
-} from 'lucide-react';
+import { ChevronLeft, ChevronRight, Edit3, Volume2, VolumeX, Maximize2 } from 'lucide-react';
+import { DockPosition } from '../../types/presentation';
 
 export const NavigationControls: React.FC = () => {
-  const {
-    activeSlideIndex,
-    deck,
-    nextSlide,
-    prevSlide,
-    isSoundEnabled,
-    toggleSound,
-  } = useDeckStore();
-  const { isEditMode, toggleEditMode, setActivePanel, activePanel } = useEditStore();
+  const { activeSlideIndex, deck, nextSlide, prevSlide, isSoundEnabled, toggleSound } = useDeckStore();
+  const { isEditMode, toggleEditMode, dockPosition } = useEditStore();
 
   const handleFullscreen = () => {
     if (!document.fullscreenElement) {
@@ -30,72 +16,70 @@ export const NavigationControls: React.FC = () => {
     }
   };
 
+  const dockClassMap: Record<DockPosition, string> = {
+    'bottom-center': 'bottom-6 left-1/2 -translate-x-1/2 flex-row',
+    'bottom-left': 'bottom-6 left-8 flex-row',
+    'bottom-right': 'bottom-6 right-8 flex-row',
+    'top-right': 'top-6 right-8 flex-row',
+    'left': 'top-1/2 left-6 -translate-y-1/2 flex-col',
+    'right': 'top-1/2 right-6 -translate-y-1/2 flex-col',
+  };
+
   return (
-    <div className="absolute bottom-6 right-8 flex items-center gap-3 z-40 bg-slate-900/80 backdrop-blur-md px-4 py-2 rounded-full border border-slate-700/60 shadow-lg text-sm text-slate-200">
-      {/* Sound Toggle */}
+    <div
+      className={`absolute z-40 flex items-center gap-2.5 bg-slate-900/90 backdrop-blur-md px-4 py-2 rounded-full border border-slate-700/80 shadow-2xl text-sm text-slate-200 transition-all duration-300 ${
+        dockClassMap[dockPosition] || dockClassMap['bottom-center']
+      }`}
+    >
       <button
         onClick={toggleSound}
-        className={`p-2 rounded-full transition-colors ${
+        className={`p-1.5 rounded-full transition-colors cursor-pointer ${
           isSoundEnabled ? 'text-violet-400 hover:bg-slate-800' : 'text-slate-500 hover:bg-slate-800'
         }`}
-        title={isSoundEnabled ? 'Mute Audio Cues' : 'Enable Audio Cues'}
+        title={isSoundEnabled ? 'Mute' : 'Unmute'}
       >
-        {isSoundEnabled ? <Volume2 size={18} /> : <VolumeX size={18} />}
+        {isSoundEnabled ? <Volume2 size={16} /> : <VolumeX size={16} />}
       </button>
 
-      {/* Builder Mode Toggle */}
       <button
         onClick={toggleEditMode}
-        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full font-medium transition-colors ${
+        className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium transition-all cursor-pointer ${
           isEditMode
             ? 'bg-violet-600 text-white shadow-md shadow-violet-600/30'
             : 'text-slate-300 hover:bg-slate-800'
         }`}
-        title="Toggle Visual Builder Mode (B)"
+        title="Toggle Builder Mode (B)"
       >
-        <Edit3 size={15} />
+        <Edit3 size={14} />
         <span>Builder</span>
       </button>
 
-      {isEditMode && (
-        <button
-          onClick={() => setActivePanel(activePanel === 'gradient' ? 'typography' : 'gradient')}
-          className="p-2 rounded-full text-slate-300 hover:bg-slate-800 transition-colors"
-          title="Theme Palette"
-        >
-          <Palette size={18} />
-        </button>
-      )}
+      <div className="w-[1px] h-4 bg-slate-700 mx-0.5" />
 
-      <div className="w-[1px] h-5 bg-slate-700 mx-1" />
-
-      {/* Previous Slide */}
       <button
         onClick={prevSlide}
         disabled={activeSlideIndex === 0}
-        className="p-1.5 rounded-full hover:bg-slate-800 disabled:opacity-30 disabled:hover:bg-transparent transition-colors"
-        title="Previous Slide (Left Arrow)"
+        className="p-1 rounded-full hover:bg-slate-800 disabled:opacity-30 cursor-pointer transition-colors"
+        title="Prev"
       >
-        <ChevronLeft size={20} />
+        <ChevronLeft size={18} />
       </button>
 
-      {/* Next Slide */}
       <button
         onClick={nextSlide}
         disabled={activeSlideIndex === deck.slides.length - 1}
-        className="p-1.5 rounded-full hover:bg-slate-800 disabled:opacity-30 disabled:hover:bg-transparent transition-colors"
-        title="Next Slide (Right Arrow / Space)"
+        className="p-1 rounded-full hover:bg-slate-800 disabled:opacity-30 cursor-pointer transition-colors"
+        title="Next"
       >
-        <ChevronRight size={20} />
+        <ChevronRight size={18} />
       </button>
 
-      {/* Fullscreen */}
       <button
         onClick={handleFullscreen}
-        className="p-2 rounded-full text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
-        title="Toggle Fullscreen"
+        className="p-1 text-slate-400 hover:text-white cursor-pointer transition-colors"
+        title="Fullscreen"
       >
-        <Maximize2 size={16} />
+        <Maximize2 size={15} />
       </button>
     </div>
   );

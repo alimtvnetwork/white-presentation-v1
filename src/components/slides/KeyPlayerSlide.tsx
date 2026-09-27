@@ -1,119 +1,97 @@
 import React from 'react';
 import { BaseSlide } from '../../types/presentation';
+import { useDeckStore } from '../../stores/deckStore';
+import { useEditStore } from '../../stores/editStore';
+import { THEME_PALETTES } from '../../themes/gradientTokens';
 import { Layers, Cpu, ShieldCheck } from 'lucide-react';
 
 export interface KeyPlayerSlideData extends BaseSlide {
-  type: 'key-player';
-  name: string;
-  role: string;
-  avatarUrl: string;
-  skills: string[];
-  pillars: Array<{
-    title: string;
-    description: string;
-    icon: string;
-  }>;
+  type: 'key-player'; name: string; role: string; avatarUrl: string; skills: string[]; pillars: Array<{ title: string; description: string; icon: string; }>;
 }
 
-interface KeyPlayerSlideProps {
-  slide: KeyPlayerSlideData;
-}
+export const KeyPlayerSlide: React.FC<{ slide: KeyPlayerSlideData }> = ({ slide }) => {
+  const { activeThemeId, applyEdit } = useDeckStore();
+  const { isEditMode } = useEditStore();
+  const theme = THEME_PALETTES[activeThemeId] || THEME_PALETTES['white-brand'];
 
-export const KeyPlayerSlide: React.FC<KeyPlayerSlideProps> = ({ slide }) => {
   const getPillarIcon = (icon: string) => {
-    switch (icon) {
-      case 'cloud':
-        return <Cpu className="w-6 h-6 text-violet-600" />;
-      case 'security':
-        return <ShieldCheck className="w-6 h-6 text-violet-600" />;
-      default:
-        return <Layers className="w-6 h-6 text-violet-600" />;
-    }
+    const props = { className: "w-6 h-6", style: { color: theme.accentColor } };
+
+    return icon === 'cloud' ? <Cpu {...props} /> : icon === 'security' ? <ShieldCheck {...props} /> : <Layers {...props} />;
   };
 
   return (
-    <div className="relative w-[1920px] h-[1080px] bg-slate-50 overflow-hidden text-slate-900 select-none p-[120px] flex flex-col justify-between">
-      {/* Header */}
+    <div
+      style={{ backgroundColor: theme.canvasBg, color: theme.textColor }}
+      className={`relative w-[1920px] h-[1080px] overflow-hidden select-none p-[100px] flex flex-col justify-between animate__animated animate__fadeIn ${theme.dotMatrix ? 'dot-matrix-bg' : ''}`}
+    >
       <div className="flex items-center justify-between z-20">
         <div>
-          <div className="inline-flex items-center gap-2 mb-3">
-            <span className="w-2 h-2 rounded-full bg-violet-600" />
-            <span className="text-[14px] font-bold tracking-[0.2em] uppercase text-violet-700 bg-violet-100/70 px-3.5 py-1 rounded-full border border-violet-200">
-              {slide.kicker || 'TECHNICAL LEADERSHIP'}
-            </span>
+          <div
+            className="text-[13px] font-bold tracking-[0.25em] uppercase text-violet-500 mb-2 font-mono"
+            contentEditable={isEditMode}
+            suppressContentEditableWarning
+            onBlur={(e) => applyEdit((s) => ({ ...s, kicker: e.currentTarget.textContent || '' }))}
+          >
+            {slide.kicker || 'TECHNICAL LEADERSHIP'}
           </div>
-          <h1 className="font-ubuntu text-[56px] font-extrabold text-slate-900 tracking-tight leading-tight">
+          <h1
+            style={{ color: theme.textColor }}
+            className="font-ubuntu text-[52px] font-extrabold tracking-tight leading-tight slide-up-anim"
+            contentEditable={isEditMode}
+            suppressContentEditableWarning
+            onBlur={(e) => applyEdit((s) => ({ ...s, title: e.currentTarget.textContent || '' }))}
+          >
             {slide.title}
           </h1>
           {slide.subtitle && (
-            <p className="font-poppins text-[20px] text-slate-500 max-w-[1000px] mt-1">
+            <p
+              style={{ color: theme.subtextColor }}
+              className="font-poppins text-[18px] max-w-[1000px] mt-1"
+              contentEditable={isEditMode}
+              suppressContentEditableWarning
+              onBlur={(e) => applyEdit((s) => ({ ...s, subtitle: e.currentTarget.textContent || '' }))}
+            >
               {slide.subtitle}
             </p>
           )}
         </div>
-
-        <img
-          src="/assets/logos/6 - Riseup Asia Logo Transparent Only BK.png"
-          alt="Riseup Asia Logo"
-          className="h-[44px] w-auto object-contain"
-        />
+        <img src="/assets/logos/6 - Riseup Asia Logo Transparent Only BK.png" alt="Logo" className="h-[42px] w-auto object-contain filter contrast-125" />
       </div>
 
-      {/* Main Two-Column Layout */}
-      <div className="flex items-center gap-14 my-auto z-20">
-        {/* Left Column: Portrait Card & Tech Badges */}
-        <div className="flex flex-col gap-6 shrink-0 w-[440px]">
-          <div className="w-[440px] h-[520px] rounded-3xl overflow-hidden border-2 border-slate-200 shadow-xl bg-white relative">
-            <img
-              src={slide.avatarUrl}
-              alt={slide.name}
-              className="w-full h-full object-cover object-top"
-            />
-            <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-slate-950/80 to-transparent text-white">
-              <h3 className="font-ubuntu text-[26px] font-bold leading-tight">{slide.name}</h3>
-              <p className="font-poppins text-[15px] text-slate-300">{slide.role}</p>
+      <div className="flex items-center gap-12 my-auto z-20">
+        <div className="flex flex-col gap-6 shrink-0 w-[420px]">
+          <div style={{ backgroundColor: theme.cardBg, borderColor: theme.cardBorder }} className="w-[420px] h-[480px] rounded-3xl overflow-hidden border shadow-xl relative">
+            <img src={slide.avatarUrl} alt={slide.name} className="w-full h-full object-cover object-top" />
+            <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/80 to-transparent text-white">
+              <h3 className="font-ubuntu text-[24px] font-bold">{slide.name}</h3>
+              <p className="font-poppins text-[15px] opacity-80">{slide.role}</p>
             </div>
           </div>
-
-          {/* Skill Badges */}
           <div className="flex flex-wrap gap-2">
             {slide.skills.map((skill, i) => (
-              <span
-                key={i}
-                className="bg-white border border-slate-200 px-3.5 py-1.5 rounded-full text-xs font-mono font-medium text-slate-700 shadow-sm"
-              >
+              <span key={i} style={{ backgroundColor: theme.cardBg, borderColor: theme.cardBorder, color: theme.textColor }} className="border px-3 py-1 rounded-full text-xs font-mono font-medium shadow-sm">
                 {skill}
               </span>
             ))}
           </div>
         </div>
 
-        {/* Right Column: 3 Pillar Cards */}
-        <div className="flex-1 flex flex-col gap-6">
+        <div className="flex-1 flex flex-col gap-5">
           {slide.pillars.map((pillar, i) => (
-            <div
-              key={i}
-              className="bg-white border border-slate-200 p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow flex items-start gap-6"
-            >
-              <div className="w-14 h-14 rounded-2xl bg-violet-50 border border-violet-100 flex items-center justify-center shrink-0">
+            <div key={i} style={{ backgroundColor: theme.cardBg, borderColor: theme.cardBorder }} className="border p-7 rounded-2xl shadow-sm flex items-start gap-5">
+              <div style={{ backgroundColor: `${theme.accentColor}18`, borderColor: `${theme.accentColor}30` }} className="w-12 h-12 rounded-xl border flex items-center justify-center shrink-0">
                 {getPillarIcon(pillar.icon)}
               </div>
               <div>
-                <h4 className="font-ubuntu text-[22px] font-bold text-slate-900 mb-2">
-                  {pillar.title}
-                </h4>
-                <p className="font-poppins text-[17px] text-slate-600 leading-relaxed">
-                  {pillar.description}
-                </p>
+                <h4 style={{ color: theme.textColor }} className="font-ubuntu text-[20px] font-bold mb-1">{pillar.title}</h4>
+                <p style={{ color: theme.subtextColor }} className="font-poppins text-[16px] leading-relaxed">{pillar.description}</p>
               </div>
             </div>
           ))}
         </div>
       </div>
-
-      <div className="text-right text-slate-400 font-mono text-[14px]">
-        Deep Technical Domain Specialization
-      </div>
+      <div style={{ color: theme.subtextColor }} className="text-right font-mono text-[13px] opacity-75">Deep Technical Domain Specialization</div>
     </div>
   );
 };

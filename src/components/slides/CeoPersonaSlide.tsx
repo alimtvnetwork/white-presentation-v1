@@ -1,76 +1,63 @@
 import React from 'react';
 import { PersonaSlideData } from '../../types/presentation';
 import { useDeckStore } from '../../stores/deckStore';
-import { shadeTextByCharacter } from '../../themes/gradientTokens';
+import { THEME_PALETTES, shadeTextByCharacter } from '../../themes/gradientTokens';
 import { CheckCircle2 } from 'lucide-react';
 
-interface CeoPersonaSlideProps {
-  slide: PersonaSlideData;
-}
-
-export const CeoPersonaSlide: React.FC<CeoPersonaSlideProps> = ({ slide }) => {
+export const CeoPersonaSlide: React.FC<{ slide: PersonaSlideData }> = ({ slide }) => {
   const { activeThemeId } = useDeckStore();
+  const theme = THEME_PALETTES[activeThemeId] || THEME_PALETTES['white-brand'];
   const shadedName = shadeTextByCharacter(slide.name, activeThemeId, 5, 9);
 
   return (
-    <div className="relative w-[1920px] h-[1080px] bg-white overflow-hidden text-slate-900 select-none flex">
-      {/* Left Column: Bio, Shaded Name & Proof Pills (58% width) */}
-      <div className="w-[1100px] h-full p-[120px] pr-[60px] flex flex-col justify-between z-20">
+    <div
+      style={{ backgroundColor: theme.canvasBg, color: theme.textColor }}
+      className="relative w-[1920px] h-[1080px] overflow-hidden select-none flex animate__animated animate__fadeIn"
+    >
+      <div className="w-[1100px] h-full p-[100px] pr-[60px] flex flex-col justify-between z-20">
         <div>
-          {/* Top Pill */}
-          <div className="inline-flex items-center gap-2 mb-6">
-            <span className="w-2 h-2 rounded-full bg-violet-600" />
-            <span className="text-[14px] font-bold tracking-[0.2em] uppercase text-violet-700 bg-violet-50 px-3.5 py-1 rounded-full border border-violet-200">
-              EXECUTIVE LEADERSHIP
-            </span>
+          <div className="text-[13px] font-bold tracking-[0.25em] uppercase text-violet-500 mb-3 font-mono">
+            {slide.title || 'TECHNICAL LEADERSHIP'}
           </div>
-
-          {/* Character-Level Shaded Name */}
-          <h1 className="font-ubuntu text-[72px] font-black tracking-tight leading-none mb-3">
+          <h1 className="font-ubuntu text-[68px] font-black tracking-tight leading-none mb-3 slide-up-anim">
             {shadedName.map((item, idx) => (
-              <span key={idx} style={{ color: item.hex }}>
-                {item.char}
-              </span>
+              <span key={idx} style={{ color: item.hex }}>{item.char}</span>
             ))}
           </h1>
-
-          {/* Role */}
-          <p className="font-poppins text-[24px] text-slate-600 font-medium mb-8">
+          <p style={{ color: theme.subtextColor }} className="font-poppins text-[22px] font-medium mb-6">
             {slide.role}
           </p>
-
-          {/* Founder Quote */}
           {slide.quote && (
-            <div className="p-6 bg-slate-50 border-l-4 border-violet-600 rounded-r-xl mb-10 shadow-sm">
-              <p className="font-poppins text-[22px] italic text-slate-800 leading-[1.45]">
+            <div
+              style={{ backgroundColor: theme.cardBg, borderColor: theme.accentColor }}
+              className="p-5 border-l-4 rounded-r-xl mb-8 shadow-sm"
+            >
+              <p style={{ color: theme.textColor }} className="font-poppins text-[20px] italic leading-[1.4]">
                 "{slide.quote}"
               </p>
             </div>
           )}
-
-          {/* Quantitative Metric Pills */}
-          <div className="grid grid-cols-2 gap-5 mb-10">
+          <div className="grid grid-cols-2 gap-5 mb-8">
             {slide.metrics.map((metric, i) => (
               <div
                 key={i}
-                className="bg-white border border-slate-200 p-5 rounded-2xl shadow-sm flex flex-col"
+                style={{ backgroundColor: theme.cardBg, borderColor: theme.cardBorder }}
+                className="border p-5 rounded-2xl shadow-sm flex flex-col glass-card-interactive"
               >
-                <div className="font-ubuntu text-[44px] font-extrabold text-violet-700 leading-none mb-1">
+                <div style={{ color: theme.accentColor }} className="font-ubuntu text-[40px] font-extrabold leading-none mb-1">
                   {metric.value}
                 </div>
-                <div className="font-poppins text-[15px] font-medium text-slate-500 uppercase tracking-wider">
+                <div style={{ color: theme.subtextColor }} className="font-poppins text-[14px] font-medium uppercase tracking-wider">
                   {metric.label}
                 </div>
               </div>
             ))}
           </div>
-
-          {/* Bulleted Achievements */}
           <div className="flex flex-col gap-3">
             {slide.bioBullets.map((bullet, i) => (
               <div key={i} className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-violet-600 shrink-0 mt-0.5" />
-                <span className="font-poppins text-[17px] text-slate-700 leading-relaxed">
+                <CheckCircle2 style={{ color: theme.accentColor }} className="w-5 h-5 shrink-0 mt-0.5" />
+                <span style={{ color: theme.textColor }} className="font-poppins text-[16px] leading-relaxed">
                   {bullet}
                 </span>
               </div>
@@ -78,22 +65,16 @@ export const CeoPersonaSlide: React.FC<CeoPersonaSlideProps> = ({ slide }) => {
           </div>
         </div>
       </div>
-
-      {/* Right Column: Full-Height Asymmetric Portrait Plate with Feathered Mask */}
       <div className="w-[820px] h-full relative overflow-hidden z-10">
         <img
           src={slide.avatarUrl}
           alt={slide.name}
           className="w-full h-full object-cover object-top"
           style={{
-            maskImage:
-              'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 15%, black 100%)',
-            WebkitMaskImage:
-              'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 15%, black 100%)',
+            maskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 15%, black 100%)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 15%, black 100%)',
           }}
         />
-
-        {/* Ambient Top Logo */}
         <div className="absolute top-[60px] right-[80px] z-30">
           <img
             src="/assets/logos/6 - Riseup Asia Logo Transparent Only BK.png"

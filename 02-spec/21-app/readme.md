@@ -32,6 +32,7 @@ This directory houses the canonical, sequential specifications for the **White P
 | [16-steps-chain-and-roadmap-slide-spec.md](16-steps-chain-and-roadmap-slide-spec.md) | **Steps Chain & Process Roadmap** | 4 connected horizontal timeline nodes, milestone delivery estimates, step badges and progress line. |
 | [17-social-proof-testimonials-slide-spec.md](17-social-proof-testimonials-slide-spec.md) | **Social Proof & Client Testimonials** | Dual executive quote cards, partner logo marquee, verified endorsement credentials. |
 | [18-builder-mode-interactive-canvas-spec.md](18-builder-mode-interactive-canvas-spec.md) | **Builder Mode Canvas & Inspector** | Decoupled stores (`useDeck` vs `useEditMode`), 7-layer visual stack, live property inspector, hotkeys. |
+| [19-interactive-builder-and-slide-system/01-overview.md](19-interactive-builder-and-slide-system/01-overview.md) | **Interactive Builder & Universal System** | Draggable/minimizable inspector, in-place text authoring, True Dark/Emerald/Purple theme matrix, camera focal zoom, PPTX/AI prompt export. |
 
 ---
 

@@ -1,3 +1,4 @@
+// lint-allow: file-size reason="presentation deck initial seed state" max=450
 import { create } from 'zustand';
 import { PresentationDeck, SlideData } from '../types/presentation';
 import { soundEngine } from '../audio/soundEngine';
@@ -42,7 +43,7 @@ const INITIAL_DECK: PresentationDeck = {
         },
       ],
       heroImage: {
-        src: '/assets/screenshots/white-presentation-sample-01.png',
+        src: '/assets/screenshots/hero-speaker-clean.png',
         alt: 'Speaker sharing emotional narrative with audience',
         featherDirection: 'left',
       },
@@ -65,7 +66,7 @@ const INITIAL_DECK: PresentationDeck = {
       kicker: 'KEYNOTE PRESENTATION',
       presenter: {
         name: 'Alim Ul Karim',
-        role: 'Founder & Principal Systems Architect',
+        role: 'Chief Software Engineer',
         company: 'Riseup Asia LLC',
       },
       date: 'September 2026',
@@ -73,11 +74,11 @@ const INITIAL_DECK: PresentationDeck = {
     {
       id: 'slide-03',
       type: 'persona',
-      title: 'Executive Leadership',
+      title: 'Technical Leadership',
       name: 'Alim Ul Karim',
-      role: 'Chief Executive Officer & Product Architect',
-      quote: 'We do not simply build software; we engineer sovereign, high-leverage business instruments.',
-      avatarUrl: '/assets/screenshots/white-presentation-sample-01.png',
+      role: 'Chief Software Engineer',
+      quote: 'We engineer sovereign, high-leverage software architectures with zero defect tolerance.',
+      avatarUrl: '/assets/screenshots/hero-speaker-clean.png',
       metrics: [
         { value: '15+ Yrs', label: 'Enterprise Systems' },
         { value: '40M+', label: 'Active End Users' },
@@ -85,7 +86,7 @@ const INITIAL_DECK: PresentationDeck = {
       bioBullets: [
         'Direct architect of multi-tenant enterprise cloud systems across North America & Asia.',
         'Pioneer of deterministic AI workflows, autonomous loop orchestration, and zero-defect QA.',
-        'Executive consultant for Series-B through pre-IPO technology scaleups.',
+        'Senior enterprise software consultant for scalable cloud architectures.',
       ],
     },
     {
@@ -299,6 +300,8 @@ interface DeckStoreState {
   setTheme: (themeId: string) => void;
   toggleSound: () => void;
   upsertSlide: (slide: SlideData) => void;
+  addSlide: (slide: SlideData) => void;
+  deleteSlide: (index: number) => void;
   applyEdit: (updater: (slide: SlideData) => SlideData) => void;
 }
 
@@ -348,6 +351,20 @@ export const useDeckStore = create<DeckStoreState>((set, get) => ({
     const slides = [...deck.slides];
     slides[activeSlideIndex] = slide;
     set({ deck: { ...deck, slides } });
+  },
+
+  addSlide: (slide: SlideData) => {
+    const { deck } = get();
+    const slides = [...deck.slides, slide];
+    set({ deck: { ...deck, slides }, activeSlideIndex: slides.length - 1 });
+  },
+
+  deleteSlide: (index: number) => {
+    const { deck, activeSlideIndex } = get();
+    if (deck.slides.length <= 1) return;
+    const slides = deck.slides.filter((_, i) => i !== index);
+    const newIndex = Math.min(activeSlideIndex, slides.length - 1);
+    set({ deck: { ...deck, slides }, activeSlideIndex: newIndex });
   },
 
   applyEdit: (updater: (slide: SlideData) => SlideData) => {
