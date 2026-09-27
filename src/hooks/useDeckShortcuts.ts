@@ -76,8 +76,9 @@ export const useDeckShortcuts = (params: DeckShortcutsParams): void => {
         params.onToggleShortcutsModal();
       } else if (e.key === 'Escape') {
         params.onCloseModals();
-      } else if (['1', '2', '3', '4', '5'].includes(k)) {
-        const theme = Object.keys(THEME_PALETTES)[Number(k) - 1];
+      } else if (['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'].includes(k)) {
+        const index = k === '0' ? 9 : Number(k) - 1;
+        const theme = Object.keys(THEME_PALETTES)[index];
         if (theme) {
           e.preventDefault();
           setTheme(theme);

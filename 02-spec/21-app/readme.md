@@ -36,6 +36,7 @@ This directory houses the canonical, sequential specifications for the **White P
 | [20-advanced-slide-system-and-canvas-engine/01-overview.md](20-advanced-slide-system-and-canvas-engine/01-overview.md) | **Advanced Canvas Engine & Multi-Archetypes** | Freeform canvas item dragging, movable FAB launcher, sequential audio step reveal, Competitive Edge & Tech Stack archetypes. |
 | [21-webcam-camera-and-single-builder/01-overview.md](21-webcam-camera-and-single-builder/01-overview.md) | **Presenter Webcam & Consolidated Builder** | Live video stream overlay, shortcuts (I, O, E, M, +), single canonical builder trigger, dock camera button. |
 | [22-steps-slides-from-flat-slide/01-overview.md](22-steps-slides-from-flat-slide/01-overview.md) | **Steps Slides Architecture from Flat Slide** | 2-column sequential step reveal, active/completed/future states, audio triggers, high-contrast ink-stamp text shadows. |
+| [23-dropdown-theme-system-and-expanded-palettes/01-overview.md](23-dropdown-theme-system-and-expanded-palettes/01-overview.md) | **Dropdown Theme Selector & Expanded Palettes** | Compact trigger pill, floating glassmorphism dropdown flyout, 10 distinct presentation theme palettes. |
 
 ---
 

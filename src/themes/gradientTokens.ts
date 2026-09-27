@@ -1,3 +1,4 @@
+// lint-allow: file-size reason="expanded 10-theme palette dictionary" max=350
 import { GradientStop, ThemePalette } from '../types/presentation';
 
 export const THEME_PALETTES: Record<string, ThemePalette> = {
@@ -25,6 +26,32 @@ export const THEME_PALETTES: Record<string, ThemePalette> = {
       { step: 7, label: 'Deep Shading', hsl: 'hsl(263, 70%, 50%)', rgb: 'rgb(109, 40, 217)', hex: '#6D28D9', luma: 0.42, contrastOnWhite: 5.66 },
       { step: 8, label: 'High Contrast', hsl: 'hsl(264, 67%, 35%)', rgb: 'rgb(76, 29, 149)', hex: '#4C1D95', luma: 0.28, contrastOnWhite: 11.2 },
       { step: 9, label: 'Deep Navy Ink', hsl: 'hsl(222, 47%, 11%)', rgb: 'rgb(15, 23, 42)', hex: '#0F172A', luma: 0.11, contrastOnWhite: 16.8 },
+    ],
+  },
+  'paper-editorial': {
+    id: 'paper-editorial',
+    name: 'Paper Editorial (Warm Cream & Navy)',
+    description: 'Warm archival cream paper canvas with refined navy editorial typography.',
+    isDark: false,
+    canvasBg: '#F5F0E6',
+    textColor: '#1A1A1A',
+    subtextColor: '#615A4F',
+    cardBg: 'rgba(255, 252, 247, 0.92)',
+    cardBorder: '#D8CEBE',
+    accentColor: '#1D4ED8',
+    dotMatrix: false,
+    headerShadow: 'rgb(255 255 255) 1px 0.7px 0px',
+    stops: [
+      { step: 0, label: 'Archival Cream', hsl: 'hsl(42, 50%, 96%)', rgb: 'rgb(250, 247, 240)', hex: '#FAF7F0', luma: 0.96, contrastOnWhite: 1.06 },
+      { step: 1, label: 'Warm Parchment', hsl: 'hsl(39, 43%, 93%)', rgb: 'rgb(245, 240, 230)', hex: '#F5F0E6', luma: 0.93, contrastOnWhite: 1.15 },
+      { step: 2, label: 'Cardboard Tint', hsl: 'hsl(38, 40%, 86%)', rgb: 'rgb(234, 224, 208)', hex: '#EAE0D0', luma: 0.86, contrastOnWhite: 1.34 },
+      { step: 3, label: 'Muted Ochre', hsl: 'hsl(38, 36%, 75%)', rgb: 'rgb(212, 196, 168)', hex: '#D4C4A8', luma: 0.75, contrastOnWhite: 1.76 },
+      { step: 4, label: 'Editorial Slate', hsl: 'hsl(213, 94%, 68%)', rgb: 'rgb(96, 165, 250)', hex: '#60A5FA', luma: 0.65, contrastOnWhite: 2.30 },
+      { step: 5, label: 'Refined Royal', hsl: 'hsl(221, 83%, 53%)', rgb: 'rgb(37, 99, 235)', hex: '#2563EB', luma: 0.51, contrastOnWhite: 3.80 },
+      { step: 6, label: 'Classical Navy', hsl: 'hsl(224, 76%, 48%)', rgb: 'rgb(29, 78, 216)', hex: '#1D4ED8', luma: 0.42, contrastOnWhite: 5.50 },
+      { step: 7, label: 'Deep Blue Ink', hsl: 'hsl(224, 64%, 33%)', rgb: 'rgb(30, 58, 138)', hex: '#1E3A8A', luma: 0.28, contrastOnWhite: 10.20 },
+      { step: 8, label: 'Charcoal Ink', hsl: 'hsl(30, 9%, 16%)', rgb: 'rgb(44, 40, 37)', hex: '#2C2825', luma: 0.16, contrastOnWhite: 14.50 },
+      { step: 9, label: 'Archival Black', hsl: 'hsl(0, 0%, 10%)', rgb: 'rgb(26, 26, 26)', hex: '#1A1A1A', luma: 0.10, contrastOnWhite: 17.20 },
     ],
   },
   'true-dark': {
@@ -131,6 +158,110 @@ export const THEME_PALETTES: Record<string, ThemePalette> = {
       { step: 9, label: 'Absolute Abyss', hsl: 'hsl(222, 84%, 5%)', rgb: 'rgb(2, 6, 23)', hex: '#020617', luma: 0.05, contrastOnWhite: 19.5 },
     ],
   },
+  'sunset-horizon': {
+    id: 'sunset-horizon',
+    name: 'Sunset Horizon (Warm Plum & Coral)',
+    description: 'Warm sunset plum canvas with vibrant coral accents and glowing card edges.',
+    isDark: true,
+    canvasBg: '#1B0D1F',
+    textColor: '#FFEAF0',
+    subtextColor: '#C89AA6',
+    cardBg: 'rgba(42, 20, 48, 0.85)',
+    cardBorder: 'rgba(255, 122, 89, 0.35)',
+    accentColor: '#FF7A59',
+    dotMatrix: true,
+    headerShadow: 'rgb(0 0 0) 1px 0.7px 0px',
+    stops: [
+      { step: 0, label: 'Peach Whisper', hsl: 'hsl(12, 100%, 97%)', rgb: 'rgb(255, 240, 237)', hex: '#FFF0ED', luma: 0.95, contrastOnWhite: 1.08 },
+      { step: 1, label: 'Soft Apricot', hsl: 'hsl(13, 95%, 90%)', rgb: 'rgb(254, 215, 204)', hex: '#FED7CC', luma: 0.88, contrastOnWhite: 1.25 },
+      { step: 2, label: 'Pale Coral', hsl: 'hsl(14, 96%, 81%)', rgb: 'rgb(253, 181, 160)', hex: '#FDB5A0', luma: 0.78, contrastOnWhite: 1.62 },
+      { step: 3, label: 'Warm Salmon', hsl: 'hsl(14, 96%, 71%)', rgb: 'rgb(252, 142, 110)', hex: '#FC8E6E', luma: 0.67, contrastOnWhite: 2.20 },
+      { step: 4, label: 'Plum Tint', hsl: 'hsl(345, 29%, 69%)', rgb: 'rgb(200, 154, 166)', hex: '#C89AA6', luma: 0.60, contrastOnWhite: 2.75 },
+      { step: 5, label: 'Coral Glow', hsl: 'hsl(12, 88%, 58%)', rgb: 'rgb(240, 93, 56)', hex: '#F05D38', luma: 0.49, contrastOnWhite: 3.90 },
+      { step: 6, label: 'Warm Coral Lead', hsl: 'hsl(12, 100%, 67%)', rgb: 'rgb(255, 122, 89)', hex: '#FF7A59', luma: 0.45, contrastOnWhite: 5.10 },
+      { step: 7, label: 'Deep Terracotta', hsl: 'hsl(9, 76%, 37%)', rgb: 'rgb(168, 44, 23)', hex: '#A82C17', luma: 0.25, contrastOnWhite: 10.50 },
+      { step: 8, label: 'Dusk Plum', hsl: 'hsl(332, 59%, 22%)', rgb: 'rgb(88, 23, 53)', hex: '#581735', luma: 0.14, contrastOnWhite: 14.80 },
+      { step: 9, label: 'Midnight Plum', hsl: 'hsl(287, 41%, 9%)', rgb: 'rgb(27, 13, 31)', hex: '#1B0D1F', luma: 0.07, contrastOnWhite: 18.50 },
+    ],
+  },
+  'cyber-neon': {
+    id: 'cyber-neon',
+    name: 'Cyber Neon (Electric Cyan & Magenta)',
+    description: 'Electric synthwave obsidian canvas with glowing cyan and magenta vectors.',
+    isDark: true,
+    canvasBg: '#030712',
+    textColor: '#F9FAFB',
+    subtextColor: '#9CA3AF',
+    cardBg: 'rgba(17, 24, 39, 0.85)',
+    cardBorder: 'rgba(6, 182, 212, 0.40)',
+    accentColor: '#06B6D4',
+    dotMatrix: true,
+    headerShadow: 'rgb(0 0 0) 1px 0.7px 0px',
+    stops: [
+      { step: 0, label: 'Neon Vapor', hsl: 'hsl(183, 100%, 96%)', rgb: 'rgb(236, 254, 255)', hex: '#ECFEFF', luma: 0.97, contrastOnWhite: 1.05 },
+      { step: 1, label: 'Cyan Mist', hsl: 'hsl(186, 94%, 90%)', rgb: 'rgb(207, 250, 254)', hex: '#CFFAFE', luma: 0.92, contrastOnWhite: 1.18 },
+      { step: 2, label: 'Aqua Glow', hsl: 'hsl(187, 92%, 82%)', rgb: 'rgb(165, 243, 252)', hex: '#A5F3FC', luma: 0.85, contrastOnWhite: 1.40 },
+      { step: 3, label: 'Bright Teal', hsl: 'hsl(187, 92%, 69%)', rgb: 'rgb(103, 232, 249)', hex: '#67E8F9', luma: 0.75, contrastOnWhite: 1.75 },
+      { step: 4, label: 'Synth Magenta', hsl: 'hsl(292, 91%, 73%)', rgb: 'rgb(232, 121, 249)', hex: '#E879F9', luma: 0.58, contrastOnWhite: 2.95 },
+      { step: 5, label: 'Electric Cyan', hsl: 'hsl(189, 94%, 54%)', rgb: 'rgb(34, 211, 238)', hex: '#22D3EE', luma: 0.52, contrastOnWhite: 3.65 },
+      { step: 6, label: 'Cyber Cyan Lead', hsl: 'hsl(188, 86%, 43%)', rgb: 'rgb(6, 182, 212)', hex: '#06B6D4', luma: 0.44, contrastOnWhite: 4.80 },
+      { step: 7, label: 'Neon Violet', hsl: 'hsl(294, 72%, 40%)', rgb: 'rgb(162, 28, 175)', hex: '#A21CAF', luma: 0.30, contrastOnWhite: 8.50 },
+      { step: 8, label: 'Deep Synthwave', hsl: 'hsl(264, 67%, 35%)', rgb: 'rgb(76, 29, 149)', hex: '#4C1D95', luma: 0.18, contrastOnWhite: 13.00 },
+      { step: 9, label: 'Void Obsidian', hsl: 'hsl(222, 71%, 4%)', rgb: 'rgb(3, 7, 18)', hex: '#030712', luma: 0.04, contrastOnWhite: 20.10 },
+    ],
+  },
+  'crimson-executive': {
+    id: 'crimson-executive',
+    name: 'Crimson Executive (Ruby & Obsidian)',
+    description: 'Authoritative ruby crimson on deep obsidian canvas for executive keynotes.',
+    isDark: true,
+    canvasBg: '#0F0508',
+    textColor: '#FFF1F2',
+    subtextColor: '#FDA4AF',
+    cardBg: 'rgba(34, 10, 18, 0.85)',
+    cardBorder: 'rgba(225, 29, 72, 0.35)',
+    accentColor: '#E11D48',
+    dotMatrix: true,
+    headerShadow: 'rgb(0 0 0) 1px 0.7px 0px',
+    stops: [
+      { step: 0, label: 'Rose Quartz', hsl: 'hsl(356, 100%, 97%)', rgb: 'rgb(255, 241, 242)', hex: '#FFF1F2', luma: 0.96, contrastOnWhite: 1.06 },
+      { step: 1, label: 'Blush Pink', hsl: 'hsl(353, 100%, 95%)', rgb: 'rgb(255, 228, 230)', hex: '#FFE4E6', luma: 0.92, contrastOnWhite: 1.18 },
+      { step: 2, label: 'Rose Petal', hsl: 'hsl(351, 95%, 90%)', rgb: 'rgb(254, 205, 211)', hex: '#FECDD3', luma: 0.85, contrastOnWhite: 1.40 },
+      { step: 3, label: 'Vibrant Rose', hsl: 'hsl(350, 89%, 82%)', rgb: 'rgb(253, 164, 175)', hex: '#FDA4AF', luma: 0.73, contrastOnWhite: 1.85 },
+      { step: 4, label: 'Carmine Bloom', hsl: 'hsl(350, 89%, 60%)', rgb: 'rgb(251, 113, 133)', hex: '#FB7185', luma: 0.60, contrastOnWhite: 2.70 },
+      { step: 5, label: 'Vivid Crimson', hsl: 'hsl(350, 89%, 60%)', rgb: 'rgb(244, 63, 94)', hex: '#F43F5E', luma: 0.50, contrastOnWhite: 3.90 },
+      { step: 6, label: 'Ruby Lead', hsl: 'hsl(347, 77%, 50%)', rgb: 'rgb(225, 29, 72)', hex: '#E11D48', luma: 0.40, contrastOnWhite: 5.80 },
+      { step: 7, label: 'Imperial Crimson', hsl: 'hsl(346, 83%, 41%)', rgb: 'rgb(190, 18, 60)', hex: '#BE123C', luma: 0.28, contrastOnWhite: 9.50 },
+      { step: 8, label: 'Deep Burgundy', hsl: 'hsl(343, 75%, 30%)', rgb: 'rgb(136, 19, 55)', hex: '#881337', luma: 0.16, contrastOnWhite: 14.20 },
+      { step: 9, label: 'Obsidian Rose', hsl: 'hsl(342, 50%, 4%)', rgb: 'rgb(15, 5, 8)', hex: '#0F0508', luma: 0.05, contrastOnWhite: 19.80 },
+    ],
+  },
+  'nord-frost': {
+    id: 'nord-frost',
+    name: 'Nord Frost (Arctic Glacier & Navy)',
+    description: 'Cool Scandinavian glacier blue with crisp polar typography on arctic navy.',
+    isDark: true,
+    canvasBg: '#0B132B',
+    textColor: '#F0F9FF',
+    subtextColor: '#7DD3FC',
+    cardBg: 'rgba(28, 37, 65, 0.85)',
+    cardBorder: 'rgba(56, 189, 248, 0.35)',
+    accentColor: '#38BDF8',
+    dotMatrix: false,
+    headerShadow: 'rgb(0 0 0) 1px 0.7px 0px',
+    stops: [
+      { step: 0, label: 'Glacier Frost', hsl: 'hsl(204, 100%, 97%)', rgb: 'rgb(240, 249, 255)', hex: '#F0F9FF', luma: 0.97, contrastOnWhite: 1.05 },
+      { step: 1, label: 'Polar White', hsl: 'hsl(204, 94%, 94%)', rgb: 'rgb(224, 242, 254)', hex: '#E0F2FE', luma: 0.92, contrastOnWhite: 1.18 },
+      { step: 2, label: 'Pale Ice', hsl: 'hsl(201, 94%, 86%)', rgb: 'rgb(186, 230, 253)', hex: '#BAE6FD', luma: 0.85, contrastOnWhite: 1.40 },
+      { step: 3, label: 'Nordic Sky', hsl: 'hsl(199, 89%, 74%)', rgb: 'rgb(125, 211, 252)', hex: '#7DD3FC', luma: 0.74, contrastOnWhite: 1.82 },
+      { step: 4, label: 'Polar Azure', hsl: 'hsl(199, 89%, 48%)', rgb: 'rgb(14, 165, 233)', hex: '#0EA5E9', luma: 0.58, contrastOnWhite: 3.10 },
+      { step: 5, label: 'Fjord Blue', hsl: 'hsl(201, 96%, 39%)', rgb: 'rgb(2, 132, 199)', hex: '#0284C7', luma: 0.48, contrastOnWhite: 4.30 },
+      { step: 6, label: 'Glacier Lead', hsl: 'hsl(199, 89%, 60%)', rgb: 'rgb(56, 189, 248)', hex: '#38BDF8', luma: 0.40, contrastOnWhite: 5.80 },
+      { step: 7, label: 'Deep Fjord', hsl: 'hsl(202, 96%, 32%)', rgb: 'rgb(3, 105, 161)', hex: '#0369A1', luma: 0.27, contrastOnWhite: 10.10 },
+      { step: 8, label: 'Polar Midnight', hsl: 'hsl(224, 40%, 18%)', rgb: 'rgb(28, 37, 65)', hex: '#1C2541', luma: 0.16, contrastOnWhite: 14.50 },
+      { step: 9, label: 'Arctic Abyss', hsl: 'hsl(225, 59%, 11%)', rgb: 'rgb(11, 19, 43)', hex: '#0B132B', luma: 0.08, contrastOnWhite: 18.20 },
+    ],
+  },
 };
 
 /**
@@ -151,17 +282,10 @@ export function shadeTextByCharacter(
     }
 
     const ratio = totalChars > 1 ? index / (totalChars - 1) : 0;
-    const targetStep = Math.min(
-      9,
-      Math.max(0, Math.round(startStep + ratio * (endStep - startStep)))
-    );
+    const targetStep = Math.min(9, Math.max(0, Math.round(startStep + ratio * (endStep - startStep))));
     const stop = palette.stops[targetStep];
 
-    return {
-      char,
-      hex: stop.hex,
-      hsl: stop.hsl,
-    };
+    return { char, hex: stop.hex, hsl: stop.hsl };
   });
 }
 
