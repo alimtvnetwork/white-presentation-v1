@@ -65,3 +65,6 @@ doc/_build/
 *.local
 *.pem
 *.key
+.ai-memory/temp/
+.lovable/
+tmp/

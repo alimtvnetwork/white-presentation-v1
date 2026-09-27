@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ThemeGradientRamp",
+  "type": "object",
+  "required": ["themeId", "name", "background", "foreground", "accent", "ramp"],
+  "properties": {
+    "themeId": {
+      "type": "string",
+      "description": "Theme unique identifier (e.g. white-pure-violet, midnight-gold, wp-exam-blue, emerald-clinical)"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable display name"
+    },
+    "background": {
+      "type": "string",
+      "description": "Base canvas background HEX"
+    },
+    "foreground": {
+      "type": "string",
+      "description": "Primary high-contrast text color HEX"
+    },
+    "muted": {
+      "type": "string",
+      "description": "Subtle text / inactive border HEX"
+    },
+    "accent": {
+      "type": "string",
+      "description": "Primary brand accent HEX"
+    },
+    "ramp": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "description": "Strict 10-step mathematical shade ramp from S0 to S9",
+      "items": {
+        "type": "object",
+        "required": ["step", "hex", "rgb", "hsl"],
+        "properties": {
+          "step": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9
+          },
+          "hex": {
+            "type": "string",
+            "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+          },
+          "rgb": {
+            "type": "string",
+            "pattern": "^rgb\\([0-9]+,\\s*[0-9]+,\\s*[0-9]+\\)$"
+          },
+          "hsl": {
+            "type": "string",
+            "pattern": "^hsl\\([0-9]+,\\s*[0-9]+%,\\s*[0-9]+%\\)$"
+          },
+          "role": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

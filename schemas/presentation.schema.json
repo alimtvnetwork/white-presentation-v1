@@ -1,0 +1,113 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PresentationDeck",
+  "type": "object",
+  "required": ["id", "title", "themeId", "version", "slides"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9_-]+$",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "Unique URL-safe deck identifier"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Human-readable deck title"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Deck overview or abstract"
+    },
+    "themeId": {
+      "type": "string",
+      "description": "Active global theme identifier (e.g. white-pure-violet, midnight-gold, wp-exam-blue)"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 2,
+      "description": "Schema version number"
+    },
+    "settings": {
+      "type": "object",
+      "properties": {
+        "backgroundMode": {
+          "type": "string",
+          "enum": ["color", "image", "video"]
+        },
+        "backgroundColor": {
+          "type": "string",
+          "description": "Global background CSS color or HEX"
+        },
+        "backgroundImage": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL or data URI for global backdrop"
+        },
+        "darken": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Contrast overlay percentage"
+        },
+        "blur": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 40,
+          "description": "Backdrop blur in pixels"
+        },
+        "transition": {
+          "type": "string",
+          "enum": ["fade", "slide", "camera-zoom"],
+          "default": "fade"
+        },
+        "soundEnabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "clickSoundEnabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "volume": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.6
+        }
+      }
+    },
+    "music": {
+      "type": "object",
+      "properties": {
+        "url": { "type": "string" },
+        "loop": { "type": "boolean", "default": true },
+        "volume": { "type": "number", "minimum": 0, "maximum": 1, "default": 0.5 }
+      }
+    },
+    "logos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["src", "position"],
+        "properties": {
+          "src": { "type": "string" },
+          "position": {
+            "type": "string",
+            "enum": ["top-left", "top-right", "bottom-left", "bottom-right"]
+          },
+          "height": { "type": "number", "default": 42 }
+        }
+      }
+    },
+    "slides": {
+      "type": "array",
+      "items": {
+        "$ref": "slide.schema.json"
+      }
+    }
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PresentationSlide",
+  "type": "object",
+  "required": ["id", "type", "title"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9_-]+$",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "white-master",
+        "center",
+        "left",
+        "steps",
+        "timeline",
+        "process",
+        "quote",
+        "bullets",
+        "image",
+        "compare",
+        "priority",
+        "reveal-grid",
+        "counter-stat"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 4000
+    },
+    "background": {
+      "type": "string"
+    },
+    "themeId": {
+      "type": "string"
+    },
+    "align": {
+      "type": "string",
+      "enum": [
+        "top-left", "top-center", "top-right",
+        "center-left", "center", "center-right",
+        "bottom-left", "bottom-center", "bottom-right"
+      ],
+      "default": "center"
+    },
+    "padding": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 400,
+      "default": 120
+    },
+    "kicker": {
+      "type": "string"
+    },
+    "heading": {
+      "$ref": "#/definitions/richText"
+    },
+    "subhead": {
+      "$ref": "#/definitions/richText"
+    },
+    "body": {
+      "$ref": "#/definitions/richText"
+    },
+    "bullets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["text"],
+        "properties": {
+          "icon": { "type": "string" },
+          "text": { "type": "string" },
+          "badgeColor": { "type": "string" },
+          "dividerColor": { "type": "string" }
+        }
+      }
+    },
+    "heroVisual": {
+      "type": "object",
+      "properties": {
+        "src": { "type": "string" },
+        "alt": { "type": "string" },
+        "mask": { "type": "string", "enum": ["feather-left", "circle", "rounded", "none"] },
+        "overlayEffect": { "type": "string", "enum": ["neon-heart", "glow-circle", "none"] },
+        "overlayColor": { "type": "string" }
+      }
+    },
+    "logo": {
+      "type": "object",
+      "properties": {
+        "src": { "type": "string" },
+        "position": { "type": "string", "default": "top-right" },
+        "height": { "type": "number", "default": 42 }
+      }
+    },
+    "bottomDecor": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "enum": ["wave-gradient", "solid-bar", "none"] },
+        "colors": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "boxes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["x", "y", "w", "h"],
+        "properties": {
+          "x": { "type": "number" },
+          "y": { "type": "number" },
+          "w": { "type": "number" },
+          "h": { "type": "number" }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "richText": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          { "type": "string" },
+          {
+            "type": "object",
+            "required": ["text"],
+            "properties": {
+              "text": { "type": "string" },
+              "pill": { "type": "boolean" },
+              "plain": { "type": "boolean" },
+              "pillColor": { "type": "string" },
+              "style": {
+                "type": "object",
+                "properties": {
+                  "fontSize": { "type": "number" },
+                  "color": { "type": "string" },
+                  "fontWeight": { "type": "string" }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

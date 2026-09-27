@@ -1,0 +1,78 @@
+{
+  "id": "white-presentation-sample-01",
+  "type": "white-master",
+  "title": "Stories Are Emotional Bridges",
+  "themeId": "white-pure-violet",
+  "align": "center-left",
+  "padding": 120,
+  "kicker": "Chapter 01",
+  "heading": [
+    "Stories Are\nEmotional Bridges"
+  ],
+  "subhead": [
+    "They Share Your ",
+    {
+      "text": "Emotions",
+      "pill": false,
+      "style": {
+        "color": "#7C3AED",
+        "fontWeight": "600"
+      }
+    }
+  ],
+  "accentMarker": {
+    "width": 54,
+    "height": 5,
+    "color": "#7C3AED",
+    "borderRadius": 999
+  },
+  "watermark": {
+    "type": "concentric-arcs",
+    "position": "top-left",
+    "stroke": "rgba(124, 58, 237, 0.08)",
+    "strokeWidth": 1.5
+  },
+  "logo": {
+    "src": "assets/logos/6 - Riseup Asia Logo Transparent Only BK.png",
+    "position": "top-right",
+    "height": 42
+  },
+  "bullets": [
+    {
+      "id": "bullet-01",
+      "icon": "Heart",
+      "text": "A good story allows others to feel what you felt.",
+      "badgeColor": "#7C3AED",
+      "dividerColor": "#C084FC"
+    },
+    {
+      "id": "bullet-02",
+      "icon": "Users",
+      "text": "It creates empathy, trust and attention.",
+      "badgeColor": "#7C3AED",
+      "dividerColor": "#C084FC"
+    },
+    {
+      "id": "bullet-03",
+      "icon": "MessageCircle",
+      "text": "Stories turn information into human connection.",
+      "badgeColor": "#7C3AED",
+      "dividerColor": "#C084FC"
+    }
+  ],
+  "heroVisual": {
+    "src": "assets/screenshots/white-presentation-sample-01.png",
+    "alt": "Two people sitting on an arched bridge at sunset",
+    "mask": "feather-left",
+    "overlayEffect": "neon-heart",
+    "overlayColor": "#D8B4FE"
+  },
+  "bottomDecor": {
+    "type": "wave-gradient",
+    "colors": ["#0F172A", "#7C3AED", "#6B21A8", "#312E81"]
+  },
+  "boxes": {
+    "textBlock": { "x": 120, "y": 170, "w": 720, "h": 720 },
+    "heroBlock": { "x": 940, "y": 120, "w": 980, "h": 900 }
+  }
+}
