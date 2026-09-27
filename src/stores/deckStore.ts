@@ -203,6 +203,88 @@ const INITIAL_DECK: PresentationDeck = {
         },
       ],
     },
+    {
+      id: 'slide-07',
+      type: 'key-player',
+      title: 'Principal Systems Architect',
+      subtitle: 'Spearheading distributed systems, low-latency microservices, and AI pipelines.',
+      kicker: 'CORE TALENT',
+      name: 'Marek Nowak',
+      role: 'Staff Infrastructure Architect',
+      avatarUrl: '/assets/screenshots/white-presentation-sample-01.png',
+      skills: ['Kubernetes', 'Go / Rust', 'Distributed SQL', 'Kafka', 'Terraform'],
+      pillars: [
+        {
+          title: 'High-Scale Cloud Topologies',
+          description: 'Designed zero-downtime multi-region failover clusters handling 100k+ RPS.',
+          icon: 'cloud',
+        },
+        {
+          title: 'Autonomous AI Orchestration',
+          description: 'Engineered self-looping multi-agent execution waves with continuous linter gates.',
+          icon: 'layers',
+        },
+        {
+          title: 'Security & Enterprise Compliance',
+          description: 'Achieved automated SOC2 Type II and ISO-27001 continuous compliance telemetry.',
+          icon: 'security',
+        },
+      ],
+    } as any,
+    {
+      id: 'slide-08',
+      type: 'steps-chain',
+      title: 'Autonomous Delivery Lifecycle',
+      subtitle: 'From architectural discovery to continuous automated production release.',
+      kicker: 'EXECUTION WAVE',
+      steps: [
+        {
+          stepNumber: 1,
+          title: 'Architecture Spec',
+          duration: 'Week 1',
+          deliverables: ['Canvas coordinate schemas', '10-step gradient tokens', 'Pure DOM contracts'],
+        },
+        {
+          stepNumber: 2,
+          title: 'Decoupled State Engine',
+          duration: 'Week 2',
+          deliverables: ['useDeckStore & useEditStore', 'applyEdit mutator funnel', 'Sound cues'],
+        },
+        {
+          stepNumber: 3,
+          title: 'Component Generation',
+          duration: 'Week 3-4',
+          deliverables: ['White master slide', 'Hero feather plate', 'Neon glowing heart'],
+        },
+        {
+          stepNumber: 4,
+          title: 'Production Deploy',
+          duration: 'Continuous',
+          deliverables: ['Automated CI/CD verification', 'Headless 4K export', 'Multi-tenant DB'],
+        },
+      ],
+    } as any,
+    {
+      id: 'slide-09',
+      type: 'testimonials',
+      title: 'Executive Endorsements',
+      subtitle: 'Validated by engineering leadership across high-growth venture-backed enterprises.',
+      kicker: 'SOCIAL PROOF',
+      testimonials: [
+        {
+          quote: 'The architectural rigor and zero-compromise pure DOM standard made our Series-B product launch a massive hit with enterprise buyers.',
+          author: 'Sarah Jenkins',
+          title: 'VP of Engineering',
+          company: 'CloudPulse Networks',
+        },
+        {
+          quote: 'Riseup delivered 3x faster than our internal estimates with zero technical debt and impeccable typographic fidelity at 4K resolution.',
+          author: 'David Chen',
+          title: 'Chief Technology Officer',
+          company: 'HyperScale AI',
+        },
+      ],
+    } as any,
   ],
 };
 

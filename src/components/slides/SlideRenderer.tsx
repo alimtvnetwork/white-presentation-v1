@@ -6,6 +6,9 @@ import { CeoPersonaSlide } from './CeoPersonaSlide';
 import { BeforeAfterSlide } from './BeforeAfterSlide';
 import { TalentFunnelSlide } from './TalentFunnelSlide';
 import { PricingProofSlide } from './PricingProofSlide';
+import { KeyPlayerSlide } from './KeyPlayerSlide';
+import { StepsChainSlide } from './StepsChainSlide';
+import { TestimonialsSlide } from './TestimonialsSlide';
 
 interface SlideRendererProps {
   slide: SlideData;
@@ -19,12 +22,18 @@ export const SlideRenderer: React.FC<SlideRendererProps> = ({ slide }) => {
       return <TitleSlide slide={slide} />;
     case 'persona':
       return <CeoPersonaSlide slide={slide} />;
+    case 'key-player':
+      return <KeyPlayerSlide slide={slide as any} />;
     case 'before-after':
       return <BeforeAfterSlide slide={slide} />;
     case 'talent-funnel':
       return <TalentFunnelSlide slide={slide} />;
     case 'pricing':
       return <PricingProofSlide slide={slide} />;
+    case 'steps-chain':
+      return <StepsChainSlide slide={slide as any} />;
+    case 'testimonials':
+      return <TestimonialsSlide slide={slide as any} />;
     default:
       return <WhiteMasterSlide slide={slide as any} />;
   }
