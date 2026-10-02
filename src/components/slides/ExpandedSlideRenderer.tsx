@@ -15,7 +15,7 @@ import { InteractiveQuizSlide } from './InteractiveQuizSlide';
 import { HardwareShowcaseSlide } from './HardwareShowcaseSlide';
 import { CompetitorMatrixSlide } from './CompetitorMatrixSlide';
 import { ValuePyramidSlide } from './ValuePyramidSlide';
-import { WhiteMasterSlide } from './WhiteMasterSlide';
+import { EnterpriseSlideRenderer } from './EnterpriseSlideRenderer';
 
 export const ExpandedSlideRenderer: React.FC<{ slide: SlideData }> = ({ slide }) => {
   switch (slide.type) {
@@ -34,6 +34,6 @@ export const ExpandedSlideRenderer: React.FC<{ slide: SlideData }> = ({ slide })
     case 'hardware-showcase': return <HardwareShowcaseSlide slide={slide as any} />;
     case 'competitor-matrix': return <CompetitorMatrixSlide slide={slide as any} />;
     case 'value-pyramid': return <ValuePyramidSlide slide={slide as any} />;
-    default: return <WhiteMasterSlide slide={slide as any} />;
+    default: return <EnterpriseSlideRenderer slide={slide} />;
   }
 };

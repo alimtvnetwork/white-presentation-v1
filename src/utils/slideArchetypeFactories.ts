@@ -8,8 +8,10 @@ import {
 } from '../types/presentation';
 import { EXTENDED_FACTORIES, EXTENDED_ARCHETYPE_OPTIONS, ArchetypeOption } from './extendedSlideFactories';
 import { EXPANDED_FACTORIES, EXPANDED_ARCHETYPE_OPTIONS } from './expandedSlideFactories';
+import { ENTERPRISE_FACTORIES, ENTERPRISE_ARCHETYPE_OPTIONS } from './enterpriseSlideFactories';
 export * from './extendedSlideFactories';
 export * from './expandedSlideFactories';
+export * from './enterpriseSlideFactories';
 
 export const ORIGINAL_ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   { type: 'metric-grid', label: 'Metric Grid Matrix', category: 'Strategy & Metrics', desc: '4-6 quantitative KPI cards with delta trends', icon: 'BarChart3' },
@@ -33,6 +35,7 @@ export const ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   ...ORIGINAL_ARCHETYPE_OPTIONS,
   ...EXTENDED_ARCHETYPE_OPTIONS,
   ...EXPANDED_ARCHETYPE_OPTIONS,
+  ...ENTERPRISE_ARCHETYPE_OPTIONS,
 ];
 
 export const createMetricGridSlide = (id = `slide-${Date.now()}`): MetricGridSlideData => ({
@@ -247,32 +250,50 @@ export const createCallToActionSlide = (id = `slide-${Date.now()}`): CallToActio
   guaranteePill: '100% Deterministic • Zero Data Egress • Sovereign Code',
 });
 
+const getBuiltInArchetypeMap = (): Record<string, (sid: string) => SlideData> => ({
+  'metric-grid': createMetricGridSlide,
+  'stats-callout': createStatsCalloutSlide,
+  'market-opportunity': createMarketOpportunitySlide,
+  'quadrant-matrix': createQuadrantMatrixSlide,
+  'problem-solution': createProblemSolutionSlide,
+  'timeline-roadmap': createTimelineRoadmapSlide,
+  'feature-grid': createFeatureGridSlide,
+  'architecture-diagram': createArchitectureDiagramSlide,
+  'code-terminal': createCodeTerminalSlide,
+  'process-cycle': createProcessCycleSlide,
+  'team-grid': createTeamGridSlide,
+  'case-study': createCaseStudySlide,
+  'quote-callout': createQuoteCalloutSlide,
+  'comparison-columns': createComparisonColumnsSlide,
+  'call-to-action': createCallToActionSlide,
+  steps: (sid) => ({ id: sid, type: 'steps', title: 'Execution Roadmap', kicker: 'AUTONOMOUS WORKFLOW', heading: 'Three phases, one goal', steps: [{ label: 'Discover', title: 'Analyze', detail: 'Evaluate architecture.' }, { label: 'Prototype', title: 'Build', detail: 'Develop minimal slice.' }, { label: 'Ship', title: 'Verify', detail: 'Execute gates.' }] }),
+  'steps-chain': (sid) => ({ id: sid, type: 'steps-chain', title: 'Implementation Architecture', subtitle: '4-phase deployment timeline', steps: [{ stepNumber: 1, title: 'Intake & Discovery' }, { stepNumber: 2, title: 'Engine Synthesis' }, { stepNumber: 3, title: 'Interactive Staging' }, { stepNumber: 4, title: 'Enterprise Release' }] }),
+  'competitive-edge': (sid) => ({ id: sid, type: 'competitive-edge', title: 'Competitive Advantage', subtitle: 'Measurable enterprise superiority matrix', headers: ['Capability', 'Legacy Models', 'Riseup Standard'], rows: [{ feature: 'Autonomous Loop QA', competitor: 'Manual review', us: '100% Deterministic CI' }] }),
+  'tech-stack': (sid) => ({ id: sid, type: 'tech-stack', title: 'Production Architecture', subtitle: 'Battle-tested engineering stack', categories: [{ name: 'Core Engine', icon: 'cpu', technologies: [{ name: 'React 19', level: 'Core' }] }] }),
+  pricing: (sid) => ({ id: sid, type: 'pricing', title: 'Sovereign Investment Tiers', subtitle: 'Transparent pricing', tiers: [{ name: 'Enterprise', price: '$4,900', cadence: 'Annual License', isFeatured: true, features: ['15 Archetypes'], ctaLabel: 'Deploy Sovereign' }] }),
+  'before-after': (sid) => ({ id: sid, type: 'before-after', title: 'Operational Transformation', kicker: 'STRATEGIC SHIFT', before: { title: 'Legacy Workflow', points: ['Manual formatting'] }, after: { title: 'Sovereign Workflow', points: ['Deterministic DOM'] } }),
+  persona: (sid) => ({ id: sid, type: 'persona', title: 'Technical Leadership', name: 'Alim Ul Karim', role: 'Chief Software Engineer', avatarUrl: '/assets/screenshots/hero-speaker-clean.png', metrics: [{ value: '15+ Yrs', label: 'Systems' }], bioBullets: ['Lead architect of sovereign runtimes.'] }),
+});
+
+const createFallbackTitleSlide = (id: string): SlideData => ({
+  id,
+  type: 'title',
+  title: 'New Strategic Keynote',
+  subtitle: 'High-leverage enterprise presentation',
+  presenter: { name: 'Alim Ul Karim', role: 'Chief Software Engineer', company: 'Riseup Asia LLC' },
+});
+
 export const createArchetypeSlide = (type: SlideType, id = `slide-${Date.now()}`): SlideData => {
-  const fns: Record<string, (sid: string) => SlideData> = {
-    'metric-grid': createMetricGridSlide, 'stats-callout': createStatsCalloutSlide,
-    'market-opportunity': createMarketOpportunitySlide, 'quadrant-matrix': createQuadrantMatrixSlide,
-    'problem-solution': createProblemSolutionSlide, 'timeline-roadmap': createTimelineRoadmapSlide,
-    'feature-grid': createFeatureGridSlide, 'architecture-diagram': createArchitectureDiagramSlide,
-    'code-terminal': createCodeTerminalSlide, 'process-cycle': createProcessCycleSlide,
-    'team-grid': createTeamGridSlide, 'case-study': createCaseStudySlide,
-    'quote-callout': createQuoteCalloutSlide, 'comparison-columns': createComparisonColumnsSlide,
-    'call-to-action': createCallToActionSlide,
-    steps: (sid) => ({ id: sid, type: 'steps', title: 'Execution Roadmap', kicker: 'AUTONOMOUS WORKFLOW', heading: 'Three phases, one goal', steps: [{ label: 'Discover', title: 'Analyze', detail: 'Evaluate architecture.' }, { label: 'Prototype', title: 'Build', detail: 'Develop minimal slice.' }, { label: 'Ship', title: 'Verify', detail: 'Execute gates.' }] }),
-    'steps-chain': (sid) => ({ id: sid, type: 'steps-chain', title: 'Implementation Architecture', subtitle: '4-phase deployment timeline', steps: [{ stepNumber: 1, title: 'Intake & Discovery' }, { stepNumber: 2, title: 'Engine Synthesis' }, { stepNumber: 3, title: 'Interactive Staging' }, { stepNumber: 4, title: 'Enterprise Release' }] }),
-    'competitive-edge': (sid) => ({ id: sid, type: 'competitive-edge', title: 'Competitive Advantage', subtitle: 'Measurable enterprise superiority matrix', headers: ['Capability', 'Legacy Models', 'Riseup Standard'], rows: [{ feature: 'Autonomous Loop QA', competitor: 'Manual review', us: '100% Deterministic CI' }] }),
-    'tech-stack': (sid) => ({ id: sid, type: 'tech-stack', title: 'Production Architecture', subtitle: 'Battle-tested engineering stack', categories: [{ name: 'Core Engine', icon: 'cpu', technologies: [{ name: 'React 19', level: 'Core' }] }] }),
-    pricing: (sid) => ({ id: sid, type: 'pricing', title: 'Sovereign Investment Tiers', subtitle: 'Transparent pricing', tiers: [{ name: 'Enterprise', price: '$4,900', cadence: 'Annual License', isFeatured: true, features: ['15 Archetypes'], ctaLabel: 'Deploy Sovereign' }] }),
-    'before-after': (sid) => ({ id: sid, type: 'before-after', title: 'Operational Transformation', kicker: 'STRATEGIC SHIFT', before: { title: 'Legacy Workflow', points: ['Manual formatting'] }, after: { title: 'Sovereign Workflow', points: ['Deterministic DOM'] } }),
-    persona: (sid) => ({ id: sid, type: 'persona', title: 'Technical Leadership', name: 'Alim Ul Karim', role: 'Chief Software Engineer', avatarUrl: '/assets/screenshots/hero-speaker-clean.png', metrics: [{ value: '15+ Yrs', label: 'Systems' }], bioBullets: ['Lead architect of sovereign runtimes.'] }),
-  };
+  if (type in ENTERPRISE_FACTORIES) {
+    return ENTERPRISE_FACTORIES[type as keyof typeof ENTERPRISE_FACTORIES](id);
+  }
   if (type in EXTENDED_FACTORIES) {
     return EXTENDED_FACTORIES[type as keyof typeof EXTENDED_FACTORIES](id);
   }
   if (type in EXPANDED_FACTORIES) {
     return EXPANDED_FACTORIES[type as keyof typeof EXPANDED_FACTORIES](id);
   }
-  return fns[type] ? fns[type](id) : {
-    id, type: 'title', title: 'New Strategic Keynote', subtitle: 'High-leverage enterprise presentation',
-    presenter: { name: 'Alim Ul Karim', role: 'Chief Software Engineer', company: 'Riseup Asia LLC' },
-  };
+  const builtInMap = getBuiltInArchetypeMap();
+  const factory = builtInMap[type];
+  return factory ? factory(id) : createFallbackTitleSlide(id);
 };

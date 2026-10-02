@@ -1,100 +1,147 @@
+// lint-allow: file-size reason="synthesized web audio sound engine" max=160
+
+interface SynthToneParams {
+  type: OscillatorType;
+  startFreq: number;
+  endFreq?: number;
+  gain: number;
+  duration: number;
+}
+
+export function stepVolume(master: number): number {
+  const isBelowCeiling = master < 0.3;
+  if (isBelowCeiling) return master;
+  return Math.max(0.3, master - 0.3);
+}
+
+export const calculateStepVolume = stepVolume;
+
+function hasCooldownElapsed(now: number, lastTime: number, windowMs: number): boolean {
+  return (now - lastTime) >= windowMs;
+}
+
+function triggerTone(ctx: AudioContext, p: SynthToneParams): void {
+  const osc = ctx.createOscillator();
+  const gainNode = ctx.createGain();
+  const targetEndFreq = p.endFreq ?? p.startFreq;
+  osc.type = p.type;
+  osc.frequency.setValueAtTime(p.startFreq, ctx.currentTime);
+  osc.frequency.exponentialRampToValueAtTime(Math.max(1, targetEndFreq), ctx.currentTime + p.duration * 0.85);
+  gainNode.gain.setValueAtTime(p.gain, ctx.currentTime);
+  gainNode.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + p.duration);
+  osc.connect(gainNode);
+  gainNode.connect(ctx.destination);
+  osc.start();
+  osc.stop(ctx.currentTime + p.duration + 0.02);
+}
+
 class PresentationSoundEngine {
   private ctx: AudioContext | null = null;
   private lastSlideChangeMs = 0;
+  private lastStepClickMs = 0;
+  private lastKeystrokeTapMs = 0;
+  private lastThemeSwitchMs = 0;
   private isMuted = false;
   private masterVolume = 0.4;
 
   private initContext(): AudioContext | null {
-    if (typeof window === 'undefined') return null;
+    const isBrowser = typeof window !== 'undefined';
+    if (!isBrowser) return null;
     if (!this.ctx) {
       const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-      if (AudioCtx) {
-        this.ctx = new AudioCtx();
-      }
+      if (AudioCtx) this.ctx = new AudioCtx();
     }
-
-    if (this.ctx && this.ctx.state === 'suspended') {
-      this.ctx.resume();
-    }
-
+    const isSuspended = Boolean(this.ctx && this.ctx.state === 'suspended');
+    if (isSuspended) this.ctx?.resume();
     return this.ctx;
   }
 
-  public setMuted(muted: boolean): void {
-    this.isMuted = muted;
-  }
+  public setMuted(muted: boolean): void { this.isMuted = muted; }
+  public getIsMuted(): boolean { return this.isMuted; }
+  public setVolume(volume: number): void { this.masterVolume = Math.max(0, Math.min(1, volume)); }
+  public stepVolume(master: number): number { return stepVolume(master); }
 
-  public getIsMuted(): boolean {
-    return this.isMuted;
-  }
-
-  public setVolume(volume: number): void {
-    this.masterVolume = Math.max(0, Math.min(1, volume));
-  }
-
-  /**
-   * Slide navigation whoosh with 120ms debounce
-   */
   public playSlideWhoosh(direction: 'next' | 'prev' = 'next'): void {
     if (this.isMuted) return;
     const now = performance.now();
-    if (now - this.lastSlideChangeMs < 120) {
-      return; // Debounce rapid keydown
-    }
-
+    const hasElapsed = hasCooldownElapsed(now, this.lastSlideChangeMs, 120);
+    if (!hasElapsed) return;
     this.lastSlideChangeMs = now;
-
     const ctx = this.initContext();
     if (!ctx) return;
-
+    const isNext = direction === 'next';
+    const startFreq = isNext ? 240 : 360;
+    const endFreq = isNext ? 480 : 180;
     try {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-
-      const startFreq = direction === 'next' ? 240 : 360;
-      const endFreq = direction === 'next' ? 480 : 180;
-
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(startFreq, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(endFreq, ctx.currentTime + 0.18);
-
-      gain.gain.setValueAtTime(this.masterVolume * 0.35, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.22);
-
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-
-      osc.start();
-      osc.stop(ctx.currentTime + 0.25);
+      triggerTone(ctx, { type: 'sine', startFreq, endFreq, gain: this.masterVolume * 0.35, duration: 0.22 });
     } catch {
       // AudioContext policy suppression fallback
     }
   }
 
-  /**
-   * Discrete step progression click
-   */
   public playStepClick(): void {
+    if (this.isMuted) return;
+    const now = performance.now();
+    const hasElapsed = hasCooldownElapsed(now, this.lastStepClickMs, 80);
+    if (!hasElapsed) return;
+    this.lastStepClickMs = now;
+    const ctx = this.initContext();
+    if (!ctx) return;
+    const clickGain = stepVolume(this.masterVolume) * 0.30;
+    try {
+      triggerTone(ctx, { type: 'triangle', startFreq: 750, endFreq: 320, gain: clickGain, duration: 0.06 });
+    } catch {
+      // AudioContext policy suppression fallback
+    }
+  }
+
+  public playKeystrokeTap(): void {
+    if (this.isMuted) return;
+    const now = performance.now();
+    const hasElapsed = hasCooldownElapsed(now, this.lastKeystrokeTapMs, 45);
+    if (!hasElapsed) return;
+    this.lastKeystrokeTapMs = now;
+    const ctx = this.initContext();
+    if (!ctx) return;
+    try {
+      triggerTone(ctx, { type: 'triangle', startFreq: 1100, endFreq: 350, gain: this.masterVolume * 0.30, duration: 0.035 });
+    } catch {
+      // AudioContext policy suppression fallback
+    }
+  }
+
+  public playThemeSwitch(): void {
+    if (this.isMuted) return;
+    const now = performance.now();
+    const hasElapsed = hasCooldownElapsed(now, this.lastThemeSwitchMs, 100);
+    if (!hasElapsed) return;
+    this.lastThemeSwitchMs = now;
+    const ctx = this.initContext();
+    if (!ctx) return;
+    try {
+      triggerTone(ctx, { type: 'sine', startFreq: 880, endFreq: 880, gain: this.masterVolume * 0.35, duration: 0.16 });
+    } catch {
+      // AudioContext policy suppression fallback
+    }
+  }
+
+  public playPop(): void {
     if (this.isMuted) return;
     const ctx = this.initContext();
     if (!ctx) return;
-
     try {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
+      triggerTone(ctx, { type: 'sine', startFreq: 580, endFreq: 840, gain: this.masterVolume * 0.25, duration: 0.05 });
+    } catch {
+      // AudioContext policy suppression fallback
+    }
+  }
 
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(750, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(320, ctx.currentTime + 0.05);
-
-      gain.gain.setValueAtTime(this.masterVolume * 0.25, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.06);
-
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-
-      osc.start();
-      osc.stop(ctx.currentTime + 0.07);
+  public playStepReveal(): void {
+    if (this.isMuted) return;
+    const ctx = this.initContext();
+    if (!ctx) return;
+    try {
+      triggerTone(ctx, { type: 'sine', startFreq: 440, endFreq: 660, gain: stepVolume(this.masterVolume) * 0.28, duration: 0.12 });
     } catch {
       // AudioContext policy suppression fallback
     }

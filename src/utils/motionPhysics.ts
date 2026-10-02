@@ -10,6 +10,8 @@ export const STEP_DETAIL_PANE_SPRING = {
   mass: 0.8,
 } as const;
 
+export const HARMONIC_SPRING = STEP_DETAIL_PANE_SPRING;
+
 export const PROGRESS_RAIL_SPRING = {
   type: 'spring',
   stiffness: 220,
@@ -25,6 +27,7 @@ export const HALO_SPRING = {
 } as const;
 
 export const PRESENTATION_EASE = [0.22, 1, 0.36, 1] as const;
+export const QUINTIC_EASE = PRESENTATION_EASE;
 export const ARC_EASE = [0.4, 0, 0.2, 1] as const;
 
 export function getHeaderShadow(isDark: boolean): string {

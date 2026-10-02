@@ -3,27 +3,47 @@ import { PresentationDeck, SlideData } from '../types/presentation';
 import { soundEngine } from '../audio/soundEngine';
 import { INITIAL_DECK } from './initialDeck';
 
-const getLastStepOfSlide = (targetSlide: any): number => {
-  if (targetSlide?.type === 'steps' && Array.isArray(targetSlide.steps)) {
-    return Math.max(0, targetSlide.steps.length - 1);
-  }
-  if (targetSlide?.type === 'process-cycle' && Array.isArray(targetSlide.stages)) {
-    return Math.max(0, targetSlide.stages.length - 1);
-  }
-  if (targetSlide?.type === 'steps-chain' && Array.isArray(targetSlide.steps)) {
-    return Math.max(0, targetSlide.steps.length - 1);
-  }
-  return 0;
-};
-
-const computeSlideMaxSteps = (slide: any): number => {
-  if (!slide) return 1;
+const getCoreSlideSteps = (slide: any): number => {
   if (slide.type === 'steps' && Array.isArray(slide.steps)) return slide.steps.length;
+  if (slide.type === 'steps-chain' && Array.isArray(slide.steps)) return slide.steps.length;
   if (slide.type === 'timeline-roadmap' && Array.isArray(slide.milestones)) return slide.milestones.length;
   if (slide.type === 'process-cycle' && Array.isArray(slide.stages)) return slide.stages.length;
   if (slide.type === 'depth-stack' && Array.isArray(slide.cards)) return slide.cards.length;
   if (slide.type === 'reveal-grid' && Array.isArray(slide.items)) return slide.items.length;
-  return 1;
+  return 0;
+};
+
+const getExpandedSlideSteps = (slide: any): number => {
+  if (slide.type === 'next-steps-sprint' && Array.isArray(slide.sprints)) return slide.sprints.length;
+  if (slide.type === 'before-after-showcase' && Array.isArray(slide.features)) return slide.features.length;
+  if (slide.type === 'saas-pricing-tiers' && Array.isArray(slide.tiers)) return slide.tiers.length;
+  if (slide.type === 'interactive-quiz' && Array.isArray(slide.options)) return slide.options.length;
+  if (slide.type === 'hardware-showcase' && Array.isArray(slide.hotspots)) return slide.hotspots.length;
+  if (slide.type === 'faq-accordion' && Array.isArray(slide.faqs)) return slide.faqs.length;
+  return 0;
+};
+
+const getEnterpriseSlideSteps = (slide: any): number => {
+  if (slide.type === 'product-roadmap-timeline' && Array.isArray(slide.milestones)) return slide.milestones.length;
+  if (slide.type === 'customer-journey-map' && Array.isArray(slide.phases)) return slide.phases.length;
+  if (slide.type === 'system-architecture-flow' && Array.isArray(slide.layers)) return slide.layers.length;
+  if (slide.type === 'tech-stack-grid' && Array.isArray(slide.stackPillars)) return slide.stackPillars.length;
+  if (slide.type === 'interactive-faq-flow' && Array.isArray(slide.faqItems)) return slide.faqItems.length;
+  if (slide.type === 'executive-summary' && Array.isArray(slide.strategicPillars)) return slide.strategicPillars.length;
+  return 0;
+};
+
+const computeSlideMaxSteps = (slide: any): number => {
+  const hasSlide = Boolean(slide);
+  if (!hasSlide) return 1;
+  const count = getCoreSlideSteps(slide) || getExpandedSlideSteps(slide) || getEnterpriseSlideSteps(slide);
+  const hasMultipleSteps = count > 0;
+  return hasMultipleSteps ? count : 1;
+};
+
+const getLastStepOfSlide = (targetSlide: any): number => {
+  const maxSteps = computeSlideMaxSteps(targetSlide);
+  return Math.max(0, maxSteps - 1);
 };
 
 interface DeckStoreState {

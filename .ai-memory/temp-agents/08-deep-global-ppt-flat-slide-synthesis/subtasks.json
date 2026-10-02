@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Task-01: Global PPT Theming & Animation Research",
+    "description": "Deep read-only discovery of global-ppt-v1 themes, animations, styling, sound cues, and layouts",
+    "assignedAgent": "Research 01",
+    "targetFiles": "d:/work/presentations-repos/global-ppt-v1/*",
+    "toolCallsCap": 30
+  },
+  {
+    "title": "Task-02: Flat Slide Show & Design System Research",
+    "description": "Deep read-only discovery of flat-slide-show and slides-spec for new design systems, flat slides, and step progression",
+    "assignedAgent": "Research 02",
+    "targetFiles": "d:/work/presentations-repos/flat-slide-show/*",
+    "toolCallsCap": 30
+  },
+  {
+    "title": "Task-03: Spec Authoring & Architecture Suite",
+    "description": "Author canonical specification module 02-spec/21-app/28-new-design-and-slide-archetypes/",
+    "assignedAgent": "Spec Author 01",
+    "targetFiles": "02-spec/21-app/28-new-design-and-slide-archetypes/*",
+    "toolCallsCap": 30
+  },
+  {
+    "title": "Task-04: Grounded Theme & Motion Improvements",
+    "description": "Adapt missing theme factors, gradient ramps, and kinetic animations",
+    "assignedAgent": "Worker 01",
+    "targetFiles": "src/themes/gradientTokens.ts, src/styles/animations.less",
+    "toolCallsCap": 30
+  },
+  {
+    "title": "Task-05: 15+ Slide Improvements & Flat Progression",
+    "description": "Enhance flat slide step progression and 15+ slide components adhering to <= 100 lines",
+    "assignedAgent": "Worker 02",
+    "targetFiles": "src/components/slides/*",
+    "toolCallsCap": 30
+  },
+  {
+    "title": "Task-06: Verification, Build & Release Ceremony",
+    "description": "Run TypeScript typechecks, Vite production builds, version sync, and release ceremony",
+    "assignedAgent": "Lead Orchestrator",
+    "targetFiles": "package.json, changelog.md",
+    "toolCallsCap": 30
+  }
+]
