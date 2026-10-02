@@ -1,4 +1,4 @@
-# White Presentation System (v1.2.2)
+# White Presentation System (v1.2.3)
 
 > Next-Generation Declarative Presentation Engine, Multi-Deck Synthesis, High-Profile White Slide System, and Live Visual Builder.
 

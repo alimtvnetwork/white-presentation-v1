@@ -5,6 +5,17 @@ All notable changes to the White Presentation System will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.2.3] - 2026-10-02
+
+### Added
+- **Master Deck Expanded to 30 Pre-Seeded Archetypes:**
+  - Expanded `INITIAL_DECK` in `src/stores/initialDeck.ts` to include 30 full slide archetypes (`AuthenticityHook`, `AvoidCommodity`, `SwotAnalysis`, `CompetitorMatrix`, `ExecutiveContact`, etc.).
+  - Refined intra-slide step transitions with kinetic spring physics (`STEP_TRANSITION`), smooth flywheel spin (`flywheel-spin-slow`), and positive boolean conventions.
+- **Verification & Build Validation:**
+  - `pnpm exec tsc --noEmit` passed with 0 errors.
+  - `pnpm run build` passed with 0 errors in 2.26s.
+  - All 62 slide components strictly adhere to the <= 100-line ceiling.
+
 ## [v1.2.2] - 2026-10-02
 
 ### Added
