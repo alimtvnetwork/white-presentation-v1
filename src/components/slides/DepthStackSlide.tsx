@@ -29,13 +29,7 @@ export const DepthStackSlide: React.FC<{ slide: DepthStackSlideData }> = ({ slid
           </span>
           <span style={{ color: theme.subtextColor }} className="font-mono text-xs">• Card {currentStep + 1} of {cards.length}</span>
         </div>
-        <h1
-          style={{ color: theme.textColor, textShadow: headerShadow }}
-          className="font-ubuntu text-[48px] font-black tracking-tight leading-none"
-          contentEditable={isEditMode}
-          suppressContentEditableWarning
-          onBlur={(e) => applyEdit((s) => ({ ...s, title: e.currentTarget.textContent || '' }))}
-        >
+        <h1 style={{ color: theme.textColor, textShadow: headerShadow }} className="font-ubuntu text-[48px] font-black tracking-tight leading-none" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => ({ ...s, title: e.currentTarget.textContent || '' }))}>
           {slide.title || 'Multi-Layer Depth Stack Architecture'}
         </h1>
       </div>
@@ -46,8 +40,9 @@ export const DepthStackSlide: React.FC<{ slide: DepthStackSlideData }> = ({ slid
           const phase = getStepPhase(idx, currentStep);
           const isCurrent = phase === 'active';
           const isPast = phase === 'past';
-          const zOffset = isCurrent ? 0 : isPast ? 80 : -delta * 70;
+          const zOffset = isCurrent ? 0 : isPast ? 90 : -delta * 70;
           const yOffset = isPast ? -130 * Math.abs(delta) : delta * 24;
+          const rotateX = isCurrent ? 0 : isPast ? -4 : Math.min(10, delta * 3);
           const scale = isCurrent ? 1 : isPast ? 0.95 : 1 - delta * 0.05;
           const opacity = isPast ? 0.25 : Math.max(0.15, 1 - delta * 0.25);
           const halo = getStepHaloStyle(isCurrent, theme.accentColor);
@@ -59,7 +54,7 @@ export const DepthStackSlide: React.FC<{ slide: DepthStackSlideData }> = ({ slid
               style={{
                 backgroundColor: theme.cardBg,
                 borderColor: isCurrent ? theme.accentColor : theme.cardBorder,
-                transform: `translate3d(0px, ${yOffset}px, ${zOffset}px) scale(${scale})`,
+                transform: `translate3d(0px, ${yOffset}px, ${zOffset}px) rotateX(${rotateX}deg) scale(${scale})`,
                 opacity,
                 zIndex: isCurrent ? 30 : 20 - Math.abs(delta),
                 transition: 'all 0.5s cubic-bezier(0.22, 1, 0.36, 1)',
@@ -89,8 +84,8 @@ export const DepthStackSlide: React.FC<{ slide: DepthStackSlideData }> = ({ slid
       <div className="flex items-center justify-between z-10 pt-4 border-t border-slate-700/30 font-mono text-xs" style={{ color: theme.subtextColor }}>
         <span className="flex items-center gap-2 font-bold" style={{ color: theme.accentColor }}><Layers size={14} /> Kinetic 3D Peel-Away Stack</span>
         <div className="flex items-center gap-3">
-          <button onClick={() => { if (isPreviousAllowed) jumpToStep(currentStep - 1); }} aria-disabled={isPreviousAllowed ? 'false' : 'true'} className={`p-2 rounded-lg border border-slate-700 transition-all ${isPreviousAllowed ? 'hover:bg-slate-800 cursor-pointer' : 'opacity-30 cursor-not-allowed'}`} title="Previous Card"><ChevronLeft size={16} /></button>
-          <button onClick={() => { if (isNextAllowed) jumpToStep(currentStep + 1); }} aria-disabled={isNextAllowed ? 'false' : 'true'} className={`p-2 rounded-lg border border-slate-700 transition-all ${isNextAllowed ? 'hover:bg-slate-800 cursor-pointer' : 'opacity-30 cursor-not-allowed'}`} title="Next Card"><ChevronRight size={16} /></button>
+          <button onClick={() => { if (isPreviousAllowed) jumpToStep(currentStep - 1); }} aria-disabled={!isPreviousAllowed} className={`p-2 rounded-lg border border-slate-700 transition-all ${isPreviousAllowed ? 'hover:bg-slate-800 cursor-pointer' : 'opacity-30 cursor-not-allowed'}`} title="Previous Card"><ChevronLeft size={16} /></button>
+          <button onClick={() => { if (isNextAllowed) jumpToStep(currentStep + 1); }} aria-disabled={!isNextAllowed} className={`p-2 rounded-lg border border-slate-700 transition-all ${isNextAllowed ? 'hover:bg-slate-800 cursor-pointer' : 'opacity-30 cursor-not-allowed'}`} title="Next Card"><ChevronRight size={16} /></button>
         </div>
       </div>
     </div>

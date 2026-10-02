@@ -3,7 +3,7 @@ import { ProcessCycleSlideData } from '../../types/presentation';
 import { useDeckStore } from '../../stores/deckStore';
 import { useEditStore } from '../../stores/editStore';
 import { THEME_PALETTES } from '../../themes/gradientTokens';
-import { getStepPhase, getStepHaloStyle } from '../../utils/stepProgression';
+import { getStepPhase, getStepHaloStyle, STEP_TRANSITION } from '../../utils/stepProgression';
 import { RotateCw, ArrowRight } from 'lucide-react';
 
 export const ProcessCycleSlide: React.FC<{ slide: ProcessCycleSlideData }> = ({ slide }) => {
@@ -54,8 +54,8 @@ export const ProcessCycleSlide: React.FC<{ slide: ProcessCycleSlideData }> = ({ 
               <div
                 key={idx}
                 onClick={() => jumpToStep(idx)}
-                style={{ backgroundColor: theme.cardBg, borderColor: isActiveStage ? theme.accentColor : theme.cardBorder, opacity, ...halo }}
-                className="p-6 rounded-2xl border-2 shadow-lg flex flex-col justify-between relative cursor-pointer hover:scale-[1.02] transition-transform"
+                style={{ backgroundColor: theme.cardBg, borderColor: isActiveStage ? theme.accentColor : theme.cardBorder, opacity, transform: isActiveStage ? 'scale(1.03)' : 'scale(1)', transition: STEP_TRANSITION, ...halo }}
+                className="p-6 rounded-2xl border-2 shadow-lg flex flex-col justify-between relative cursor-pointer"
               >
                 <div className="flex items-center justify-between mb-3">
                   <span style={{ backgroundColor: theme.accentColor }} className="px-3 py-1 rounded-full text-[12px] font-mono font-bold text-white">
@@ -71,7 +71,7 @@ export const ProcessCycleSlide: React.FC<{ slide: ProcessCycleSlideData }> = ({ 
         </div>
 
         <div style={{ backgroundColor: theme.canvasBg, borderColor: theme.accentColor, boxShadow: `0 0 45px ${theme.accentColor}50, inset 0 0 20px ${theme.accentColor}20` }} className="absolute w-[240px] h-[240px] rounded-full border-4 flex flex-col items-center justify-center p-4 text-center z-30 shadow-2xl">
-          <RotateCw size={32} style={{ color: theme.accentColor }} className="animate-spin-slow mb-2" />
+          <RotateCw size={32} style={{ color: theme.accentColor }} className="flywheel-spin-slow mb-2" />
           <div style={{ color: theme.textColor }} className="font-ubuntu text-[20px] font-black leading-tight" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => (s.type === 'process-cycle' ? { ...s, centerHubTitle: e.currentTarget.textContent || '' } : s))}>
             {slide.centerHubTitle}
           </div>

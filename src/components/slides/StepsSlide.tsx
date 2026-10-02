@@ -3,7 +3,7 @@ import { StepsSlideData } from '../../types/presentation';
 import { useDeckStore } from '../../stores/deckStore';
 import { useEditStore } from '../../stores/editStore';
 import { THEME_PALETTES } from '../../themes/gradientTokens';
-import { getStepPhase, getStepHaloStyle } from '../../utils/stepProgression';
+import { getStepPhase, getStepHaloStyle, STEP_TRANSITION } from '../../utils/stepProgression';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export const StepsSlide: React.FC<{ slide: StepsSlideData }> = ({ slide }) => {
@@ -38,15 +38,15 @@ export const StepsSlide: React.FC<{ slide: StepsSlideData }> = ({ slide }) => {
               const phase = getStepPhase(i, currentStep);
               const isActive = phase === 'active';
               const isPast = phase === 'past';
-              const opacity = isActive ? 1 : isPast ? 0.6 : 0.4;
+              const opacity = isActive ? 1 : isPast ? 0.65 : 0.4;
               const halo = getStepHaloStyle(isActive, theme.accentColor);
 
               return (
                 <div
                   key={i}
                   onClick={() => jumpToStep(i)}
-                  style={{ opacity, backgroundColor: isActive ? `${theme.accentColor}18` : 'transparent', ...halo }}
-                  className="flex items-center gap-4 p-4 rounded-xl border border-transparent transition-all cursor-pointer hover:opacity-100"
+                  style={{ opacity, backgroundColor: isActive ? `${theme.accentColor}18` : 'transparent', transform: isActive ? 'translateX(6px)' : 'translateX(0)', transition: STEP_TRANSITION, ...halo }}
+                  className="flex items-center gap-4 p-4 rounded-xl border border-transparent cursor-pointer hover:opacity-100"
                 >
                   <span style={{ color: isActive ? theme.accentColor : theme.subtextColor }} className="font-mono text-xl font-bold tracking-wider">
                     {String(i + 1).padStart(2, '0')}
