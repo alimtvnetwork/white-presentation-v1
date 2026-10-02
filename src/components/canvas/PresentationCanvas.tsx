@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDeckStore } from '../../stores/deckStore';
 import { useEditStore } from '../../stores/editStore';
 import { SlideRenderer } from '../slides/SlideRenderer';
+import { SlideTransition } from './SlideTransition';
 import { SlideBackground } from './SlideBackground';
 import { NavigationControls } from './NavigationControls';
 import { SlideIndicator } from './SlideIndicator';
@@ -13,6 +14,13 @@ import { useDeckShortcuts } from '../../hooks/useDeckShortcuts';
 import { THEME_PALETTES } from '../../themes/gradientTokens';
 import { applyTheme } from '../../themes/themeRuntime';
 
+const getCameraTransform = (preset: string, scale: number) => {
+  if (preset === 'focus-left') return { camScale: scale * 1.35, camOrigin: '22% 40%' };
+  if (preset === 'focus-right') return { camScale: scale * 1.35, camOrigin: '78% 40%' };
+  if (preset === 'zoom-in') return { camScale: scale * 1.6, camOrigin: '50% 50%' };
+  return { camScale: scale, camOrigin: 'center center' };
+};
+
 export const PresentationCanvas: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
@@ -21,21 +29,17 @@ export const PresentationCanvas: React.FC = () => {
   const [isOverviewOpen, setIsOverviewOpen] = useState(false);
 
   const { deck, activeSlideIndex, activeThemeId } = useDeckStore();
+  const slideDirection = useDeckStore((state) => state.slideDirection || 1);
   const { isEditMode, cameraPreset } = useEditStore();
   const activeSlide = deck.slides[activeSlideIndex];
   const theme = THEME_PALETTES[activeThemeId] || THEME_PALETTES['white-brand'];
 
-  useEffect(() => {
-    applyTheme(activeThemeId);
-  }, [activeThemeId]);
+  useEffect(() => { applyTheme(activeThemeId); }, [activeThemeId]);
 
   useDeckShortcuts({
     onToggleShortcutsModal: () => setIsShortcutsOpen((prev) => !prev),
     onToggleOverviewGrid: () => setIsOverviewOpen((prev) => !prev),
-    onCloseModals: () => {
-      setIsShortcutsOpen(false);
-      setIsOverviewOpen(false);
-    },
+    onCloseModals: () => { setIsShortcutsOpen(false); setIsOverviewOpen(false); },
   });
 
   useEffect(() => {
@@ -50,18 +54,13 @@ export const PresentationCanvas: React.FC = () => {
     handleResize();
     window.addEventListener('resize', handleResize);
     document.addEventListener('fullscreenchange', handleResize);
-
     return () => {
       window.removeEventListener('resize', handleResize);
       document.removeEventListener('fullscreenchange', handleResize);
     };
   }, [isEditMode]);
 
-  let camScale = scale;
-  let camOrigin = 'center center';
-  if (cameraPreset === 'focus-left') { camScale = scale * 1.35; camOrigin = '22% 40%'; }
-  if (cameraPreset === 'focus-right') { camScale = scale * 1.35; camOrigin = '78% 40%'; }
-  if (cameraPreset === 'zoom-in') { camScale = scale * 1.6; camOrigin = '50% 50%'; }
+  const { camScale, camOrigin } = getCameraTransform(cameraPreset, scale);
 
   return (
     <div
@@ -81,7 +80,11 @@ export const PresentationCanvas: React.FC = () => {
         className="relative shadow-2xl overflow-hidden shrink-0 select-none"
       >
         <SlideBackground />
-        {activeSlide && <SlideRenderer slide={activeSlide} />}
+        {activeSlide && (
+          <SlideTransition transitionKey={activeSlide.id} direction={slideDirection} transitionType="slide">
+            <SlideRenderer slide={activeSlide} />
+          </SlideTransition>
+        )}
       </div>
       <SlideIndicator />
       <NavigationControls />

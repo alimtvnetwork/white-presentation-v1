@@ -3,15 +3,40 @@ import { PresentationDeck, SlideData } from '../types/presentation';
 import { soundEngine } from '../audio/soundEngine';
 import { INITIAL_DECK } from './initialDeck';
 
+const getLastStepOfSlide = (targetSlide: any): number => {
+  if (targetSlide?.type === 'steps' && Array.isArray(targetSlide.steps)) {
+    return Math.max(0, targetSlide.steps.length - 1);
+  }
+  if (targetSlide?.type === 'process-cycle' && Array.isArray(targetSlide.stages)) {
+    return Math.max(0, targetSlide.stages.length - 1);
+  }
+  if (targetSlide?.type === 'steps-chain' && Array.isArray(targetSlide.steps)) {
+    return Math.max(0, targetSlide.steps.length - 1);
+  }
+  return 0;
+};
+
+const computeSlideMaxSteps = (slide: any): number => {
+  if (!slide) return 1;
+  if (slide.type === 'steps' && Array.isArray(slide.steps)) return slide.steps.length;
+  if (slide.type === 'timeline-roadmap' && Array.isArray(slide.milestones)) return slide.milestones.length;
+  if (slide.type === 'process-cycle' && Array.isArray(slide.stages)) return slide.stages.length;
+  if (slide.type === 'depth-stack' && Array.isArray(slide.cards)) return slide.cards.length;
+  if (slide.type === 'reveal-grid' && Array.isArray(slide.items)) return slide.items.length;
+  return 1;
+};
+
 interface DeckStoreState {
   deck: PresentationDeck;
   activeSlideIndex: number;
   activeStep: number;
+  slideDirection: 1 | -1;
   activeThemeId: string;
   isSoundEnabled: boolean;
   nextSlide: () => void;
   prevSlide: () => void;
   goToSlide: (index: number) => void;
+  jumpToSlide: (index: number) => void;
   stepAdvance: () => void;
   stepRewind: () => void;
   jumpToStep: (step: number) => void;
@@ -28,43 +53,43 @@ export const useDeckStore = create<DeckStoreState>((set, get) => ({
   deck: INITIAL_DECK,
   activeSlideIndex: 0,
   activeStep: 0,
+  slideDirection: 1,
   activeThemeId: 'white-brand',
   isSoundEnabled: true,
 
-  getActiveSlideMaxSteps: () => {
-    const { deck, activeSlideIndex } = get();
-    const currentSlide = deck.slides[activeSlideIndex] as any;
-    if (!currentSlide) return 1;
-    if (currentSlide.type === 'steps' && Array.isArray(currentSlide.steps)) return currentSlide.steps.length;
-    if (currentSlide.type === 'timeline-roadmap' && Array.isArray(currentSlide.milestones)) return currentSlide.milestones.length;
-    if (currentSlide.type === 'process-cycle' && Array.isArray(currentSlide.stages)) return currentSlide.stages.length;
-    if (currentSlide.type === 'depth-stack' && Array.isArray(currentSlide.cards)) return currentSlide.cards.length;
-    if (currentSlide.type === 'reveal-grid' && Array.isArray(currentSlide.items)) return currentSlide.items.length;
-    return 1;
-  },
+  getActiveSlideMaxSteps: () => computeSlideMaxSteps(get().deck.slides[get().activeSlideIndex]),
 
   nextSlide: () => {
     const { activeSlideIndex, deck, isSoundEnabled } = get();
     if (activeSlideIndex < deck.slides.length - 1) {
       if (isSoundEnabled) soundEngine.playSlideWhoosh('next');
-      set({ activeSlideIndex: activeSlideIndex + 1, activeStep: 0 });
+      set({ activeSlideIndex: activeSlideIndex + 1, slideDirection: 1, activeStep: 0 });
     }
   },
 
   prevSlide: () => {
-    const { activeSlideIndex, isSoundEnabled } = get();
+    const { activeSlideIndex, deck, isSoundEnabled } = get();
     if (activeSlideIndex > 0) {
       if (isSoundEnabled) soundEngine.playSlideWhoosh('prev');
-      set({ activeSlideIndex: activeSlideIndex - 1, activeStep: 0 });
+      const targetIndex = activeSlideIndex - 1;
+      const targetSlide = deck.slides[targetIndex] as any;
+      const targetStep = getLastStepOfSlide(targetSlide);
+      set({ activeSlideIndex: targetIndex, slideDirection: -1, activeStep: targetStep });
     }
   },
 
   goToSlide: (index: number) => {
-    const { deck, isSoundEnabled } = get();
+    const { deck, activeSlideIndex, isSoundEnabled } = get();
     if (index >= 0 && index < deck.slides.length) {
-      if (isSoundEnabled) soundEngine.playSlideWhoosh('next');
-      set({ activeSlideIndex: index, activeStep: 0 });
+      const isNext = index >= activeSlideIndex;
+      if (isSoundEnabled) soundEngine.playSlideWhoosh(isNext ? 'next' : 'prev');
+      const slideDirection: 1 | -1 = isNext ? 1 : -1;
+      set({ activeSlideIndex: index, slideDirection, activeStep: 0 });
     }
+  },
+
+  jumpToSlide: (index: number) => {
+    get().goToSlide(index);
   },
 
   stepAdvance: () => {
@@ -89,8 +114,7 @@ export const useDeckStore = create<DeckStoreState>((set, get) => ({
   },
 
   jumpToStep: (step: number) => {
-    const { isSoundEnabled } = get();
-    if (isSoundEnabled) soundEngine.playStepClick();
+    if (get().isSoundEnabled) soundEngine.playStepClick();
     set({ activeStep: Math.max(0, step) });
   },
 
@@ -100,9 +124,9 @@ export const useDeckStore = create<DeckStoreState>((set, get) => ({
   },
 
   toggleSound: () => {
-    const nextState = !get().isSoundEnabled;
-    soundEngine.setMuted(!nextState);
-    set({ isSoundEnabled: nextState });
+    const isEnabled = !get().isSoundEnabled;
+    soundEngine.setMuted(!isEnabled);
+    set({ isSoundEnabled: isEnabled });
   },
 
   upsertSlide: (slide: SlideData) => {
@@ -115,7 +139,7 @@ export const useDeckStore = create<DeckStoreState>((set, get) => ({
   addSlide: (slide: SlideData) => {
     const { deck } = get();
     const slides = [...deck.slides, slide];
-    set({ deck: { ...deck, slides }, activeSlideIndex: slides.length - 1, activeStep: 0 });
+    set({ deck: { ...deck, slides }, activeSlideIndex: slides.length - 1, slideDirection: 1, activeStep: 0 });
   },
 
   deleteSlide: (index: number) => {
@@ -123,16 +147,15 @@ export const useDeckStore = create<DeckStoreState>((set, get) => ({
     if (deck.slides.length <= 1) return;
     const slides = deck.slides.filter((_, i) => i !== index);
     const newIndex = Math.min(activeSlideIndex, slides.length - 1);
-    set({ deck: { ...deck, slides }, activeSlideIndex: newIndex, activeStep: 0 });
+    set({ deck: { ...deck, slides }, activeSlideIndex: newIndex, slideDirection: -1, activeStep: 0 });
   },
 
   applyEdit: (updater: (slide: SlideData) => SlideData) => {
     const { deck, activeSlideIndex } = get();
     const currentSlide = deck.slides[activeSlideIndex];
     if (!currentSlide) return;
-    const updated = updater(currentSlide);
     const slides = [...deck.slides];
-    slides[activeSlideIndex] = updated;
+    slides[activeSlideIndex] = updater(currentSlide);
     set({ deck: { ...deck, slides } });
   },
 }));

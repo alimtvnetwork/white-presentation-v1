@@ -5,6 +5,18 @@ All notable changes to the White Presentation System will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.2.4] - 2026-10-02
+
+### Added
+- **Kinetic Slide Transition Engine & Directional Motion Physics:**
+  - Integrated `SlideTransition.tsx` into `PresentationCanvas.tsx` using `motion/react` with Global PPT easing curve (`cubic-bezier(0.22, 1, 0.36, 1)`).
+  - Wired directional state (`slideDirection: 1 | -1`) into `deckStore` across `nextSlide`, `prevSlide`, and `goToSlide`.
+  - Fully synchronized `create-slide-deck` skills across `.agents/` and `.cursor/` environments.
+- **Verification & Build Validation:**
+  - `pnpm exec tsc --noEmit` passed with 0 errors.
+  - Production Vite bundle built in 2.92s with 0 errors.
+  - All 62 slide components strictly adhere to the <= 100-line ceiling (Hard Rule #6).
+
 ## [v1.2.3] - 2026-10-02
 
 ### Added
