@@ -1,3 +1,6 @@
+import type { NewSlideType, NewSlideData } from './archetypes';
+export * from './archetypes';
+
 export type SlideType =
   | 'white-master'
   | 'title'
@@ -10,7 +13,8 @@ export type SlideType =
   | 'testimonials'
   | 'competitive-edge'
   | 'tech-stack'
-  | 'steps';
+  | 'steps'
+  | NewSlideType;
 
 export type DockPosition =
   | 'bottom-center'
@@ -244,7 +248,8 @@ export type SlideData =
   | TestimonialsSlideData
   | CompetitiveEdgeSlideData
   | TechStackSlideData
-  | StepsSlideData;
+  | StepsSlideData
+  | NewSlideData;
 
 export interface PresentationDeck {
   id: string;

@@ -14,8 +14,9 @@ export const StepsSlide: React.FC<{ slide: StepsSlideData }> = ({ slide }) => {
   const steps = slide.steps || [];
   const total = steps.length;
   const focused = steps[activeStep] || steps[0] || { label: '', detail: '', title: '' };
-  const headerShadow = theme.isDark ? 'rgb(0 0 0) 1px 0.7px 0px' : 'rgb(255 255 255) 1px 0.7px 0px';
-  const logoSrc = theme.isDark ? '/assets/logos/5 - Riseup Asia Logo Transparent Only WT.png' : '/assets/logos/6 - Riseup Asia Logo Transparent Only BK.png';
+  const isDark = Boolean(theme.isDark);
+  const headerShadow = theme.headerShadow || (isDark ? 'rgb(0 0 0) 1px 0.7px 0px' : 'rgb(255 255 255) 1px 0.7px 0px');
+  const logoSrc = isDark ? '/assets/logos/5 - Riseup Asia Logo Transparent Only WT.png' : '/assets/logos/6 - Riseup Asia Logo Transparent Only BK.png';
 
   const jumpToStep = (i: number) => {
     setActiveStep(i);

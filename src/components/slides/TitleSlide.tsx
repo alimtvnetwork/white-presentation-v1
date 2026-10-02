@@ -8,6 +8,11 @@ export const TitleSlide: React.FC<{ slide: TitleSlideData }> = ({ slide }) => {
   const { activeThemeId, applyEdit } = useDeckStore();
   const { isEditMode } = useEditStore();
   const theme = THEME_PALETTES[activeThemeId] || THEME_PALETTES['white-brand'];
+  const isDark = Boolean(theme.isDark);
+  const logoSrc = isDark ? '/assets/logos/5 - Riseup Asia Logo Transparent Only WT.png' : '/assets/logos/6 - Riseup Asia Logo Transparent Only BK.png';
+  const presenterName = slide.presenter?.name || 'Alim Ul Karim';
+  const rawRole = slide.presenter?.role || 'Chief Software Engineer';
+  const presenterRole = presenterName.toLowerCase().includes('alim') ? 'Chief Software Engineer' : rawRole;
 
   return (
     <div
@@ -15,71 +20,37 @@ export const TitleSlide: React.FC<{ slide: TitleSlideData }> = ({ slide }) => {
       className={`relative w-[1920px] h-[1080px] overflow-hidden select-none flex flex-col justify-between p-[120px] animate__animated animate__fadeIn ${theme.dotMatrix ? 'dot-matrix-bg' : ''}`}
     >
       <div className="flex items-center justify-between z-20">
-        <div
-          className="text-[14px] font-bold tracking-[0.25em] uppercase text-violet-500 font-mono"
-          contentEditable={isEditMode}
-          suppressContentEditableWarning
-          onBlur={(e) => applyEdit((s) => ({ ...s, kicker: e.currentTarget.textContent || '' }))}
-        >
+        <div className="text-[14px] font-bold tracking-[0.25em] uppercase text-violet-500 font-mono" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => ({ ...s, kicker: e.currentTarget.textContent || '' }))}>
           {slide.kicker || 'KEYNOTE PRESENTATION'}
         </div>
-        <img src="/assets/logos/6 - Riseup Asia Logo Transparent Only BK.png" alt="Logo" className="h-[46px] w-auto object-contain filter contrast-125" />
+        <img src={logoSrc} alt="Logo" className="h-[46px] w-auto object-contain filter contrast-125" />
       </div>
 
       <div className="max-w-[1400px] z-20 my-auto">
-        <h1
-          style={{ color: theme.textColor, textShadow: theme.headerShadow }}
-          className="font-ubuntu text-[82px] font-black tracking-tight leading-[1.05] mb-8 slide-up-anim"
-          contentEditable={isEditMode}
-          suppressContentEditableWarning
-          onBlur={(e) => applyEdit((s) => ({ ...s, title: e.currentTarget.textContent || '' }))}
-        >
+        <h1 style={{ color: theme.textColor, textShadow: theme.headerShadow }} className="font-ubuntu text-[82px] font-black tracking-tight leading-[1.05] mb-8 slide-up-anim" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => ({ ...s, title: e.currentTarget.textContent || '' }))}>
           {slide.title}
         </h1>
-        <p
-          style={{ color: theme.subtextColor }}
-          className="font-poppins text-[26px] leading-[1.4] max-w-[1050px] font-normal slide-up-anim stagger-1"
-          contentEditable={isEditMode}
-          suppressContentEditableWarning
-          onBlur={(e) => applyEdit((s) => ({ ...s, subtitle: e.currentTarget.textContent || '' }))}
-        >
+        <p style={{ color: theme.subtextColor }} className="font-poppins text-[26px] leading-[1.4] max-w-[1050px] font-normal slide-up-anim stagger-1" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => ({ ...s, subtitle: e.currentTarget.textContent || '' }))}>
           {slide.subtitle}
         </p>
       </div>
 
       <div style={{ borderColor: theme.cardBorder }} className="flex items-center justify-between z-20 pt-8 border-t">
         <div className="flex items-center gap-5">
-          <div
-            style={{ background: `linear-gradient(135deg, ${theme.accentColor}, #4F46E5)` }}
-            className="w-[60px] h-[60px] rounded-full flex items-center justify-center text-white font-ubuntu text-2xl font-bold shadow-md"
-          >
-            {slide.presenter.name.charAt(0)}
+          <div style={{ background: `linear-gradient(135deg, ${theme.accentColor}, #4F46E5)` }} className="w-[60px] h-[60px] rounded-full flex items-center justify-center text-white font-ubuntu text-2xl font-bold shadow-md">
+            {presenterName.charAt(0)}
           </div>
           <div>
-            <div
-              style={{ color: theme.textColor }}
-              className="font-ubuntu text-[22px] font-bold"
-              contentEditable={isEditMode}
-              suppressContentEditableWarning
-              onBlur={(e) => applyEdit((s) => (s.type === 'title' ? { ...s, presenter: { ...s.presenter, name: e.currentTarget.textContent || '' } } : s))}
-            >
-              {slide.presenter.name}
+            <div style={{ color: theme.textColor }} className="font-ubuntu text-[22px] font-bold" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => (s.type === 'title' ? { ...s, presenter: { ...s.presenter, name: e.currentTarget.textContent || '' } } : s))}>
+              {presenterName}
             </div>
             <div style={{ color: theme.subtextColor }} className="font-poppins text-[16px]">
-              <span
-                contentEditable={isEditMode}
-                suppressContentEditableWarning
-                onBlur={(e) => applyEdit((s) => (s.type === 'title' ? { ...s, presenter: { ...s.presenter, role: e.currentTarget.textContent || '' } } : s))}
-              >
-                {slide.presenter.role}
+              <span contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => (s.type === 'title' ? { ...s, presenter: { ...s.presenter, role: e.currentTarget.textContent || '' } } : s))}>
+                {presenterRole}
               </span>
               {' • '}
-              <span
-                contentEditable={isEditMode}
-                suppressContentEditableWarning
-                onBlur={(e) => applyEdit((s) => (s.type === 'title' ? { ...s, presenter: { ...s.presenter, company: e.currentTarget.textContent || '' } } : s))}
-              >
-                {slide.presenter.company}
+              <span contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => (s.type === 'title' ? { ...s, presenter: { ...s.presenter, company: e.currentTarget.textContent || '' } } : s))}>
+                {slide.presenter?.company}
               </span>
             </div>
           </div>

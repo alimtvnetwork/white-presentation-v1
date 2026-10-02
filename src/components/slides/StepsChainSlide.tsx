@@ -10,6 +10,8 @@ export const StepsChainSlide: React.FC<{ slide: StepsChainSlideData }> = ({ slid
   const { activeThemeId, applyEdit, isSoundEnabled, toggleSound } = useDeckStore();
   const { isEditMode } = useEditStore();
   const theme = THEME_PALETTES[activeThemeId] || THEME_PALETTES['white-brand'];
+  const isDark = Boolean(theme.isDark);
+  const logoSrc = isDark ? '/assets/logos/5 - Riseup Asia Logo Transparent Only WT.png' : '/assets/logos/6 - Riseup Asia Logo Transparent Only BK.png';
   const [activeStepIdx, setActiveStepIdx] = useState(slide.steps.length);
 
   const stepForward = (idx: number) => {
@@ -26,7 +28,7 @@ export const StepsChainSlide: React.FC<{ slide: StepsChainSlideData }> = ({ slid
         <div className="text-[13px] font-bold tracking-[0.25em] uppercase text-violet-500 font-mono" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => ({ ...s, kicker: e.currentTarget.textContent || '' }))}>
           {slide.kicker || 'PROCESS & TIMELINE'}
         </div>
-        <img src="/assets/logos/6 - Riseup Asia Logo Transparent Only BK.png" alt="Logo" className="h-[42px] w-auto object-contain filter contrast-125" />
+        <img src={logoSrc} alt="Logo" className="h-[42px] w-auto object-contain filter contrast-125" />
       </div>
 
       <div className="flex items-center gap-14 my-auto z-20">
