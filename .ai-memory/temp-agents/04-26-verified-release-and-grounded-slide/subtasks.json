@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Review and adapt global PPT color themes and animations",
+    "assignedAgent": "Worker 01",
+    "budget": 30,
+    "ownedFiles": "src/themes/gradientTokens.ts,src/styles/animations.less,src/utils/motionPhysics.ts"
+  },
+  {
+    "title": "Examine and adhere to new coding guidelines and design systems in specs",
+    "assignedAgent": "Lead",
+    "budget": 30,
+    "ownedFiles": "02-spec/21-app/25-grounded-global-ppt-and-flat-slide-synthesis/01-overview.md,02-spec/02-coding-guidelines/24-app-ui-design-system/01-design-principles.md"
+  },
+  {
+    "title": "Analyze flat slides and step-by-step slides for improvements and activeStep progression",
+    "assignedAgent": "Worker 01",
+    "budget": 30,
+    "ownedFiles": "src/components/slides/StepsSlide.tsx,src/components/slides/TimelineRoadmapSlide.tsx,src/components/slides/ProcessCycleSlide.tsx"
+  },
+  {
+    "title": "Author and verify 15+ grounded slide archetypes adhering to <= 100 line rule",
+    "assignedAgent": "Worker 02",
+    "budget": 40,
+    "ownedFiles": "src/components/slides/*.tsx,src/types/archetypes.ts,src/utils/slideArchetypeFactories.ts"
+  },
+  {
+    "title": "Wire master deck seeding in initialDeck.ts and verify typecheck and Vite build",
+    "assignedAgent": "Worker 02",
+    "budget": 30,
+    "ownedFiles": "src/stores/initialDeck.ts,src/stores/deckStore.ts"
+  },
+  {
+    "title": "Execute release ceremony v1.2.1 with changelog and GitMap atomic push",
+    "assignedAgent": "Lead",
+    "budget": 30,
+    "ownedFiles": "package.json,changelog.md"
+  }
+]

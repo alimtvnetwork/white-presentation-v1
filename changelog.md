@@ -5,6 +5,17 @@ All notable changes to the White Presentation System will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.2.1] - 2026-10-02
+
+### Added
+- **Master Presentation Deck Pre-Seeding:**
+  - Fully wired all 25 slide archetypes directly into the default `INITIAL_DECK` in `src/stores/initialDeck.ts`.
+  - When opening the application or presenting, all 20+ newly synthesized slide archetypes (`GrowthEngine`, `TalentPyramid`, `CostComparison`, `MetricGrid`, `ProblemSolution`, `QuadrantMatrix`, `MarketOpportunity`, `TimelineRoadmap`, `FeatureGrid`, `ArchitectureDiagram`, `DepthStack`, `RevealGrid`, `ProcessCycle`, `StatsCallout`, `CodeTerminal`, `TeamGrid`, `CaseStudy`, `QuoteCallout`, `ComparisonColumns`, `CallToAction`) are loaded and interactively browsable immediately out-of-the-box.
+- **Verification & Quality Gates Passed:**
+  - Automated TypeScript compile check passed with 0 errors (`pnpm exec tsc --noEmit`).
+  - Production Vite bundle compilation verified with 0 errors (`pnpm run build`).
+  - Strict <= 100-line component rule validated across all 46 `.tsx` slide components.
+
 ## [v1.2.0] - 2026-10-02
 
 ### Added
