@@ -5,7 +5,7 @@ import type {
   TechStackGridSlideData, TeamHierarchySlideData, SecurityComplianceSlideData,
   ProductRoadmapTimelineSlideData, InteractiveFaqSlideData, KeyMetricScorecardSlideData,
   CaseStudyImpactSlideData, DualColumnProsConsSlideData, InteractiveCodePlaygroundSlideData,
-  ClosingCtaShowcaseSlideData,
+  ClosingCtaShowcaseSlideData, TimelineRailSlideData,
 } from '../types/enterpriseArchetypes';
 import type { ArchetypeOption } from './extendedSlideFactories';
 
@@ -245,6 +245,78 @@ export const createClosingCtaShowcaseSlide = (id = `slide-${Date.now()}`): Closi
   socialProofNote: 'Trusted by Tier-1 financial institutions, distributed cloud architects, and autonomous engineering teams worldwide.',
 });
 
+// 17. Timeline Rail
+export const createTimelineRailSlide = (id = `slide-${Date.now()}`): TimelineRailSlideData => ({
+  id,
+  type: 'timeline-rail',
+  kicker: 'EXECUTION LIFECYCLE RAIL',
+  title: 'Deterministic Enterprise Delivery & Milestones Rail',
+  subtitle: 'Sequenced architectural verification gates and multi-phase sovereign milestones',
+  railTitle: 'Sovereign Delivery Pipeline',
+  railNodes: [
+    {
+      id: 'node-1',
+      stepNumber: 1,
+      title: 'Architectural Spec & Ingestion',
+      subtitle: 'Air-gapped verification',
+      status: 'completed',
+      deliverables: ['Grounded system architecture spec', 'Component boundary definition', 'Threat surface audit'],
+      sla: 'Week 1-2',
+      owner: 'Chief Software Engineer',
+      isCritical: true,
+      hasAlert: false,
+    },
+    {
+      id: 'node-2',
+      stepNumber: 2,
+      title: 'Split-DB & State Core',
+      subtitle: 'ACID WAL engine',
+      status: 'completed',
+      deliverables: ['Dual-database schema migration', 'Zustand state store integration', 'Sub-10ms query benchmarks'],
+      sla: 'Week 3-4',
+      owner: 'Data Architecture Lead',
+      isCritical: true,
+      hasAlert: false,
+    },
+    {
+      id: 'node-3',
+      stepNumber: 3,
+      title: 'Kinetic UI & Canvas Engine',
+      subtitle: 'Sub-pixel 1080p DOM',
+      status: 'in-progress',
+      deliverables: ['16:9 fixed canvas viewport', 'Kinetic 3-phase progression states', 'WCAG AAA contrast verification'],
+      sla: 'Week 5-6',
+      owner: 'Frontend Systems Architect',
+      isCritical: true,
+      hasAlert: true,
+    },
+    {
+      id: 'node-4',
+      stepNumber: 4,
+      title: 'Zero-Egress Security Gate',
+      subtitle: 'Casbin RBAC policies',
+      status: 'planned',
+      deliverables: ['Cryptographic audit proof generation', 'Air-gapped telemetry isolation', 'SOC2 Type II compliance controls'],
+      sla: 'Week 7-8',
+      owner: 'Security Compliance Director',
+      isCritical: true,
+      hasAlert: false,
+    },
+    {
+      id: 'node-5',
+      stepNumber: 5,
+      title: 'Autonomous Production Fleet',
+      subtitle: 'Multi-agent self-loop',
+      status: 'planned',
+      deliverables: ['Continuous micro-batch refactoring', 'Automated git lock isolation', 'Production release ceremony automation'],
+      sla: 'Week 9-10',
+      owner: 'Autonomous Systems Lead',
+      isCritical: false,
+      hasAlert: false,
+    },
+  ],
+});
+
 export const ENTERPRISE_FACTORIES: Record<EnterpriseSlideType, (id?: string) => SlideData> = {
   'executive-summary': createExecutiveSummarySlide,
   'system-architecture-flow': createSystemArchitectureFlowSlide,
@@ -261,6 +333,7 @@ export const ENTERPRISE_FACTORIES: Record<EnterpriseSlideType, (id?: string) => 
   'dual-column-pros-cons': createDualColumnProsConsSlide,
   'interactive-code-playground': createInteractiveCodePlaygroundSlide,
   'closing-cta-showcase': createClosingCtaShowcaseSlide,
+  'timeline-rail': createTimelineRailSlide,
 };
 
 export const createEnterpriseSlide = (type: EnterpriseSlideType, id = `slide-${Date.now()}`): SlideData => {
@@ -284,4 +357,5 @@ export const ENTERPRISE_ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   { type: 'dual-column-pros-cons', label: 'Dual Column Pros & Cons', category: 'Story & Conversion', desc: 'Balanced architectural decision matrix with recommendation', icon: 'Scale' },
   { type: 'interactive-code-playground', label: 'Interactive Code Playground', category: 'Product & Architecture', desc: 'Live editable code console with simulated output execution', icon: 'Terminal' },
   { type: 'closing-cta-showcase', label: 'Closing CTA Showcase', category: 'Story & Conversion', desc: 'High-impact finale with primary and secondary contact portals', icon: 'CheckCircle2' },
+  { type: 'timeline-rail', label: 'Timeline Rail Progression', category: 'Product & Architecture', desc: 'Kinetic horizontal milestone rail with deliverables and SLA status', icon: 'GitCommit' },
 ];

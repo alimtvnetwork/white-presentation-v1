@@ -4,6 +4,7 @@ import { useDeckStore } from '../../stores/deckStore';
 import { useEditStore } from '../../stores/editStore';
 import { Sparkles } from 'lucide-react';
 import { TechTierRow } from './tech/TechTierRow';
+import { getStepPhase, getStepPhaseStyle } from '../../utils/stepProgression';
 
 const TechStackHeader: React.FC<{ kicker?: string; title?: string }> = ({ kicker, title }) => {
   const { applyEdit } = useDeckStore();
@@ -30,6 +31,7 @@ const TechStackHeader: React.FC<{ kicker?: string; title?: string }> = ({ kicker
 };
 
 export const TechStackGridSlide: React.FC<{ slide: TechStackGridSlideData }> = ({ slide }) => {
+  const activeStep = useDeckStore((s) => s.activeStep);
   const pillars = slide.stackPillars || [];
 
   return (
@@ -40,9 +42,15 @@ export const TechStackGridSlide: React.FC<{ slide: TechStackGridSlideData }> = (
       <TechStackHeader kicker={slide.kicker} title={slide.title} />
 
       <div className="z-10 my-auto flex gap-5 items-stretch">
-        {pillars.map((pillar, idx) => (
-          <TechTierRow key={pillar.id || idx} pillar={pillar} idx={idx} />
-        ))}
+        {pillars.map((pillar, idx) => {
+          const phase = getStepPhase(idx, activeStep);
+          const phaseStyle = getStepPhaseStyle(phase, '#0284c7');
+          return (
+            <div key={pillar.id || idx} style={phaseStyle} className="flex-1 flex flex-col">
+              <TechTierRow pillar={pillar} idx={idx} />
+            </div>
+          );
+        })}
       </div>
 
       <div className="plane-1-raised p-4 rounded-2xl flex items-center justify-between z-10 border border-slate-800 font-mono text-xs">

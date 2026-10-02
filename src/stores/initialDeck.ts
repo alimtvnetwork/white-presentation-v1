@@ -45,6 +45,7 @@ import {
   createDualColumnProsConsSlide,
   createInteractiveCodePlaygroundSlide,
   createClosingCtaShowcaseSlide,
+  createTimelineRailSlide,
 } from '../utils/enterpriseSlideFactories';
 
 export const INITIAL_DECK: PresentationDeck = {
@@ -186,5 +187,6 @@ export const INITIAL_DECK: PresentationDeck = {
     createDualColumnProsConsSlide('slide-43'),
     createInteractiveCodePlaygroundSlide('slide-44'),
     createClosingCtaShowcaseSlide('slide-45'),
+    createTimelineRailSlide('slide-46'),
   ],
 };

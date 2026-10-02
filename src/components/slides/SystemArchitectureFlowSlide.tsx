@@ -4,6 +4,7 @@ import { useDeckStore } from '../../stores/deckStore';
 import { useEditStore } from '../../stores/editStore';
 import { ArrowRight, ArrowLeftRight, Layers } from 'lucide-react';
 import { ArchitectureTierColumn } from './architecture/ArchitectureTierColumn';
+import { getStepPhase, getStepPhaseStyle } from '../../utils/stepProgression';
 
 const ArchitectureHeader: React.FC<{ kicker?: string; title?: string }> = ({ kicker, title }) => {
   const { applyEdit } = useDeckStore();
@@ -31,18 +32,20 @@ const ArchitectureHeader: React.FC<{ kicker?: string; title?: string }> = ({ kic
 
 const ConnectionArrow: React.FC<{ connection?: ArchitectureConnection }> = ({ connection }) => {
   const hasBi = Boolean(connection?.hasBiDirectional);
+  const hasLabel = Boolean(connection?.label);
   return (
     <div className="flex flex-col items-center justify-center px-1 text-cyan-400 shrink-0">
       {hasBi ? <ArrowLeftRight size={20} className="animate-pulse" /> : <ArrowRight size={20} className="animate-pulse" />}
-      {connection?.label && <span className="font-mono text-[9px] text-cyan-300 mt-1 uppercase max-w-[60px] text-center">{connection.label}</span>}
+      {hasLabel && <span className="font-mono text-[9px] text-cyan-300 mt-1 uppercase max-w-[60px] text-center">{connection?.label}</span>}
     </div>
   );
 };
 
 export const SystemArchitectureFlowSlide: React.FC<{ slide: SystemArchitectureSlideData }> = ({ slide }) => {
+  const activeStep = useDeckStore((s) => s.activeStep);
   const layers = slide.layers || [];
   const connections = slide.connections || [];
-  const isHorizontal = slide.flowDirection !== 'vertical';
+  const isVertical = slide.flowDirection === 'vertical';
 
   return (
     <div
@@ -51,13 +54,21 @@ export const SystemArchitectureFlowSlide: React.FC<{ slide: SystemArchitectureSl
     >
       <ArchitectureHeader kicker={slide.kicker} title={slide.title} />
 
-      <div className={`z-10 my-auto flex gap-4 items-stretch ${isHorizontal ? 'flex-row' : 'flex-col'}`}>
-        {layers.map((layer, idx) => (
-          <React.Fragment key={layer.id || idx}>
-            <ArchitectureTierColumn layer={layer} layerIndex={idx} />
-            {idx < layers.length - 1 && <ConnectionArrow connection={connections[idx]} />}
-          </React.Fragment>
-        ))}
+      <div className={`z-10 my-auto flex gap-4 items-stretch ${isVertical ? 'flex-col' : 'flex-row'}`}>
+        {layers.map((layer, idx) => {
+          const phase = getStepPhase(idx, activeStep);
+          const phaseStyle = getStepPhaseStyle(phase, '#06b6d4');
+          const isCurrentLayer = idx === activeStep;
+          const hasNextArrow = idx < layers.length - 1;
+          return (
+            <React.Fragment key={layer.id || idx}>
+              <div style={phaseStyle} className="flex-1 flex flex-col">
+                <ArchitectureTierColumn layer={{ ...layer, isHighlighted: isCurrentLayer }} layerIndex={idx} />
+              </div>
+              {hasNextArrow && <ConnectionArrow connection={connections[idx]} />}
+            </React.Fragment>
+          );
+        })}
       </div>
 
       <div className="plane-1-raised p-4 rounded-2xl flex items-center justify-between z-10 border border-slate-800 font-mono text-xs">

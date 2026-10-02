@@ -23,28 +23,43 @@ const getExpandedSlideSteps = (slide: any): number => {
   return 0;
 };
 
-const getEnterpriseSlideSteps = (slide: any): number => {
-  if (slide.type === 'product-roadmap-timeline' && Array.isArray(slide.milestones)) return slide.milestones.length;
-  if (slide.type === 'customer-journey-map' && Array.isArray(slide.phases)) return slide.phases.length;
-  if (slide.type === 'system-architecture-flow' && Array.isArray(slide.layers)) return slide.layers.length;
-  if (slide.type === 'tech-stack-grid' && Array.isArray(slide.stackPillars)) return slide.stackPillars.length;
-  if (slide.type === 'interactive-faq-flow' && Array.isArray(slide.faqItems)) return slide.faqItems.length;
-  if (slide.type === 'executive-summary' && Array.isArray(slide.strategicPillars)) return slide.strategicPillars.length;
+const getEnterpriseSlideSteps = (slide: SlideData | any): number => {
+  if (slide.type === 'executive-summary') return slide.strategicPillars?.length || 1;
+  if (slide.type === 'system-architecture-flow') return slide.layers?.length || 1;
+  if (slide.type === 'roi-metric-calculator') return slide.calculatedMetrics?.length || 1;
+  if (slide.type === 'customer-journey-map') return slide.phases?.length || 1;
+  if (slide.type === 'matrix-comparison-grid') return slide.features?.length || 1;
+  if (slide.type === 'tech-stack-grid') return slide.stackPillars?.length || 1;
+  if (slide.type === 'team-hierarchy-org') return slide.departments?.length || 1;
+  if (slide.type === 'security-compliance-matrix') return slide.certifications?.length || 1;
+  if (slide.type === 'product-roadmap-timeline') return slide.milestones?.length || 1;
+  if (slide.type === 'interactive-faq-flow') return slide.faqItems?.length || 1;
+  if (slide.type === 'key-metric-scorecard') return slide.scorecards?.length || 1;
+  if (slide.type === 'case-study-impact') return slide.quantifiedResults?.length || 3;
+  if (slide.type === 'dual-column-pros-cons') return Math.max(slide.pros?.length || 0, slide.cons?.length || 0, 1);
+  if (slide.type === 'interactive-code-playground') return 3;
+  if (slide.type === 'closing-cta-showcase') return 2;
+  if (slide.type === 'timeline-rail') return slide.railNodes?.length || 1;
   return 0;
 };
 
 const computeSlideMaxSteps = (slide: any): number => {
   const hasSlide = Boolean(slide);
-  if (!hasSlide) return 1;
-  const count = getCoreSlideSteps(slide) || getExpandedSlideSteps(slide) || getEnterpriseSlideSteps(slide);
-  const hasMultipleSteps = count > 0;
-  return hasMultipleSteps ? count : 1;
+  if (hasSlide) {
+    const count = getCoreSlideSteps(slide) || getExpandedSlideSteps(slide) || getEnterpriseSlideSteps(slide);
+    const hasMultipleSteps = count > 0;
+    if (hasMultipleSteps) {
+      return count;
+    }
+  }
+  return 1;
 };
 
 const getLastStepOfSlide = (targetSlide: any): number => {
   const maxSteps = computeSlideMaxSteps(targetSlide);
   return Math.max(0, maxSteps - 1);
 };
+
 
 interface DeckStoreState {
   deck: PresentationDeck;
@@ -144,9 +159,10 @@ export const useDeckStore = create<DeckStoreState>((set, get) => ({
   },
 
   toggleSound: () => {
-    const isEnabled = !get().isSoundEnabled;
-    soundEngine.setMuted(!isEnabled);
-    set({ isSoundEnabled: isEnabled });
+    const isCurrentSoundEnabled = get().isSoundEnabled;
+    const isNextSoundEnabled = isCurrentSoundEnabled ? false : true;
+    soundEngine.setMuted(isCurrentSoundEnabled);
+    set({ isSoundEnabled: isNextSoundEnabled });
   },
 
   upsertSlide: (slide: SlideData) => {
@@ -173,9 +189,11 @@ export const useDeckStore = create<DeckStoreState>((set, get) => ({
   applyEdit: (updater: (slide: SlideData) => SlideData) => {
     const { deck, activeSlideIndex } = get();
     const currentSlide = deck.slides[activeSlideIndex];
-    if (!currentSlide) return;
-    const slides = [...deck.slides];
-    slides[activeSlideIndex] = updater(currentSlide);
-    set({ deck: { ...deck, slides } });
+    const hasCurrentSlide = Boolean(currentSlide);
+    if (hasCurrentSlide) {
+      const slides = [...deck.slides];
+      slides[activeSlideIndex] = updater(currentSlide);
+      set({ deck: { ...deck, slides } });
+    }
   },
 }));

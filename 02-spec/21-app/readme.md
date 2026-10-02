@@ -42,6 +42,7 @@ This directory houses the canonical, sequential specifications for the **White P
 | [26-global-ppt-color-motion-and-expanded-slides/01-overview.md](26-global-ppt-color-motion-and-expanded-slides/01-overview.md) | **Global PPT Synthesis, Motion & 15 Enterprise Archetypes** | 15 new enterprise slide archetypes, 10-step gradient precision ramps, 60/30/10 visual balance, 4-plane depth hierarchy, fluid typography, stepped progression, and tactile physics. |
 | [27-enterprise-archetypes-and-system-contracts/01-overview.md](27-enterprise-archetypes-and-system-contracts/01-overview.md) | **Enterprise Archetypes & System Data Contracts** | Advanced enterprise data contracts (Executive Summary, System Architecture Flow, ROI Calculator, Customer Journey, etc.) with strict typing. |
 | [28-new-design-and-slide-archetypes/01-overview.md](28-new-design-and-slide-archetypes/01-overview.md) | **Deep Global PPT & Flat Slide Synthesis & 15+ Archetypes** | 15+ new enterprise slide archetypes, 10-step gradient precision ramps, dynamic micro-shadows, directional slide transitions, and tactile physics. |
+| [29-corporate-ppt-kinetic-flat-slides/01-overview.md](29-corporate-ppt-kinetic-flat-slides/01-overview.md) | **Global PPT Synthesis, Kinetic Flat Progression & 15 Slide Archetypes** | 10 calibrated HSL palettes, permanent dark chrome HUD, dynamic micro-shadows, 3-phase kinetic lifecycle (completed, active, future with 1.25px blur), zero phantom steps across 15 enterprise archetypes + Archetype 17 TimelineRailSlide. |
 
 ---
 

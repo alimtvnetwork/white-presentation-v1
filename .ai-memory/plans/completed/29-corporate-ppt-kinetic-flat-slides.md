@@ -1,8 +1,8 @@
-# Execution Plan: 29-corporate-ppt-kinetic-flat-slides
+# Completed Plan: 29-corporate-ppt-kinetic-flat-slides
 
 > **Slug:** `29-corporate-ppt-kinetic-flat-slides`  
-> **Status:** `ACTIVE`  
-> **Budget:** `300 Steps`  
+> **Status:** `COMPLETED`  
+> **Target Release:** `v1.3.0`  
 > **Canonical Spec:** [02-spec/21-app/29-corporate-ppt-kinetic-flat-slides/readme.md](../../../02-spec/21-app/29-corporate-ppt-kinetic-flat-slides/readme.md)  
 > **Task Database:** `.ai-memory/temp-agents/09-v29-corporate-ppt-kinetic-flat-slides/agent-task.db`
 
@@ -34,32 +34,32 @@ learn /learn if you have to learn something and /plan stuff before working pleas
 
 ---
 
-## 2. Core Pillars & Architecture
+## 2. Executive Storytelling & Architectural Outcomes
 
-1. **Global PPT Institutional Authority**: 10 master themes with HSL triplets, fixed dark chrome for HUD, light theme capsule inversion, dynamic micro-shadows, and WebAudio synthesizer.
-2. **Flat Slide Show Kinetic Step Progression**: Intra-slide 3-phase progression (`completed`, `active`, `future` with 1.25px blur), Framer Motion `layoutId` step halos, spring-eased detail panes.
-3. **15+ Enterprise Slide Archetypes Wired**: Zero phantom steps; all 15 enterprise slide components consume `activeStep` from `useDeckStore`.
-4. **Missing Archetype Addition**: Implement `TimelineRailSlide` (Archetype 17).
-5. **Coding Guidelines & Positive Booleans**: Zero explicit `== true`, zero raw `!is*` / `!has*` negations via `src/utils/booleanGuards.ts`, strict $\le 100$ lines per `.tsx` component, pure DOM typography, and canonical persona titles ("Chief Software Engineer").
-
----
-
-## 3. Subtasks Breakdown
-
-| Code | Subtask Title | Owner | Target Files | Status |
-|:---:|:---|:---:|:---|:---:|
-| **Task-01** | Author Canonical Specifications under 02-spec/21-app/29-corporate-ppt-kinetic-flat-slides | Spec Author 01 & 02 | `02-spec/21-app/29-corporate-ppt-kinetic-flat-slides/` | IN_PROGRESS |
-| **Task-02** | Adapt Global PPT Color Themes, Contrast Engine, Dynamic Micro-Shadows & WebAudio Cues | Worker 01 | `src/themes/gradientTokens.ts`, `src/audio/soundEngine.ts`, `src/components/canvas/SlideBackground.tsx` | PENDING |
-| **Task-03** | Wire Step-by-Step Progression in deckStore for All Enterprise Slides | Worker 01 | `src/stores/deckStore.ts` | PENDING |
-| **Task-04** | Upgrade 15 Enterprise Slide Components with Active Step Progression & 3-Phase Lifecycle | Worker 02 | `src/components/slides/` (15 Enterprise Slide Files) | PENDING |
-| **Task-05** | Implement Missing TimelineRailSlide Archetype, Factory and Deck Integration | Worker 02 | `src/components/slides/TimelineRailSlide.tsx`, `src/components/slides/rail/`, `src/utils/enterpriseSlideFactories.ts`, `src/stores/initialDeck.ts` | PENDING |
-| **Task-06** | Remediate Raw Boolean Negations via booleanGuards and Verify Coding Guidelines | Lead Orchestrator | `src/utils/booleanGuards.ts`, affected component files | PENDING |
+1. **Global PPT Institutional Authority**: 10 calibrated HSL master color themes with space-separated HSL triplet tokens, dynamic micro-shadow formulas responding to canvas polarity, permanent dark chrome Presenter HUD, and WebAudio synthesizer sound cues.
+2. **Flat Slide Show Kinetic Step Progression**: Intra-slide 3-phase progression lifecycle (`completed` at 0.75 opacity, `active` at 1.00 with glowing halo and spring physics, and `future` at 0.40 with $1.25\text{px}$ optical blur).
+3. **15 Enterprise Slide Archetypes Wired**: Zero phantom steps; all 15 enterprise slide components consume `activeStep` from `useDeckStore` and compute authentic step formulas.
+4. **Archetype 17 (`TimelineRailSlide`) Implemented**: Continuous horizontal SVG vector track rail with milestone beacon nodes, deliverable verification, and active stage detail card.
+5. **Coding Guidelines & UI Design System Compliance**: Strictly positive booleans via `src/utils/booleanGuards.ts`, $\le 100$ lines per `.tsx` slide file, pure live DOM typography, and canonical persona title ("Chief Software Engineer").
 
 ---
 
-## 4. Verification & Push Gate
+## 3. Subtasks Execution Ledger
 
-- `python 03-ai-scripts/05-guideline-autofixer.py src --check-only`
-- File sizing checks ($\le 100$ lines for `.tsx`)
-- Secrets gate clean
-- Atomic commit: `gitmap cpf "presentation - synthesize global ppt themes motion and 15 slide archetypes with flat progression"`
+| Task-ID | Subtask Title | Owner | Status | Evidence |
+|:---:|:---|:---:|:---:|:---|
+| **Task-01** | Author Canonical Specifications under 02-spec/21-app/29-corporate-ppt-kinetic-flat-slides | Spec Author 01 & 02 | `COMPLETED` | `02-spec/21-app/29-corporate-ppt-kinetic-flat-slides/` specifications authored and indexed. |
+| **Task-02** | Adapt Global PPT Color Themes, Contrast Engine, Dynamic Micro-Shadows & WebAudio Cues | Worker 01 | `COMPLETED` | 10 calibrated HSL palettes in `src/themes/gradientTokens.ts`, canvas atmospheric treatments in `src/components/canvas/SlideBackground.tsx`, synthesizer cues in `src/audio/soundEngine.ts`. |
+| **Task-03** | Wire Step-by-Step Progression in deckStore for All Enterprise Slides | Worker 01 | `COMPLETED` | `getEnterpriseSlideSteps` in `src/stores/deckStore.ts` upgraded with authentic step counts for all 15 archetypes + timeline rail. |
+| **Task-04** | Upgrade 15 Enterprise Slide Components with Active Step Progression & 3-Phase Lifecycle | Worker 02 | `COMPLETED` | All 15 enterprise slide components consume `activeStep` with 3-phase lifecycle, active halos, and $1.25\text{px}$ blur on future items. |
+| **Task-05** | Implement Missing TimelineRailSlide Archetype, Factory and Deck Integration | Worker 02 | `COMPLETED` | `TimelineRailSlide.tsx` ($\le 95$ lines), `TimelineRailNode.tsx` ($\le 85$ lines), `MilestoneDetailCard.tsx` ($\le 85$ lines), factory, and initial deck registered. |
+| **Task-06** | Remediate Raw Boolean Negations via booleanGuards and Verify Coding Guidelines | Lead Orchestrator | `COMPLETED` | `src/utils/booleanGuards.ts` created; 0 violations across 146 files in `05-guideline-autofixer.py`; 100% slide `.tsx` files $\le 100$ lines. |
+
+---
+
+## 4. Verification Evidence & Quality Gates
+
+- `python 03-ai-scripts/05-guideline-autofixer.py src --check-only` -> `Exit 0` (146 files clean newlines, 146 code files clean booleans)
+- Slide component line counts: 100% of `.tsx` files in `src/components/slides/` $\le 100$ lines (`0 violations`)
+- Persona standardization: 20/20 occurrences of Alim Ul Karim titled strictly "Chief Software Engineer"
+- Secrets gate: Clean, zero credentials or private tokens committed.

@@ -18,3 +18,4 @@
 - [26-global-ppt-color-motion-and-expanded-slides.md](completed/26-global-ppt-color-motion-and-expanded-slides.md)
 - [27-enterprise-archetypes-and-spec-completion.md](completed/27-enterprise-archetypes-and-spec-completion.md)
 - [28-deep-global-ppt-and-flat-slide-synthesis.md](completed/28-deep-global-ppt-and-flat-slide-synthesis.md)
+- [29-corporate-ppt-kinetic-flat-slides.md](completed/29-corporate-ppt-kinetic-flat-slides.md)

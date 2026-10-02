@@ -2,83 +2,90 @@ import React from 'react';
 import type { ClosingCtaShowcaseSlideData } from '../../types/enterpriseArchetypes';
 import { useDeckStore } from '../../stores/deckStore';
 import { useEditStore } from '../../stores/editStore';
-import { ClosingContactPill } from './cta/ClosingContactPill';
-import { Mail, Phone, Globe, Calendar, ArrowRight, ShieldCheck, UserCheck } from 'lucide-react';
+import { ArrowRight, Calendar, Mail, Globe, QrCode } from 'lucide-react';
 
 export const ClosingCtaShowcaseSlide: React.FC<{ slide: ClosingCtaShowcaseSlideData }> = ({ slide }) => {
   const { applyEdit } = useDeckStore();
   const { isEditMode } = useEditStore();
-  const c = slide.contactInfo;
+  const activeStep = useDeckStore((s) => s.activeStep);
+
+  const isPrimaryActive = activeStep === 0;
+  const isPrimaryPast = activeStep > 0;
+  const primaryStyle: React.CSSProperties = isPrimaryActive
+    ? { opacity: 1.0, transform: 'scale(1.02)', zIndex: 20 }
+    : isPrimaryPast ? { opacity: 0.75, transform: 'scale(1.0)' }
+    : { opacity: 0.4, transform: 'scale(0.98)', filter: 'blur(1.25px)', pointerEvents: 'none' };
+
+  const isSecondaryActive = activeStep >= 1;
+  const secondaryStyle: React.CSSProperties = isSecondaryActive
+    ? { opacity: 1.0, transform: 'scale(1.02)', zIndex: 20 }
+    : { opacity: 0.4, transform: 'scale(0.98)', filter: 'blur(1.25px)', pointerEvents: 'none' };
 
   return (
-    <div style={{ backgroundColor: 'var(--pres-bg)', color: 'var(--pres-text)' }} className="plane-0-surface relative w-[1920px] h-[1080px] overflow-hidden select-none p-[70px_100px] flex flex-col justify-between">
+    <div
+      style={{ backgroundColor: 'var(--pres-bg)', color: 'var(--pres-text)' }}
+      className="plane-0-surface relative w-[1920px] h-[1080px] overflow-hidden select-none p-[70px_100px] flex flex-col justify-between"
+    >
       <div className="z-10">
-        <div className="flex items-center gap-3 mb-2">
-          <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-violet-500/10 text-violet-400 border border-violet-500/30">
-            {slide.kicker || 'STRATEGIC COMMITMENT & NEXT ACTIONS'}
-          </span>
-          <span className="font-mono text-xs text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20 flex items-center gap-1">
-            <ShieldCheck size={12} /> Enterprise SLA Guaranteed
-          </span>
-        </div>
+        <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-blue-500/10 text-blue-400 border border-blue-500/30">
+          {slide.kicker || 'EXECUTIVE ENGAGEMENT'}
+        </span>
         <h1
           style={{ color: 'var(--pres-text)', textShadow: 'var(--pres-header-shadow)' }}
-          className="font-ubuntu text-[42px] font-black tracking-tight leading-none"
+          className="font-ubuntu text-[44px] font-black tracking-tight leading-none mt-2"
           contentEditable={isEditMode}
           suppressContentEditableWarning
           onBlur={(e) => applyEdit((s) => ({ ...s, title: e.currentTarget.textContent || '' }))}
-        >
-          {slide.title || 'Accelerate Your Enterprise Transformation'}
-        </h1>
+        >{slide.ctaHeadline}</h1>
+        {slide.subHeadline && <p style={{ color: 'var(--pres-text-muted)' }} className="font-poppins text-lg mt-3 max-w-3xl">{slide.subHeadline}</p>}
       </div>
 
-      <div className="z-10 my-auto grid grid-cols-12 gap-10 w-full items-center">
-        <div className="col-span-7 space-y-6">
-          <div className="space-y-3">
-            <h2 className="font-ubuntu text-3xl font-black text-slate-100 leading-snug">{slide.ctaHeadline}</h2>
-            {slide.subHeadline && <p style={{ color: 'var(--pres-text-muted)' }} className="font-poppins text-base leading-relaxed">{slide.subHeadline}</p>}
+      <div className="z-10 grid grid-cols-12 gap-8 my-auto items-stretch">
+        <div
+          style={primaryStyle}
+          className={`col-span-7 p-8 rounded-2xl border transition-all duration-300 flex flex-col justify-between ${
+            isPrimaryActive ? 'bg-gradient-to-br from-blue-600/20 to-indigo-600/10 border-blue-500 ring-2 ring-blue-500/40 shadow-2xl' : 'bg-slate-900/40 border-slate-800'
+          }`}
+        >
+          <div>
+            <span className="font-mono text-xs text-blue-400 uppercase tracking-wider block mb-2">Primary Engagement Portal</span>
+            <h2 className="font-ubuntu text-2xl font-black text-slate-100 mb-4">Schedule Architecture Briefing & Workshop</h2>
+            <p className="font-poppins text-sm text-slate-300 leading-relaxed mb-6">
+              Connect directly with our Chief Software Engineer and technical leadership to audit your sovereign presentation infrastructure.
+            </p>
           </div>
-
-          <div className="flex items-center gap-4 pt-2">
-            {slide.primaryCta && (
-              <a href={slide.primaryCta.url || '#'} target="_blank" rel="noopener noreferrer" className="px-8 py-4 rounded-2xl bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-ubuntu font-bold text-base flex items-center gap-2 shadow-lg shadow-violet-950/50 hover:brightness-110 transition-all cursor-pointer no-underline">
-                <span>{slide.primaryCta.label}</span>
-                <ArrowRight size={18} />
-              </a>
-            )}
-            {slide.secondaryCta && (
-              <a href={slide.secondaryCta.url || '#'} target="_blank" rel="noopener noreferrer" className="px-6 py-4 rounded-2xl bg-slate-900 border border-slate-700 text-slate-200 font-ubuntu font-bold text-sm hover:bg-slate-800 transition-all cursor-pointer no-underline">
-                {slide.secondaryCta.label}
-              </a>
-            )}
+          <div className="flex items-center gap-4">
+            <a href={slide.primaryCta.url || '#'} className="bg-blue-600 hover:bg-blue-500 text-white font-ubuntu font-bold px-6 py-3 rounded-xl flex items-center gap-2 shadow-lg transition-all">
+              <span>{slide.primaryCta.label}</span>
+              <ArrowRight size={16} />
+            </a>
           </div>
         </div>
 
-        <div className="col-span-5 plane-2-elevated p-8 rounded-3xl border border-slate-800 bg-slate-900/60 space-y-5">
-          <div className="flex items-center gap-4 pb-4 border-b border-slate-800/80">
-            <div className="w-12 h-12 rounded-2xl bg-violet-500/20 border border-violet-500/40 flex items-center justify-center text-violet-400">
-              <UserCheck size={24} />
-            </div>
-            <div>
-              <h3 className="font-ubuntu text-lg font-bold text-slate-100">Alim Ul Karim</h3>
-              <p className="font-mono text-xs text-violet-400 font-semibold">Chief Software Engineer</p>
+        <div
+          style={secondaryStyle}
+          className={`col-span-5 p-8 rounded-2xl border transition-all duration-300 flex flex-col justify-between ${
+            isSecondaryActive ? 'bg-slate-900/90 border-indigo-500 ring-2 ring-indigo-500/40 shadow-2xl' : 'bg-slate-900/40 border-slate-800'
+          }`}
+        >
+          <div>
+            <span className="font-mono text-xs text-indigo-400 uppercase tracking-wider block mb-3">Direct Contact & Fast Portal</span>
+            <div className="flex flex-col gap-3 font-mono text-xs text-slate-300">
+              <div className="flex items-center gap-2.5"><Mail size={14} className="text-blue-400" /><span>{slide.contactInfo?.email || 'chief@riseup.enterprise'}</span></div>
+              <div className="flex items-center gap-2.5"><Globe size={14} className="text-indigo-400" /><span>{slide.contactInfo?.website || 'https://white-pres.dev'}</span></div>
+              <div className="flex items-center gap-2.5"><Calendar size={14} className="text-emerald-400" /><span>Calendar Booking Active</span></div>
             </div>
           </div>
-
-          <div className="space-y-3">
-            {c?.email && <ClosingContactPill icon={<Mail size={16} />} label="Direct Channel" value={c.email} href={`mailto:${c.email}`} />}
-            {c?.phone && <ClosingContactPill icon={<Phone size={16} />} label="Priority Line" value={c.phone} href={`tel:${c.phone}`} />}
-            {c?.website && <ClosingContactPill icon={<Globe size={16} />} label="Sovereign Portal" value={c.website} href={c.website} />}
-            {c?.hasCalendarLink && <ClosingContactPill icon={<Calendar size={16} />} label="Architecture Review" value="Book Executive Session" href={slide.primaryCta?.url} />}
+          <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-between mt-4">
+            <span className="font-mono text-[11px] text-slate-400">Scan to Access Mobile HUD</span>
+            <QrCode size={36} className="text-indigo-400" />
           </div>
         </div>
       </div>
 
       <div className="plane-1-raised p-4 rounded-2xl flex items-center justify-between z-10 border border-slate-800 font-mono text-xs">
-        <span className="flex items-center gap-2 text-violet-400 font-bold">
-          <ShieldCheck size={14} /> {slide.socialProofNote || 'Trusted by Tier-1 Sovereign Systems and Autonomous AI Fleets'}
-        </span>
-        <span style={{ color: 'var(--pres-text-muted)' }}>Closing Keynote & Executive CTA</span>
+        <span className="flex items-center gap-2 text-blue-400 font-bold"><Calendar size={14} /> Kinetic Finale: Primary CTA (0) → Calendar & Fast Portal (1)</span>
+        <span style={{ color: 'var(--pres-text-muted)' }}>{slide.socialProofNote || 'Trusted by Enterprise Teams Worldwide'}</span>
       </div>
     </div>
   );

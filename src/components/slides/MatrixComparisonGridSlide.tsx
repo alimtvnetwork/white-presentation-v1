@@ -1,48 +1,13 @@
 import React from 'react';
-import type { MatrixComparisonSlideData, MatrixComparisonColumn } from '../../types/enterpriseArchetypes';
+import type { MatrixComparisonSlideData } from '../../types/enterpriseArchetypes';
 import { useDeckStore } from '../../stores/deckStore';
 import { useEditStore } from '../../stores/editStore';
-import { Crown, LayoutGrid } from 'lucide-react';
-import { MatrixFeatureRowItem } from './matrix/MatrixFeatureRowItem';
-
-const MatrixHeader: React.FC<{ kicker?: string; title?: string }> = ({ kicker, title }) => {
-  const { applyEdit } = useDeckStore();
-  const { isEditMode } = useEditStore();
-  return (
-    <div className="z-10">
-      <div className="flex items-center gap-3 mb-2">
-        <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-indigo-500/10 text-indigo-400 border border-indigo-500/30">
-          {kicker || 'COMPETITIVE CAPABILITY MATRIX'}
-        </span>
-        <span style={{ color: 'var(--pres-text-muted)' }} className="font-mono text-xs">• Architectural Benchmark</span>
-      </div>
-      <h1
-        style={{ color: 'var(--pres-text)', textShadow: 'var(--pres-header-shadow)' }}
-        className="font-ubuntu text-[40px] font-black tracking-tight leading-none"
-        contentEditable={isEditMode}
-        suppressContentEditableWarning
-        onBlur={(e) => applyEdit((s) => ({ ...s, title: e.currentTarget.textContent || '' }))}
-      >
-        {title || 'Enterprise Capability Benchmark Matrix'}
-      </h1>
-    </div>
-  );
-};
-
-const ColumnHeaderCell: React.FC<{ col: MatrixComparisonColumn }> = ({ col }) => {
-  const isLeader = Boolean(col.isLeader);
-  return (
-    <th className={`p-4 text-xs font-mono uppercase tracking-wider ${isLeader ? 'bg-indigo-500/15 border-x border-indigo-500/40 text-indigo-300' : 'text-slate-400'}`}>
-      <div className="flex items-center gap-2">
-        {isLeader && <Crown size={14} className="text-amber-400" />}
-        <span className="font-bold">{col.title}</span>
-        {col.badge && <span className="text-[10px] px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 ml-auto">{col.badge}</span>}
-      </div>
-    </th>
-  );
-};
+import { Check, X, Grid } from 'lucide-react';
 
 export const MatrixComparisonGridSlide: React.FC<{ slide: MatrixComparisonSlideData }> = ({ slide }) => {
+  const { applyEdit } = useDeckStore();
+  const { isEditMode } = useEditStore();
+  const activeStep = useDeckStore((s) => s.activeStep);
   const columns = slide.columns || [];
   const features = slide.features || [];
 
@@ -51,31 +16,76 @@ export const MatrixComparisonGridSlide: React.FC<{ slide: MatrixComparisonSlideD
       style={{ backgroundColor: 'var(--pres-bg)', color: 'var(--pres-text)' }}
       className="plane-0-surface relative w-[1920px] h-[1080px] overflow-hidden select-none p-[70px_100px] flex flex-col justify-between"
     >
-      <MatrixHeader kicker={slide.kicker} title={slide.title} />
+      <div className="z-10">
+        <div className="flex items-center gap-3 mb-2">
+          <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-indigo-500/10 text-indigo-400 border border-indigo-500/30">
+            {slide.kicker || 'COMPETITIVE BENCHMARK'}
+          </span>
+          <span className="font-mono text-xs text-indigo-300 bg-indigo-500/10 px-2.5 py-0.5 rounded-full border border-indigo-500/20">
+            Feature Row {Math.min(features.length, activeStep + 1)} of {features.length} Focus
+          </span>
+        </div>
+        <h1
+          style={{ color: 'var(--pres-text)', textShadow: 'var(--pres-header-shadow)' }}
+          className="font-ubuntu text-[40px] font-black tracking-tight leading-none"
+          contentEditable={isEditMode}
+          suppressContentEditableWarning
+          onBlur={(e) => applyEdit((s) => ({ ...s, title: e.currentTarget.textContent || '' }))}
+        >
+          {slide.title || 'Technical Capability Comparison Matrix'}
+        </h1>
+      </div>
 
-      <div className="plane-1-raised rounded-3xl border border-slate-800 overflow-hidden z-10 my-auto">
-        <table className="w-full text-left border-collapse">
-          <thead>
-            <tr className="border-b border-slate-800 bg-slate-900/70 font-mono text-xs">
-              <th className="p-4 pl-6 text-slate-400 uppercase w-[30%]">Capability / Requirement</th>
-              {columns.map((col) => (
-                <ColumnHeaderCell key={col.id} col={col} />
-              ))}
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-800/60">
-            {features.map((feat) => (
-              <MatrixFeatureRowItem key={feat.id} feat={feat} columns={columns} />
-            ))}
-          </tbody>
-        </table>
+      <div className="z-10 my-auto rounded-2xl border border-slate-800 bg-slate-900/50 overflow-hidden shadow-2xl">
+        <div className="grid grid-cols-12 bg-slate-950/80 p-4 border-b border-slate-800 font-mono text-xs font-bold text-slate-300">
+          <div className="col-span-3">Architectural Dimension</div>
+          {columns.slice(1).map((col) => (
+            <div key={col.id} className="col-span-3 text-center flex items-center justify-center gap-1.5">
+              <span>{col.title}</span>
+              {col.badge && <span className="bg-indigo-500/20 text-indigo-400 px-2 py-0.5 rounded-full text-[10px] border border-indigo-500/30">{col.badge}</span>}
+            </div>
+          ))}
+        </div>
+
+        <div className="divide-y divide-slate-800/60">
+          {features.map((feat, rowIdx) => {
+            const isPast = rowIdx < activeStep;
+            const isActive = rowIdx === activeStep;
+            const rowStyle: React.CSSProperties = isActive
+              ? { opacity: 1.0, transform: 'scale(1.02)', zIndex: 20 }
+              : isPast
+              ? { opacity: 0.75, transform: 'scale(1.0)' }
+              : { opacity: 0.4, transform: 'scale(0.98)', filter: 'blur(1.25px)', pointerEvents: 'none' };
+
+            return (
+              <div
+                key={feat.id || rowIdx}
+                style={rowStyle}
+                className={`grid grid-cols-12 p-4 items-center transition-all duration-300 ${isActive ? 'bg-indigo-600/15 ring-2 ring-indigo-500/50' : 'bg-transparent'}`}
+              >
+                <div className="col-span-3">
+                  <div className="font-ubuntu text-sm font-bold text-slate-100">{feat.featureName}</div>
+                  <div className="font-mono text-[10px] text-slate-400">{feat.category}</div>
+                </div>
+                {columns.slice(1).map((col) => {
+                  const val = feat.values[col.id];
+                  const isBool = typeof val === 'boolean';
+                  const isValTrue = isBool && Boolean(val);
+                  return (
+                    <div key={col.id} className="col-span-3 text-center font-mono text-xs text-slate-200">
+                      {isBool ? (isValTrue ? <Check size={16} className="text-emerald-400 mx-auto" /> : <X size={16} className="text-rose-400 mx-auto" />) : <span>{String(val)}</span>}
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
       </div>
 
       <div className="plane-1-raised p-4 rounded-2xl flex items-center justify-between z-10 border border-slate-800 font-mono text-xs">
-        <span className="flex items-center gap-2 text-indigo-400 font-bold">
-          <LayoutGrid size={14} /> Full Comparative Feature Coverage Matrix
-        </span>
-        <span style={{ color: 'var(--pres-text-muted)' }}>Deterministic Evaluation Criteria</span>
+        <span className="flex items-center gap-2 text-indigo-400 font-bold"><Grid size={14} /> Row-by-Row Kinetic Focus Matrix</span>
+        <span style={{ color: 'var(--pres-text-muted)' }}>Continuous Benchmark Evaluation</span>
       </div>
     </div>
   );

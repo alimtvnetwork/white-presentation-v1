@@ -4,6 +4,7 @@ import { useDeckStore } from '../../stores/deckStore';
 import { useEditStore } from '../../stores/editStore';
 import { TrendingUp, TrendingDown, Quote, Sparkles } from 'lucide-react';
 import { ExecutivePillarCard } from './executive/ExecutivePillarCard';
+import { getStepPhase, getStepPhaseStyle } from '../../utils/stepProgression';
 
 const SlideHeader: React.FC<{ kicker?: string; title?: string }> = ({ kicker, title }) => {
   const { applyEdit } = useDeckStore();
@@ -41,9 +42,12 @@ const HighlightCard: React.FC<{ item: ExecutiveHighlightItem }> = ({ item }) => 
 };
 
 export const ExecutiveSummarySlide: React.FC<{ slide: ExecutiveSummarySlideData }> = ({ slide }) => {
+  const activeStep = useDeckStore((s) => s.activeStep);
   const highlights = slide.highlights || [];
   const strategicPillars = slide.strategicPillars || [];
+  const isLastStep = activeStep >= strategicPillars.length - 1;
   const quote = slide.takeawayQuote;
+  const hasQuote = Boolean(quote);
 
   return (
     <div style={{ backgroundColor: 'var(--pres-bg)', color: 'var(--pres-text)' }} className="plane-0-surface relative w-[1920px] h-[1080px] overflow-hidden select-none p-[70px_100px] flex flex-col justify-between">
@@ -61,10 +65,19 @@ export const ExecutiveSummarySlide: React.FC<{ slide: ExecutiveSummarySlideData 
         <div className="col-span-5 space-y-4">
           <h3 className="font-mono text-xs uppercase tracking-widest text-slate-400 font-bold">Strategic Pillars</h3>
           <div className="space-y-3">
-            {strategicPillars.map((pillar, idx) => <ExecutivePillarCard key={idx} pillar={pillar} index={idx} />)}
+            {strategicPillars.map((pillar, idx) => {
+              const phase = getStepPhase(idx, activeStep);
+              const phaseStyle = getStepPhaseStyle(phase, '#8b5cf6');
+              const isCurrentPillar = idx === activeStep;
+              return (
+                <div key={pillar.id || idx} style={phaseStyle}>
+                  <ExecutivePillarCard pillar={{ ...pillar, isActivePillar: isCurrentPillar }} index={idx} />
+                </div>
+              );
+            })}
           </div>
-          {quote && (
-            <div className="plane-1-raised p-4 rounded-2xl border border-slate-800/80 bg-slate-950/40 flex items-center gap-3">
+          {hasQuote && (
+            <div style={{ opacity: isLastStep ? 1 : 0.25, transform: isLastStep ? 'scale(1)' : 'scale(0.98)', filter: isLastStep ? 'none' : 'blur(1.25px)', transition: 'all 0.4s cubic-bezier(0.22, 1, 0.36, 1)' }} className="plane-1-raised p-4 rounded-2xl border border-slate-800/80 bg-slate-950/40 flex items-center gap-3">
               <Quote size={20} className="text-violet-400 shrink-0" />
               <span className="font-poppins text-xs italic text-slate-300">"{quote}"</span>
             </div>

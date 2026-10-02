@@ -3,12 +3,16 @@ import type { ProductRoadmapTimelineSlideData } from '../../types/enterpriseArch
 import { useDeckStore } from '../../stores/deckStore';
 import { useEditStore } from '../../stores/editStore';
 import { RoadmapMilestoneCard } from './roadmap/RoadmapMilestoneCard';
+import { getStepPhase, getStepPhaseStyle } from '../../utils/stepProgression';
 import { Calendar, Flag, Sparkles } from 'lucide-react';
 
 export const ProductRoadmapTimelineSlide: React.FC<{ slide: ProductRoadmapTimelineSlideData }> = ({ slide }) => {
   const { applyEdit } = useDeckStore();
   const { isEditMode } = useEditStore();
+  const activeStep = useDeckStore((s) => s.activeStep);
   const milestones = slide.milestones || [];
+  const hasQuarter = Boolean(slide.currentQuarter);
+  const hasSubtitle = Boolean(slide.subtitle);
 
   return (
     <div
@@ -20,7 +24,7 @@ export const ProductRoadmapTimelineSlide: React.FC<{ slide: ProductRoadmapTimeli
           <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-violet-500/10 text-violet-400 border border-violet-500/30">
             {slide.kicker || 'STRATEGIC HORIZON'}
           </span>
-          {slide.currentQuarter && (
+          {hasQuarter && (
             <span className="font-mono text-xs text-violet-300 bg-violet-500/10 px-2.5 py-0.5 rounded-full border border-violet-500/20 flex items-center gap-1.5">
               <Calendar size={12} /> Active Horizon: {slide.currentQuarter}
             </span>
@@ -35,7 +39,7 @@ export const ProductRoadmapTimelineSlide: React.FC<{ slide: ProductRoadmapTimeli
         >
           {slide.title || 'Multi-Quarter Strategic Delivery Milestones'}
         </h1>
-        {slide.subtitle && (
+        {hasSubtitle && (
           <p style={{ color: 'var(--pres-text-muted)' }} className="font-poppins text-sm mt-2">
             {slide.subtitle}
           </p>
@@ -55,9 +59,15 @@ export const ProductRoadmapTimelineSlide: React.FC<{ slide: ProductRoadmapTimeli
         </div>
 
         <div className="grid grid-cols-4 gap-6">
-          {milestones.map((m) => (
-            <RoadmapMilestoneCard key={m.id} milestone={m} />
-          ))}
+          {milestones.map((m, idx) => {
+            const phase = getStepPhase(idx, activeStep);
+            const phaseStyle = getStepPhaseStyle(phase, '#8b5cf6');
+            return (
+              <div key={m.id || idx} style={phaseStyle} className="flex flex-col">
+                <RoadmapMilestoneCard milestone={m} />
+              </div>
+            );
+          })}
         </div>
       </div>
 

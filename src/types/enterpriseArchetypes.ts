@@ -197,7 +197,27 @@ export interface ClosingCtaShowcaseSlideData extends BaseSlide {
   socialProofNote?: string;
 }
 
-// Union of all 15 enterprise slide types
+// 17. Timeline Rail
+export interface TimelineRailMilestone {
+  id: string;
+  stepNumber: number;
+  title: string;
+  subtitle?: string;
+  status: 'completed' | 'in-progress' | 'planned';
+  deliverables?: string[];
+  sla?: string;
+  owner?: string;
+  isCritical?: boolean;
+  hasAlert?: boolean;
+}
+
+export interface TimelineRailSlideData extends BaseSlide {
+  type: 'timeline-rail';
+  railNodes: TimelineRailMilestone[];
+  railTitle?: string;
+}
+
+// Union of all enterprise slide types
 export type EnterpriseSlideType =
   | 'executive-summary'
   | 'system-architecture-flow'
@@ -213,9 +233,10 @@ export type EnterpriseSlideType =
   | 'case-study-impact'
   | 'dual-column-pros-cons'
   | 'interactive-code-playground'
-  | 'closing-cta-showcase';
+  | 'closing-cta-showcase'
+  | 'timeline-rail';
 
-// Union of all 15 enterprise slide data interfaces
+// Union of all enterprise slide data interfaces
 export type EnterpriseSlideData =
   | ExecutiveSummarySlideData
   | SystemArchitectureSlideData
@@ -231,4 +252,5 @@ export type EnterpriseSlideData =
   | CaseStudyImpactSlideData
   | DualColumnProsConsSlideData
   | InteractiveCodePlaygroundSlideData
-  | ClosingCtaShowcaseSlideData;
+  | ClosingCtaShowcaseSlideData
+  | TimelineRailSlideData;

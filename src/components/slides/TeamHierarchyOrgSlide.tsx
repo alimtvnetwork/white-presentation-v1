@@ -4,6 +4,7 @@ import { useDeckStore } from '../../stores/deckStore';
 import { useEditStore } from '../../stores/editStore';
 import { Network } from 'lucide-react';
 import { OrgNodeCard, RootLeaderCard } from './team/OrgNodeCard';
+import { getStepPhase, getStepPhaseStyle } from '../../utils/stepProgression';
 
 const OrgHeader: React.FC<{ kicker?: string; title?: string }> = ({ kicker, title }) => {
   const { applyEdit } = useDeckStore();
@@ -30,6 +31,7 @@ const OrgHeader: React.FC<{ kicker?: string; title?: string }> = ({ kicker, titl
 };
 
 export const TeamHierarchyOrgSlide: React.FC<{ slide: TeamHierarchySlideData }> = ({ slide }) => {
+  const activeStep = useDeckStore((s) => s.activeStep);
   const departments = slide.departments || [];
 
   return (
@@ -42,9 +44,15 @@ export const TeamHierarchyOrgSlide: React.FC<{ slide: TeamHierarchySlideData }> 
       <div className="z-10 my-auto flex flex-col items-center gap-6">
         <RootLeaderCard role={slide.rootRole} name={slide.rootName} />
         <div className="w-full flex gap-5 items-stretch">
-          {departments.map((dept) => (
-            <OrgNodeCard key={dept.id} dept={dept} />
-          ))}
+          {departments.map((dept, idx) => {
+            const phase = getStepPhase(idx, activeStep);
+            const phaseStyle = getStepPhaseStyle(phase, '#14b8a6');
+            return (
+              <div key={dept.id || idx} style={phaseStyle} className="flex-1 flex flex-col">
+                <OrgNodeCard dept={dept} />
+              </div>
+            );
+          })}
         </div>
       </div>
 
