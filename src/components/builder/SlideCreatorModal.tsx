@@ -4,12 +4,14 @@ import { useEditStore } from '../../stores/editStore';
 import { ARCHETYPE_OPTIONS, createArchetypeSlide } from '../../utils/slideArchetypeFactories';
 import {
   X, Plus, Layers, Sparkles, TrendingUp, Grid, GitCompare, Calendar,
-  LayoutGrid, Terminal, RotateCw, Users, Award, Quote, Columns3, CheckCircle2, BarChart3,
+  LayoutGrid, Terminal, RotateCw, Users, Award, Quote, Columns3, CheckCircle2,
+  BarChart3, Shield, Search, Zap, HelpCircle, Database, ListChecks, Flame,
 } from 'lucide-react';
 
 const ICONS: Record<string, React.FC<{ size?: number }>> = {
   BarChart3, Sparkles, TrendingUp, Grid, GitCompare, Calendar, LayoutGrid, Layers,
   Terminal, RotateCw, Users, Award, Quote, Columns3, CheckCircle2,
+  Shield, Search, Zap, HelpCircle, Database, ListChecks, Flame,
 };
 
 export const SlideCreatorModal: React.FC = () => {

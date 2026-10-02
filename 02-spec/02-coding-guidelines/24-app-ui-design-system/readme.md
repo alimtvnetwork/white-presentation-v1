@@ -17,7 +17,9 @@ App-specific UI and design-system specifications, theming rules, component patte
 
 ## Contents
 
-_No content yet. Add design system documents as numbered files within this folder._
+| File | Description |
+|:---|:---|
+| [01-design-principles.md](./01-design-principles.md) | Visual balance (60/30/10), 4-plane depth hierarchy, fluid clamp typography, button variants & magnetic physics |
 
 ---
 

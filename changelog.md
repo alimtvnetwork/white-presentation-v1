@@ -5,6 +5,32 @@ All notable changes to the White Presentation System will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.2.0] - 2026-10-02
+
+### Added
+- **Grounded Global PPT & Flat Slide Show Synthesis:**
+  - `GrowthEngineSlide` (`growth-engine`): 4-vector compounding growth matrix adapted directly from `global-ppt-v1` (SEO, Ads, Content/Social, AI Video) with growth deltas and live DOM typography.
+  - `TalentPyramidSlide` (`talent-pyramid`): Multi-tier capability pyramid with trapezoidal geometric tiers and selectivity filter ratios ("Top 1%", "20 / 1,000").
+  - `CostComparisonSlide` (`cost-comparison`): 3-column financial comparison (In-House vs Legacy Agency vs Sovereign Engine) with ROI calculation and net savings summary.
+  - `DepthStackSlide` (`depth-stack`): 3D depth-stacked perspective cards with peel-away reveal and step progression.
+  - `RevealGridSlide` (`reveal-grid`): Bento feature matrix with staggered spring cell entrance and sequential unveiling.
+  - `BeforeAfterShowcaseSlide` (`before-after-showcase`): Bilateral contrast transformation frame with interactive toggle between comparison and focused sovereign views.
+- **Intra-Slide Step Progression Engine:**
+  - Added `activeStep`, `stepAdvance()`, `stepRewind()`, `jumpToStep()`, and `getActiveSlideMaxSteps()` to `deckStore.ts`.
+  - Upgraded `useDeckShortcuts.ts` so `ArrowRight`, `Space`, `Enter`, `PageDown` advance intra-slide steps before advancing slides, enabling fluid presentation pacing.
+  - Upgraded `NavigationControls.tsx` chevron controls to trigger intra-slide step progression.
+  - Synchronized `StepsSlide`, `TimelineRoadmapSlide`, `ProcessCycleSlide`, `DepthStackSlide`, and `RevealGridSlide` to store-level step state.
+- **Atmospheric Canvas & Kinetic Physics Layer:**
+  - `SlideBackground.tsx`: Added 3-tier atmospheric layer (radial spotlight glow, 48px geometric cross-hatch grid, and floating vector tech motifs at 8-12% opacity).
+  - `motionPhysics.ts`: Exported calibrated spring physics (`STEP_DETAIL_PANE_SPRING [420, 17, 0.8]`, `PROGRESS_RAIL_SPRING [220, 32, 1.0]`, `HALO_SPRING [320, 30, 0.9]`), quintic deceleration easing curves (`[0.22, 1, 0.36, 1]`), and `getHeaderShadow(isDark)`.
+- **Architectural & File Sizing Governance:**
+  - Extracted seed slides to `src/stores/initialDeck.ts`, reducing `deckStore.ts` from 447 lines to 131 lines.
+  - Decomposed `WhiteMasterSlide.tsx` using `WhiteMasterHeroPlate.tsx`, reducing it to 78 lines.
+  - 100% of all 45 `.tsx` slide components strictly comply with the $\le 100$-line ceiling (Hard Rule #6).
+  - Executive Persona standardization: Alim Ul Karim is consistently titled "Chief Software Engineer".
+- **Grounded Specifications & Planning:**
+  - Authored comprehensive Module 25 specifications in `02-spec/21-app/25-grounded-global-ppt-and-flat-slide-synthesis/` (01-overview, 02-slide-archetypes-data-contracts, 03-color-and-motion-design-system, 04-verification-gates).
+
 ## [v1.1.0] - 2026-10-02
 
 ### Added

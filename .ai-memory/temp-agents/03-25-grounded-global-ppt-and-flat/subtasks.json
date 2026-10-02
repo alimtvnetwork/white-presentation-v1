@@ -1,0 +1,42 @@
+[
+  {
+    "slug": "01-specs-architecture-and-archetypes",
+    "name": "Spec Authoring: Architecture & 15 Archetype Contracts",
+    "allocatedAgent": "Spec Author 01",
+    "estimatedSteps": 25,
+    "targetFiles": "02-spec/21-app/25-grounded-global-ppt-and-flat-slide-synthesis/01-overview.md,02-spec/21-app/25-grounded-global-ppt-and-flat-slide-synthesis/02-slide-archetypes-data-contracts.md",
+    "validationCriteria": "Overview and 15 contracts authored with ASCII wireframes and data contracts"
+  },
+  {
+    "slug": "02-specs-motion-and-verification",
+    "name": "Spec Authoring: Color, Motion & Verification Gates",
+    "allocatedAgent": "Spec Author 02",
+    "estimatedSteps": 25,
+    "targetFiles": "02-spec/21-app/25-grounded-global-ppt-and-flat-slide-synthesis/03-color-and-motion-design-system.md,02-spec/21-app/25-grounded-global-ppt-and-flat-slide-synthesis/04-verification-gates.md",
+    "validationCriteria": "Motion curves, ink shadows, and 12-dimensional verification matrix authored"
+  },
+  {
+    "slug": "03-themes-motion-and-batch-1-slides",
+    "name": "Implementation: Themes, Animations & Batch 1 Slides (1-8)",
+    "allocatedAgent": "Worker 01",
+    "estimatedSteps": 50,
+    "targetFiles": "src/themes/gradientTokens.ts,src/styles/animations.less,src/components/slides/StepsSlide.tsx,src/components/slides/TimelineRoadmapSlide.tsx,src/components/slides/ProcessCycleSlide.tsx,src/components/slides/DepthStackSlide.tsx,src/components/slides/RevealGridSlide.tsx,src/components/slides/GrowthEngineSlide.tsx,src/components/slides/TalentPyramidSlide.tsx,src/components/slides/CostComparisonSlide.tsx",
+    "validationCriteria": "All batch 1 slide components strictly <= 100 lines with real spring motion"
+  },
+  {
+    "slug": "04-templates-renderer-and-batch-2-slides",
+    "name": "Implementation: Templates, Renderer & Batch 2 Slides (9-15)",
+    "allocatedAgent": "Worker 02",
+    "estimatedSteps": 50,
+    "targetFiles": "src/utils/slideArchetypeFactories.ts,src/components/slides/SlideRenderer.tsx,src/components/builder/SlideCreatorModal.tsx,src/components/slides/TechStackSlide.tsx,src/components/slides/ProblemSolutionSlide.tsx,src/components/slides/MetricGridSlide.tsx,src/components/slides/BeforeAfterShowcaseSlide.tsx,src/components/slides/TestimonialsSlide.tsx,src/components/slides/CodeTerminalSlide.tsx,src/components/slides/CallToActionSlide.tsx",
+    "validationCriteria": "All batch 2 slide components strictly <= 100 lines with factory payloads"
+  },
+  {
+    "slug": "05-verification-and-release",
+    "name": "Quality Gates: Compilation, Build, File Sizing & Release Ceremony",
+    "allocatedAgent": "Lead Orchestrator",
+    "estimatedSteps": 20,
+    "targetFiles": "package.json,changelog.md,readme.md",
+    "validationCriteria": "tsc 0, vite build 0, file size guard PASS, GitMap release commit and v1.2.0 tag"
+  }
+]

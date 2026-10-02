@@ -7,21 +7,16 @@ import { soundEngine } from '../../audio/soundEngine';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export const StepsSlide: React.FC<{ slide: StepsSlideData }> = ({ slide }) => {
-  const { activeThemeId, applyEdit, isSoundEnabled } = useDeckStore();
+  const { activeThemeId, applyEdit, activeStep, jumpToStep } = useDeckStore();
   const { isEditMode } = useEditStore();
   const theme = THEME_PALETTES[activeThemeId] || THEME_PALETTES['white-brand'];
-  const [activeStep, setActiveStep] = useState(0);
   const steps = slide.steps || [];
   const total = steps.length;
-  const focused = steps[activeStep] || steps[0] || { label: '', detail: '', title: '' };
+  const currentStep = Math.min(total - 1, Math.max(0, activeStep));
+  const focused = steps[currentStep] || steps[0] || { label: '', detail: '', title: '' };
   const isDark = Boolean(theme.isDark);
   const headerShadow = theme.headerShadow || (isDark ? 'rgb(0 0 0) 1px 0.7px 0px' : 'rgb(255 255 255) 1px 0.7px 0px');
   const logoSrc = isDark ? '/assets/logos/5 - Riseup Asia Logo Transparent Only WT.png' : '/assets/logos/6 - Riseup Asia Logo Transparent Only BK.png';
-
-  const jumpToStep = (i: number) => {
-    setActiveStep(i);
-    if (isSoundEnabled) soundEngine.playStepClick();
-  };
 
   return (
     <div
@@ -38,8 +33,8 @@ export const StepsSlide: React.FC<{ slide: StepsSlideData }> = ({ slide }) => {
           </h1>
           <div className="flex flex-col gap-3">
             {steps.map((st, i) => {
-              const isActive = i === activeStep;
-              const opacity = isActive ? 1 : i < activeStep ? 0.55 : 0.4;
+              const isActive = i === currentStep;
+              const opacity = isActive ? 1 : i < currentStep ? 0.55 : 0.4;
 
               return (
                 <div
@@ -84,10 +79,10 @@ export const StepsSlide: React.FC<{ slide: StepsSlideData }> = ({ slide }) => {
           )}
         </div>
         <div className="flex items-center justify-between pt-6 border-t border-white/10 mt-6">
-          <span style={{ color: theme.subtextColor }} className="font-mono text-sm tracking-wider uppercase">Step {activeStep + 1} of {total}</span>
+          <span style={{ color: theme.subtextColor }} className="font-mono text-sm tracking-wider uppercase">Step {currentStep + 1} of {total}</span>
           <div className="flex items-center gap-2">
-            <button onClick={() => jumpToStep(Math.max(0, activeStep - 1))} disabled={activeStep === 0} className="p-2.5 rounded-xl border border-white/10 hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer transition-all" title="Previous Step"><ChevronLeft size={18} style={{ color: theme.textColor }} /></button>
-            <button onClick={() => jumpToStep(Math.min(total - 1, activeStep + 1))} disabled={activeStep === total - 1} className="p-2.5 rounded-xl border border-white/10 hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer transition-all" title="Next Step"><ChevronRight size={18} style={{ color: theme.textColor }} /></button>
+            <button onClick={() => jumpToStep(Math.max(0, currentStep - 1))} disabled={currentStep === 0} className="p-2.5 rounded-xl border border-white/10 hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer transition-all" title="Previous Step"><ChevronLeft size={18} style={{ color: theme.textColor }} /></button>
+            <button onClick={() => jumpToStep(Math.min(total - 1, currentStep + 1))} disabled={currentStep === total - 1} className="p-2.5 rounded-xl border border-white/10 hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer transition-all" title="Next Step"><ChevronRight size={18} style={{ color: theme.textColor }} /></button>
           </div>
         </div>
       </div>

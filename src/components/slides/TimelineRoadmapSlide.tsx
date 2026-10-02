@@ -6,12 +6,13 @@ import { THEME_PALETTES } from '../../themes/gradientTokens';
 import { CheckCircle2, Clock, Calendar } from 'lucide-react';
 
 export const TimelineRoadmapSlide: React.FC<{ slide: TimelineRoadmapSlideData }> = ({ slide }) => {
-  const { activeThemeId, applyEdit } = useDeckStore();
+  const { activeThemeId, applyEdit, activeStep, jumpToStep } = useDeckStore();
   const { isEditMode } = useEditStore();
   const theme = THEME_PALETTES[activeThemeId] || THEME_PALETTES['white-brand'];
   const isDark = Boolean(theme.isDark);
   const logoSrc = isDark ? '/assets/logos/5 - Riseup Asia Logo Transparent Only WT.png' : '/assets/logos/6 - Riseup Asia Logo Transparent Only BK.png';
   const rawList = slide.milestones || (slide as any).quarters || [];
+  const currentStep = Math.min(rawList.length - 1, Math.max(0, activeStep));
 
   return (
     <div
@@ -47,14 +48,17 @@ export const TimelineRoadmapSlide: React.FC<{ slide: TimelineRoadmapSlideData }>
             ? { label: 'In Progress', color: 'bg-violet-500/20 text-violet-400 border-violet-500/40', Icon: Clock }
             : { label: 'Upcoming', color: 'bg-slate-500/10 text-slate-400 border-slate-500/20', Icon: Calendar };
 
+          const isStepFocused = idx === currentStep;
+
           return (
             <div
               key={idx}
+              onClick={() => jumpToStep(idx)}
               style={{
                 backgroundColor: theme.cardBg,
-                borderColor: isActive ? theme.accentColor : theme.cardBorder,
+                borderColor: isStepFocused ? theme.accentColor : theme.cardBorder,
               }}
-              className={`p-7 rounded-2xl border-2 backdrop-blur-md shadow-xl flex flex-col justify-between transition-all duration-300 hover:scale-[1.01] slide-up-anim stagger-${idx + 1} ${isActive ? 'bento-glow-pulse' : ''}`}
+              className={`p-7 rounded-2xl border-2 backdrop-blur-md shadow-xl flex flex-col justify-between cursor-pointer transition-all duration-300 hover:scale-[1.02] slide-up-anim stagger-${idx + 1} ${isStepFocused ? 'bento-glow-pulse ring-2 ring-violet-500/50' : 'opacity-85'}`}
             >
               <div>
                 <div className="flex items-center justify-between mb-4">

@@ -1,369 +1,21 @@
-// lint-allow: file-size reason="presentation deck initial seed state" max=450
 import { create } from 'zustand';
 import { PresentationDeck, SlideData } from '../types/presentation';
 import { soundEngine } from '../audio/soundEngine';
-
-const INITIAL_DECK: PresentationDeck = {
-  id: 'white-presentation-v1',
-  title: 'White Presentation System - Executive Keynote',
-  version: '1.0.0',
-  author: 'Riseup Asia Architectural Team',
-  defaultThemeId: 'white-brand',
-  canvas: {
-    width: 1920,
-    height: 1080,
-    aspectRatio: '16:9',
-  },
-  slides: [
-    {
-      id: 'slide-01',
-      type: 'white-master',
-      title: 'Stories Are Emotional Bridges',
-      headline: 'Stories Are Emotional Bridges',
-      subtitle: 'Transform raw data and technical architecture into unforgettable enterprise impact.',
-      kicker: 'STRATEGIC NARRATIVE',
-      bulletPoints: [
-        {
-          id: 'bp-1',
-          icon: 'heart',
-          title: 'Emotional Resonance',
-          description: 'Facts inform, but emotional connections drive multimillion-dollar decisions and leadership alignment.',
-        },
-        {
-          id: 'bp-2',
-          icon: 'users',
-          title: 'Human-Centered Context',
-          description: 'Bridge executive vision with operational reality through clear, empathetic engineering narratives.',
-        },
-        {
-          id: 'bp-3',
-          icon: 'chat',
-          title: 'Catalyst for Action',
-          description: 'A well-crafted story breaks through executive inertia, galvanizing teams toward swift execution.',
-        },
-      ],
-      heroImage: {
-        src: '/assets/screenshots/hero-speaker-clean.png',
-        alt: 'Speaker sharing emotional narrative with audience',
-        featherDirection: 'left',
-      },
-      neonGlow: {
-        color: '#F43F5E',
-        shape: 'heart',
-        pulseRateSeconds: 2.2,
-      },
-      logo: {
-        src: '/assets/logos/6 - Riseup Asia Logo Transparent Only BK.png',
-        alt: 'Riseup Asia Logo',
-        heightPx: 42,
-      },
-    },
-    {
-      id: 'slide-02',
-      type: 'title',
-      title: 'Autonomous Presentation Architecture',
-      subtitle: 'The Next-Generation Declarative Slide Platform for High-Stakes Tech Keynotes',
-      kicker: 'KEYNOTE PRESENTATION',
-      presenter: {
-        name: 'Alim Ul Karim',
-        role: 'Chief Software Engineer',
-        company: 'Riseup Asia LLC',
-      },
-      date: 'September 2026',
-    },
-    {
-      id: 'slide-03',
-      type: 'persona',
-      title: 'Technical Leadership',
-      name: 'Alim Ul Karim',
-      role: 'Chief Software Engineer',
-      quote: 'We engineer sovereign, high-leverage software architectures with zero defect tolerance.',
-      avatarUrl: '/assets/screenshots/hero-speaker-clean.png',
-      metrics: [
-        { value: '15+ Yrs', label: 'Enterprise Systems' },
-        { value: '40M+', label: 'Active End Users' },
-      ],
-      bioBullets: [
-        'Direct architect of multi-tenant enterprise cloud systems across North America & Asia.',
-        'Pioneer of deterministic AI workflows, autonomous loop orchestration, and zero-defect QA.',
-        'Senior enterprise software consultant for scalable cloud architectures.',
-      ],
-    },
-    {
-      id: 'slide-04',
-      type: 'before-after',
-      title: 'Transformation Paradigm',
-      subtitle: 'Quantifiable operational shift from fragmented overhead to automated delivery.',
-      kicker: 'STRATEGIC SHIFT',
-      before: {
-        title: 'Legacy Inefficient Paradigm',
-        tag: 'BEFORE RISEUP',
-        points: [
-          'Fragmented, static PowerPoint decks unable to scale to 4K or mobile viewports.',
-          'Baking text into raster images resulting in pixelated blur, zero SEO, and no searchability.',
-          'Manual slide editing that wipes out live annotations and presentation timers.',
-          'Disjointed brand palettes causing cognitive fatigue and low executive retention.',
-        ],
-      },
-      after: {
-        title: 'The White Presentation Standard',
-        tag: 'AFTER TRANSFORMATION',
-        points: [
-          'Ultra-sharp 100% pure DOM text rendered at native vector resolution on any screen.',
-          'Mathematical 10-step gradient precision system guaranteeing deterministic contrast.',
-          'Decoupled Builder Mode allowing live element tweaking without presentation resets.',
-          'Relational multi-tenant SQL schema enabling seamless enterprise team collaboration.',
-        ],
-      },
-    },
-    {
-      id: 'slide-05',
-      type: 'talent-funnel',
-      title: 'Engineering Selectivity Standards',
-      subtitle: 'Rigorous multi-stage vetting process ensuring top 1% global software craftsmanship.',
-      kicker: 'HUMAN CAPITAL',
-      stages: [
-        {
-          stageNumber: 1,
-          title: 'Algorithmic & Architecture Screen',
-          description: 'Automated complexity assessment and distributed systems profiling.',
-          metric: '10,000+ Screened',
-          conversionRate: 'Top 15%',
-        },
-        {
-          stageNumber: 2,
-          title: 'Live Pair Programming & System Design',
-          description: '3-hour real-time refactoring under strict latency and fault-tolerance constraints.',
-          metric: '1,500 Evaluated',
-          conversionRate: 'Top 5%',
-        },
-        {
-          stageNumber: 3,
-          title: 'Communication & Culture Alignment',
-          description: 'Executive narrative readiness and autonomous problem-solving velocity.',
-          metric: '200 Finalists',
-          conversionRate: 'Top 2%',
-        },
-        {
-          stageNumber: 4,
-          title: 'Deployed Production Specialists',
-          description: 'Top-tier talent assigned to client mission-critical squads.',
-          metric: 'Top 1% Hired',
-          conversionRate: '0.8% Selected',
-        },
-      ],
-    },
-    {
-      id: 'slide-06',
-      type: 'pricing',
-      title: 'Engagement & Partnership Tiers',
-      subtitle: 'Transparent, predictable commercial models tailored to engineering scale.',
-      kicker: 'INVESTMENT & VALUE',
-      tiers: [
-        {
-          name: 'Dedicated Squad',
-          price: '$4,500',
-          cadence: '/ month',
-          features: [
-            '1 Senior Fullstack Lead',
-            '2 Frontend/Backend Engineers',
-            'Daily async standups & sprint reviews',
-            'Direct Slack / Discord integration',
-            'Weekly deployed production deliverables',
-          ],
-          ctaLabel: 'Select Squad Tier',
-        },
-        {
-          name: 'Scale Partner',
-          price: '$8,900',
-          cadence: '/ month',
-          isFeatured: true,
-          badge: 'MOST POPULAR',
-          features: [
-            '1 Principal Systems Director',
-            '4 Senior Fullstack Engineers',
-            'Dedicated DevOps & Cloud Architect',
-            'Real-time pair programming syncs',
-            '24/7 Priority SLA response time',
-            'Continuous autonomous QA pipeline',
-          ],
-          ctaLabel: 'Partner at Scale',
-        },
-        {
-          name: 'Enterprise Custom',
-          price: 'Custom',
-          cadence: 'annually',
-          features: [
-            'Full Cross-Functional Organization',
-            'SOC2, HIPAA & ISO-27001 compliance',
-            'On-premise / VPC cloud deployment',
-            'Executive advisory board seat',
-            'Dedicated 99.99% uptime guarantees',
-          ],
-          ctaLabel: 'Contact Leadership',
-        },
-      ],
-    },
-    {
-      id: 'slide-07',
-      type: 'key-player',
-      title: 'Principal Systems Architect',
-      subtitle: 'Spearheading distributed systems, low-latency microservices, and AI pipelines.',
-      kicker: 'CORE TALENT',
-      name: 'Marek Nowak',
-      role: 'Staff Infrastructure Architect',
-      avatarUrl: '/assets/screenshots/white-presentation-sample-01.png',
-      skills: ['Kubernetes', 'Go / Rust', 'Distributed SQL', 'Kafka', 'Terraform'],
-      pillars: [
-        {
-          title: 'High-Scale Cloud Topologies',
-          description: 'Designed zero-downtime multi-region failover clusters handling 100k+ RPS.',
-          icon: 'cloud',
-        },
-        {
-          title: 'Autonomous AI Orchestration',
-          description: 'Engineered self-looping multi-agent execution waves with continuous linter gates.',
-          icon: 'layers',
-        },
-        {
-          title: 'Security & Enterprise Compliance',
-          description: 'Achieved automated SOC2 Type II and ISO-27001 continuous compliance telemetry.',
-          icon: 'security',
-        },
-      ],
-    } as any,
-    {
-      id: 'slide-08',
-      type: 'steps-chain',
-      title: 'Autonomous Delivery Lifecycle',
-      subtitle: 'From architectural discovery to continuous automated production release.',
-      kicker: 'EXECUTION WAVE',
-      steps: [
-        {
-          stepNumber: 1,
-          title: 'Architecture Spec',
-          duration: 'Week 1',
-          deliverables: ['Canvas coordinate schemas', '10-step gradient tokens', 'Pure DOM contracts'],
-        },
-        {
-          stepNumber: 2,
-          title: 'Decoupled State Engine',
-          duration: 'Week 2',
-          deliverables: ['useDeckStore & useEditStore', 'applyEdit mutator funnel', 'Sound cues'],
-        },
-        {
-          stepNumber: 3,
-          title: 'Component Generation',
-          duration: 'Week 3-4',
-          deliverables: ['White master slide', 'Hero feather plate', 'Neon glowing heart'],
-        },
-        {
-          stepNumber: 4,
-          title: 'Production Deploy',
-          duration: 'Continuous',
-          deliverables: ['Automated CI/CD verification', 'Headless 4K export', 'Multi-tenant DB'],
-        },
-      ],
-    } as any,
-    {
-      id: 'slide-09',
-      type: 'testimonials',
-      title: 'Executive Endorsements',
-      subtitle: 'Validated by engineering leadership across high-growth venture-backed enterprises.',
-      kicker: 'SOCIAL PROOF',
-      testimonials: [
-        {
-          quote: 'The architectural rigor and zero-compromise pure DOM standard made our Series-B product launch a massive hit with enterprise buyers.',
-          author: 'Sarah Jenkins',
-          title: 'VP of Engineering',
-          company: 'CloudPulse Networks',
-        },
-        {
-          quote: 'Riseup delivered 3x faster than our internal estimates with zero technical debt and impeccable typographic fidelity at 4K resolution.',
-          author: 'David Chen',
-          title: 'Chief Technology Officer',
-          company: 'HyperScale AI',
-        },
-      ],
-    } as any,
-    {
-      id: 'slide-10',
-      type: 'competitive-edge',
-      title: 'Architectural Superiority Matrix',
-      subtitle: 'Side-by-side verification of sovereign engineering vs fragmented legacy agencies.',
-      kicker: 'COMPETITIVE BENCHMARK',
-      headers: ['Core Dimension', 'Traditional IT & Agency Vendors', 'Riseup Sovereign Standard'],
-      rows: [
-        { feature: 'Autonomous Loop Quality Gates', competitor: 'Manual review, days-long turnaround', us: 'Deterministic 36-gate automated CI' },
-        { feature: 'Component Size Discipline', competitor: 'Bloated 800+ line spaghetti files', us: 'Strict <= 100 line architectural cap' },
-        { feature: 'In-Place Authoring Latency', competitor: 'Recompile & redeploy cycle', us: 'Zero-latency direct DOM mutation' },
-        { feature: 'Pure DOM Typography Fidelity', competitor: 'Pixelated raster slide renders', us: 'Vector 4K Ubuntu & Poppins layout' },
-      ],
-    },
-    {
-      id: 'slide-11',
-      type: 'tech-stack',
-      title: 'Enterprise Technology Stack',
-      subtitle: 'Modern, high-leverage toolchain engineered for sovereign reliability and speed.',
-      kicker: 'CORE INFRASTRUCTURE',
-      categories: [
-        {
-          name: 'Core Application Engine',
-          icon: 'cpu',
-          technologies: [{ name: 'React 19', level: 'Core' }, { name: 'TypeScript 5', level: 'Core' }, { name: 'Vite 7', level: 'Enterprise' }],
-        },
-        {
-          name: 'Styling & Motion',
-          icon: 'zap',
-          technologies: [{ name: 'Less CSS', level: 'Core' }, { name: 'Tailwind 4', level: 'Core' }, { name: 'Animate.css', level: 'Advanced' }],
-        },
-        {
-          name: 'Autonomous Verification',
-          icon: 'shield',
-          technologies: [{ name: 'Parallel CI Runner', level: 'Enterprise' }, { name: 'RCA Diagnostician', level: 'Advanced' }, { name: 'Zustand Store', level: 'Core' }],
-        },
-        {
-          name: 'Audio & Hardware Engine',
-          icon: 'terminal',
-          technologies: [{ name: 'Web Audio API', level: 'Enterprise' }, { name: 'CSS 3D Transforms', level: 'Advanced' }, { name: 'OpenXML Serializer', level: 'Core' }],
-        },
-      ],
-    },
-    {
-      id: 'slide-09-how-we-ship',
-      type: 'steps',
-      title: 'How We Ship',
-      kicker: 'AUTONOMOUS DELIVERY',
-      heading: 'Three phases, one week each',
-      steps: [
-        { label: 'Discover', title: 'Talk to 5 users', detail: 'Interview five real users. Extract architectural pain points and write specifications within 24 hours.' },
-        { label: 'Prototype', title: 'One click, one screen', detail: 'Build the thinnest sovereign slice that solves the mission. Zero fluff, pure DOM performance.' },
-        { label: 'Ship', title: 'Behind a flag', detail: 'Continuous production deployment every Friday. Immediate real-time validation across active teams.' },
-      ],
-    },
-    {
-      id: 'slide-10-architecture-reveals',
-      type: 'steps',
-      title: 'Architecture, in Three Reveals',
-      kicker: 'DISTRIBUTED TOPOLOGY',
-      heading: 'From request to response',
-      steps: [
-        { label: 'Client', title: 'What the user sees', detail: 'The browser loads declarative JSON presentation state in sub-10ms with zero hydration lag.' },
-        { label: 'Edge', title: 'Cache & Prerender', detail: 'Distributed edge workers validate access tokens and stream vector canvas components instantaneously.' },
-        { label: 'Origin', title: 'State & Persistence', detail: 'Autonomous backend services process real-time DOM mutations and persist state with zero data loss.' },
-      ],
-    },
-  ],
-};
+import { INITIAL_DECK } from './initialDeck';
 
 interface DeckStoreState {
   deck: PresentationDeck;
   activeSlideIndex: number;
+  activeStep: number;
   activeThemeId: string;
   isSoundEnabled: boolean;
   nextSlide: () => void;
   prevSlide: () => void;
   goToSlide: (index: number) => void;
+  stepAdvance: () => void;
+  stepRewind: () => void;
+  jumpToStep: (step: number) => void;
+  getActiveSlideMaxSteps: () => number;
   setTheme: (themeId: string) => void;
   toggleSound: () => void;
   upsertSlide: (slide: SlideData) => void;
@@ -375,14 +27,27 @@ interface DeckStoreState {
 export const useDeckStore = create<DeckStoreState>((set, get) => ({
   deck: INITIAL_DECK,
   activeSlideIndex: 0,
+  activeStep: 0,
   activeThemeId: 'white-brand',
   isSoundEnabled: true,
+
+  getActiveSlideMaxSteps: () => {
+    const { deck, activeSlideIndex } = get();
+    const currentSlide = deck.slides[activeSlideIndex] as any;
+    if (!currentSlide) return 1;
+    if (currentSlide.type === 'steps' && Array.isArray(currentSlide.steps)) return currentSlide.steps.length;
+    if (currentSlide.type === 'timeline-roadmap' && Array.isArray(currentSlide.milestones)) return currentSlide.milestones.length;
+    if (currentSlide.type === 'process-cycle' && Array.isArray(currentSlide.stages)) return currentSlide.stages.length;
+    if (currentSlide.type === 'depth-stack' && Array.isArray(currentSlide.cards)) return currentSlide.cards.length;
+    if (currentSlide.type === 'reveal-grid' && Array.isArray(currentSlide.items)) return currentSlide.items.length;
+    return 1;
+  },
 
   nextSlide: () => {
     const { activeSlideIndex, deck, isSoundEnabled } = get();
     if (activeSlideIndex < deck.slides.length - 1) {
       if (isSoundEnabled) soundEngine.playSlideWhoosh('next');
-      set({ activeSlideIndex: activeSlideIndex + 1 });
+      set({ activeSlideIndex: activeSlideIndex + 1, activeStep: 0 });
     }
   },
 
@@ -390,7 +55,7 @@ export const useDeckStore = create<DeckStoreState>((set, get) => ({
     const { activeSlideIndex, isSoundEnabled } = get();
     if (activeSlideIndex > 0) {
       if (isSoundEnabled) soundEngine.playSlideWhoosh('prev');
-      set({ activeSlideIndex: activeSlideIndex - 1 });
+      set({ activeSlideIndex: activeSlideIndex - 1, activeStep: 0 });
     }
   },
 
@@ -398,8 +63,35 @@ export const useDeckStore = create<DeckStoreState>((set, get) => ({
     const { deck, isSoundEnabled } = get();
     if (index >= 0 && index < deck.slides.length) {
       if (isSoundEnabled) soundEngine.playSlideWhoosh('next');
-      set({ activeSlideIndex: index });
+      set({ activeSlideIndex: index, activeStep: 0 });
     }
+  },
+
+  stepAdvance: () => {
+    const { activeStep, isSoundEnabled } = get();
+    const maxSteps = get().getActiveSlideMaxSteps();
+    if (activeStep < maxSteps - 1) {
+      if (isSoundEnabled) soundEngine.playStepClick();
+      set({ activeStep: activeStep + 1 });
+    } else {
+      get().nextSlide();
+    }
+  },
+
+  stepRewind: () => {
+    const { activeStep, isSoundEnabled } = get();
+    if (activeStep > 0) {
+      if (isSoundEnabled) soundEngine.playStepClick();
+      set({ activeStep: activeStep - 1 });
+    } else {
+      get().prevSlide();
+    }
+  },
+
+  jumpToStep: (step: number) => {
+    const { isSoundEnabled } = get();
+    if (isSoundEnabled) soundEngine.playStepClick();
+    set({ activeStep: Math.max(0, step) });
   },
 
   setTheme: (themeId: string) => {
@@ -423,7 +115,7 @@ export const useDeckStore = create<DeckStoreState>((set, get) => ({
   addSlide: (slide: SlideData) => {
     const { deck } = get();
     const slides = [...deck.slides, slide];
-    set({ deck: { ...deck, slides }, activeSlideIndex: slides.length - 1 });
+    set({ deck: { ...deck, slides }, activeSlideIndex: slides.length - 1, activeStep: 0 });
   },
 
   deleteSlide: (index: number) => {
@@ -431,7 +123,7 @@ export const useDeckStore = create<DeckStoreState>((set, get) => ({
     if (deck.slides.length <= 1) return;
     const slides = deck.slides.filter((_, i) => i !== index);
     const newIndex = Math.min(activeSlideIndex, slides.length - 1);
-    set({ deck: { ...deck, slides }, activeSlideIndex: newIndex });
+    set({ deck: { ...deck, slides }, activeSlideIndex: newIndex, activeStep: 0 });
   },
 
   applyEdit: (updater: (slide: SlideData) => SlideData) => {

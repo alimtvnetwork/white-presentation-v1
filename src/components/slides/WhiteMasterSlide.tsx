@@ -4,6 +4,7 @@ import { useDeckStore } from '../../stores/deckStore';
 import { useEditStore } from '../../stores/editStore';
 import { THEME_PALETTES } from '../../themes/gradientTokens';
 import { Heart, Users, MessageCircle } from 'lucide-react';
+import { WhiteMasterHeroPlate } from './white-master/WhiteMasterHeroPlate';
 
 export const WhiteMasterSlide: React.FC<{ slide: WhiteMasterSlideData }> = ({ slide }) => {
   const { activeThemeId, applyEdit } = useDeckStore();
@@ -21,7 +22,6 @@ export const WhiteMasterSlide: React.FC<{ slide: WhiteMasterSlideData }> = ({ sl
 
   const getSelectClass = (elementId: string) => {
     if (!isEditMode) return '';
-
     return selectedElementId === elementId
       ? 'ring-2 ring-violet-500 ring-offset-4 cursor-pointer rounded-lg'
       : 'hover:ring-1 hover:ring-violet-300 hover:ring-offset-2 cursor-pointer';
@@ -33,108 +33,37 @@ export const WhiteMasterSlide: React.FC<{ slide: WhiteMasterSlideData }> = ({ sl
       className={`relative w-[1920px] h-[1080px] overflow-hidden select-none animate__animated animate__fadeIn ${theme.dotMatrix ? 'dot-matrix-bg' : ''}`}
       onClick={() => isEditMode && selectElement(null)}
     >
-      <svg className="absolute top-0 left-0 w-[600px] h-[600px] pointer-events-none opacity-20" viewBox="0 0 600 600" fill="none">
-        <circle cx="100" cy="100" r="280" stroke={theme.accentColor} strokeWidth="1" strokeDasharray="6 6" />
-        <circle cx="100" cy="100" r="380" stroke={theme.accentColor} strokeWidth="1.5" strokeOpacity="0.4" />
-        <circle cx="100" cy="100" r="480" stroke={theme.accentColor} strokeWidth="0.75" strokeDasharray="12 12" />
-      </svg>
-
-      <div
-        className={`absolute top-[60px] right-[100px] z-20 ${getSelectClass('logo')}`}
-        onClick={(e) => { if (isEditMode) { e.stopPropagation(); selectElement('logo'); } }}
-      >
+      <div className={`absolute top-[60px] right-[100px] z-20 ${getSelectClass('logo')}`} onClick={(e) => { if (isEditMode) { e.stopPropagation(); selectElement('logo'); } }}>
         <img src={slide.logo.src} alt={slide.logo.alt} className="h-[46px] w-auto object-contain filter contrast-125" />
       </div>
 
       <div className="absolute top-[120px] left-[140px] w-[920px] z-20 flex flex-col">
         {slide.kicker && (
-          <div
-            className={`text-[13px] font-bold tracking-[0.25em] uppercase text-violet-500 mb-4 font-mono ${getSelectClass('kicker')}`}
-            contentEditable={isEditMode}
-            suppressContentEditableWarning
-            onBlur={(e) => {
-              const val = e.currentTarget.textContent || '';
-              applyEdit((s) => ({ ...s, kicker: val }));
-            }}
-          >
+          <div className={`text-[13px] font-bold tracking-[0.25em] uppercase text-violet-500 mb-4 font-mono ${getSelectClass('kicker')}`} contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => ({ ...s, kicker: e.currentTarget.textContent || '' }))}>
             {slide.kicker}
           </div>
         )}
-
-        <h1
-          style={{ color: theme.textColor, textShadow: theme.headerShadow }}
-          className={`font-ubuntu text-[68px] font-extrabold tracking-tight leading-[1.08] mb-6 slide-up-anim ${getSelectClass('headline')}`}
-          contentEditable={isEditMode}
-          suppressContentEditableWarning
-          onBlur={(e) => {
-            const val = e.currentTarget.textContent || '';
-            applyEdit((s) => (s.type === 'white-master' ? { ...s, headline: val, title: val } : { ...s, title: val }));
-          }}
-        >
+        <h1 style={{ color: theme.textColor, textShadow: theme.headerShadow }} className={`font-ubuntu text-[68px] font-extrabold tracking-tight leading-[1.08] mb-6 slide-up-anim ${getSelectClass('headline')}`} contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => (s.type === 'white-master' ? { ...s, headline: e.currentTarget.textContent || '', title: e.currentTarget.textContent || '' } : { ...s, title: e.currentTarget.textContent || '' }))}>
           {slide.headline}
         </h1>
-
-        <p
-          style={{ color: theme.subtextColor }}
-          className={`font-poppins text-[24px] leading-[1.45] mb-12 max-w-[840px] font-normal slide-up-anim stagger-1 ${getSelectClass('subtitle')}`}
-          contentEditable={isEditMode}
-          suppressContentEditableWarning
-          onBlur={(e) => {
-            const val = e.currentTarget.textContent || '';
-            applyEdit((s) => ({ ...s, subtitle: val }));
-          }}
-        >
+        <p style={{ color: theme.subtextColor }} className={`font-poppins text-[24px] leading-[1.45] mb-10 max-w-[840px] font-normal slide-up-anim stagger-1 ${getSelectClass('subtitle')}`} contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => ({ ...s, subtitle: e.currentTarget.textContent || '' }))}>
           {slide.subtitle}
         </p>
 
-        <div className={`flex flex-col gap-6 mt-2 slide-up-anim stagger-2 ${getSelectClass('bullets')}`}>
+        <div className={`flex flex-col gap-5 mt-2 slide-up-anim stagger-2 ${getSelectClass('bullets')}`}>
           {slide.bulletPoints.map((item, index) => (
-            <div key={item.id} className="relative flex items-start gap-6 group">
-              <div
-                style={{ backgroundColor: theme.cardBg, borderColor: theme.cardBorder }}
-                className="relative z-10 w-[54px] h-[54px] rounded-full border flex items-center justify-center shrink-0 shadow-sm transition-transform group-hover:scale-105"
-              >
+            <div key={item.id} className="relative flex items-start gap-5 group">
+              <div style={{ backgroundColor: theme.cardBg, borderColor: theme.cardBorder }} className="relative z-10 w-[50px] h-[50px] rounded-full border flex items-center justify-center shrink-0 shadow-sm transition-transform group-hover:scale-105">
                 {getIcon(item.icon)}
               </div>
               {index < slide.bulletPoints.length - 1 && (
-                <div
-                  style={{ background: `linear-gradient(to bottom, ${theme.accentColor}, transparent)` }}
-                  className="absolute top-[54px] left-[26px] w-[2px] h-[40px] z-0 opacity-40"
-                />
+                <div style={{ background: `linear-gradient(to bottom, ${theme.accentColor}, transparent)` }} className="absolute top-[50px] left-[24px] w-[2px] h-[36px] z-0 opacity-40" />
               )}
-              <div className="flex flex-col pt-1">
-                <h3
-                  style={{ color: theme.textColor }}
-                  className="font-ubuntu text-[22px] font-bold leading-snug mb-1"
-                  contentEditable={isEditMode}
-                  suppressContentEditableWarning
-                  onBlur={(e) => {
-                    const val = e.currentTarget.textContent || '';
-                    applyEdit((s) => {
-                      if (s.type !== 'white-master') return s;
-                      const next = s.bulletPoints.map((bp) => (bp.id === item.id ? { ...bp, title: val } : bp));
-
-                      return { ...s, bulletPoints: next };
-                    });
-                  }}
-                >
+              <div className="flex flex-col pt-0.5">
+                <h3 style={{ color: theme.textColor }} className="font-ubuntu text-[20px] font-bold leading-snug mb-1" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => (s.type === 'white-master' ? { ...s, bulletPoints: s.bulletPoints.map((bp) => bp.id === item.id ? { ...bp, title: e.currentTarget.textContent || '' } : bp) } : s))}>
                   {item.title}
                 </h3>
-                <p
-                  style={{ color: theme.subtextColor }}
-                  className="font-poppins text-[17px] leading-[1.4] max-w-[760px]"
-                  contentEditable={isEditMode}
-                  suppressContentEditableWarning
-                  onBlur={(e) => {
-                    const val = e.currentTarget.textContent || '';
-                    applyEdit((s) => {
-                      if (s.type !== 'white-master') return s;
-                      const next = s.bulletPoints.map((bp) => (bp.id === item.id ? { ...bp, description: val } : bp));
-
-                      return { ...s, bulletPoints: next };
-                    });
-                  }}
-                >
+                <p style={{ color: theme.subtextColor }} className="font-poppins text-[16px] leading-[1.35] max-w-[760px]" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => (s.type === 'white-master' ? { ...s, bulletPoints: s.bulletPoints.map((bp) => bp.id === item.id ? { ...bp, description: e.currentTarget.textContent || '' } : bp) } : s))}>
                   {item.description}
                 </p>
               </div>
@@ -143,41 +72,7 @@ export const WhiteMasterSlide: React.FC<{ slide: WhiteMasterSlideData }> = ({ sl
         </div>
       </div>
 
-      <div
-        className={`absolute top-0 right-0 w-[960px] h-[1080px] z-10 overflow-hidden ${getSelectClass('heroImage')}`}
-        onClick={(e) => { if (isEditMode) { e.stopPropagation(); selectElement('heroImage'); } }}
-      >
-        <img
-          src={slide.heroImage.src}
-          alt={slide.heroImage.alt}
-          className="w-full h-full object-cover object-center"
-          style={{
-            maskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 15%, black 100%)',
-            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 15%, black 100%)',
-          }}
-        />
-
-        {slide.neonGlow?.enabled && (
-          <div
-            className="absolute top-[44%] left-[48%] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-            style={{ filter: `drop-shadow(0 0 16px ${slide.neonGlow.color})` }}
-          />
-        )}
-      </div>
-
-      <div className="absolute bottom-0 left-0 w-full h-[180px] z-15 pointer-events-none">
-        <svg className="w-full h-full" viewBox="0 0 1920 180" preserveAspectRatio="none" fill="none">
-          <defs>
-            <linearGradient id="whiteSlideWaveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor={theme.stops[6].hex} />
-              <stop offset="50%" stopColor={theme.stops[5].hex} />
-              <stop offset="100%" stopColor={theme.stops[7].hex} />
-            </linearGradient>
-          </defs>
-          <path d="M0,110 C480,160 960,80 1440,130 C1680,155 1820,135 1920,120 L1920,180 L0,180 Z" fill="#0F172A" opacity="0.9" />
-          <path d="M0,135 C380,85 840,165 1320,105 C1580,75 1780,125 1920,115 L1920,180 L0,180 Z" fill="url(#whiteSlideWaveGrad)" opacity="0.95" />
-        </svg>
-      </div>
+      <WhiteMasterHeroPlate slide={slide} theme={theme} isEditMode={isEditMode} selectClass={getSelectClass('heroImage')} onSelectHero={(e) => { if (isEditMode) { e.stopPropagation(); selectElement('heroImage'); } }} />
     </div>
   );
 };

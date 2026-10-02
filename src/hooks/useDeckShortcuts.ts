@@ -29,7 +29,7 @@ const toggleFullscreen = (): void => {
 };
 
 export const useDeckShortcuts = (params: DeckShortcutsParams): void => {
-  const { deck, nextSlide, prevSlide, goToSlide, activeThemeId, setTheme, toggleSound } = useDeckStore();
+  const { deck, stepAdvance, stepRewind, goToSlide, activeThemeId, setTheme, toggleSound } = useDeckStore();
   const { toggleEditMode } = useEditStore();
 
   const cycleTheme = () => {
@@ -39,17 +39,15 @@ export const useDeckShortcuts = (params: DeckShortcutsParams): void => {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.ctrlKey || e.metaKey || e.altKey || isFormField(e.target)) {
-        return;
-      }
+      if (e.ctrlKey || e.metaKey || e.altKey || isFormField(e.target)) return;
 
       const k = e.key.toLowerCase();
       if (['arrowright', ' ', 'enter', 'pagedown'].includes(k)) {
         e.preventDefault();
-        nextSlide();
+        stepAdvance();
       } else if (['arrowleft', 'backspace', 'pageup'].includes(k)) {
         e.preventDefault();
-        prevSlide();
+        stepRewind();
       } else if (k === 'f') {
         e.preventDefault();
         toggleFullscreen();
@@ -91,5 +89,5 @@ export const useDeckShortcuts = (params: DeckShortcutsParams): void => {
     return () => {
       window.removeEventListener('keydown', onKey);
     };
-  }, [deck.slides.length, nextSlide, prevSlide, goToSlide, activeThemeId, setTheme, toggleSound, toggleEditMode, params]);
+  }, [deck.slides.length, stepAdvance, stepRewind, goToSlide, activeThemeId, setTheme, toggleSound, toggleEditMode, params]);
 };

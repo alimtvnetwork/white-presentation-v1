@@ -7,7 +7,7 @@ import { DockPositionPopover } from './DockPositionPopover';
 import { PresenterWebcamButton } from '../webcam/PresenterWebcamButton';
 
 export const NavigationControls: React.FC = () => {
-  const { activeSlideIndex, deck, nextSlide, prevSlide, isSoundEnabled, toggleSound } = useDeckStore();
+  const { activeSlideIndex, deck, stepAdvance, stepRewind, isSoundEnabled, toggleSound } = useDeckStore();
   const { dockPosition } = useEditStore();
   const [showLayout, setShowLayout] = useState(false);
 
@@ -62,19 +62,19 @@ export const NavigationControls: React.FC = () => {
       <div className="w-[1px] h-4 bg-slate-700 mx-0.5" />
 
       <button
-        onClick={prevSlide}
+        onClick={stepRewind}
         disabled={activeSlideIndex === 0}
         className="p-1 rounded-full hover:bg-slate-800 disabled:opacity-30 cursor-pointer transition-colors"
-        title="Prev"
+        title="Prev (Left Arrow)"
       >
         <ChevronLeft size={18} />
       </button>
 
       <button
-        onClick={nextSlide}
+        onClick={stepAdvance}
         disabled={activeSlideIndex === deck.slides.length - 1}
         className="p-1 rounded-full hover:bg-slate-800 disabled:opacity-30 cursor-pointer transition-colors"
-        title="Next"
+        title="Next (Right Arrow / Space)"
       >
         <ChevronRight size={18} />
       </button>

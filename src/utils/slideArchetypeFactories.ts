@@ -6,16 +6,10 @@ import {
   ComparisonColumnsSlideData, ProcessCycleSlideData, CodeTerminalSlideData,
   CallToActionSlideData,
 } from '../types/presentation';
+import { EXTENDED_FACTORIES, EXTENDED_ARCHETYPE_OPTIONS, ArchetypeOption } from './extendedSlideFactories';
+export * from './extendedSlideFactories';
 
-export interface ArchetypeOption {
-  type: SlideType;
-  label: string;
-  category: 'Strategy & Metrics' | 'Product & Architecture' | 'Team & Credibility' | 'Story & Conversion';
-  desc: string;
-  icon: string;
-}
-
-export const ARCHETYPE_OPTIONS: ArchetypeOption[] = [
+export const ORIGINAL_ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   { type: 'metric-grid', label: 'Metric Grid Matrix', category: 'Strategy & Metrics', desc: '4-6 quantitative KPI cards with delta trends', icon: 'BarChart3' },
   { type: 'stats-callout', label: 'Monumental Stats Callout', category: 'Strategy & Metrics', desc: 'Massive hero metric with 3 comparison proof pills', icon: 'Sparkles' },
   { type: 'market-opportunity', label: 'TAM/SAM/SOM Opportunity', category: 'Strategy & Metrics', desc: '3-tier market sizing valuation stack', icon: 'TrendingUp' },
@@ -31,6 +25,11 @@ export const ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   { type: 'quote-callout', label: 'Executive Pull Quote', category: 'Team & Credibility', desc: 'Keynote quote with verified author credentials', icon: 'Quote' },
   { type: 'comparison-columns', label: '3-Column Comparative Matrix', category: 'Story & Conversion', desc: 'Side-by-side capability evaluation matrix', icon: 'Columns3' },
   { type: 'call-to-action', label: 'Closing Call to Action', category: 'Story & Conversion', desc: 'High-impact finale with dual CTAs and contact portal', icon: 'CheckCircle2' },
+];
+
+export const ARCHETYPE_OPTIONS: ArchetypeOption[] = [
+  ...ORIGINAL_ARCHETYPE_OPTIONS,
+  ...EXTENDED_ARCHETYPE_OPTIONS,
 ];
 
 export const createMetricGridSlide = (id = `slide-${Date.now()}`): MetricGridSlideData => ({
@@ -263,6 +262,9 @@ export const createArchetypeSlide = (type: SlideType, id = `slide-${Date.now()}`
     'before-after': (sid) => ({ id: sid, type: 'before-after', title: 'Operational Transformation', kicker: 'STRATEGIC SHIFT', before: { title: 'Legacy Workflow', points: ['Manual formatting'] }, after: { title: 'Sovereign Workflow', points: ['Deterministic DOM'] } }),
     persona: (sid) => ({ id: sid, type: 'persona', title: 'Technical Leadership', name: 'Alim Ul Karim', role: 'Chief Software Engineer', avatarUrl: '/assets/screenshots/hero-speaker-clean.png', metrics: [{ value: '15+ Yrs', label: 'Systems' }], bioBullets: ['Lead architect of sovereign runtimes.'] }),
   };
+  if (type in EXTENDED_FACTORIES) {
+    return EXTENDED_FACTORIES[type as keyof typeof EXTENDED_FACTORIES](id);
+  }
   return fns[type] ? fns[type](id) : {
     id, type: 'title', title: 'New Strategic Keynote', subtitle: 'High-leverage enterprise presentation',
     presenter: { name: 'Alim Ul Karim', role: 'Chief Software Engineer', company: 'Riseup Asia LLC' },

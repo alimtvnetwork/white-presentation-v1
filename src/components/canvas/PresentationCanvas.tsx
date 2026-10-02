@@ -10,6 +10,7 @@ import { KeyboardShortcutsModal } from '../navigation/KeyboardShortcutsModal';
 import { OverviewGridModal } from '../navigation/OverviewGridModal';
 import { useDeckShortcuts } from '../../hooks/useDeckShortcuts';
 import { THEME_PALETTES } from '../../themes/gradientTokens';
+import { applyTheme } from '../../themes/themeRuntime';
 
 export const PresentationCanvas: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -23,6 +24,10 @@ export const PresentationCanvas: React.FC = () => {
   const activeSlide = deck.slides[activeSlideIndex];
   const theme = THEME_PALETTES[activeThemeId] || THEME_PALETTES['white-brand'];
 
+  useEffect(() => {
+    applyTheme(activeThemeId);
+  }, [activeThemeId]);
+
   useDeckShortcuts({
     onToggleShortcutsModal: () => setIsShortcutsOpen((prev) => !prev),
     onToggleOverviewGrid: () => setIsOverviewOpen((prev) => !prev),
@@ -35,10 +40,10 @@ export const PresentationCanvas: React.FC = () => {
   useEffect(() => {
     const handleResize = () => {
       if (!containerRef.current) return;
-      const isFs = !!document.fullscreenElement;
-      setIsFullscreen(isFs);
+      const hasFullscreen = Boolean(document.fullscreenElement);
+      setIsFullscreen(hasFullscreen);
       const sX = (window.innerWidth - (isEditMode ? 100 : 0)) / 1920;
-      const sY = (window.innerHeight - (isFs ? 0 : 64)) / 1080;
+      const sY = (window.innerHeight - (hasFullscreen ? 0 : 64)) / 1080;
       setScale(Math.min(sX, sY, 1));
     };
     handleResize();
@@ -63,6 +68,7 @@ export const PresentationCanvas: React.FC = () => {
       className={`relative w-full ${isFullscreen ? 'h-screen' : 'h-[calc(100vh-64px)]'} flex items-center justify-center bg-slate-950 overflow-hidden`}
     >
       <div
+        id="presentation-root"
         style={{
           width: 1920,
           height: 1080,

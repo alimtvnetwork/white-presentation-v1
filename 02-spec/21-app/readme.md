@@ -38,6 +38,7 @@ This directory houses the canonical, sequential specifications for the **White P
 | [22-steps-slides-from-flat-slide/01-overview.md](22-steps-slides-from-flat-slide/01-overview.md) | **Steps Slides Architecture from Flat Slide** | 2-column sequential step reveal, active/completed/future states, audio triggers, high-contrast ink-stamp text shadows. |
 | [23-dropdown-theme-system-and-expanded-palettes/01-overview.md](23-dropdown-theme-system-and-expanded-palettes/01-overview.md) | **Dropdown Theme Selector & Expanded Palettes** | Compact trigger pill, floating glassmorphism dropdown flyout, 10 distinct presentation theme palettes. |
 | [24-expanded-slide-system-and-global-ppt-synthesis/01-overview.md](24-expanded-slide-system-and-global-ppt-synthesis/01-overview.md) | **Expanded Slide System & Global PPT Synthesis** | 15 new enterprise slide archetypes, Global PPT color & motion curves, pure DOM text mandate, decoupled template factories. |
+| [25-grounded-global-ppt-and-flat-slide-synthesis/01-overview.md](25-grounded-global-ppt-and-flat-slide-synthesis/01-overview.md) | **Grounded Global PPT & Flat Slide Synthesis** | 15 production archetypes from real PPT & Flat Slide repos, active step progression engine, spring physics, dynamic text shadows, decoupled template factories. |
 
 ---
 

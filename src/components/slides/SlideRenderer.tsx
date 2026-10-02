@@ -27,12 +27,25 @@ import { ComparisonColumnsSlide } from './ComparisonColumnsSlide';
 import { ProcessCycleSlide } from './ProcessCycleSlide';
 import { CodeTerminalSlide } from './CodeTerminalSlide';
 import { CallToActionSlide } from './CallToActionSlide';
+import { GrowthEngineSlide } from './GrowthEngineSlide';
+import { TalentPyramidSlide } from './TalentPyramidSlide';
+import { CostComparisonSlide } from './CostComparisonSlide';
+import { DepthStackSlide } from './DepthStackSlide';
+import { RevealGridSlide } from './RevealGridSlide';
+import { BeforeAfterShowcaseSlide } from './BeforeAfterShowcaseSlide';
+import { DailyWorkCultureSlide } from './DailyWorkCultureSlide';
+import { OurWorkShowcaseSlide } from './OurWorkShowcaseSlide';
+import { ExecutiveDuoSlide } from './ExecutiveDuoSlide';
+import { AfterSalesSupportSlide } from './AfterSalesSupportSlide';
+import { SearchSerpProofSlide } from './SearchSerpProofSlide';
+import { ContentCalendarSlide } from './ContentCalendarSlide';
+import { MindsetShiftSlide } from './MindsetShiftSlide';
+import { SessionOutlineSlide } from './SessionOutlineSlide';
+import { CounterStatSlide } from './CounterStatSlide';
+import { PollSurveySlide } from './PollSurveySlide';
+import { TypewriterPromptSlide } from './TypewriterPromptSlide';
 
-interface SlideRendererProps {
-  slide: SlideData;
-}
-
-export const SlideRenderer: React.FC<SlideRendererProps> = ({ slide }) => {
+export const SlideRenderer: React.FC<{ slide: SlideData }> = ({ slide }) => {
   switch (slide.type) {
     case 'white-master': return <WhiteMasterSlide slide={slide} />;
     case 'title': return <TitleSlide slide={slide} />;
@@ -61,6 +74,23 @@ export const SlideRenderer: React.FC<SlideRendererProps> = ({ slide }) => {
     case 'process-cycle': return <ProcessCycleSlide slide={slide as any} />;
     case 'code-terminal': return <CodeTerminalSlide slide={slide as any} />;
     case 'call-to-action': return <CallToActionSlide slide={slide as any} />;
+    case 'growth-engine': return <GrowthEngineSlide slide={slide as any} />;
+    case 'talent-pyramid': return <TalentPyramidSlide slide={slide as any} />;
+    case 'cost-comparison': return <CostComparisonSlide slide={slide as any} />;
+    case 'daily-work-culture': return <DailyWorkCultureSlide slide={slide as any} />;
+    case 'our-work-showcase': return <OurWorkShowcaseSlide slide={slide as any} />;
+    case 'executive-duo': return <ExecutiveDuoSlide slide={slide as any} />;
+    case 'after-sales-support': return <AfterSalesSupportSlide slide={slide as any} />;
+    case 'search-serp-proof': return <SearchSerpProofSlide slide={slide as any} />;
+    case 'content-calendar': return <ContentCalendarSlide slide={slide as any} />;
+    case 'mindset-shift': return <MindsetShiftSlide slide={slide as any} />;
+    case 'session-outline': return <SessionOutlineSlide slide={slide as any} />;
+    case 'reveal-grid': return <RevealGridSlide slide={slide as any} />;
+    case 'counter-stat': return <CounterStatSlide slide={slide as any} />;
+    case 'poll-survey': return <PollSurveySlide slide={slide as any} />;
+    case 'typewriter-prompt': return <TypewriterPromptSlide slide={slide as any} />;
+    case 'depth-stack': return <DepthStackSlide slide={slide as any} />;
+    case 'before-after-showcase' as any: return <BeforeAfterShowcaseSlide slide={slide as any} />;
     default: return <WhiteMasterSlide slide={slide as any} />;
   }
 };

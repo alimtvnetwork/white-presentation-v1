@@ -1,5 +1,7 @@
 import type { NewSlideType, NewSlideData } from './archetypes';
+import type { ExtendedSlideType, ExtendedSlideData } from './extendedArchetypes';
 export * from './archetypes';
+export * from './extendedArchetypes';
 
 export type SlideType =
   | 'white-master'
@@ -14,7 +16,8 @@ export type SlideType =
   | 'competitive-edge'
   | 'tech-stack'
   | 'steps'
-  | NewSlideType;
+  | NewSlideType
+  | ExtendedSlideType;
 
 export type DockPosition =
   | 'bottom-center'
@@ -73,6 +76,7 @@ export interface BaseSlide {
   kicker?: string;
   themeId?: string;
   notes?: string;
+  activeStep?: number;
 }
 
 export interface WhiteMasterSlideData extends BaseSlide {
@@ -249,7 +253,8 @@ export type SlideData =
   | CompetitiveEdgeSlideData
   | TechStackSlideData
   | StepsSlideData
-  | NewSlideData;
+  | NewSlideData
+  | ExtendedSlideData;
 
 export interface PresentationDeck {
   id: string;
