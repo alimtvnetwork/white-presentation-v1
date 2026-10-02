@@ -70,6 +70,7 @@ export interface ThemePalette {
   cardBorder: string;
   accentColor: string;
   dotMatrix?: boolean;
+  hasDotMatrix?: boolean;
   headerShadow: string;
   stops: GradientStop[];
 }
@@ -106,6 +107,7 @@ export interface WhiteMasterSlideData extends BaseSlide {
     shape: 'heart' | 'star' | 'circle';
     pulseRateSeconds: number;
     enabled?: boolean;
+    isEnabled?: boolean;
   };
   logo: {
     src: string;

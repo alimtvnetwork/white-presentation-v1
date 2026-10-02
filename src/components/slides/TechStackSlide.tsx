@@ -9,6 +9,8 @@ export const TechStackSlide: React.FC<{ slide: TechStackSlideData }> = ({ slide 
   const { activeThemeId, applyEdit } = useDeckStore();
   const { isEditMode } = useEditStore();
   const theme = THEME_PALETTES[activeThemeId] || THEME_PALETTES['white-brand'];
+  const isDark = Boolean(theme.isDark);
+  const logoSrc = isDark ? '/assets/logos/5 - Riseup Asia Logo Transparent Only WT.png' : '/assets/logos/6 - Riseup Asia Logo Transparent Only BK.png';
 
   const getCategoryIcon = (icon: string) => {
     const props = { className: "w-5 h-5", style: { color: theme.accentColor } };
@@ -22,7 +24,7 @@ export const TechStackSlide: React.FC<{ slide: TechStackSlideData }> = ({ slide 
   return (
     <div
       style={{ backgroundColor: theme.canvasBg, color: theme.textColor }}
-      className={`relative w-[1920px] h-[1080px] overflow-hidden select-none p-[100px] flex flex-col justify-between animate__animated animate__fadeIn ${theme.dotMatrix ? 'dot-matrix-bg' : ''}`}
+      className={`relative w-[1920px] h-[1080px] overflow-hidden select-none p-[100px] flex flex-col justify-between animate__animated animate__fadeIn ${Boolean(theme.hasDotMatrix || theme.dotMatrix) ? 'dot-matrix-bg' : ''}`}
     >
       <div className="flex items-center justify-between z-20">
         <div>
@@ -55,7 +57,7 @@ export const TechStackSlide: React.FC<{ slide: TechStackSlideData }> = ({ slide 
             </p>
           )}
         </div>
-        <img src="/assets/logos/6 - Riseup Asia Logo Transparent Only BK.png" alt="Logo" className="h-[42px] w-auto object-contain filter contrast-125" />
+        <img src={logoSrc} alt="Logo" className="h-[42px] w-auto object-contain filter contrast-125" />
       </div>
 
       <div className="grid grid-cols-4 gap-6 my-auto z-20 max-w-[1640px] w-full mx-auto">

@@ -5,6 +5,20 @@ All notable changes to the White Presentation System will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.3.0] - 2026-10-02
+
+### Added
+- **Deep Global PPT & Flat Slide Synthesis Suite:**
+  - Authored canonical specification module `02-spec/21-app/28-new-design-and-slide-archetypes/` (01-overview, 02-data-contracts, 03-visual-and-motion, 04-verification-gates, readme).
+  - Synchronized and verified 30 pre-seeded slide archetypes with interactive step progression, spring physics, and dynamic contrast.
+  - Standardized positive boolean naming (`isDark`, `hasDotMatrix`, `isEnabled`) across types, props, and components.
+  - Dynamically switched logos (`WT.png` on dark themes, `BK.png` on light themes) across slide components.
+- **Verification & Build Validation:**
+  - TypeScript typecheck passed with 0 errors (`pnpm exec tsc --noEmit`).
+  - Production Vite bundle built in 2.70s with 0 errors (`pnpm run build`).
+  - All 62 slide components strictly adhere to the <= 100-line ceiling (Hard Rule #6).
+  - Version synchronization confirmed across all manifests.
+
 ## [v1.2.4] - 2026-10-02
 
 ### Added
