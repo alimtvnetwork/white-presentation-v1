@@ -52,3 +52,28 @@ AI agents MUST sequentially ingest these specification files:
 5. **Strict Relative Git Paths:** No absolute filesystem paths or `file:///` URIs.
 6. **Strict Lowercase File Naming:** All generated files must be lowercase kebab-case.
 7. **Strict Boolean Standards:** Positive booleans evaluated implicitly (`if isReady`). Zero explicit `== true`.
+
+---
+
+## 4. Grounded Presentation Synthesis & Architectural Mandates (Global PPT & Flat Slide)
+
+1. **Atmospheric Canvas Layer**: Always mount `<SlideBackground />` inside `#presentation-root` with:
+   - Radial spotlight glow (`ellipse 65% 55% at 50% 48%`) keyed to `theme.accentColor`.
+   - Sub-pixel 48px coordinate grid at 2.5% opacity.
+   - Floating architectural vector motifs (`Layers`, `Terminal`, `Cpu`, `Shield`, `Compass`) at 8–12% opacity with wave float animation.
+2. **Dynamic Text Micro-Shadows**:
+   - Dark themes: `rgb(0 0 0) 1px 0.7px 0px`
+   - Light themes: `rgb(255 255 255) 1px 0.7px 0px` (ink-stamp micro-shadow).
+3. **Intra-Slide Step Progression Engine**:
+   - Multi-step slides (`StepsSlide`, `TimelineRoadmapSlide`, `ProcessCycleSlide`, `DepthStackSlide`, `RevealGridSlide`) must consume `activeStep` from `useDeckStore`.
+   - Navigation keys (`ArrowRight`, `Space`, `Enter`) and on-screen chevrons must step through internal phases before advancing slides.
+   - Smooth spring transitions (`STEP_TRANSITION = 'all 0.35s cubic-bezier(0.22, 1, 0.36, 1)'`) and halos (`getStepHaloStyle`).
+4. **Hard Rule #6 Component Sizing**:
+   - Every single slide component (`src/components/slides/*.tsx`) MUST be strictly <= 100 lines. Decompose into leaf sub-components if needed.
+5. **Master Deck Pre-Seeding**:
+   - Every new archetype MUST be registered in `src/stores/initialDeck.ts` in `INITIAL_DECK` so it is immediately playable on load.
+6. **Executive Persona Standardization**:
+   - Alim Ul Karim is strictly titled `"Chief Software Engineer"` (never `"Founder"` or `"CEO"`).
+7. **Positive Booleans Only**:
+   - Use `is*` and `has*` prefixes exclusively (e.g. `isDark`, `isEditMode`, `hasCheckmark`, `hasCompetitorASupport`).
+
