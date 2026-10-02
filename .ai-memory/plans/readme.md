@@ -15,3 +15,4 @@
 - [23-dropdown-theme-system.md](completed/23-dropdown-theme-system.md)
 - [24-expanded-slide-system-and-global.md](completed/24-expanded-slide-system-and-global.md)
 - [25-grounded-global-ppt-and-flat-slide-synthesis.md](completed/25-grounded-global-ppt-and-flat-slide-synthesis.md)
+- [26-global-ppt-color-motion-and-expanded-slides.md](completed/26-global-ppt-color-motion-and-expanded-slides.md)

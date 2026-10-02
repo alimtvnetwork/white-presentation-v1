@@ -198,11 +198,11 @@ export const createCompetitorMatrixSlide = (id = `slide-${Date.now()}`): Competi
   ourPlatformName: 'White Presentation Engine', competitorNames: ['Legacy Office Suite', 'Commercial Cloud SaaS'],
   summaryNote: 'The White Presentation Engine satisfies 100% of architectural evaluation criteria compared to an industry average of 30%.',
   capabilities: [
-    { id: 'cap-1', capabilityName: 'Pure Live DOM Typography', ourPlatformSupport: true, ourPlatformNote: '100% Live Editable', competitorASupport: false, competitorBSupport: false, isKeyDifferentiator: true },
-    { id: 'cap-2', capabilityName: 'Sub-10ms Pipeline Loops', ourPlatformSupport: true, ourPlatformNote: 'Sub-second verification', competitorASupport: false, competitorBSupport: false, isKeyDifferentiator: true },
-    { id: 'cap-3', capabilityName: 'Complete Source Ownership', ourPlatformSupport: true, ourPlatformNote: 'Zero runtime fees', competitorASupport: false, competitorBSupport: false, isKeyDifferentiator: true },
-    { id: 'cap-4', capabilityName: 'Autonomous Subagent Mesh', ourPlatformSupport: true, ourPlatformNote: 'Parallel refactoring', competitorASupport: false, competitorBSupport: false, isKeyDifferentiator: true },
-    { id: 'cap-5', capabilityName: 'Air-Gapped Deployment', ourPlatformSupport: true, ourPlatformNote: 'Zero cloud telemetry', competitorASupport: true, competitorBSupport: false, isKeyDifferentiator: false },
+    { id: 'cap-1', capabilityName: 'Pure Live DOM Typography', hasOurPlatformSupport: true, ourPlatformSupport: true, ourPlatformNote: '100% Live Editable', hasCompetitorASupport: false, competitorASupport: false, hasCompetitorBSupport: false, competitorBSupport: false, isKeyDifferentiator: true },
+    { id: 'cap-2', capabilityName: 'Sub-10ms Pipeline Loops', hasOurPlatformSupport: true, ourPlatformSupport: true, ourPlatformNote: 'Sub-second verification', hasCompetitorASupport: false, competitorASupport: false, hasCompetitorBSupport: false, competitorBSupport: false, isKeyDifferentiator: true },
+    { id: 'cap-3', capabilityName: 'Complete Source Ownership', hasOurPlatformSupport: true, ourPlatformSupport: true, ourPlatformNote: 'Zero runtime fees', hasCompetitorASupport: false, competitorASupport: false, hasCompetitorBSupport: false, competitorBSupport: false, isKeyDifferentiator: true },
+    { id: 'cap-4', capabilityName: 'Autonomous Subagent Mesh', hasOurPlatformSupport: true, ourPlatformSupport: true, ourPlatformNote: 'Parallel refactoring', hasCompetitorASupport: false, competitorASupport: false, hasCompetitorBSupport: false, competitorBSupport: false, isKeyDifferentiator: true },
+    { id: 'cap-5', capabilityName: 'Air-Gapped Deployment', hasOurPlatformSupport: true, ourPlatformSupport: true, ourPlatformNote: 'Zero cloud telemetry', hasCompetitorASupport: true, competitorASupport: true, hasCompetitorBSupport: false, competitorBSupport: false, isKeyDifferentiator: false },
   ],
 });
 

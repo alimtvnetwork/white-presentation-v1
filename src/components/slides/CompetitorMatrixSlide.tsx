@@ -63,14 +63,14 @@ export const CompetitorMatrixSlide: React.FC<{ slide: CompetitorMatrixSlideData 
                     </div>
                   </td>
                   <td className="p-3.5">
-                    {Boolean(row.competitorASupport) ? (
+                    {Boolean(row.hasCompetitorASupport ?? row.competitorASupport) ? (
                       <span className="flex items-center gap-1.5 text-xs font-mono text-emerald-400"><Check size={14} /> Supported</span>
                     ) : (
                       <span className="flex items-center gap-1.5 text-xs font-mono text-slate-500"><X size={14} /> Unsupported</span>
                     )}
                   </td>
                   <td className="p-3.5">
-                    {Boolean(row.competitorBSupport) ? (
+                    {Boolean(row.hasCompetitorBSupport ?? row.competitorBSupport) ? (
                       <span className="flex items-center gap-1.5 text-xs font-mono text-emerald-400"><Check size={14} /> Supported</span>
                     ) : (
                       <span className="flex items-center gap-1.5 text-xs font-mono text-slate-500"><X size={14} /> Unsupported</span>
