@@ -30,6 +30,7 @@ All architectural specifications are documented sequentially in [02-spec/21-app/
 - [16-Steps Chain & Process Roadmap](02-spec/21-app/16-steps-chain-and-roadmap-slide-spec.md) — 4 connected horizontal timeline nodes, milestone delivery estimates, step badges and progress line.
 - [17-Social Proof & Client Testimonials](02-spec/21-app/17-social-proof-testimonials-slide-spec.md) — Dual executive quote cards, partner logo marquee, verified endorsement credentials.
 - [18-Builder Mode Interactive Canvas & Inspector](02-spec/21-app/18-builder-mode-interactive-canvas-spec.md) — Decoupled stores (`useDeck` vs `useEditMode`), 7-layer visual stack, live property inspector, hotkeys.
+- [24-Expanded Slide System & Global PPT Synthesis](02-spec/21-app/24-expanded-slide-system-and-global-ppt-synthesis/01-overview.md) — 15 new enterprise slide archetypes, Global PPT color themes, kinetic animations, pure DOM text mandate, decoupled template factories.
 
 ---
 

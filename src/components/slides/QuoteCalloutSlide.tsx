@@ -12,13 +12,13 @@ export const QuoteCalloutSlide: React.FC<{ slide: QuoteCalloutSlideData }> = ({ 
   const isDark = Boolean(theme.isDark);
   const logoSrc = isDark ? '/assets/logos/5 - Riseup Asia Logo Transparent Only WT.png' : '/assets/logos/6 - Riseup Asia Logo Transparent Only BK.png';
 
-  const authorObj = typeof slide.author === 'object' ? slide.author : null;
-  const authorName = authorObj ? authorObj.name : (slide.author || 'Alim Ul Karim');
-  const rawRole = authorObj ? authorObj.role : ((slide as any).role || 'Chief Software Engineer');
-  const authorRole = authorName.toLowerCase().includes('alim') ? 'Chief Software Engineer' : rawRole;
-  const company = authorObj ? authorObj.company : ((slide as any).company || 'Enterprise Systems & Autonomous Runtimes');
-  const avatarUrl = authorObj?.avatarUrl || (slide as any).avatarUrl || '/assets/screenshots/hero-speaker-clean.png';
-  const badge = slide.contextBadge || (slide as any).badge || 'Architecture Keynote';
+  const authorObj = typeof slide.author === 'object' && slide.author !== null ? slide.author : null;
+  const authorName: string = authorObj ? authorObj.name : (typeof slide.author === 'string' ? slide.author : 'Alim Ul Karim');
+  const rawRole: string = authorObj ? authorObj.role : (typeof (slide as any).role === 'string' ? (slide as any).role : 'Chief Software Engineer');
+  const authorRole: string = authorName.toLowerCase().includes('alim') ? 'Chief Software Engineer' : rawRole;
+  const company: string = authorObj ? authorObj.company : (typeof (slide as any).company === 'string' ? (slide as any).company : 'Enterprise Systems & Autonomous Runtimes');
+  const avatarUrl: string = authorObj?.avatarUrl || (typeof (slide as any).avatarUrl === 'string' ? (slide as any).avatarUrl : '/assets/screenshots/hero-speaker-clean.png');
+  const badge: string = slide.contextBadge || (typeof (slide as any).badge === 'string' ? (slide as any).badge : 'Architecture Keynote');
 
   return (
     <div
