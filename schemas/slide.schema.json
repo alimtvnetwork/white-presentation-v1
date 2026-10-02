@@ -25,13 +25,32 @@
         "compare",
         "priority",
         "reveal-grid",
-        "counter-stat"
+        "counter-stat",
+        "executive-summary",
+        "system-architecture-flow",
+        "roi-metric-calculator",
+        "customer-journey-map",
+        "matrix-comparison-grid",
+        "tech-stack-grid",
+        "team-hierarchy-org",
+        "security-compliance-matrix",
+        "product-roadmap-timeline",
+        "interactive-faq-flow",
+        "key-metric-scorecard",
+        "case-study-impact",
+        "dual-column-pros-cons",
+        "interactive-code-playground",
+        "closing-cta-showcase"
       ]
     },
     "title": {
       "type": "string",
       "minLength": 1,
       "maxLength": 200
+    },
+    "subtitle": {
+      "type": "string",
+      "maxLength": 300
     },
     "notes": {
       "type": "string",
@@ -60,6 +79,14 @@
     },
     "kicker": {
       "type": "string"
+    },
+    "activeStep": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "maxSteps": {
+      "type": "integer",
+      "minimum": 1
     },
     "heading": {
       "$ref": "#/definitions/richText"
@@ -123,7 +150,132 @@
           "h": { "type": "number" }
         }
       }
-    }
+    },
+    "takeawayText": { "type": "string" },
+    "takeawayAuthor": { "type": "string" },
+    "pillars": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/strategicPillar" }
+    },
+    "hasStatusBadge": { "type": "boolean" },
+    "statusBadgeText": { "type": "string" },
+    "tiers": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/architectureTier" }
+    },
+    "overallThroughput": { "type": "string" },
+    "hasLiveTelemetry": { "type": "boolean" },
+    "packetSpeedMs": { "type": "number" },
+    "baselineAnnualCost": { "type": "string" },
+    "projectedAnnualCost": { "type": "string" },
+    "totalCumulativeSavings": { "type": "string" },
+    "paybackPeriodMonths": { "type": "number" },
+    "breakevenProgressPercent": { "type": "number" },
+    "yearlyBreakdowns": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/yearlyBreakdown" }
+    },
+    "hasInteractiveSlider": { "type": "boolean" },
+    "isPositiveDelta": { "type": "boolean" },
+    "hasConfidenceBand": { "type": "boolean" },
+    "stages": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/journeyStage" }
+    },
+    "hasSentimentGraph": { "type": "boolean" },
+    "primaryPersonaName": { "type": "string" },
+    "competitorNames": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "sovereignPlatformName": { "type": "string" },
+    "rows": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/matrixRow" }
+    },
+    "hasHighlightColumn": { "type": "boolean" },
+    "layers": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/stackLayer" }
+    },
+    "totalComponentCount": { "type": "integer" },
+    "hasSecurityStamp": { "type": "boolean" },
+    "members": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/orgMember" }
+    },
+    "hasReportingConnectors": { "type": "boolean" },
+    "complianceItems": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/complianceItem" }
+    },
+    "encryptionStandardText": { "type": "string" },
+    "hasContinuousAuditBadge": { "type": "boolean" },
+    "quarters": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/roadmapQuarter" }
+    },
+    "hasCurrentMarker": { "type": "boolean" },
+    "faqItems": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/faqItem" }
+    },
+    "supportContactEmail": { "type": "string" },
+    "metrics": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/scorecardMetric" }
+    },
+    "benchmarkPeriod": { "type": "string" },
+    "clientName": { "type": "string" },
+    "clientIndustry": { "type": "string" },
+    "challengeNarrative": { "type": "string" },
+    "solutionNarrative": { "type": "string" },
+    "quoteText": { "type": "string" },
+    "quoteAuthor": { "type": "string" },
+    "quoteAuthorRole": { "type": "string" },
+    "impactMetrics": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/caseStudyMetric" }
+    },
+    "isFlagshipCustomer": { "type": "boolean" },
+    "hasQuoteAttribution": { "type": "boolean" },
+    "leftColumnTitle": { "type": "string" },
+    "rightColumnTitle": { "type": "string" },
+    "leftFactors": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/tradeoffFactor" }
+    },
+    "rightFactors": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/tradeoffFactor" }
+    },
+    "summaryRecommendation": { "type": "string" },
+    "codeLanguage": { "type": "string" },
+    "sourceFilename": { "type": "string" },
+    "codeLines": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/codeSnippetLine" }
+    },
+    "consoleOutputLines": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "isCodeValid": { "type": "boolean" },
+    "hasActiveCursor": { "type": "boolean" },
+    "hasConsoleOutput": { "type": "boolean" },
+    "heroHeadline": { "type": "string" },
+    "supportingText": { "type": "string" },
+    "primaryCtaLabel": { "type": "string" },
+    "primaryCtaUrl": { "type": "string" },
+    "secondaryCtaLabel": { "type": "string" },
+    "secondaryCtaUrl": { "type": "string" },
+    "presenterName": { "type": "string" },
+    "presenterTitle": { "type": "string" },
+    "presenterOrg": { "type": "string" },
+    "qrCodeUrl": { "type": "string" },
+    "hasPrimaryAction": { "type": "boolean" },
+    "isQrActive": { "type": "boolean" },
+    "hasCalendarLink": { "type": "boolean" }
   },
   "definitions": {
     "richText": {
@@ -150,6 +302,516 @@
             }
           }
         ]
+      }
+    },
+    "strategicPillar": {
+      "type": "object",
+      "required": ["id", "stepNumber", "title", "description"],
+      "properties": {
+        "id": { "type": "string" },
+        "stepNumber": { "type": "integer" },
+        "iconName": { "type": "string" },
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "description": { "type": "string" },
+        "targetKpi": { "type": "string" },
+        "kpiLabel": { "type": "string" },
+        "hasHighlight": { "type": "boolean" },
+        "isActivePillar": { "type": "boolean" },
+        "isVerified": { "type": "boolean" }
+      }
+    },
+    "architectureNode": {
+      "type": "object",
+      "required": ["id", "stepNumber", "label", "technology"],
+      "properties": {
+        "id": { "type": "string" },
+        "stepNumber": { "type": "integer" },
+        "label": { "type": "string" },
+        "role": { "type": "string" },
+        "technology": { "type": "string" },
+        "latencySpec": { "type": "string" },
+        "hasPulse": { "type": "boolean" },
+        "isActiveNode": { "type": "boolean" },
+        "isEncrypted": { "type": "boolean" }
+      }
+    },
+    "architectureTier": {
+      "type": "object",
+      "required": ["id", "tierNumber", "tierName", "nodes"],
+      "properties": {
+        "id": { "type": "string" },
+        "tierNumber": { "type": "integer" },
+        "tierName": { "type": "string" },
+        "description": { "type": "string" },
+        "nodes": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/architectureNode" }
+        },
+        "hasActiveTraffic": { "type": "boolean" }
+      }
+    },
+    "yearlyBreakdown": {
+      "type": "object",
+      "required": ["yearLabel", "projectedSavings"],
+      "properties": {
+        "yearLabel": { "type": "string" },
+        "projectedSavings": { "type": "string" },
+        "operationalCost": { "type": "string" },
+        "isTargetMet": { "type": "boolean" }
+      }
+    },
+    "journeyStage": {
+      "type": "object",
+      "required": ["id", "stepNumber", "stageName", "channel", "keyAction"],
+      "properties": {
+        "id": { "type": "string" },
+        "stepNumber": { "type": "integer" },
+        "stageName": { "type": "string" },
+        "channel": { "type": "string" },
+        "keyAction": { "type": "string" },
+        "sentimentScore": { "type": "number", "minimum": 0, "maximum": 100 },
+        "metricLabel": { "type": "string" },
+        "metricValue": { "type": "string" },
+        "hasFrictionAlert": { "type": "boolean" },
+        "isActiveStage": { "type": "boolean" },
+        "isDelightMoment": { "type": "boolean" }
+      }
+    },
+    "matrixRow": {
+      "type": "object",
+      "required": ["id", "stepNumber", "featureName", "sovereignValue"],
+      "properties": {
+        "id": { "type": "string" },
+        "stepNumber": { "type": "integer" },
+        "featureName": { "type": "string" },
+        "category": { "type": "string" },
+        "competitorValues": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "sovereignValue": { "type": "string" },
+        "isSupported": { "type": "boolean" },
+        "isExclusive": { "type": "boolean" },
+        "hasEnterpriseTier": { "type": "boolean" }
+      }
+    },
+    "techItem": {
+      "type": "object",
+      "required": ["id", "name", "version"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "version": { "type": "string" },
+        "iconName": { "type": "string" },
+        "hasActiveInspection": { "type": "boolean" },
+        "isProductionGrade": { "type": "boolean" }
+      }
+    },
+    "stackLayer": {
+      "type": "object",
+      "required": ["id", "stepNumber", "layerTitle", "technologies"],
+      "properties": {
+        "id": { "type": "string" },
+        "stepNumber": { "type": "integer" },
+        "layerTitle": { "type": "string" },
+        "stratumNumber": { "type": "integer" },
+        "description": { "type": "string" },
+        "technologies": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/techItem" }
+        },
+        "hasTelemetry": { "type": "boolean" }
+      }
+    },
+    "orgMember": {
+      "type": "object",
+      "required": ["id", "stepNumber", "name", "roleTitle", "level"],
+      "properties": {
+        "id": { "type": "string" },
+        "stepNumber": { "type": "integer" },
+        "name": { "type": "string" },
+        "roleTitle": { "type": "string" },
+        "department": { "type": "string" },
+        "level": { "type": "integer" },
+        "avatarUrl": { "type": "string" },
+        "hasDirectReports": { "type": "boolean" },
+        "isActiveLeader": { "type": "boolean" },
+        "hasBadge": { "type": "boolean" },
+        "badgeLabel": { "type": "string" }
+      }
+    },
+    "complianceItem": {
+      "type": "object",
+      "required": ["id", "stepNumber", "frameworkCode", "frameworkName"],
+      "properties": {
+        "id": { "type": "string" },
+        "stepNumber": { "type": "integer" },
+        "frameworkCode": { "type": "string" },
+        "frameworkName": { "type": "string" },
+        "certifyingBody": { "type": "string" },
+        "verificationDate": { "type": "string" },
+        "auditScope": { "type": "string" },
+        "isCompliant": { "type": "boolean" },
+        "hasAuditPass": { "type": "boolean" },
+        "hasZeroFindings": { "type": "boolean" }
+      }
+    },
+    "roadmapMilestone": {
+      "type": "object",
+      "required": ["id", "stepNumber", "swimlane", "milestoneTitle"],
+      "properties": {
+        "id": { "type": "string" },
+        "stepNumber": { "type": "integer" },
+        "swimlane": { "type": "string" },
+        "milestoneTitle": { "type": "string" },
+        "deliverableSummary": { "type": "string" },
+        "isMilestoneComplete": { "type": "boolean" },
+        "isActiveSprint": { "type": "boolean" },
+        "hasReleaseGate": { "type": "boolean" }
+      }
+    },
+    "roadmapQuarter": {
+      "type": "object",
+      "required": ["id", "quarterLabel", "milestones"],
+      "properties": {
+        "id": { "type": "string" },
+        "quarterLabel": { "type": "string" },
+        "themeFocus": { "type": "string" },
+        "milestones": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/roadmapMilestone" }
+        },
+        "isCurrentQuarter": { "type": "boolean" }
+      }
+    },
+    "faqItem": {
+      "type": "object",
+      "required": ["id", "stepNumber", "category", "question", "answerSummary"],
+      "properties": {
+        "id": { "type": "string" },
+        "stepNumber": { "type": "integer" },
+        "category": { "type": "string" },
+        "question": { "type": "string" },
+        "answerSummary": { "type": "string" },
+        "technicalDetails": { "type": "string" },
+        "hasExpandedAnswer": { "type": "boolean" },
+        "isFeaturedFaq": { "type": "boolean" },
+        "hasVerifiedAnswer": { "type": "boolean" }
+      }
+    },
+    "scorecardMetric": {
+      "type": "object",
+      "required": ["id", "stepNumber", "metricLabel", "primaryValue"],
+      "properties": {
+        "id": { "type": "string" },
+        "stepNumber": { "type": "integer" },
+        "metricLabel": { "type": "string" },
+        "primaryValue": { "type": "string" },
+        "deltaBadgeText": { "type": "string" },
+        "description": { "type": "string" },
+        "sparklineValues": {
+          "type": "array",
+          "items": { "type": "number" }
+        },
+        "isTargetMet": { "type": "boolean" },
+        "hasPositiveTrend": { "type": "boolean" },
+        "isAuditedMetric": { "type": "boolean" }
+      }
+    },
+    "caseStudyMetric": {
+      "type": "object",
+      "required": ["id", "metricLabel", "metricValue"],
+      "properties": {
+        "id": { "type": "string" },
+        "metricLabel": { "type": "string" },
+        "metricValue": { "type": "string" },
+        "deltaText": { "type": "string" },
+        "hasVerifiedOutcome": { "type": "boolean" }
+      }
+    },
+    "tradeoffFactor": {
+      "type": "object",
+      "required": ["id", "stepNumber", "factorTitle", "description"],
+      "properties": {
+        "id": { "type": "string" },
+        "stepNumber": { "type": "integer" },
+        "factorTitle": { "type": "string" },
+        "description": { "type": "string" },
+        "impactScore": { "type": "number" },
+        "isAdvantage": { "type": "boolean" },
+        "hasRiskMitigation": { "type": "boolean" },
+        "isDecisiveFactor": { "type": "boolean" }
+      }
+    },
+    "codeSnippetLine": {
+      "type": "object",
+      "required": ["lineNumber", "codeText"],
+      "properties": {
+        "lineNumber": { "type": "integer" },
+        "codeText": { "type": "string" },
+        "isHighlighted": { "type": "boolean" },
+        "hasBreakpoint": { "type": "boolean" }
+      }
+    },
+    "executiveSummary": {
+      "type": "object",
+      "required": ["id", "type", "title", "takeawayText", "pillars"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "executive-summary" },
+        "title": { "type": "string" },
+        "takeawayText": { "type": "string" },
+        "takeawayAuthor": { "type": "string" },
+        "pillars": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/strategicPillar" }
+        },
+        "hasStatusBadge": { "type": "boolean" },
+        "statusBadgeText": { "type": "string" }
+      }
+    },
+    "systemArchitectureFlow": {
+      "type": "object",
+      "required": ["id", "type", "title", "tiers"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "system-architecture-flow" },
+        "title": { "type": "string" },
+        "tiers": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/architectureTier" }
+        },
+        "overallThroughput": { "type": "string" },
+        "hasLiveTelemetry": { "type": "boolean" },
+        "packetSpeedMs": { "type": "number" }
+      }
+    },
+    "roiMetricCalculator": {
+      "type": "object",
+      "required": ["id", "type", "title", "baselineAnnualCost", "projectedAnnualCost", "totalCumulativeSavings"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "roi-metric-calculator" },
+        "title": { "type": "string" },
+        "baselineAnnualCost": { "type": "string" },
+        "projectedAnnualCost": { "type": "string" },
+        "totalCumulativeSavings": { "type": "string" },
+        "paybackPeriodMonths": { "type": "number" },
+        "breakevenProgressPercent": { "type": "number" },
+        "yearlyBreakdowns": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/yearlyBreakdown" }
+        },
+        "hasInteractiveSlider": { "type": "boolean" },
+        "isPositiveDelta": { "type": "boolean" },
+        "hasConfidenceBand": { "type": "boolean" }
+      }
+    },
+    "customerJourneyMap": {
+      "type": "object",
+      "required": ["id", "type", "title", "stages"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "customer-journey-map" },
+        "title": { "type": "string" },
+        "stages": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/journeyStage" }
+        },
+        "hasSentimentGraph": { "type": "boolean" },
+        "primaryPersonaName": { "type": "string" }
+      }
+    },
+    "matrixComparisonGrid": {
+      "type": "object",
+      "required": ["id", "type", "title", "competitorNames", "sovereignPlatformName", "rows"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "matrix-comparison-grid" },
+        "title": { "type": "string" },
+        "competitorNames": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "sovereignPlatformName": { "type": "string" },
+        "rows": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/matrixRow" }
+        },
+        "hasHighlightColumn": { "type": "boolean" }
+      }
+    },
+    "techStackGrid": {
+      "type": "object",
+      "required": ["id", "type", "title", "layers"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "tech-stack-grid" },
+        "title": { "type": "string" },
+        "layers": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/stackLayer" }
+        },
+        "totalComponentCount": { "type": "integer" },
+        "hasSecurityStamp": { "type": "boolean" }
+      }
+    },
+    "teamHierarchyOrg": {
+      "type": "object",
+      "required": ["id", "type", "title", "members"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "team-hierarchy-org" },
+        "title": { "type": "string" },
+        "members": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/orgMember" }
+        },
+        "hasReportingConnectors": { "type": "boolean" }
+      }
+    },
+    "securityComplianceMatrix": {
+      "type": "object",
+      "required": ["id", "type", "title", "complianceItems"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "security-compliance-matrix" },
+        "title": { "type": "string" },
+        "complianceItems": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/complianceItem" }
+        },
+        "encryptionStandardText": { "type": "string" },
+        "hasContinuousAuditBadge": { "type": "boolean" }
+      }
+    },
+    "productRoadmapTimeline": {
+      "type": "object",
+      "required": ["id", "type", "title", "quarters"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "product-roadmap-timeline" },
+        "title": { "type": "string" },
+        "quarters": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/roadmapQuarter" }
+        },
+        "hasCurrentMarker": { "type": "boolean" }
+      }
+    },
+    "interactiveFaqFlow": {
+      "type": "object",
+      "required": ["id", "type", "title", "faqItems"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "interactive-faq-flow" },
+        "title": { "type": "string" },
+        "faqItems": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/faqItem" }
+        },
+        "supportContactEmail": { "type": "string" }
+      }
+    },
+    "keyMetricScorecard": {
+      "type": "object",
+      "required": ["id", "type", "title", "metrics"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "key-metric-scorecard" },
+        "title": { "type": "string" },
+        "metrics": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/scorecardMetric" }
+        },
+        "benchmarkPeriod": { "type": "string" }
+      }
+    },
+    "caseStudyImpact": {
+      "type": "object",
+      "required": ["id", "type", "title", "clientName", "challengeNarrative", "solutionNarrative", "impactMetrics"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "case-study-impact" },
+        "title": { "type": "string" },
+        "clientName": { "type": "string" },
+        "clientIndustry": { "type": "string" },
+        "challengeNarrative": { "type": "string" },
+        "solutionNarrative": { "type": "string" },
+        "quoteText": { "type": "string" },
+        "quoteAuthor": { "type": "string" },
+        "quoteAuthorRole": { "type": "string" },
+        "impactMetrics": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/caseStudyMetric" }
+        },
+        "isFlagshipCustomer": { "type": "boolean" },
+        "hasQuoteAttribution": { "type": "boolean" }
+      }
+    },
+    "dualColumnProsCons": {
+      "type": "object",
+      "required": ["id", "type", "title", "leftColumnTitle", "rightColumnTitle", "leftFactors", "rightFactors"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "dual-column-pros-cons" },
+        "title": { "type": "string" },
+        "leftColumnTitle": { "type": "string" },
+        "rightColumnTitle": { "type": "string" },
+        "leftFactors": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/tradeoffFactor" }
+        },
+        "rightFactors": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/tradeoffFactor" }
+        },
+        "summaryRecommendation": { "type": "string" }
+      }
+    },
+    "interactiveCodePlayground": {
+      "type": "object",
+      "required": ["id", "type", "title", "codeLanguage", "sourceFilename", "codeLines"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "interactive-code-playground" },
+        "title": { "type": "string" },
+        "codeLanguage": { "type": "string" },
+        "sourceFilename": { "type": "string" },
+        "codeLines": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/codeSnippetLine" }
+        },
+        "consoleOutputLines": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "isCodeValid": { "type": "boolean" },
+        "hasActiveCursor": { "type": "boolean" },
+        "hasConsoleOutput": { "type": "boolean" }
+      }
+    },
+    "closingCtaShowcase": {
+      "type": "object",
+      "required": ["id", "type", "title", "heroHeadline", "primaryCtaLabel", "primaryCtaUrl", "presenterName"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "closing-cta-showcase" },
+        "title": { "type": "string" },
+        "heroHeadline": { "type": "string" },
+        "supportingText": { "type": "string" },
+        "primaryCtaLabel": { "type": "string" },
+        "primaryCtaUrl": { "type": "string" },
+        "secondaryCtaLabel": { "type": "string" },
+        "secondaryCtaUrl": { "type": "string" },
+        "presenterName": { "type": "string" },
+        "presenterTitle": { "type": "string" },
+        "presenterOrg": { "type": "string" },
+        "qrCodeUrl": { "type": "string" },
+        "hasPrimaryAction": { "type": "boolean" },
+        "isQrActive": { "type": "boolean" },
+        "hasCalendarLink": { "type": "boolean" }
       }
     }
   }

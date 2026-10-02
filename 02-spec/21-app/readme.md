@@ -40,6 +40,7 @@ This directory houses the canonical, sequential specifications for the **White P
 | [24-expanded-slide-system-and-global-ppt-synthesis/01-overview.md](24-expanded-slide-system-and-global-ppt-synthesis/01-overview.md) | **Expanded Slide System & Global PPT Synthesis** | 15 new enterprise slide archetypes, Global PPT color & motion curves, pure DOM text mandate, decoupled template factories. |
 | [25-grounded-global-ppt-and-flat-slide-synthesis/01-overview.md](25-grounded-global-ppt-and-flat-slide-synthesis/01-overview.md) | **Grounded Global PPT & Flat Slide Synthesis** | 15 production archetypes from real PPT & Flat Slide repos, active step progression engine, spring physics, dynamic text shadows, decoupled template factories. |
 | [26-global-ppt-color-motion-and-expanded-slides/01-overview.md](26-global-ppt-color-motion-and-expanded-slides/01-overview.md) | **Global PPT Synthesis, Motion & 15 Enterprise Archetypes** | 15 new enterprise slide archetypes, 10-step gradient precision ramps, 60/30/10 visual balance, 4-plane depth hierarchy, fluid typography, stepped progression, and tactile physics. |
+| [27-enterprise-archetypes-and-system-contracts/01-overview.md](27-enterprise-archetypes-and-system-contracts/01-overview.md) | **Enterprise Archetypes & System Data Contracts** | Advanced enterprise data contracts (Executive Summary, System Architecture Flow, ROI Calculator, Customer Journey, etc.) with strict typing. |
 
 ---
 

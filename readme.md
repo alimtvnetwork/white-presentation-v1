@@ -32,6 +32,8 @@ All architectural specifications are documented sequentially in [02-spec/21-app/
 - [18-Builder Mode Interactive Canvas & Inspector](02-spec/21-app/18-builder-mode-interactive-canvas-spec.md) — Decoupled stores (`useDeck` vs `useEditMode`), 7-layer visual stack, live property inspector, hotkeys.
 - [24-Expanded Slide System & Global PPT Synthesis](02-spec/21-app/24-expanded-slide-system-and-global-ppt-synthesis/01-overview.md) — 15 new enterprise slide archetypes, Global PPT color themes, kinetic animations, pure DOM text mandate, decoupled template factories.
 - [25-Grounded Global PPT & Flat Slide Synthesis](02-spec/21-app/25-grounded-global-ppt-and-flat-slide-synthesis/01-overview.md) — Grounded synthesis from Global PPT & Flat Slide repos, active step progression engine, spring physics, and 15 production archetypes.
+- [26-Global PPT Color, Motion & Expanded Slides](02-spec/21-app/26-global-ppt-color-motion-and-expanded-slides/01-overview.md) — 15 new enterprise archetypes, 10-step gradient precision ramps, 60/30/10 visual balance, 4-plane depth hierarchy, fluid typography.
+- [27-Enterprise Archetypes & System Data Contracts](02-spec/21-app/27-enterprise-archetypes-and-system-contracts/01-overview.md) — Comprehensive data contracts for high-stakes enterprise presentations.
 
 ---
 
