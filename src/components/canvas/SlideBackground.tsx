@@ -18,17 +18,26 @@ export const SlideBackground: React.FC = () => {
         }}
       />
 
-      {/* 2. Geometric Cross-Hatch Subtle Grid */}
+      {/* 2. Geometric Cross-Hatch Grid & Halftone Texture */}
       <div
         className="absolute inset-0"
         style={{
           backgroundImage: `linear-gradient(to right, ${isDark ? 'rgba(255,255,255,0.025)' : 'rgba(0,0,0,0.025)'} 1px, transparent 1px),
-                            linear-gradient(to bottom, ${isDark ? 'rgba(255,255,255,0.025)' : 'rgba(0,0,0,0.025)'} 1px, transparent 1px)`,
-          backgroundSize: '48px 48px',
+                            linear-gradient(to bottom, ${isDark ? 'rgba(255,255,255,0.025)' : 'rgba(0,0,0,0.025)'} 1px, transparent 1px),
+                            radial-gradient(circle 1.2px at center, ${theme.accentColor}${isDark ? '25' : '15'} 1px, transparent 1px)`,
+          backgroundSize: '48px 48px, 48px 48px, 12px 12px',
         }}
       />
 
-      {/* 3. Floating Architectural Vector Motifs (8-12% Opacity) */}
+      {/* 3. Global PPT SVG Turbulence Noise Overlay (Anti-Banding) */}
+      <div
+        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+        }}
+      />
+
+      {/* 4. Floating Architectural Vector Motifs (8-12% Opacity) */}
       <div className={`absolute top-12 right-16 ${isDark ? 'text-white/8' : 'text-slate-900/6'} wave-float-anim`}>
         <Layers size={96} strokeWidth={1} />
       </div>

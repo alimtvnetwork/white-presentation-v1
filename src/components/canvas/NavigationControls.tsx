@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { useDeckStore } from '../../stores/deckStore';
 import { useEditStore } from '../../stores/editStore';
-import { ChevronLeft, ChevronRight, Volume2, VolumeX, Maximize2, LayoutGrid } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Volume2, VolumeX, Maximize2, LayoutGrid, Palette } from 'lucide-react';
 import { DockPosition } from '../../types/presentation';
 import { DockPositionPopover } from './DockPositionPopover';
+import { ThemePopover } from './ThemePopover';
 import { PresenterWebcamButton } from '../webcam/PresenterWebcamButton';
 
 export const NavigationControls: React.FC = () => {
   const { activeSlideIndex, deck, stepAdvance, stepRewind, isSoundEnabled, toggleSound } = useDeckStore();
   const { dockPosition } = useEditStore();
   const [showLayout, setShowLayout] = useState(false);
+  const [showTheme, setShowTheme] = useState(false);
 
   const handleFullscreen = () => {
     if (!document.fullscreenElement) {
@@ -36,6 +38,7 @@ export const NavigationControls: React.FC = () => {
       }`}
     >
       {showLayout && <DockPositionPopover onClose={() => setShowLayout(false)} />}
+      {showTheme && <ThemePopover onClose={() => setShowTheme(false)} />}
 
       <button
         onClick={toggleSound}
@@ -50,7 +53,17 @@ export const NavigationControls: React.FC = () => {
       <PresenterWebcamButton />
 
       <button
-        onClick={() => setShowLayout(!showLayout)}
+        onClick={() => { setShowTheme(!showTheme); setShowLayout(false); }}
+        className={`p-1.5 rounded-full transition-colors cursor-pointer ${
+          showTheme ? 'bg-violet-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'
+        }`}
+        title="Change Presentation Theme"
+      >
+        <Palette size={15} />
+      </button>
+
+      <button
+        onClick={() => { setShowLayout(!showLayout); setShowTheme(false); }}
         className={`p-1.5 rounded-full transition-colors cursor-pointer ${
           showLayout ? 'bg-violet-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'
         }`}
