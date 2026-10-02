@@ -360,6 +360,20 @@ Object.entries(LEGACY_ALIASES).forEach(([legacyId, targetId]) => {
   }
 });
 
+function getCharGradientStop(
+  palette: ThemePalette,
+  index: number,
+  totalChars: number,
+  startStep: number,
+  endStep: number
+): { hex: string; hsl: string } {
+  const hasMultipleChars = totalChars > 1;
+  const ratio = hasMultipleChars ? index / (totalChars - 1) : 0;
+  const targetStep = Math.min(9, Math.max(0, Math.round(startStep + ratio * (endStep - startStep))));
+  const stop = palette.stops[targetStep];
+  return { hex: stop.hex, hsl: stop.hsl };
+}
+
 /**
  * Maps a string of text to discrete character-level colors across the 10-step gradient ramp.
  */
@@ -374,15 +388,8 @@ export function shadeTextByCharacter(
 
   return text.split('').map((char, index) => {
     const isSpace = char === ' ';
-    if (isSpace) {
-      return { char: ' ', hex: 'transparent', hsl: 'transparent' };
-    }
-
-    const hasMultipleChars = totalChars > 1;
-    const ratio = hasMultipleChars ? index / (totalChars - 1) : 0;
-    const targetStep = Math.min(9, Math.max(0, Math.round(startStep + ratio * (endStep - startStep))));
-    const stop = palette.stops[targetStep];
-
+    if (isSpace) return { char: ' ', hex: 'transparent', hsl: 'transparent' };
+    const stop = getCharGradientStop(palette, index, totalChars, startStep, endStep);
     return { char, hex: stop.hex, hsl: stop.hsl };
   });
 }
