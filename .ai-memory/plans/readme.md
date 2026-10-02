@@ -14,3 +14,4 @@
 - [22-steps-slides-from-flat-slide.md](completed/22-steps-slides-from-flat-slide.md)
 - [23-dropdown-theme-system.md](completed/23-dropdown-theme-system.md)
 - [24-expanded-slide-system-and-global.md](completed/24-expanded-slide-system-and-global.md)
+- [25-grounded-global-ppt-and-flat-slide-synthesis.md](completed/25-grounded-global-ppt-and-flat-slide-synthesis.md)
