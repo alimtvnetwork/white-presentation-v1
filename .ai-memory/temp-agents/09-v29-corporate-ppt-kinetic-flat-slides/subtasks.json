@@ -1,0 +1,86 @@
+[
+  {
+    "code": "Task-01",
+    "title": "Author Canonical Specifications under 02-spec/21-app/29-corporate-ppt-kinetic-flat-slides",
+    "owned_files": [
+      "02-spec/21-app/29-corporate-ppt-kinetic-flat-slides/01-overview.md",
+      "02-spec/21-app/29-corporate-ppt-kinetic-flat-slides/02-data-contracts.md",
+      "02-spec/21-app/29-corporate-ppt-kinetic-flat-slides/03-visual-and-motion.md",
+      "02-spec/21-app/29-corporate-ppt-kinetic-flat-slides/04-verification-gates.md",
+      "02-spec/21-app/29-corporate-ppt-kinetic-flat-slides/readme.md"
+    ],
+    "agent_role": "Spec Author 01"
+  },
+  {
+    "code": "Task-02",
+    "title": "Adapt Global PPT Color Themes, Contrast Engine, Dynamic Micro-Shadows & WebAudio Cues",
+    "owned_files": [
+      "src/themes/gradientTokens.ts",
+      "src/audio/soundEngine.ts",
+      "src/components/canvas/SlideBackground.tsx"
+    ],
+    "agent_role": "Worker 01"
+  },
+  {
+    "code": "Task-03",
+    "title": "Wire Step-by-Step Progression in deckStore for All Enterprise Slides",
+    "owned_files": [
+      "src/stores/deckStore.ts"
+    ],
+    "agent_role": "Worker 01"
+  },
+  {
+    "code": "Task-04",
+    "title": "Upgrade 15 Enterprise Slide Components with Active Step Progression & 3-Phase Lifecycle",
+    "owned_files": [
+      "src/components/slides/ExecutiveSummarySlide.tsx",
+      "src/components/slides/SystemArchitectureFlowSlide.tsx",
+      "src/components/slides/RoiMetricCalculatorSlide.tsx",
+      "src/components/slides/CustomerJourneyMapSlide.tsx",
+      "src/components/slides/MatrixComparisonGridSlide.tsx",
+      "src/components/slides/TechStackGridSlide.tsx",
+      "src/components/slides/TeamHierarchyOrgSlide.tsx",
+      "src/components/slides/SecurityComplianceMatrixSlide.tsx",
+      "src/components/slides/ProductRoadmapTimelineSlide.tsx",
+      "src/components/slides/InteractiveFaqFlowSlide.tsx",
+      "src/components/slides/KeyMetricScorecardSlide.tsx",
+      "src/components/slides/CaseStudyImpactSlide.tsx",
+      "src/components/slides/DualColumnProsConsSlide.tsx",
+      "src/components/slides/InteractiveCodePlaygroundSlide.tsx",
+      "src/components/slides/ClosingCtaShowcaseSlide.tsx"
+    ],
+    "agent_role": "Worker 02"
+  },
+  {
+    "code": "Task-05",
+    "title": "Implement Missing TimelineRailSlide Archetype, Factory and Deck Integration",
+    "owned_files": [
+      "src/components/slides/TimelineRailSlide.tsx",
+      "src/components/slides/rail/TimelineRailNode.tsx",
+      "src/types/enterpriseArchetypes.ts",
+      "src/components/slides/EnterpriseSlideRenderer.tsx",
+      "src/utils/enterpriseSlideFactories.ts",
+      "src/stores/initialDeck.ts"
+    ],
+    "agent_role": "Worker 02"
+  },
+  {
+    "code": "Task-06",
+    "title": "Remediate Raw Boolean Negations via booleanGuards and Verify Coding Guidelines",
+    "owned_files": [
+      "src/utils/booleanGuards.ts",
+      "src/App.tsx",
+      "src/components/builder/BuilderPanel.tsx",
+      "src/components/builder/ExportModal.tsx",
+      "src/components/builder/SlideCreatorModal.tsx",
+      "src/components/navigation/KeyboardShortcutsModal.tsx",
+      "src/components/navigation/OverviewGridModal.tsx",
+      "src/components/slides/BeforeAfterShowcaseSlide.tsx",
+      "src/components/slides/InteractiveQuizSlide.tsx",
+      "src/components/slides/WhiteMasterSlide.tsx",
+      "src/components/webcam/PresenterWebcam.tsx",
+      "src/components/theme/ThemeSelector.tsx"
+    ],
+    "agent_role": "Lead Orchestrator"
+  }
+]
