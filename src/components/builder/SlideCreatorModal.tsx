@@ -6,12 +6,14 @@ import {
   X, Plus, Layers, Sparkles, TrendingUp, Grid, GitCompare, Calendar,
   LayoutGrid, Terminal, RotateCw, Users, Award, Quote, Columns3, CheckCircle2,
   BarChart3, Shield, Search, Zap, HelpCircle, Database, ListChecks, Flame,
+  ShieldAlert, Crosshair, Scale, Flag, Building2, Cpu,
 } from 'lucide-react';
 
 const ICONS: Record<string, React.FC<{ size?: number }>> = {
   BarChart3, Sparkles, TrendingUp, Grid, GitCompare, Calendar, LayoutGrid, Layers,
   Terminal, RotateCw, Users, Award, Quote, Columns3, CheckCircle2,
   Shield, Search, Zap, HelpCircle, Database, ListChecks, Flame,
+  ShieldAlert, Crosshair, Scale, Flag, Building2, Cpu,
 };
 
 export const SlideCreatorModal: React.FC = () => {

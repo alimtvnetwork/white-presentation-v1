@@ -5,6 +5,16 @@ All notable changes to the White Presentation System will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.2.2] - 2026-10-02
+
+### Added
+- **Canvas Atmospheric Layer Activation:**
+  - Integrated `SlideBackground` directly into `PresentationCanvas.tsx` inside `#presentation-root` behind active slides.
+  - Activates the full Global PPT atmospheric background: radial spotlight glow (`ellipse 65% 55% at 50% 48%`), 48px cross-hatch coordinate grid, and floating vector tech motifs at 8–12% opacity with wave float animation.
+- **Verification & Build Validation:**
+  - Automated TypeScript compile check passed with 0 errors (`pnpm exec tsc --noEmit`).
+  - Production Vite bundle compilation verified with 0 errors (`pnpm run build`).
+
 ## [v1.2.1] - 2026-10-02
 
 ### Added

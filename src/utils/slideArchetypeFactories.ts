@@ -7,7 +7,9 @@ import {
   CallToActionSlideData,
 } from '../types/presentation';
 import { EXTENDED_FACTORIES, EXTENDED_ARCHETYPE_OPTIONS, ArchetypeOption } from './extendedSlideFactories';
+import { EXPANDED_FACTORIES, EXPANDED_ARCHETYPE_OPTIONS } from './expandedSlideFactories';
 export * from './extendedSlideFactories';
+export * from './expandedSlideFactories';
 
 export const ORIGINAL_ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   { type: 'metric-grid', label: 'Metric Grid Matrix', category: 'Strategy & Metrics', desc: '4-6 quantitative KPI cards with delta trends', icon: 'BarChart3' },
@@ -30,6 +32,7 @@ export const ORIGINAL_ARCHETYPE_OPTIONS: ArchetypeOption[] = [
 export const ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   ...ORIGINAL_ARCHETYPE_OPTIONS,
   ...EXTENDED_ARCHETYPE_OPTIONS,
+  ...EXPANDED_ARCHETYPE_OPTIONS,
 ];
 
 export const createMetricGridSlide = (id = `slide-${Date.now()}`): MetricGridSlideData => ({
@@ -264,6 +267,9 @@ export const createArchetypeSlide = (type: SlideType, id = `slide-${Date.now()}`
   };
   if (type in EXTENDED_FACTORIES) {
     return EXTENDED_FACTORIES[type as keyof typeof EXTENDED_FACTORIES](id);
+  }
+  if (type in EXPANDED_FACTORIES) {
+    return EXPANDED_FACTORIES[type as keyof typeof EXPANDED_FACTORIES](id);
   }
   return fns[type] ? fns[type](id) : {
     id, type: 'title', title: 'New Strategic Keynote', subtitle: 'High-leverage enterprise presentation',

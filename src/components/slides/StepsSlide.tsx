@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StepsSlideData } from '../../types/presentation';
 import { useDeckStore } from '../../stores/deckStore';
 import { useEditStore } from '../../stores/editStore';
 import { THEME_PALETTES } from '../../themes/gradientTokens';
-import { soundEngine } from '../../audio/soundEngine';
+import { getStepPhase, getStepHaloStyle } from '../../utils/stepProgression';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export const StepsSlide: React.FC<{ slide: StepsSlideData }> = ({ slide }) => {
@@ -17,6 +17,8 @@ export const StepsSlide: React.FC<{ slide: StepsSlideData }> = ({ slide }) => {
   const isDark = Boolean(theme.isDark);
   const headerShadow = theme.headerShadow || (isDark ? 'rgb(0 0 0) 1px 0.7px 0px' : 'rgb(255 255 255) 1px 0.7px 0px');
   const logoSrc = isDark ? '/assets/logos/5 - Riseup Asia Logo Transparent Only WT.png' : '/assets/logos/6 - Riseup Asia Logo Transparent Only BK.png';
+  const isPreviousAllowed = currentStep > 0;
+  const isNextAllowed = currentStep < total - 1;
 
   return (
     <div
@@ -25,7 +27,7 @@ export const StepsSlide: React.FC<{ slide: StepsSlideData }> = ({ slide }) => {
     >
       <div className="flex flex-col justify-between z-20">
         <div>
-          <div className="text-violet-500 font-mono text-[13px] font-bold tracking-[0.25em] uppercase mb-2" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => ({ ...s, kicker: e.currentTarget.textContent || '' }))}>
+          <div style={{ color: theme.accentColor }} className="font-mono text-[13px] font-bold tracking-[0.25em] uppercase mb-2" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => ({ ...s, kicker: e.currentTarget.textContent || '' }))}>
             {slide.kicker || 'PROCESS & EXECUTION'}
           </div>
           <h1 style={{ color: theme.textColor, textShadow: headerShadow }} className="font-ubuntu text-[48px] font-extrabold tracking-tight leading-tight mb-8" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => ({ ...s, heading: e.currentTarget.textContent || '', title: e.currentTarget.textContent || '' }))}>
@@ -33,17 +35,20 @@ export const StepsSlide: React.FC<{ slide: StepsSlideData }> = ({ slide }) => {
           </h1>
           <div className="flex flex-col gap-3">
             {steps.map((st, i) => {
-              const isActive = i === currentStep;
-              const opacity = isActive ? 1 : i < currentStep ? 0.55 : 0.4;
+              const phase = getStepPhase(i, currentStep);
+              const isActive = phase === 'active';
+              const isPast = phase === 'past';
+              const opacity = isActive ? 1 : isPast ? 0.6 : 0.4;
+              const halo = getStepHaloStyle(isActive, theme.accentColor);
 
               return (
                 <div
                   key={i}
                   onClick={() => jumpToStep(i)}
-                  style={{ opacity, backgroundColor: isActive ? `${theme.accentColor}18` : 'transparent', borderColor: isActive ? theme.accentColor : 'transparent' }}
-                  className="flex items-center gap-4 p-4 rounded-xl border transition-all cursor-pointer hover:opacity-100"
+                  style={{ opacity, backgroundColor: isActive ? `${theme.accentColor}18` : 'transparent', ...halo }}
+                  className="flex items-center gap-4 p-4 rounded-xl border border-transparent transition-all cursor-pointer hover:opacity-100"
                 >
-                  <span style={{ color: isActive ? theme.accentColor : theme.subtextColor, textShadow: isActive ? '0 1px 3px rgba(0,0,0,0.3)' : undefined }} className="font-mono text-xl font-bold tracking-wider">
+                  <span style={{ color: isActive ? theme.accentColor : theme.subtextColor }} className="font-mono text-xl font-bold tracking-wider">
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   <div className="flex-1 truncate">
@@ -61,7 +66,7 @@ export const StepsSlide: React.FC<{ slide: StepsSlideData }> = ({ slide }) => {
       <div style={{ backgroundColor: theme.cardBg, borderColor: theme.cardBorder }} className="flex flex-col justify-between p-12 rounded-3xl border shadow-2xl backdrop-blur-md z-20">
         <div>
           <div className="flex items-center justify-between mb-6">
-            <span style={{ color: theme.accentColor, borderColor: `${theme.accentColor}40` }} className="px-3.5 py-1 text-xs font-mono font-bold tracking-widest uppercase rounded-full border bg-violet-500/10">
+            <span style={{ color: theme.accentColor, borderColor: `${theme.accentColor}40`, backgroundColor: `${theme.accentColor}18` }} className="px-3.5 py-1 text-xs font-mono font-bold tracking-widest uppercase rounded-full border">
               {focused.label}
             </span>
             <img src={logoSrc} alt="Logo" className="h-[38px] w-auto object-contain filter contrast-125" />
@@ -81,8 +86,8 @@ export const StepsSlide: React.FC<{ slide: StepsSlideData }> = ({ slide }) => {
         <div className="flex items-center justify-between pt-6 border-t border-white/10 mt-6">
           <span style={{ color: theme.subtextColor }} className="font-mono text-sm tracking-wider uppercase">Step {currentStep + 1} of {total}</span>
           <div className="flex items-center gap-2">
-            <button onClick={() => jumpToStep(Math.max(0, currentStep - 1))} disabled={currentStep === 0} className="p-2.5 rounded-xl border border-white/10 hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer transition-all" title="Previous Step"><ChevronLeft size={18} style={{ color: theme.textColor }} /></button>
-            <button onClick={() => jumpToStep(Math.min(total - 1, currentStep + 1))} disabled={currentStep === total - 1} className="p-2.5 rounded-xl border border-white/10 hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer transition-all" title="Next Step"><ChevronRight size={18} style={{ color: theme.textColor }} /></button>
+            <button onClick={() => { if (isPreviousAllowed) jumpToStep(currentStep - 1); }} aria-disabled={isPreviousAllowed ? 'false' : 'true'} className={`p-2.5 rounded-xl border border-white/10 transition-all ${isPreviousAllowed ? 'hover:bg-white/10 cursor-pointer' : 'opacity-30 cursor-not-allowed'}`} title="Previous Step"><ChevronLeft size={18} style={{ color: theme.textColor }} /></button>
+            <button onClick={() => { if (isNextAllowed) jumpToStep(currentStep + 1); }} aria-disabled={isNextAllowed ? 'false' : 'true'} className={`p-2.5 rounded-xl border border-white/10 transition-all ${isNextAllowed ? 'hover:bg-white/10 cursor-pointer' : 'opacity-30 cursor-not-allowed'}`} title="Next Step"><ChevronRight size={18} style={{ color: theme.textColor }} /></button>
           </div>
         </div>
       </div>

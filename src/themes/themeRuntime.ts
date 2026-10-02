@@ -32,6 +32,7 @@ export function applyTheme(id: string, isFromBroadcast = false): ThemePalette {
 
   const root = document.documentElement;
   const isDark = Boolean(theme.isDark);
+  const headerShadow = isDark ? 'rgb(0 0 0) 1px 0.7px 0px' : 'rgb(255 255 255) 1px 0.7px 0px';
 
   root.setAttribute('data-theme', theme.id);
   root.setAttribute('data-appearance', isDark ? 'dark' : 'light');
@@ -49,11 +50,20 @@ export function applyTheme(id: string, isFromBroadcast = false): ThemePalette {
     '--pres-text-subtle': isDark ? '#64748B' : '#94A3B8',
     '--pres-border': theme.cardBorder,
     '--pres-border-hover': theme.accentColor,
-    '--pres-header-shadow': theme.headerShadow,
+    '--pres-header-shadow': theme.headerShadow || headerShadow,
     '--preset-display-font': FONT_DISPLAY,
     '--preset-body-font': FONT_BODY,
     '--preset-mono-font': FONT_MONO,
   };
+
+  if (theme.stops && Array.isArray(theme.stops)) {
+    theme.stops.forEach((stop) => {
+      vars[`--pres-stop-${stop.step}`] = stop.hex;
+      vars[`--pres-s${stop.step}`] = stop.hex;
+      vars[`--pres-stop-${stop.step}-hsl`] = stop.hsl;
+      vars[`--pres-stop-${stop.step}-rgb`] = stop.rgb;
+    });
+  }
 
   Object.entries(vars).forEach(([key, val]) => {
     root.style.setProperty(key, val);
@@ -72,7 +82,8 @@ export function applyTheme(id: string, isFromBroadcast = false): ThemePalette {
     // ignore storage access errors
   }
 
-  if (!isFromBroadcast && broadcastChannel) {
+  const isLocalOrigin = isFromBroadcast ? false : true;
+  if (isLocalOrigin && broadcastChannel) {
     broadcastChannel.postMessage({ type: 'THEME_SYNC', themeId: theme.id });
   }
 

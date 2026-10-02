@@ -28,10 +28,34 @@
 @font-heading:     'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 @font-mono:        'JetBrains Mono', 'Fira Code', monospace;
 
+// Fluid Typography Scale Tokens
+@type-display-hero:    clamp(40px, 4vw, 56px);
+@type-display-title:   clamp(32px, 3vw, 44px);
+@type-display-section: clamp(24px, 2.2vw, 32px);
+@type-body-lead:       clamp(16px, 1.4vw, 20px);
+@type-body-regular:    clamp(14px, 1.1vw, 16px);
+@type-body-caption:    clamp(11px, 0.9vw, 13px);
+@type-kicker:          clamp(11px, 0.85vw, 13px);
+
 // Elevation & Shadows
 @shadow-card:      0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
 @shadow-card-hover:0 20px 30px -10px rgba(124, 58, 237, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 @shadow-glow:      0 0 20px rgba(124, 58, 237, 0.35);
+
+// 4-Plane Depth Hierarchy Tokens
+@plane-0-z:        0;
+@plane-1-z:        10;
+@plane-2-z:        20;
+@plane-3-z:        50;
+
+@shadow-plane-0:   none;
+@shadow-plane-1:   0 4px 12px -2px rgba(0, 0, 0, 0.05);
+@shadow-plane-2:   0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+@shadow-plane-3:   0 25px 50px -12px rgba(0, 0, 0, 0.35), 0 0 25px var(--pres-accent-glow);
+
+// Motion Physics & Deceleration
+@ease-presentation: cubic-bezier(0.22, 1, 0.36, 1);
+@ease-arc:          cubic-bezier(0.4, 0, 0.2, 1);
 
 // Text Shadow Tokens (High-Definition Micro-Shadows)
 @text-shadow-on-dark:  rgb(0 0 0) 1px 0.7px 0px;
@@ -61,4 +85,14 @@
 @pres-font-body:       var(--preset-body-font, @font-body);
 @pres-font-mono:       var(--preset-mono-font, @font-mono);
 
-
+// 10-Step Gradient Stop Tokens
+@pres-stop-0:          var(--pres-stop-0, #f5f3ff);
+@pres-stop-1:          var(--pres-stop-1, #ede9fe);
+@pres-stop-2:          var(--pres-stop-2, #ddd6fe);
+@pres-stop-3:          var(--pres-stop-3, #c4b5fd);
+@pres-stop-4:          var(--pres-stop-4, #a78bfa);
+@pres-stop-5:          var(--pres-stop-5, #8b5cf6);
+@pres-stop-6:          var(--pres-stop-6, #7c3aed);
+@pres-stop-7:          var(--pres-stop-7, #6d28d9);
+@pres-stop-8:          var(--pres-stop-8, #4c1d95);
+@pres-stop-9:          var(--pres-stop-9, #0f172a);

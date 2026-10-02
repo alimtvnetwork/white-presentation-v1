@@ -39,3 +39,30 @@ export function calculateProgressPercent(current: number, total: number): number
   if (total <= 1) return 100;
   return Math.min(100, Math.max(0, (current / (total - 1)) * 100));
 }
+
+export function computeMagneticOffset(
+  cursorX: number,
+  cursorY: number,
+  elementRect: DOMRect,
+  pullRadius = 35
+): { offsetX: number; offsetY: number } {
+  const centerX = elementRect.left + elementRect.width / 2;
+  const centerY = elementRect.top + elementRect.height / 2;
+  const deltaX = cursorX - centerX;
+  const deltaY = cursorY - centerY;
+  const distance = Math.hypot(deltaX, deltaY);
+
+  if (distance >= pullRadius || distance === 0) {
+    return { offsetX: 0, offsetY: 0 };
+  }
+
+  const factor = Math.pow(1 - distance / pullRadius, 2);
+  const maxOffset = 12;
+  const offsetX = (deltaX / pullRadius) * maxOffset * factor;
+  const offsetY = (deltaY / pullRadius) * maxOffset * factor;
+
+  return {
+    offsetX: Math.round(offsetX * 100) / 100,
+    offsetY: Math.round(offsetY * 100) / 100,
+  };
+}

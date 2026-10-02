@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDeckStore } from '../../stores/deckStore';
 import { useEditStore } from '../../stores/editStore';
 import { SlideRenderer } from '../slides/SlideRenderer';
+import { SlideBackground } from './SlideBackground';
 import { NavigationControls } from './NavigationControls';
 import { SlideIndicator } from './SlideIndicator';
 import { SlideCreatorModal } from '../builder/SlideCreatorModal';
@@ -79,6 +80,7 @@ export const PresentationCanvas: React.FC = () => {
         }}
         className="relative shadow-2xl overflow-hidden shrink-0 select-none"
       >
+        <SlideBackground />
         {activeSlide && <SlideRenderer slide={activeSlide} />}
       </div>
       <SlideIndicator />

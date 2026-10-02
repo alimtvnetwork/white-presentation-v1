@@ -1,7 +1,9 @@
 import type { NewSlideType, NewSlideData } from './archetypes';
 import type { ExtendedSlideType, ExtendedSlideData } from './extendedArchetypes';
+import type { ExpandedSlideType, ExpandedSlideData } from './expandedArchetypes';
 export * from './archetypes';
 export * from './extendedArchetypes';
+export * from './expandedArchetypes';
 
 export type SlideType =
   | 'white-master'
@@ -17,7 +19,8 @@ export type SlideType =
   | 'tech-stack'
   | 'steps'
   | NewSlideType
-  | ExtendedSlideType;
+  | ExtendedSlideType
+  | ExpandedSlideType;
 
 export type DockPosition =
   | 'bottom-center'
@@ -254,7 +257,8 @@ export type SlideData =
   | TechStackSlideData
   | StepsSlideData
   | NewSlideData
-  | ExtendedSlideData;
+  | ExtendedSlideData
+  | ExpandedSlideData;
 
 export interface PresentationDeck {
   id: string;

@@ -3,6 +3,7 @@ import { TimelineRoadmapSlideData } from '../../types/presentation';
 import { useDeckStore } from '../../stores/deckStore';
 import { useEditStore } from '../../stores/editStore';
 import { THEME_PALETTES } from '../../themes/gradientTokens';
+import { getStepPhase, getStepHaloStyle, STEP_TRANSITION } from '../../utils/stepProgression';
 import { CheckCircle2, Clock, Calendar } from 'lucide-react';
 
 export const TimelineRoadmapSlide: React.FC<{ slide: TimelineRoadmapSlideData }> = ({ slide }) => {
@@ -21,7 +22,7 @@ export const TimelineRoadmapSlide: React.FC<{ slide: TimelineRoadmapSlideData }>
     >
       <div className="flex items-center justify-between z-20">
         <div>
-          <div className="text-[13px] font-bold tracking-[0.25em] uppercase text-violet-500 mb-2 font-mono" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => ({ ...s, kicker: e.currentTarget.textContent || '' }))}>
+          <div style={{ color: theme.accentColor }} className="text-[13px] font-bold tracking-[0.25em] uppercase mb-2 font-mono" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => ({ ...s, kicker: e.currentTarget.textContent || '' }))}>
             {slide.kicker || 'STRATEGIC DELIVERY ROADMAP'}
           </div>
           <h1 style={{ color: theme.textColor, textShadow: theme.headerShadow }} className="font-ubuntu text-[52px] font-extrabold tracking-tight leading-tight slide-up-anim" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => ({ ...s, title: e.currentTarget.textContent || '' }))}>
@@ -39,32 +40,30 @@ export const TimelineRoadmapSlide: React.FC<{ slide: TimelineRoadmapSlideData }>
       <div className="grid grid-cols-4 gap-6 my-auto z-20 w-full">
         {rawList.map((item: any, idx: number) => {
           const period = item.period || item.quarter || `Stage 0${idx + 1}`;
-          const isDone = item.status === 'completed' || Boolean(item.isCompleted);
-          const isActive = item.status === 'in-progress' || Boolean(item.isActive);
+          const isCompleted = item.status === 'completed' || Boolean(item.isCompleted);
+          const phase = getStepPhase(idx, currentStep);
+          const isStepFocused = phase === 'active';
+          const isPast = phase === 'past';
+          const opacity = isStepFocused ? 1 : isPast ? 0.75 : 0.45;
           const tasks = item.deliverables || item.milestones || [];
-          const statusBadge = isDone
-            ? { label: 'Completed', color: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30', Icon: CheckCircle2 }
-            : isActive
-            ? { label: 'In Progress', color: 'bg-violet-500/20 text-violet-400 border-violet-500/40', Icon: Clock }
-            : { label: 'Upcoming', color: 'bg-slate-500/10 text-slate-400 border-slate-500/20', Icon: Calendar };
-
-          const isStepFocused = idx === currentStep;
+          const halo = getStepHaloStyle(isStepFocused, theme.accentColor);
+          const badgeColor = isCompleted ? '#10b981' : isStepFocused ? theme.accentColor : theme.subtextColor;
+          const badgeBg = isCompleted ? '#10b98115' : isStepFocused ? `${theme.accentColor}18` : 'transparent';
+          const badgeBorder = isCompleted ? '#10b98140' : isStepFocused ? `${theme.accentColor}40` : `${theme.subtextColor}30`;
 
           return (
             <div
               key={idx}
               onClick={() => jumpToStep(idx)}
-              style={{
-                backgroundColor: theme.cardBg,
-                borderColor: isStepFocused ? theme.accentColor : theme.cardBorder,
-              }}
-              className={`p-7 rounded-2xl border-2 backdrop-blur-md shadow-xl flex flex-col justify-between cursor-pointer transition-all duration-300 hover:scale-[1.02] slide-up-anim stagger-${idx + 1} ${isStepFocused ? 'bento-glow-pulse ring-2 ring-violet-500/50' : 'opacity-85'}`}
+              style={{ backgroundColor: theme.cardBg, borderColor: isStepFocused ? theme.accentColor : theme.cardBorder, opacity, transform: isStepFocused ? 'translateY(-6px) scale(1.02)' : 'translateY(0) scale(1)', transition: STEP_TRANSITION, ...halo }}
+              className={`p-7 rounded-2xl border-2 backdrop-blur-md shadow-xl flex flex-col justify-between cursor-pointer slide-up-anim stagger-${idx + 1}`}
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="font-mono text-sm font-bold text-violet-400 tracking-wider uppercase">{period}</span>
-                  <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold border ${statusBadge.color}`}>
-                    <statusBadge.Icon size={12} /> {statusBadge.label}
+                  <span style={{ color: theme.accentColor }} className="font-mono text-sm font-bold tracking-wider uppercase">{period}</span>
+                  <span style={{ color: badgeColor, borderColor: badgeBorder, backgroundColor: badgeBg }} className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold border">
+                    {isCompleted ? <CheckCircle2 size={12} /> : isStepFocused ? <Clock size={12} /> : <Calendar size={12} />}
+                    {isCompleted ? 'Completed' : isStepFocused ? 'In Progress' : 'Upcoming'}
                   </span>
                 </div>
                 <h3 style={{ color: theme.textColor }} className="font-ubuntu text-xl font-bold mb-3">{item.title}</h3>
@@ -72,7 +71,7 @@ export const TimelineRoadmapSlide: React.FC<{ slide: TimelineRoadmapSlideData }>
                 <div className="flex flex-col gap-2 pt-2 border-t border-white/10">
                   {tasks.map((task: string, tIdx: number) => (
                     <div key={tIdx} className="flex items-start gap-2">
-                      <span className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${isDone ? 'bg-emerald-400' : isActive ? 'bg-violet-400' : 'bg-slate-500'}`} />
+                      <span style={{ backgroundColor: isCompleted ? '#10b981' : isStepFocused ? theme.accentColor : '#64748b' }} className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0" />
                       <span style={{ color: theme.subtextColor }} className="font-poppins text-[13px] leading-snug">{task}</span>
                     </div>
                   ))}

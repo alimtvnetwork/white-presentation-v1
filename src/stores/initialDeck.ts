@@ -22,11 +22,18 @@ import {
   createRevealGridSlide,
   createBeforeAfterShowcaseSlide,
 } from '../utils/slideArchetypeFactories';
+import {
+  createAuthenticityHookSlide,
+  createAvoidCommoditySlide,
+  createSwotAnalysisSlide,
+  createCompetitorMatrixSlide,
+  createExecutiveContactSlide,
+} from '../utils/expandedSlideFactories';
 
 export const INITIAL_DECK: PresentationDeck = {
   id: 'white-presentation-v1',
   title: 'White Presentation System - Executive Keynote',
-  version: '1.2.1',
+  version: '1.2.2',
   author: 'Riseup Asia Architectural Team',
   defaultThemeId: 'white-brand',
   canvas: {
@@ -142,5 +149,10 @@ export const INITIAL_DECK: PresentationDeck = {
     createQuoteCalloutSlide('slide-23'),
     createComparisonColumnsSlide('slide-24'),
     createCallToActionSlide('slide-25'),
+    createAuthenticityHookSlide('slide-26'),
+    createAvoidCommoditySlide('slide-27'),
+    createSwotAnalysisSlide('slide-28'),
+    createCompetitorMatrixSlide('slide-29'),
+    createExecutiveContactSlide('slide-30'),
   ],
 };
