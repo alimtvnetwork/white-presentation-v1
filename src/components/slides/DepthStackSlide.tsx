@@ -84,8 +84,8 @@ export const DepthStackSlide: React.FC<{ slide: DepthStackSlideData }> = ({ slid
       <div className="flex items-center justify-between z-10 pt-4 border-t border-slate-700/30 font-mono text-xs" style={{ color: theme.subtextColor }}>
         <span className="flex items-center gap-2 font-bold" style={{ color: theme.accentColor }}><Layers size={14} /> Kinetic 3D Peel-Away Stack</span>
         <div className="flex items-center gap-3">
-          <button onClick={() => { if (isPreviousAllowed) jumpToStep(currentStep - 1); }} aria-disabled={!isPreviousAllowed} className={`p-2 rounded-lg border border-slate-700 transition-all ${isPreviousAllowed ? 'hover:bg-slate-800 cursor-pointer' : 'opacity-30 cursor-not-allowed'}`} title="Previous Card"><ChevronLeft size={16} /></button>
-          <button onClick={() => { if (isNextAllowed) jumpToStep(currentStep + 1); }} aria-disabled={!isNextAllowed} className={`p-2 rounded-lg border border-slate-700 transition-all ${isNextAllowed ? 'hover:bg-slate-800 cursor-pointer' : 'opacity-30 cursor-not-allowed'}`} title="Next Card"><ChevronRight size={16} /></button>
+          <button onClick={() => { if (isPreviousAllowed) jumpToStep(currentStep - 1); }} aria-disabled={isPreviousAllowed ? 'false' : 'true'} className={`p-2 rounded-lg border border-slate-700 transition-all ${isPreviousAllowed ? 'hover:bg-slate-800 cursor-pointer' : 'opacity-30 cursor-not-allowed'}`} title="Previous Card"><ChevronLeft size={16} /></button>
+          <button onClick={() => { if (isNextAllowed) jumpToStep(currentStep + 1); }} aria-disabled={isNextAllowed ? 'false' : 'true'} className={`p-2 rounded-lg border border-slate-700 transition-all ${isNextAllowed ? 'hover:bg-slate-800 cursor-pointer' : 'opacity-30 cursor-not-allowed'}`} title="Next Card"><ChevronRight size={16} /></button>
         </div>
       </div>
     </div>

@@ -193,9 +193,11 @@ export interface HardwareShowcaseSlideData extends BaseSlide {
 
 export interface MatrixCapabilityRow {
   id: string; capabilityName: string; category?: string;
-  ourPlatformSupport: boolean; ourPlatformNote?: string;
-  competitorASupport: boolean; competitorBSupport: boolean;
-  competitorCSupport?: boolean; isKeyDifferentiator?: boolean;
+  hasOurPlatformSupport?: boolean; ourPlatformNote?: string;
+  hasCompetitorASupport?: boolean; hasCompetitorBSupport?: boolean;
+  hasCompetitorCSupport?: boolean; isKeyDifferentiator?: boolean;
+  ourPlatformSupport?: boolean; competitorASupport?: boolean;
+  competitorBSupport?: boolean; competitorCSupport?: boolean;
 }
 
 export interface CompetitorMatrixSlideData extends BaseSlide {
