@@ -68,12 +68,16 @@ AI agents MUST sequentially ingest these specification files:
    - Multi-step slides (`StepsSlide`, `TimelineRoadmapSlide`, `ProcessCycleSlide`, `DepthStackSlide`, `RevealGridSlide`) must consume `activeStep` from `useDeckStore`.
    - Navigation keys (`ArrowRight`, `Space`, `Enter`) and on-screen chevrons must step through internal phases before advancing slides.
    - Smooth spring transitions (`STEP_TRANSITION = 'all 0.35s cubic-bezier(0.22, 1, 0.36, 1)'`) and halos (`getStepHaloStyle`).
-4. **Hard Rule #6 Component Sizing**:
+4. **Directional Slide Transitions**:
+   - Wrap active slide in `<SlideTransition transitionKey={activeSlide.id} direction={slideDirection} transitionType="slide">`.
+   - Track `slideDirection: 1 | -1` in `deckStore` across `nextSlide`, `prevSlide`, and `goToSlide`.
+5. **Hard Rule #6 Component Sizing**:
    - Every single slide component (`src/components/slides/*.tsx`) MUST be strictly <= 100 lines. Decompose into leaf sub-components if needed.
-5. **Master Deck Pre-Seeding**:
+6. **Master Deck Pre-Seeding**:
    - Every new archetype MUST be registered in `src/stores/initialDeck.ts` in `INITIAL_DECK` so it is immediately playable on load.
-6. **Executive Persona Standardization**:
+7. **Executive Persona Standardization**:
    - Alim Ul Karim is strictly titled `"Chief Software Engineer"` (never `"Founder"` or `"CEO"`).
-7. **Positive Booleans Only**:
-   - Use `is*` and `has*` prefixes exclusively (e.g. `isDark`, `isEditMode`, `hasCheckmark`, `hasCompetitorASupport`).
+8. **Positive Booleans Only**:
+   - Use `is*` and `has*` prefixes exclusively (e.g. `isDark`, `isEditMode`, `hasCheckmark`, `hasDotMatrix`, `isEnabled`).
+
 
