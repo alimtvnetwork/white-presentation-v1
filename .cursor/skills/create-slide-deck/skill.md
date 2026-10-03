@@ -108,4 +108,34 @@ AI agents MUST sequentially ingest these specification files:
 5. **Release Verification Gate:**
    - A release is ONLY valid when TypeScript exits 0, production build succeeds, all components satisfy $\le 100$ lines, local runner `run.ps1` verifies dev server, git commit is created, tag is pushed to remote, and `git status` reports `nothing to commit, working tree clean`.
 
+---
+
+## 6. Global PPT Evolution & 16-Slide Expansion Suite (Modules 38 & 39)
+
+1. **Cascading Slide Renderer Architecture:**
+   - Slide dispatching cascades strictly through decoupled modular sub-renderers to satisfy Hard Rule #6 ($\le 100$ lines):
+     `SlideRenderer.tsx` $\to$ `CustomizationSlideRenderer.tsx` $\to$ `FlatGlobalSuiteSlideRenderer.tsx` $\to$ `GlobalPptExpansionSuiteSlideRenderer.tsx` $\to$ `WhiteMasterSlide.tsx`.
+2. **16 High-Authority Expansion Slide Archetypes (Module 39):**
+   - **MultiTenantIsolationMatrix**: Cryptographic cell boundaries, blast radius containment, tenancy tiers.
+   - **RealtimeLatencyHeatmap**: Global edge pop percentiles ($p_{50}$, $p_{95}$, $p_{99}$), SLA status indicators.
+   - **ExecutiveGovernanceDashboard**: Board-level compliance KPIs, regulatory posture, audit readiness scores.
+   - **ZeroTrustPolicyGraph**: Continuous identity verification, dynamic ingress rules, microsegmentation mesh.
+   - **CloudFinopsPaybackWaterfall**: Unit economics, amortized cloud migration ROI, cost-reduction bars.
+   - **DistributedCqrsEventMesh**: Event-driven decoupled pub/sub topology, event streaming rails, event sourcing logs.
+   - **AutonomousSelfHealingPod**: Automated health probes, self-healing circuit breakers, MTTR remediation.
+   - **GlobalAnycastRoutingTopology**: BGP routing edge nodes, tier-1 peering transit latencies, failure failover paths.
+   - **EnterpriseSbomSlsaProvenance**: Software supply chain SLSA Level 4 verification, cryptographic signature seals.
+   - **SupplyChainResilienceIndex**: Vendor risk concentration heat levels, alternative routing readiness scores.
+   - **QuantumSafeMigrationLadder**: NIST post-quantum crypto migration milestones, cipher algorithm modernization.
+   - **CognitiveDecarbonizationEsg**: Data center carbon intensity (PUE), green computing workload scheduling metrics.
+   - **CustomerExperienceRetentionFunnel**: B2B user onboarding velocity, churn deflection telemetry, net retention rates.
+   - **DeveloperVelocityDoraMatrix**: Elite DORA metrics (deployment frequency, lead time, MTTR, change failure rate).
+   - **StrategicPartnershipEcosystem**: Ecosystem integration rings, mutual revenue flywheels, API partner tiers.
+   - **ExecutiveCommitmentSignoff**: Mutual SLAs, executive signoff credentials, delivery guarantee stamps.
+3. **Kinetic Animation Standards:**
+   - Use specialized keyframes from `animations.less`: `.radar-sweep`, `.raft-heartbeat`, `.lineage-flow`, `.orbit-rotate`, and `@ease-presentation` (`cubic-bezier(0.22, 1, 0.36, 1)`).
+   - Multi-step slides type phase as `StepPhase` (`'past' | 'completed' | 'active' | 'future'`).
+   - Clean-pass teardown: Always call `cleanRootThemeVariables` before applying palette tokens on `#presentation-root`.
+
+
 

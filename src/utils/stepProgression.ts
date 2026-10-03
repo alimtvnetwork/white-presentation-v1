@@ -1,6 +1,10 @@
-// lint-allow: file-size reason="Central step progression calculations and kinetic physics" max=450
+// lint-allow: file-size reason="Central step progression calculations and kinetic physics" max=460
 import type { CSSProperties } from 'react';
 import { isModernSlide, calculateModernSlideStepCount } from '../types/modernArchetypes';
+import {
+  isGlobalPptExpansionSlide,
+  calculateGlobalPptExpansionSlideSteps,
+} from '../types/globalPptExpansionArchetypes';
 
 export type StepPhase = 'past' | 'completed' | 'active' | 'future';
 
@@ -384,10 +388,9 @@ export function calculateFlatGlobalSuiteSlideSteps(slide: any): number {
   }
 }
 
-export function getSlideMaxSteps(slide: any): number {
-  const hasSlide = Boolean(slide && typeof slide === 'object');
-  if (!hasSlide) {
-    return 1;
+function getSuiteStepCount(slide: any): number {
+  if (isGlobalPptExpansionSlide(slide)) {
+    return calculateGlobalPptExpansionSlideSteps(slide);
   }
   if (isFlatGlobalSuiteSlideType(slide.type)) {
     return calculateFlatGlobalSuiteSlideSteps(slide);
@@ -395,6 +398,10 @@ export function getSlideMaxSteps(slide: any): number {
   if (isCustomizationSlideType(slide.type)) {
     return calculateCustomizationSlideStepCount(slide);
   }
+  return 0;
+}
+
+function getLegacyStepCount(slide: any): number {
   if (isGlobalPptSlideType(slide.type)) {
     return calculateGlobalPptSlideStepCount(slide);
   }
@@ -403,6 +410,18 @@ export function getSlideMaxSteps(slide: any): number {
   }
   return 1;
 }
+
+export function getSlideMaxSteps(slide: any): number {
+  if (!slide || typeof slide !== 'object') return 1;
+  const suiteSteps = getSuiteStepCount(slide);
+  if (suiteSteps > 0) return suiteSteps;
+  return getLegacyStepCount(slide);
+}
+
+export {
+  isGlobalPptExpansionSlide,
+  calculateGlobalPptExpansionSlideSteps,
+};
 
 export type MotionVariant = 'lift' | 'slide' | 'parallax';
 

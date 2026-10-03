@@ -1,6 +1,6 @@
 import React from 'react';
 import type { SlideData } from '../../types/presentation';
-import { WhiteMasterSlide } from './WhiteMasterSlide';
+import { GlobalPptExpansionSuiteSlideRenderer } from './GlobalPptExpansionSuiteSlideRenderer';
 import { InteractiveBranchingCloseSlide } from './flatglobal/InteractiveBranchingCloseSlide';
 import { BeforeAfterShowcasePanSlide } from './flatglobal/BeforeAfterShowcasePanSlide';
 import { SearchSerpProofLightboxSlide } from './flatglobal/SearchSerpProofLightboxSlide';
@@ -50,6 +50,6 @@ export const FlatGlobalSuiteSlideRenderer: React.FC<{ slide: SlideData }> = ({ s
     case 'flat-typewriter-code-walkthrough':
       return <FlatTypewriterCodeWalkthroughSlide slide={slide as any} />;
     default:
-      return <WhiteMasterSlide slide={slide as any} />;
+      return <GlobalPptExpansionSuiteSlideRenderer slide={slide} />;
   }
 };

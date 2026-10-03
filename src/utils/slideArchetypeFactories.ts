@@ -62,6 +62,8 @@ export * from './kineticSuiteSlideFactories';
 export * from './nextGenSlideFactories';
 export * from './modern/registry';
 export * from './customizationSlideFactories';
+export * from './globalPptExpansionFactories';
+import { EXPANSION_FACTORIES } from './globalPptExpansionFactories';
 
 export const ORIGINAL_ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   { type: 'metric-grid', label: 'Metric Grid Matrix', category: 'Strategy & Metrics', desc: '4-6 quantitative KPI cards with delta trends', icon: 'BarChart3' },
@@ -99,6 +101,25 @@ export const CUSTOMIZATION_ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   { type: 'executive-succession-leadership-bench', label: 'Executive Succession Leadership Bench', category: 'Corporate Strategy', desc: 'Nine-box grid leadership readiness and emergency transition protocols', icon: 'Users' },
 ];
 
+export const GLOBAL_PPT_EXPANSION_ARCHETYPE_OPTIONS: ArchetypeOption[] = [
+  { type: 'executive-mandate-scorecard', label: 'Executive Mandate Scorecard', category: 'Strategy & Metrics', desc: 'C-Suite OKRs, capital allocation & audit committee scorecard', icon: 'Target' },
+  { type: 'board-quorum-resolution-ledger', label: 'Board Quorum Resolution Ledger', category: 'Corporate Strategy', desc: 'Binding director resolutions, voting quorum & legal attestations', icon: 'FileText' },
+  { type: 'macro-economic-threat-radar', label: 'Macro-Economic Threat Radar', category: 'Strategy & Metrics', desc: 'Environmental threat telemetry, hedging strategies & risk quadrants', icon: 'Compass' },
+  { type: 'zero-trust-network-mesh', label: 'Zero-Trust Network Mesh', category: 'Product & Architecture', desc: 'mTLS encapsulation, SPIFFE/SPIRE IDs & hardware enclave attestation', icon: 'Shield' },
+  { type: 'distributed-consensus-raft-log', label: 'Distributed Consensus Raft Log', category: 'Product & Architecture', desc: 'Linearizable consensus, leader heartbeat & quorum commit mechanics', icon: 'Layers' },
+  { type: 'data-pipeline-lineage-dag', label: 'Data Pipeline Lineage DAG', category: 'Product & Architecture', desc: 'Kafka, Flink, Iceberg lakehouse & sub-second analytics DAG', icon: 'GitMerge' },
+  { type: 'code-walkthrough-syntax-lens', label: 'Code Walkthrough Syntax Lens', category: 'Product & Architecture', desc: 'Zero-copy buffer inspection, monadic AppResult & focal line lens', icon: 'Code' },
+  { type: 'tier-comparison-feature-matrix', label: 'Tier Comparison Feature Matrix', category: 'Product & Architecture', desc: 'Open Source vs Pro vs Enterprise vs Sovereign capability matrix', icon: 'Grid' },
+  { type: 'arr-growth-bridge-waterfall', label: 'ARR Growth Bridge Waterfall', category: 'Strategy & Metrics', desc: 'Starting ARR through New Logos, Expansion, Churn to Ending ARR', icon: 'TrendingUp' },
+  { type: 'multi-tier-saas-packaging-table', label: 'Multi-Tier SaaS Packaging Table', category: 'Story & Conversion', desc: 'Developer Starter, Enterprise Platform & Sovereign Infrastructure', icon: 'CreditCard' },
+  { type: 'flywheel-growth-momentum-orbit', label: 'Flywheel Growth Momentum Orbit', category: 'Strategy & Metrics', desc: 'Self-reinforcing customer telemetry & compounding gross margin orbit', icon: 'RotateCw' },
+  { type: 'enterprise-case-study-hero', label: 'Enterprise Case Study Hero', category: 'Team & Credibility', desc: 'Tier-1 banking case study, verified metrics & executive quote', icon: 'Award' },
+  { type: 'client-wall-social-proof-grid', label: 'Client Wall Social Proof Grid', category: 'Team & Credibility', desc: 'Validated across global hyperscalers, defense & healthtech leaders', icon: 'Building' },
+  { type: 'incident-retrospective-timeline', label: 'Incident Retrospective Timeline', category: 'Product & Architecture', desc: 'P0 post-mortem, TTD/TTM metrics, root cause analysis & blameless fix', icon: 'Clock' },
+  { type: 'interactive-faq-tabbed-deck', label: 'Interactive FAQ Tabbed Deck', category: 'Story & Conversion', desc: 'Tabbed dialogue across Security, Architecture, Commercial & SLA', icon: 'HelpCircle' },
+  { type: 'audience-decision-fork-matrix', label: 'Audience Decision Fork Matrix', category: 'Story & Conversion', desc: 'Interactive 3-way strategic trajectory fork with CapEx/OpEx evaluations', icon: 'GitFork' },
+];
+
 export const ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   ...ORIGINAL_ARCHETYPE_OPTIONS,
   ...EXTENDED_ARCHETYPE_OPTIONS,
@@ -108,6 +129,7 @@ export const ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   ...NEXTGEN_ARCHETYPE_OPTIONS,
   ...MODERN_ARCHETYPE_OPTIONS,
   ...CUSTOMIZATION_ARCHETYPE_OPTIONS,
+  ...GLOBAL_PPT_EXPANSION_ARCHETYPE_OPTIONS,
 ];
 
 // =============================================================================
@@ -594,6 +616,12 @@ const createFallbackTitleSlide = (id: string): SlideData => ({
 });
 
 export const createArchetypeSlide = (type: SlideType, id = `slide-${Date.now()}`): SlideData => {
+  if (type in EXPANSION_FACTORIES) {
+    return EXPANSION_FACTORIES[type](id);
+  }
+  if (type in CUSTOMIZATION_FACTORIES) {
+    return CUSTOMIZATION_FACTORIES[type as keyof typeof CUSTOMIZATION_FACTORIES](id);
+  }
   if (type in MODERN_FACTORIES) {
     return MODERN_FACTORIES[type as keyof typeof MODERN_FACTORIES](id);
   }

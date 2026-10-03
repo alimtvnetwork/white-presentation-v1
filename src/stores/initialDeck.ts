@@ -108,6 +108,24 @@ import {
   createFlatDepthSentenceStackSlide,
   createFlatTypewriterCodeWalkthroughSlide,
 } from '../utils/flatGlobalSuiteFactories';
+import {
+  createExecutiveMandateScorecardSlide,
+  createBoardQuorumResolutionLedgerSlide,
+  createMacroEconomicThreatRadarSlide,
+  createZeroTrustNetworkMeshSlide,
+  createDistributedConsensusRaftLogSlide,
+  createDataPipelineLineageDagSlide,
+  createCodeWalkthroughSyntaxLensSlide,
+  createTierComparisonFeatureMatrixSlide,
+  createArrGrowthBridgeWaterfallSlide,
+  createMultiTierSaasPackagingTableSlide,
+  createFlywheelGrowthMomentumOrbitSlide,
+  createEnterpriseCaseStudyHeroSlide,
+  createClientWallSocialProofGridSlide,
+  createIncidentRetrospectiveTimelineSlide,
+  createInteractiveFaqTabbedDeckSlide,
+  createAudienceDecisionForkMatrixSlide,
+} from '../utils/globalPptExpansionFactories';
 
 export const INITIAL_DECK: PresentationDeck = {
   id: 'white-presentation-v1',
@@ -365,6 +383,22 @@ export const INITIAL_DECK: PresentationDeck = {
     createFlatRevealBentoGridSlide('slide-160'),
     createFlatDepthSentenceStackSlide('slide-161'),
     createFlatTypewriterCodeWalkthroughSlide('slide-162'),
+    createExecutiveMandateScorecardSlide('slide-163'),
+    createBoardQuorumResolutionLedgerSlide('slide-164'),
+    createMacroEconomicThreatRadarSlide('slide-165'),
+    createZeroTrustNetworkMeshSlide('slide-166'),
+    createDistributedConsensusRaftLogSlide('slide-167'),
+    createDataPipelineLineageDagSlide('slide-168'),
+    createCodeWalkthroughSyntaxLensSlide('slide-169'),
+    createTierComparisonFeatureMatrixSlide('slide-170'),
+    createArrGrowthBridgeWaterfallSlide('slide-171'),
+    createMultiTierSaasPackagingTableSlide('slide-172'),
+    createFlywheelGrowthMomentumOrbitSlide('slide-173'),
+    createEnterpriseCaseStudyHeroSlide('slide-174'),
+    createClientWallSocialProofGridSlide('slide-175'),
+    createIncidentRetrospectiveTimelineSlide('slide-176'),
+    createInteractiveFaqTabbedDeckSlide('slide-177'),
+    createAudienceDecisionForkMatrixSlide('slide-178'),
   ],
 };
 

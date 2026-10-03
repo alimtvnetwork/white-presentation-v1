@@ -5,6 +5,10 @@ import { soundEngine } from '../audio/soundEngine';
 import { calculateNextGenSlideStepCount } from '../types/nextGenArchetypes';
 import { calculateModernSlideStepCount } from '../types/modernArchetypes';
 import { calculateFlatGlobalSuiteSlideSteps } from '../utils/stepProgression';
+import {
+  isGlobalPptExpansionSlide,
+  calculateGlobalPptExpansionSlideSteps,
+} from '../types/globalPptExpansionArchetypes';
 import { INITIAL_DECK } from './initialDeck';
 
 const getCoreSlideSteps = (slide: any): number => {
@@ -242,12 +246,24 @@ export const getFlatGlobalSuiteSlideSteps = (slide: any): number => {
   return calculateFlatGlobalSuiteSlideSteps(slide);
 };
 
+export const getGlobalPptExpansionSlideSteps = (slide: any): number => {
+  const hasSlide = Boolean(slide && typeof slide === 'object');
+  if (!hasSlide) {
+    return 0;
+  }
+  if (isGlobalPptExpansionSlide(slide)) {
+    return calculateGlobalPptExpansionSlideSteps(slide);
+  }
+  return 0;
+};
+
 const computeSlideMaxSteps = (slide: any): number => {
   const hasSlide = Boolean(slide);
   if (!hasSlide) {
     return 1;
   }
   const count =
+    getGlobalPptExpansionSlideSteps(slide) ||
     getFlatGlobalSuiteSlideSteps(slide) ||
     getCustomizationSlideSteps(slide) ||
     getCoreSlideSteps(slide) ||
