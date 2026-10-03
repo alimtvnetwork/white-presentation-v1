@@ -33,7 +33,7 @@ export const SocSeverityHeroBar: React.FC<SocSeverityHeroBarProps> = ({
           className={`flex items-center gap-1.5 px-3 py-1 rounded-full font-bold border ${
             isCritical
               ? 'bg-red-500/20 text-red-300 border-red-500/40 animate-pulse'
-              : 'bg-amber-500/20 text-amber-300 border-amber-500/40'
+              : 'bg-amber-100 text-amber-900 border-amber-300 dark:bg-amber-500/20 dark:text-amber-300 dark:border-amber-500/40'
           }`}
         >
           <AlertTriangle size={14} />

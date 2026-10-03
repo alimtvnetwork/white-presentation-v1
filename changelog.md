@@ -1,5 +1,12 @@
 # Changelog
 
+## [v1.3.3] - 2026-10-03
+
+### Added
+- enforce Northern UI/UX typography, zero yellow on light, and 8 percent ambient HUD
+
+---
+
 ## [v1.3.2] - 2026-10-03
 
 ### Added

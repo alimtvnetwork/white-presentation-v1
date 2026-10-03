@@ -15,13 +15,13 @@ export const TalentPyramidSlide: React.FC<{ slide: TalentPyramidSlideData }> = (
   return (
     <div style={{ backgroundColor: 'var(--pres-bg)', color: 'var(--pres-text)' }} className="relative w-[1920px] h-[1080px] overflow-hidden select-none p-[80px_100px] flex flex-col justify-between">
       <div className="z-10">
-        <div className="flex items-center gap-3 mb-2">
-          <span className="px-4 py-1.5 rounded-full text-sm font-mono font-bold tracking-[0.2em] uppercase bg-violet-100 text-violet-800 border border-violet-200 dark:bg-violet-900/40 dark:text-violet-300 dark:border-violet-700/60">
+        <div className="flex items-center gap-4 mb-3">
+          <span className="px-5 py-2 rounded-full text-base font-mono font-bold tracking-[0.2em] uppercase bg-violet-100 text-violet-900 border border-violet-300 dark:bg-violet-900/50 dark:text-violet-200 dark:border-violet-600 shadow-sm">
             {slide.kicker || 'HUMAN CAPITAL ARCHITECTURE'}
           </span>
-          <span style={{ color: 'var(--pres-text-muted)' }} className="font-mono text-sm">• Selectivity Pyramid</span>
+          <span className="font-mono text-base font-semibold text-slate-700 dark:text-slate-300 tracking-wide">• Selectivity Pyramid</span>
         </div>
-        <h1 style={{ color: 'var(--pres-text)', textShadow: 'var(--pres-header-shadow)' }} className="font-ubuntu text-[50px] font-black tracking-tight leading-none" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => ({ ...s, title: e.currentTarget.textContent || '' }))}>
+        <h1 style={{ color: 'var(--pres-text)', textShadow: 'var(--pres-header-shadow)' }} className="font-ubuntu text-[56px] font-black tracking-tight leading-none" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => ({ ...s, title: e.currentTarget.textContent || '' }))}>
           {slide.title || 'Engineering Talent Pyramid & Quality Ratios'}
         </h1>
       </div>

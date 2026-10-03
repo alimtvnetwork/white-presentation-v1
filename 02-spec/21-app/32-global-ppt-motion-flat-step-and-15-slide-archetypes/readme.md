@@ -46,21 +46,24 @@ The **32-Global PPT Motion, Flat Step & 15 Slide Archetypes** specification suit
 
 ## 3. The 15 Kinetic Slide Archetypes
 
-1. **`code-diff-comparison`**: Side-by-side legacy vs refactored code diff viewer with live syntax highlighting, line annotations, and step-by-step diff reveals.
-2. **`global-cloud-edge-mesh`**: Global cloud points of presence (PoP), edge latency topography, animated packet flow, and regional tier filtering.
-3. **`api-endpoint-inspector`**: Interactive REST/GraphQL payload viewer, HTTP verb badges, query parameter inspector, and live JSON response tree.
-4. **`database-schema-erd`**: Entity Relationship Diagram with interactive foreign key highlights, table column typing, and migration step progression.
-5. **`security-threat-model`**: Multi-tier defense-in-depth security model, attack vector analysis, CVE severity badges, and mitigation protocol cards.
-6. **`ai-agent-swarm-dag`**: Directed Acyclic Graph (DAG) for autonomous AI multi-agent orchestration, state machine transitions, and task delegation streams.
-7. **`financial-burn-runway`**: Executive burn rate, runway projection charts, monthly capital expenditures, and funding milestone targets.
-8. **`bento-kpi-mosaic`**: Multi-dimensional Bento grid KPI showcase with live counter spring animations, status pills, and trend indicators.
-9. **`canary-release-gauge`**: Blue/Green and Canary release deployment progress gauge, error budget burn down, and automated rollback telemetry.
-10. **`incident-rca-postmortem`**: 4-part Root Cause Analysis timeline, blast radius severity gauge, detection-to-resolution metrics, and prevention action items.
-11. **`slas-and-uptime-status`**: Service Level Agreement compliance dashboard, 99.999% uptime status bars, incident history calendar, and latency percentiles.
-12. **`audio-waveform-studio`**: Multi-track audio and acoustic visualizer stage, real-time frequency bar pulses, and narrator ducking state display.
-13. **`hardware-silicon-spec`**: High-performance compute chip architecture, core topology layout, memory bandwidth benchmarks, and thermal profiles.
-14. **`cohort-retention-heatmap`**: Multi-month user cohort retention heatmap table with chromatic density gradient cells and churn analysis indicators.
-15. **`verifiable-audit-ledger`**: Cryptographically verifiable audit log with block sequence hashes, timestamp verification badges, and immutability proofs.
+### Part I: Multi-Step Operational Workflows (8 Archetypes)
+1. **`executive-governance-matrix`**: Board Committee Oversight & Governance Pillars (Sequential committee charter, quorum & compliance focus, 4 steps).
+2. **`okr-cascade-alignment`**: Company Vision to Quarterly Key Results (Strategic cascade down from Company Goal to Team Initiative, 3 steps).
+3. **`competitive-battlecard`**: Competitor Parity Matrix & Strategic Moats (Strategic moat evaluation, objection handling & win rate, 3 steps).
+4. **`launch-readiness-checklist`**: Production Stage-Gate & Go/No-Go Blocker Check (5-phase operational signoff & automated security gates, 5 steps).
+5. **`developer-gateway-sandbox`**: API Gateway Routing, Auth & Mock Telemetry (Stepwise request ingress, policy auth & mock payload drawer, 4 steps).
+6. **`rag-pipeline-topology`**: Retrieval-Augmented Generation 5-Stage DAG (5-stage RAG DAG traversal: Ingestion to LLM Context, 5 steps).
+7. **`soc-incident-war-room`**: Real-time Incident Triage & MITRE Containment (4-phase incident triage, MITRE kill chain & quarantine).
+8. **`merkle-tree-state-ledger`**: Cryptographic State Ledger & Root Verification (Cryptographic hash tree verification from leaf to root).
+
+### Part II: High-Density Flat Sovereign Overviews (7 Archetypes)
+9. **`cloud-cost-finops-optimizer`**: Multi-Cloud Unit Economics & Wastage Levers (High-density multi-cloud spend, unit cost & optimization ROI, 1 step).
+10. **`customer-sentiment-radar`**: Multi-Axis NPS/CSAT Radar & Cohort Insights (6-dimension radar diagram, NPS distribution & verbatim quotes, 1 step).
+11. **`investor-cap-table-waterfall`**: Venture Capital Equity Tranches & Waterfall Model (Equity tranches, liquidation preference & exit waterfall, 1 step).
+12. **`realtime-event-stream-fabric`**: Pub/Sub Streaming Fabric, Partitions & Lag (Topic partition throughput, consumer group lag & dead-letters, 1 step).
+13. **`supply-chain-risk-matrix`**: Tier 1/2/3 Vendor Vulnerability & Buffer Telemetry (Tier 1-3 supplier risk scoring, geopolitical buffer telemetry, 1 step).
+14. **`talent-competency-radar`**: Engineering Seniority Matrix L4-L8 Radar (Engineering seniority level progression & competency radar).
+15. **`sustainability-esg-scorecard`**: Scope 1/2/3 Emissions & Clean Energy PPA Scorecard (Scope 1/2/3 greenhouse gas emissions & renewable energy PPA, 1 step).
 
 ---
 
@@ -82,24 +85,23 @@ Codebase Implementation Mapping:
 │   ├── src/types/presentation.ts          (Register types in SlideType and SlideData)
 │   ├── src/stores/deckStore.ts            (Intra-slide activeStep management & stepCount formulas)
 │   └── src/utils/globalPptSlideFactories.ts (Factory defaults & step calculation)
-├── First Batch Slide Components (<= 100 lines each)
-│   ├── src/components/slides/CodeDiffComparisonSlide.tsx + diff/
-│   ├── src/components/slides/GlobalCloudEdgeMeshSlide.tsx + edge/
-│   ├── src/components/slides/ApiEndpointInspectorSlide.tsx + api/
-│   ├── src/components/slides/DatabaseSchemaErdSlide.tsx + erd/
-│   ├── src/components/slides/SecurityThreatModelSlide.tsx + security/
-│   ├── src/components/slides/AiAgentSwarmDagSlide.tsx + dag/
-│   ├── src/components/slides/FinancialBurnRunwaySlide.tsx + runway/
-│   └── src/components/slides/BentoKpiMosaicSlide.tsx + mosaic/
-├── Second Batch Slide Components & Renderer (<= 100 lines each)
-│   ├── src/components/slides/CanaryReleaseGaugeSlide.tsx + canary/
-│   ├── src/components/slides/IncidentRcaPostmortemSlide.tsx + rca/
-│   ├── src/components/slides/SlasAndUptimeStatusSlide.tsx + uptime/
-│   ├── src/components/slides/AudioWaveformStudioSlide.tsx + audio/
-│   ├── src/components/slides/HardwareSiliconSpecSlide.tsx + silicon/
-│   ├── src/components/slides/CohortRetentionHeatmapSlide.tsx + cohort/
-│   ├── src/components/slides/VerifiableAuditLedgerSlide.tsx + ledger/
-│   ├── src/components/slides/GlobalPptSuiteSlideRenderer.tsx (6th tier routing for all 15 archetypes)
+├── 15 Slide Components & Subcomponents (<= 100 lines each)
+│   ├── src/components/slides/ExecutiveGovernanceMatrixSlide.tsx + governance/
+│   ├── src/components/slides/OkrCascadeAlignmentSlide.tsx + okr/
+│   ├── src/components/slides/CloudCostFinOpsOptimizerSlide.tsx + finops/
+│   ├── src/components/slides/CustomerSentimentRadarSlide.tsx + sentiment/
+│   ├── src/components/slides/CompetitiveBattlecardSlide.tsx + battlecard/
+│   ├── src/components/slides/LaunchReadinessChecklistSlide.tsx + readiness/
+│   ├── src/components/slides/DeveloperGatewaySandboxSlide.tsx + gateway/
+│   ├── src/components/slides/RagPipelineTopologySlide.tsx + rag/
+│   ├── src/components/slides/SocIncidentWarRoomSlide.tsx + soc/
+│   ├── src/components/slides/MerkleTreeStateLedgerSlide.tsx + merkle/
+│   ├── src/components/slides/InvestorCapTableWaterfallSlide.tsx + captable/
+│   ├── src/components/slides/RealtimeEventStreamFabricSlide.tsx + eventstream/
+│   ├── src/components/slides/SupplyChainRiskMatrixSlide.tsx + supplychain/
+│   ├── src/components/slides/TalentCompetencyRadarSlide.tsx + radar/
+│   ├── src/components/slides/SustainabilityEsgScorecardSlide.tsx + esg/
+│   ├── src/components/slides/GlobalPptSlideRenderer.tsx (Routing for 15 archetypes)
 │   ├── src/components/slides/SlideRenderer.tsx (Slide chain delegation)
 │   └── src/stores/initialDeck.ts          (Deck registration with authentic steps)
 └── Coding Guidelines Remediation & Quality Gates

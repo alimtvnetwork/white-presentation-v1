@@ -42,7 +42,7 @@ export const MerkleRootBanner: React.FC<MerkleRootBannerProps> = ({
           className={`flex items-center gap-1.5 px-3 py-1 rounded-full font-bold border ${
             isFinalized
               ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
-              : 'bg-amber-500/20 text-amber-300 border-amber-500/40'
+              : 'bg-amber-100 text-amber-900 border-amber-300 dark:bg-amber-500/20 dark:text-amber-300 dark:border-amber-500/40'
           }`}
         >
           <CheckCircle2 size={12} />

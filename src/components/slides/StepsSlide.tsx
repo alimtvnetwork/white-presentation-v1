@@ -25,10 +25,10 @@ export const StepsSlide: React.FC<{ slide: StepsSlideData }> = ({ slide }) => {
     <div style={{ backgroundColor: theme.canvasBg, color: theme.textColor }} className={`relative w-[1920px] h-[1080px] overflow-hidden select-none p-[100px] grid grid-cols-[560px_minmax(0,1fr)] gap-14 animate__animated animate__fadeIn ${theme.dotMatrix ? 'dot-matrix-bg' : ''}`}>
       <div className="flex flex-col justify-between z-20">
         <div>
-          <div style={{ color: theme.accentColor }} className="font-mono text-sm font-bold tracking-[0.2em] uppercase mb-2" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => ({ ...s, kicker: e.currentTarget.textContent || '' }))}>
+          <div style={{ color: theme.accentColor }} className="font-mono text-base font-bold tracking-[0.2em] uppercase mb-3" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => ({ ...s, kicker: e.currentTarget.textContent || '' }))}>
             {slide.kicker || 'PROCESS & EXECUTION'}
           </div>
-          <h1 style={{ color: theme.textColor, textShadow: headerShadow }} className="font-ubuntu text-[50px] font-extrabold tracking-tight leading-tight mb-8" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => ({ ...s, heading: e.currentTarget.textContent || '', title: e.currentTarget.textContent || '' }))}>
+          <h1 style={{ color: theme.textColor, textShadow: headerShadow }} className="font-ubuntu text-[54px] font-extrabold tracking-tight leading-tight mb-8" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => ({ ...s, heading: e.currentTarget.textContent || '', title: e.currentTarget.textContent || '' }))}>
             {slide.heading || slide.title}
           </h1>
           <div className="flex flex-col gap-3">

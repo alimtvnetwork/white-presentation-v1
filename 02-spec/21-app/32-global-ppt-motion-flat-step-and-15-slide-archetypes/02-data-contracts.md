@@ -251,7 +251,7 @@ export interface ExecutiveGovernanceMatrixSlideData extends BaseSlide {
 |                                                                                                   |
 | +-----------------------------------------------------------------------------------------------+ |
 | | TOP METRIC STRIP: (80, 176) -> (1840, 240) [Height: 64px]                                    | |
-| | Compliance Score: 98.4% | Quorum: 100% | Total Resolutions: 24 | Lead: Alim Ul Karim, Chief S/E| |
+| | Score: 98.4% | Quorum: 100% | Resolutions: 24 | Lead: Alim Ul Karim, Chief Software Engineer   | |
 | +-----------------------------------------------------------------------------------------------+ |
 |                                                                                                   |
 | +-------------------------+ +-------------------------+ +-------------------------+ +-----------+ |
