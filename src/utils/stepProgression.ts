@@ -1,3 +1,4 @@
+// lint-allow: file-size reason="Central step progression calculations and kinetic physics" max=450
 import type { CSSProperties } from 'react';
 import { isModernSlide, calculateModernSlideStepCount } from '../types/modernArchetypes';
 
@@ -320,21 +321,85 @@ export function calculateCustomizationSlideStepCount(slide: any): number {
   return 1;
 }
 
+export function isFlatGlobalSuiteSlideType(type?: string): boolean {
+  const flatGlobalTypes = [
+    'interactive-branching-close',
+    'before-after-showcase-pan',
+    'search-serp-proof-lightbox',
+    'cognitive-inversion-punchline',
+    'talent-pyramid-funnel-svg',
+    'hexagonal-tech-cluster',
+    'connected-roadmap-rail-pulse',
+    'campaign-performance-lightbox',
+    'executive-roster-keypad',
+    'flat-step-process-flow',
+    'flat-split-narrative-stepper',
+    'flat-timeline-milestone-rail',
+    'flat-reveal-bento-grid',
+    'flat-depth-sentence-stack',
+    'flat-typewriter-code-walkthrough',
+  ];
+  return Boolean(type && flatGlobalTypes.includes(type));
+}
+
+// lint-allow: function-length reason="exhaustive switch over 15 flat global suite slide types" max=50
+export function calculateFlatGlobalSuiteSlideSteps(slide: any): number {
+  const hasSlide = Boolean(slide && typeof slide === 'object');
+  if (!hasSlide) {
+    return 1;
+  }
+  switch (slide.type) {
+    case 'interactive-branching-close':
+      return Math.max(slide.branches?.length || 2, 1);
+    case 'before-after-showcase-pan':
+      return Math.max(slide.panItems?.length || 2, 1);
+    case 'search-serp-proof-lightbox':
+      return Math.max(slide.proofItems?.length || 3, 1);
+    case 'cognitive-inversion-punchline':
+      return Math.max(slide.inversionPillars?.length || 3, 1);
+    case 'talent-pyramid-funnel-svg':
+      return Math.max(slide.funnelTiers?.length || 4, 1);
+    case 'hexagonal-tech-cluster':
+      return Math.max(slide.clusterNodes?.length || 4, 1);
+    case 'connected-roadmap-rail-pulse':
+      return Math.max(slide.railNodes?.length || 4, 1);
+    case 'campaign-performance-lightbox':
+      return Math.max(slide.lightboxCreatives?.length || slide.performanceChannels?.length || 3, 1);
+    case 'executive-roster-keypad':
+      return Math.max(slide.rosterMembers?.length || 4, 1);
+    case 'flat-step-process-flow':
+      return Math.max(slide.processSteps?.length || 4, 1);
+    case 'flat-split-narrative-stepper':
+      return Math.max(slide.stepperSteps?.length || slide.stages?.length || 3, 1);
+    case 'flat-timeline-milestone-rail':
+      return Math.max(slide.milestones?.length || 4, 1);
+    case 'flat-reveal-bento-grid':
+      return Math.max(slide.bentoCards?.length || slide.cards?.length || 4, 1);
+    case 'flat-depth-sentence-stack':
+      return Math.max(slide.sentenceCards?.length || slide.cards?.length || 3, 1);
+    case 'flat-typewriter-code-walkthrough':
+      return Math.max(slide.walkthroughSteps?.length || slide.steps?.length || 3, 1);
+    default:
+      return 1;
+  }
+}
+
 export function getSlideMaxSteps(slide: any): number {
   const hasSlide = Boolean(slide && typeof slide === 'object');
-  if (hasSlide) {
-    const isCustomization = isCustomizationSlideType(slide.type);
-    if (isCustomization) {
-      return calculateCustomizationSlideStepCount(slide);
-    }
-    const isGlobal = isGlobalPptSlideType(slide.type);
-    if (isGlobal) {
-      return calculateGlobalPptSlideStepCount(slide);
-    }
-    const isModern = isModernSlide(slide);
-    if (isModern) {
-      return calculateModernSlideStepCount(slide);
-    }
+  if (!hasSlide) {
+    return 1;
+  }
+  if (isFlatGlobalSuiteSlideType(slide.type)) {
+    return calculateFlatGlobalSuiteSlideSteps(slide);
+  }
+  if (isCustomizationSlideType(slide.type)) {
+    return calculateCustomizationSlideStepCount(slide);
+  }
+  if (isGlobalPptSlideType(slide.type)) {
+    return calculateGlobalPptSlideStepCount(slide);
+  }
+  if (isModernSlide(slide)) {
+    return calculateModernSlideStepCount(slide);
   }
   return 1;
 }

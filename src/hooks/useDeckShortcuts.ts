@@ -1,3 +1,4 @@
+// lint-allow: file-size reason="Central presentation keyboard shortcuts and slide branching navigation" max=250
 import { useEffect } from 'react';
 import { useDeckStore } from '../stores/deckStore';
 import { useEditStore } from '../stores/editStore';
@@ -28,9 +29,56 @@ const toggleFullscreen = (): void => {
   }
 };
 
+const findTargetSlideIndex = (slides: Array<{ id: string }>, targetId?: string): number => {
+  if (!targetId) return -1;
+  return slides.findIndex((slide) => slide.id === targetId);
+};
+
+const findScarcitySlideIndex = (slides: Array<{ id: string; type?: string }>): number => {
+  return slides.findIndex((slide) => {
+    const hasScarcityId = slide.id.toLowerCase().includes('scarcity');
+    const hasScarcityType = Boolean(slide.type?.toLowerCase().includes('scarcity'));
+    return hasScarcityId || hasScarcityType;
+  });
+};
+
+const handleBranchingYes = (
+  slides: Array<{ id: string }>,
+  targetId: string | undefined,
+  goToSlide: (index: number) => void,
+  nextSlide: () => void
+): void => {
+  const targetIndex = findTargetSlideIndex(slides, targetId);
+  if (targetIndex >= 0) {
+    goToSlide(targetIndex);
+    return;
+  }
+  nextSlide();
+};
+
+const handleBranchingNo = (
+  slides: Array<{ id: string; type?: string }>,
+  targetId: string | undefined,
+  goToSlide: (index: number) => void,
+  nextSlide: () => void
+): void => {
+  const targetIndex = findTargetSlideIndex(slides, targetId);
+  if (targetIndex >= 0) {
+    goToSlide(targetIndex);
+    return;
+  }
+  const scarcityIndex = findScarcitySlideIndex(slides);
+  if (scarcityIndex >= 0) {
+    goToSlide(scarcityIndex);
+    return;
+  }
+  nextSlide();
+};
+
 export const useDeckShortcuts = (params: DeckShortcutsParams): void => {
   const {
     deck,
+    activeSlideIndex,
     activeStep,
     stepAdvance,
     stepRewind,
@@ -56,6 +104,23 @@ export const useDeckShortcuts = (params: DeckShortcutsParams): void => {
 
       const k = e.key.toLowerCase();
       const hasShift = Boolean(e.shiftKey);
+
+      const currentSlide = deck.slides[activeSlideIndex] as any;
+      const isBranchingCloseSlide = currentSlide?.type === 'interactive-branching-close';
+
+      if (isBranchingCloseSlide && k === 'y') {
+        e.preventDefault();
+        const yesTarget = currentSlide.yesTargetSlideId || currentSlide.yesOption?.targetSlideId;
+        handleBranchingYes(deck.slides, yesTarget, goToSlide, nextSlide);
+        return;
+      }
+
+      if (isBranchingCloseSlide && k === 'n') {
+        e.preventDefault();
+        const noTarget = currentSlide.noTargetSlideId || currentSlide.noOption?.targetSlideId;
+        handleBranchingNo(deck.slides, noTarget, goToSlide, nextSlide);
+        return;
+      }
 
       if (hasShift && (k === 'arrowright' || k === ' ')) {
         e.preventDefault();
@@ -136,6 +201,7 @@ export const useDeckShortcuts = (params: DeckShortcutsParams): void => {
     };
   }, [
     deck.slides.length,
+    activeSlideIndex,
     activeStep,
     stepAdvance,
     stepRewind,

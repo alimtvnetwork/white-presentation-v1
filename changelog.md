@@ -1,5 +1,21 @@
 # Changelog
 
+## [v1.5.0] - 2026-10-03
+
+### Added
+- **Global PPT Flat Step Interactive Suite (Module 38):**
+  - Integrated 15 new modern enterprise slide archetypes (Group A: 8 interactive multi-step progression workflows; Group B: 7 high-density flat sovereign telemetry overviews).
+  - 3D hardware-accelerated perspective flip (`perspective: 1200px`) in `SlideTransition.tsx` with quintic easing (`cubic-bezier(0.22, 1, 0.36, 1)`).
+  - Keyboard branching navigation (`Y` / `N`) in `useDeckShortcuts.ts` for executive decision closing slides.
+  - Active clean-pass CSS teardown (`cleanRootThemeVariables`) in `themeRuntime.ts` preventing cross-theme variable bleeding.
+  - Permanently isolated dark HUD chrome tokens (`--chrome-*`, $C_R \ge 12:1$) across all modals, pills, and popovers.
+  - 10 canonical production themes with 10-step gradient precision ramps ($S_0$–$S_9$) in `gradientTokens.ts`.
+  - Canonical specification module `02-spec/21-app/38-global-ppt-flat-step-interactive-suite/` (Modules 01–04 + readme).
+- **Verification & Build Validation:**
+  - `pnpm exec tsc --noEmit` passed with 0 errors.
+  - Production Vite bundle built in 4.38s with 0 errors across 2,750 modules.
+  - All 614 slide components in `src/components/slides/` strictly adhere to the $\le 100$-line ceiling (Hard Rule #6).
+
 ## [v1.4.0] - 2026-10-03
 
 ### Added

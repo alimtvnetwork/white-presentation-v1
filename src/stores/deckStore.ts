@@ -1,8 +1,10 @@
+// lint-allow: file-size reason="Central deck presentation store and multi-archetype step resolution" max=560
 import { create } from 'zustand';
 import { PresentationDeck, SlideData } from '../types/presentation';
 import { soundEngine } from '../audio/soundEngine';
 import { calculateNextGenSlideStepCount } from '../types/nextGenArchetypes';
 import { calculateModernSlideStepCount } from '../types/modernArchetypes';
+import { calculateFlatGlobalSuiteSlideSteps } from '../utils/stepProgression';
 import { INITIAL_DECK } from './initialDeck';
 
 const getCoreSlideSteps = (slide: any): number => {
@@ -232,24 +234,34 @@ export const getCustomizationSlideSteps = (slide: any): number => {
 
 export const calculateCustomizationSlideStepCount = getCustomizationSlideSteps;
 
+export const getFlatGlobalSuiteSlideSteps = (slide: any): number => {
+  const hasSlide = Boolean(slide && typeof slide === 'object');
+  if (!hasSlide) {
+    return 0;
+  }
+  return calculateFlatGlobalSuiteSlideSteps(slide);
+};
+
 const computeSlideMaxSteps = (slide: any): number => {
   const hasSlide = Boolean(slide);
-  if (hasSlide) {
-    const count =
-      getCustomizationSlideSteps(slide) ||
-      getCoreSlideSteps(slide) ||
-      getExpandedSlideSteps(slide) ||
-      getEnterpriseSlideSteps(slide) ||
-      getKineticSlideSteps(slide) ||
-      getKineticSuiteSlideSteps(slide) ||
-      getGlobalPptSlideSteps(slide) ||
-      getSovereignOperationsSlideSteps(slide) ||
-      getNextGenSlideSteps(slide) ||
-      getModernSlideSteps(slide);
-    const hasMultipleSteps = count > 0;
-    if (hasMultipleSteps) {
-      return count;
-    }
+  if (!hasSlide) {
+    return 1;
+  }
+  const count =
+    getFlatGlobalSuiteSlideSteps(slide) ||
+    getCustomizationSlideSteps(slide) ||
+    getCoreSlideSteps(slide) ||
+    getExpandedSlideSteps(slide) ||
+    getEnterpriseSlideSteps(slide) ||
+    getKineticSlideSteps(slide) ||
+    getKineticSuiteSlideSteps(slide) ||
+    getGlobalPptSlideSteps(slide) ||
+    getSovereignOperationsSlideSteps(slide) ||
+    getNextGenSlideSteps(slide) ||
+    getModernSlideSteps(slide);
+  const hasMultipleSteps = count > 0;
+  if (hasMultipleSteps) {
+    return count;
   }
   return 1;
 };
@@ -277,7 +289,7 @@ interface DeckStoreState {
   canRewindStep: boolean;
   hasIntraSteps: boolean;
   slideDirection: 1 | -1;
-  transitionType: 'slide' | 'fade' | 'zoom' | 'rise';
+  transitionType: 'slide' | 'fade' | 'zoom' | 'rise' | 'flip';
   activeThemeId: string;
   isSoundEnabled: boolean;
   nextSlide: () => void;
@@ -293,7 +305,7 @@ interface DeckStoreState {
   setActiveStep: (stepIndex: number) => void;
   getActiveSlideMaxSteps: () => number;
   setTheme: (themeId: string) => void;
-  setTransitionType: (type: 'slide' | 'fade' | 'zoom' | 'rise') => void;
+  setTransitionType: (type: 'slide' | 'fade' | 'zoom' | 'rise' | 'flip') => void;
   toggleSound: () => void;
   upsertSlide: (slide: SlideData) => void;
   addSlide: (slide: SlideData) => void;
@@ -303,6 +315,12 @@ interface DeckStoreState {
 
 const initialSlide = INITIAL_DECK.slides[0] as any;
 const initialIndicators = computeStepIndicators(initialSlide, 0);
+
+const playTactileStepSound = (isSoundEnabled: boolean): void => {
+  if (isSoundEnabled) {
+    soundEngine.playStepClick();
+  }
+};
 
 export const useDeckStore = create<DeckStoreState>((set, get) => ({
   deck: INITIAL_DECK,
@@ -386,36 +404,36 @@ export const useDeckStore = create<DeckStoreState>((set, get) => ({
     const currentSlide = deck.slides[activeSlideIndex] as any;
     const maxSteps = computeSlideMaxSteps(currentSlide);
     const canAdvance = activeStep < maxSteps - 1;
-    if (canAdvance) {
-      if (isSoundEnabled) soundEngine.playStepClick();
-      const nextStepIndex = activeStep + 1;
-      const indicators = computeStepIndicators(currentSlide, nextStepIndex);
-      set({
-        activeStep: nextStepIndex,
-        currentStepIndex: nextStepIndex,
-        ...indicators,
-      });
-    } else {
+    if (!canAdvance) {
       get().nextSlide();
+      return;
     }
+    playTactileStepSound(isSoundEnabled);
+    const nextStepIndex = activeStep + 1;
+    const indicators = computeStepIndicators(currentSlide, nextStepIndex);
+    set({
+      activeStep: nextStepIndex,
+      currentStepIndex: nextStepIndex,
+      ...indicators,
+    });
   },
 
   stepRewind: () => {
     const { activeStep, isSoundEnabled, activeSlideIndex, deck } = get();
     const currentSlide = deck.slides[activeSlideIndex] as any;
     const canRewind = activeStep > 0;
-    if (canRewind) {
-      if (isSoundEnabled) soundEngine.playStepClick();
-      const prevStepIndex = activeStep - 1;
-      const indicators = computeStepIndicators(currentSlide, prevStepIndex);
-      set({
-        activeStep: prevStepIndex,
-        currentStepIndex: prevStepIndex,
-        ...indicators,
-      });
-    } else {
+    if (!canRewind) {
       get().prevSlide();
+      return;
     }
+    playTactileStepSound(isSoundEnabled);
+    const prevStepIndex = activeStep - 1;
+    const indicators = computeStepIndicators(currentSlide, prevStepIndex);
+    set({
+      activeStep: prevStepIndex,
+      currentStepIndex: prevStepIndex,
+      ...indicators,
+    });
   },
 
   jumpToStep: (step: number) => {
@@ -452,7 +470,7 @@ export const useDeckStore = create<DeckStoreState>((set, get) => ({
     set({ activeThemeId: themeId });
   },
 
-  setTransitionType: (type: 'slide' | 'fade' | 'zoom' | 'rise') => {
+  setTransitionType: (type: 'slide' | 'fade' | 'zoom' | 'rise' | 'flip') => {
     set({ transitionType: type });
   },
 

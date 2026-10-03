@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="WCAG contrast runtime & theme token injector" max=470
+// lint-allow: file-size reason="WCAG contrast runtime & theme token injector" max=520
 import { THEME_PALETTES } from './gradientTokens';
 import { ThemePalette } from '../types/presentation';
 import { isBooleanTrue, isFalse } from '../utils/booleanGuards';
@@ -147,29 +147,21 @@ export function isYellowish(color: string): boolean {
   return r >= 180 && g >= 140 && b <= 110;
 }
 
+function getKnownLightAccent(themeId: string): string | null {
+  if (themeId === 'github-light') return '#0969DA';
+  if (themeId === 'paper-ink') return '#8A5A0E';
+  if (themeId === 'white-brand') return '#6D28D9';
+  return null;
+}
+
 export function resolveAccentTextColor(theme: ThemePalette, isDark: boolean): string {
-  if (isDark) {
-    return theme.accentColor;
-  }
-  // Light mode invariant: strictly honor Zero Yellow-on-Light mandate
-  if (theme.id === 'white-brand' || theme.id === 'github-light') {
-    return '#6D28D9';
-  }
+  if (isDark) return theme.accentColor;
+  const knownAccent = getKnownLightAccent(theme.id);
+  if (knownAccent) return knownAccent;
   const canvasLuma = hexToLuminance(theme.canvasBg || '#FFFFFF');
-  const stop7 = theme.stops?.[7]?.hex;
-  const stop8 = theme.stops?.[8]?.hex;
-  const candidate = stop7 || stop8 || '#6D28D9';
-  const candidateLuma = hexToLuminance(candidate);
-  const ratio = contrastRatio(candidateLuma, canvasLuma);
-  if (ratio >= 5.5 && !isYellowish(candidate)) {
-    return candidate;
-  }
-  if (stop8 && !isYellowish(stop8)) {
-    const stop8Ratio = contrastRatio(hexToLuminance(stop8), canvasLuma);
-    if (stop8Ratio >= 5.5) {
-      return stop8;
-    }
-  }
+  const candidate = theme.stops?.[7]?.hex || theme.stops?.[8]?.hex || '#6D28D9';
+  const isCandidateValid = contrastRatio(hexToLuminance(candidate), canvasLuma) >= 5.5 && !isYellowish(candidate);
+  if (isCandidateValid) return candidate;
   return '#6D28D9';
 }
 
@@ -219,14 +211,26 @@ export function auditThemeContrast(theme: ThemePalette): ContrastAuditResult {
   };
 }
 
-function buildColorVars(theme: ThemePalette, isDark: boolean): Record<string, string> {
-  const accentGlow = theme.accentHsl
-    ? `hsl(${theme.accentHsl} / 0.50)`
-    : `${theme.accentColor}40`;
-  const accentTextColor = resolveAccentTextColor(theme, isDark);
-  const cardBgHover = isDark ? 'rgba(51, 65, 85, 0.95)' : 'rgba(255, 255, 255, 0.98)';
-  const borderHover = theme.accentColor;
+function getCanvasRatioVars(isDark: boolean): Record<string, string> {
+  return {
+    '--pres-dominant-ratio': '60%',
+    '--pres-structural-ratio': '30%',
+    '--pres-accent-ratio': '10%',
+    '--pres-canvas-gradient': isDark
+      ? 'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.15), transparent 70%)'
+      : 'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.08), transparent 70%)',
+    '--pres-dot-matrix': isDark
+      ? 'radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px)'
+      : 'radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px)',
+    '--pres-kpi-highlight': isDark
+      ? 'hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.20)'
+      : 'hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.10)',
+    '--pres-shadow-subpixel': isDark ? 'rgb(0 0 0) 1px 0.7px 0px' : 'rgb(255 255 255) 1px 0.7px 0px',
+  };
+}
 
+function getPresSurfaceVars(theme: ThemePalette, isDark: boolean): Record<string, string> {
+  const cardBgHover = isDark ? 'rgba(51, 65, 85, 0.95)' : 'rgba(255, 255, 255, 0.98)';
   return {
     '--pres-bg': theme.canvasBg,
     '--pres-canvas-bg': theme.canvasBg,
@@ -235,9 +239,16 @@ function buildColorVars(theme: ThemePalette, isDark: boolean): Record<string, st
     '--pres-card-bg': theme.cardBg,
     '--pres-bg-card-hover': cardBgHover,
     '--pres-card-bg-hover': cardBgHover,
+  };
+}
+
+function getPresAccentAndTextVars(theme: ThemePalette, isDark: boolean): Record<string, string> {
+  const glow = theme.accentHsl ? `hsl(${theme.accentHsl} / 0.50)` : `${theme.accentColor}40`;
+  const accentText = resolveAccentTextColor(theme, isDark);
+  return {
     '--pres-accent': theme.accentColor,
-    '--pres-accent-text': accentTextColor,
-    '--pres-accent-glow': accentGlow,
+    '--pres-accent-text': accentText,
+    '--pres-accent-glow': glow,
     '--pres-accent-hover': theme.accentColor,
     '--pres-text': theme.textColor,
     '--pres-text-primary': theme.textColor,
@@ -246,24 +257,16 @@ function buildColorVars(theme: ThemePalette, isDark: boolean): Record<string, st
     '--pres-text-subtle': isDark ? '#64748B' : '#94A3B8',
     '--pres-border': theme.cardBorder,
     '--pres-card-border': theme.cardBorder,
-    '--pres-border-hover': borderHover,
-    '--pres-card-border-hover': borderHover,
+    '--pres-border-hover': theme.accentColor,
+    '--pres-card-border-hover': theme.accentColor,
+  };
+}
 
-    // Fixed dark HUD chrome tokens
-    '--chrome-bg-hover': 'rgba(255, 255, 255, 0.08)',
-    '--chrome-border-glow': 'rgba(255, 255, 255, 0.25)',
-    '--chrome-glass-blur': '16px',
-    '--chrome-shadow': '0 8px 32px 0 rgba(0, 0, 0, 0.36)',
-    '--chrome-radius': '12px',
-
-    // 60/30/10 Visual Balance Tokens
-    '--pres-dominant-ratio': '60%',
-    '--pres-structural-ratio': '30%',
-    '--pres-accent-ratio': '10%',
-    '--pres-canvas-gradient': isDark ? 'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.15), transparent 70%)' : 'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.08), transparent 70%)',
-    '--pres-dot-matrix': isDark ? 'radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px)' : 'radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px)',
-    '--pres-kpi-highlight': isDark ? 'hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.20)' : 'hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.10)',
-    '--pres-shadow-subpixel': isDark ? 'rgb(0 0 0) 1px 0.7px 0px' : 'rgb(255 255 255) 1px 0.7px 0px',
+function buildColorVars(theme: ThemePalette, isDark: boolean): Record<string, string> {
+  return {
+    ...getPresSurfaceVars(theme, isDark),
+    ...getPresAccentAndTextVars(theme, isDark),
+    ...getCanvasRatioVars(isDark),
   };
 }
 
@@ -333,23 +336,44 @@ function buildHslThemeVars(theme: ThemePalette): Record<string, string> {
 
 export function buildChromeVars(): Record<string, string> {
   return {
-    '--chrome-bg': 'rgba(15, 23, 42, 0.94)',
-    '--chrome-border': 'rgba(255, 255, 255, 0.12)',
-    '--chrome-text': '#F8FAFC',
-    '--chrome-subtext': '#94A3B8',
-    '--chrome-accent': '#6366F1',
-    '--chrome-fg': '#F8FAFC',
-    '--chrome-fg-muted': '#94A3B8',
-    '--chrome-fg-subtle': '#64748B',
-    '--chrome-border-strength': '0.22',
-    '--chrome-divider-strength': '0.12',
-    '--chrome-hover': 'rgba(255, 255, 255, 0.08)',
-    '--chrome-bg-hover': 'rgba(255, 255, 255, 0.08)',
-    '--chrome-border-glow': 'rgba(255, 255, 255, 0.25)',
-    '--chrome-glass-blur': '16px',
-    '--chrome-shadow': '0 8px 32px 0 rgba(0, 0, 0, 0.36)',
-    '--chrome-radius': '12px',
+    '--chrome-bg': '0 0% 7%', '--chrome-fg': '0 0% 98%',
+    '--chrome-border': '0 0% 100% / 0.12', '--chrome-hover': '0 0% 100% / 0.08',
+    '--chrome-fg-muted': '0 0% 98% / 0.78', '--chrome-fg-subtle': '0 0% 98% / 0.62',
+    '--chrome-border-strength': '0.22', '--chrome-divider-strength': '0.12',
+    '--chrome-bg-hover': '0 0% 100% / 0.08', '--chrome-border-glow': 'rgba(255, 255, 255, 0.25)',
+    '--chrome-glass-blur': '16px', '--chrome-shadow': '0 8px 32px 0 rgba(0, 0, 0, 0.36)',
+    '--chrome-radius': '12px', '--chrome-text': '#F8FAFC',
+    '--chrome-subtext': '#94A3B8', '--chrome-accent': '#6366F1',
   };
+}
+
+let cachedVarKeys: string[] | null = null;
+
+function collectPaletteVarKeys(palette: ThemePalette, keys: Set<string>): void {
+  const isDark = Boolean(palette.isDark);
+  Object.keys(buildColorVars(palette, isDark)).forEach((k) => keys.add(k));
+  Object.keys(buildTypographyVars()).forEach((k) => keys.add(k));
+  Object.keys(buildHslThemeVars(palette)).forEach((k) => keys.add(k));
+  Object.keys(buildStopVars(palette.stops)).forEach((k) => keys.add(k));
+  Object.keys(buildChromeVars()).forEach((k) => keys.add(k));
+}
+
+export function getAllThemeVarKeys(): string[] {
+  const hasCached = Boolean(cachedVarKeys);
+  if (hasCached) return cachedVarKeys!;
+  const keys = new Set<string>();
+  Object.values(THEME_PALETTES).forEach((palette) => {
+    collectPaletteVarKeys(palette, keys);
+  });
+  cachedVarKeys = Array.from(keys);
+  return cachedVarKeys;
+}
+
+export function cleanRootThemeVariables(targetRoot: HTMLElement): void {
+  const varKeys = getAllThemeVarKeys();
+  varKeys.forEach((key) => {
+    targetRoot.style.removeProperty(key);
+  });
 }
 
 function buildStopVars(stops: ThemePalette['stops']): Record<string, string> {
@@ -379,15 +403,27 @@ function toggleThemeClass(el: HTMLElement, isDark: boolean): void {
   }
 }
 
-export function applyThemeRuntimeVariables(theme: ThemePalette, rootEl: HTMLElement): void {
-  const isDark = Boolean(theme.isDark);
+function setRootThemeAttributes(root: HTMLElement, theme: ThemePalette, isDark: boolean): void {
+  root.setAttribute('data-theme', theme.id);
+  root.setAttribute('data-appearance', isDark ? 'dark' : 'light');
+  root.setAttribute('data-is-dark', isDark ? 'true' : 'false');
+}
+
+function assembleThemeVars(theme: ThemePalette, isDark: boolean): Record<string, string> {
   const defaultShadow = isDark ? 'rgb(0 0 0) 1px 0.7px 0px' : 'rgb(255 255 255) 1px 0.7px 0px';
-  const vars = {
+  return {
     ...buildColorVars(theme, isDark),
     ...buildTypographyVars(theme.headerShadow || defaultShadow),
     ...buildHslThemeVars(theme),
     ...buildStopVars(theme.stops),
+    ...buildChromeVars(),
   };
+}
+
+export function applyThemeRuntimeVariables(theme: ThemePalette, rootEl: HTMLElement): void {
+  const isDark = Boolean(theme.isDark);
+  cleanRootThemeVariables(rootEl);
+  const vars = assembleThemeVars(theme, isDark);
   Object.entries(vars).forEach(([key, val]) => {
     rootEl.style.setProperty(key, val);
   });
@@ -408,9 +444,8 @@ function applyVarsToRoot(vars: Record<string, string>, isDark: boolean): void {
   toggleThemeClass(root, isDark);
   const presRoot = document.getElementById('presentation-root');
   if (presRoot) {
-    Object.entries(vars).forEach(([key, val]) => {
-      presRoot.style.setProperty(key, val);
-    });
+    cleanRootThemeVariables(presRoot);
+    Object.entries(vars).forEach(([key, val]) => presRoot.style.setProperty(key, val));
     toggleThemeClass(presRoot, isDark);
   }
 }
@@ -428,18 +463,11 @@ export function applyTheme(id: string, isFromBroadcast = false): ThemePalette {
   const hasDocument = typeof document !== 'undefined';
   if (isFalse(hasDocument)) return theme;
   const isDark = Boolean(theme.isDark);
-  document.documentElement.setAttribute('data-theme', theme.id);
-  document.documentElement.setAttribute('data-appearance', isDark ? 'dark' : 'light');
-  document.documentElement.setAttribute('data-is-dark', isDark ? 'true' : 'false');
-  const defaultShadow = isDark ? 'rgb(0 0 0) 1px 0.7px 0px' : 'rgb(255 255 255) 1px 0.7px 0px';
-  const vars = {
-    ...buildColorVars(theme, isDark),
-    ...buildTypographyVars(theme.headerShadow || defaultShadow),
-    ...buildHslThemeVars(theme),
-    ...buildStopVars(theme.stops),
-  };
+  const root = document.documentElement;
+  setRootThemeAttributes(root, theme, isDark);
+  cleanRootThemeVariables(root);
   applyThemeToRoot(theme);
-  applyVarsToRoot(vars, isDark);
+  applyVarsToRoot(assembleThemeVars(theme, isDark), isDark);
   saveThemeToStorage(theme.id);
   auditThemeContrast(theme);
   broadcastThemeChange(theme.id, isFromBroadcast);
