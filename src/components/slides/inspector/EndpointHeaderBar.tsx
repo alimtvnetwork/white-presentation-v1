@@ -34,7 +34,7 @@ export const EndpointHeaderBar: React.FC<EndpointHeaderBarProps> = ({
               : isGet
               ? 'bg-blue-500/20 text-blue-300 border-blue-500/40'
               : isPut
-              ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
+              ? 'bg-amber-500/20 text-amber-900 dark:text-amber-300 border-amber-500/40'
               : isDelete
               ? 'bg-rose-500/20 text-rose-300 border-rose-500/40'
               : 'bg-purple-500/20 text-purple-300 border-purple-500/40'

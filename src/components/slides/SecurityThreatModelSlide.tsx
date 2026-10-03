@@ -59,7 +59,7 @@ export const SecurityThreatModelSlide: React.FC<{ slide: SecurityThreatModelSlid
                     <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 uppercase">{tv.category}</span>
                     <span className="font-bold text-slate-100">{tv.vectorName}</span>
                   </div>
-                  <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded uppercase ${tv.riskSeverity === 'critical' ? 'bg-rose-500/20 text-rose-300' : 'bg-amber-500/20 text-amber-300'}`}>{tv.riskSeverity}</span>
+                  <span className={`text-xs font-bold px-1.5 py-0.5 rounded uppercase ${tv.riskSeverity === 'critical' ? 'bg-rose-500/20 text-rose-300' : 'text-amber-900 bg-amber-100 dark:text-amber-300 dark:bg-amber-500/20'}`}>{tv.riskSeverity}</span>
                 </div>
                 <div className="flex items-center justify-between text-[11px] text-slate-400 border-t border-slate-800/60 pt-1">
                   <span>Mitigation: {tv.mitigationStrategy}</span>

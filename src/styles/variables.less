@@ -34,8 +34,9 @@
 @type-display-section: clamp(24px, 2.2vw, 32px);
 @type-body-lead:       clamp(16px, 1.4vw, 20px);
 @type-body-regular:    clamp(14px, 1.1vw, 16px);
-@type-body-caption:    clamp(11px, 0.9vw, 13px);
-@type-kicker:          clamp(11px, 0.85vw, 13px);
+@type-body-caption:    clamp(13px, 1.0vw, 14px);
+@type-kicker:          clamp(14px, 1.1vw, 16px);
+@type-category:        clamp(14px, 1vw, 16px);
 
 // Elevation & Shadows
 @shadow-card:      0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
@@ -89,9 +90,21 @@
 @pres-border:          var(--pres-border, #e2e8f0);
 @pres-border-hover:    var(--pres-border-hover, rgba(124, 58, 237, 0.40));
 @pres-header-shadow:   var(--pres-header-shadow, rgb(255 255 255) 1px 0.7px 0px);
-@pres-font-display:    var(--preset-display-font, @font-heading);
-@pres-font-body:       var(--preset-body-font, @font-body);
-@pres-font-mono:       var(--preset-mono-font, @font-mono);
+@pres-font-display:    var(--pres-font-display, var(--preset-display-font, @font-heading));
+@pres-font-body:       var(--pres-font-body, var(--preset-body-font, @font-body));
+@pres-font-mono:       var(--pres-font-mono, var(--preset-mono-font, @font-mono));
+@pres-canvas-gradient: var(--pres-canvas-gradient, none);
+@pres-dot-matrix:      var(--pres-dot-matrix, 0.05);
+@pres-kpi-highlight:   var(--pres-kpi-highlight, @pres-accent);
+
+// Fixed Dark HUD Chrome Tokens
+@chrome-bg:            rgba(15, 23, 42, 0.94);
+@chrome-bg-hover:      rgba(255, 255, 255, 0.08);
+@chrome-border:        rgba(255, 255, 255, 0.12);
+@chrome-border-glow:   rgba(124, 58, 237, 0.35);
+@chrome-glass-blur:    blur(16px);
+@chrome-shadow:        0 20px 40px -10px rgba(0, 0, 0, 0.5);
+@chrome-radius:        9999px;
 
 // 10-Step Gradient Stop Tokens
 @pres-stop-0:          var(--pres-stop-0, #f5f3ff);
@@ -124,14 +137,24 @@
   --pres-accent-glow-hsl: 45 96% 56%;
 
   // Fixed Dark Chrome HUD Tokens
-  --chrome-bg: 0 0% 7%;
-  --chrome-fg: 0 0% 98%;
-  --chrome-fg-muted: 0 0% 98% / 0.78;
-  --chrome-fg-subtle: 0 0% 98% / 0.62;
+  --chrome-bg: rgba(15, 23, 42, 0.94);
+  --chrome-bg-hover: rgba(255, 255, 255, 0.08);
+  --chrome-border-glow: rgba(124, 58, 237, 0.35);
+  --chrome-glass-blur: blur(16px);
+  --chrome-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+  --chrome-radius: 9999px;
+  --chrome-fg: #f8fafc;
+  --chrome-fg-muted: #94a3b8;
+  --chrome-fg-subtle: #64748b;
   --chrome-border-strength: 0.22;
   --chrome-divider-strength: 0.12;
-  --chrome-border: 0 0% 100% / var(--chrome-divider-strength);
-  --chrome-hover: 0 0% 100% / 0.08;
+  --chrome-border: rgba(255, 255, 255, 0.12);
+  --chrome-hover: rgba(255, 255, 255, 0.08);
+
+  // 60/30/10 Visual Balance Tokens Fallbacks
+  --pres-canvas-gradient: radial-gradient(ellipse 65% 55% at 50% 48%, rgba(124, 58, 237, 0.12) 0%, transparent 72%);
+  --pres-dot-matrix: 0.05;
+  --pres-kpi-highlight: var(--pres-accent);
 
   // Micro-Shadow Optical Sharpening Variables
   --text-shadow-weight-dark: rgb(0 0 0) 1px 0.7px 0px;

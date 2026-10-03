@@ -15,7 +15,7 @@ export const SiliconDieFloorplan: React.FC<SiliconDieFloorplanProps> = ({
     <div className="plane-1-raised p-5 rounded-2xl border border-slate-800 bg-slate-900/50 flex flex-col justify-between h-full font-mono text-xs">
       <div className="flex items-center justify-between border-b border-slate-800 pb-2.5">
         <span className="flex items-center gap-2 font-bold text-slate-200">
-          <Layers size={14} className="text-amber-600 dark:text-amber-400" />
+          <Layers size={14} className="text-amber-800 dark:text-amber-400" />
           Silicon Die Floorplan & Macro Placement
         </span>
         <span className="text-slate-400">

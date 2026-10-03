@@ -1,4 +1,3 @@
-// lint-allow: file-size reason="15 Global PPT slide archetype default factory generators" max=950
 import type {
   ExecutiveGovernanceMatrixSlideData,
   OkrCascadeAlignmentSlideData,

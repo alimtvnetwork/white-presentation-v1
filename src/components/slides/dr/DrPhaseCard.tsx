@@ -85,7 +85,7 @@ export const DrPhaseCard: React.FC<DrPhaseCardProps> = ({ phase, index, activeSt
 
       <div className="pt-3 border-t border-white/5 flex items-center justify-between font-mono text-[11px]">
         <span style={{ color: 'var(--pres-text-muted)' }} className="flex items-center gap-1">
-          <Server size={12} className="text-amber-400" />
+          <Server size={12} className="text-amber-900 dark:text-amber-400" />
           {phase.hasZeroDataLoss ? 'Zero Data Loss' : 'Consensus Synced'}
         </span>
         <span className="text-emerald-400 font-bold flex items-center gap-1">

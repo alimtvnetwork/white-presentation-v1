@@ -12,9 +12,9 @@ export const ThreatActorList: React.FC<ThreatActorListProps> = ({ threatFeed }) 
       case 'CRITICAL':
         return 'text-rose-400 bg-rose-500/10 border-rose-500/30';
       case 'HIGH':
-        return 'text-amber-400 bg-amber-500/10 border-amber-500/30';
+        return 'text-amber-800 dark:text-amber-300 bg-amber-500/10 border-amber-500/30';
       case 'MEDIUM':
-        return 'text-yellow-400 bg-yellow-500/10 border-yellow-500/30';
+        return 'text-amber-900 dark:text-amber-400 bg-yellow-500/10 border-yellow-500/30';
       default:
         return 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30';
     }

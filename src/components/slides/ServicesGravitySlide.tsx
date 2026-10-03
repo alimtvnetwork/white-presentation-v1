@@ -45,7 +45,7 @@ export const ServicesGravitySlide: React.FC<{ slide: ServicesGravitySlideData }>
           <div className="relative z-20 w-44 h-44 rounded-full bg-gradient-to-tr from-amber-500/30 via-violet-600/40 to-cyan-500/30 border-2 border-amber-400/60 shadow-[0_0_50px_rgba(245,158,11,0.3)] flex flex-col items-center justify-center text-center p-3 backdrop-blur-md">
             <Sun size={28} className="text-amber-800 dark:text-amber-300 mb-1 animate-pulse" />
             <span className="font-ubuntu font-bold text-sm text-white leading-tight">{slide.coreSunTitle || 'Event Core'}</span>
-            <span className="text-[10px] font-mono text-amber-200/80 mt-1">{slide.coreSunSubtitle || 'Zero-Copy Bus'}</span>
+            <span className="text-xs font-mono text-amber-900 dark:text-amber-200/90 mt-1">{slide.coreSunSubtitle || 'Zero-Copy Bus'}</span>
           </div>
           {services.map((svc, idx) => (
             <ServiceBubble key={svc.id || idx} service={svc} index={idx} total={services.length} isActive={idx === activeStep} isPast={idx < activeStep} isFuture={idx > activeStep} />

@@ -1,5 +1,6 @@
+// lint-allow: file-size reason="unified slide archetype registry and default factories" max=480
 import {
-  SlideType, SlideData, MetricGridSlideData, ProblemSolutionSlideData,
+  SlideType, SlideData, NextGenSlideType, MetricGridSlideData, ProblemSolutionSlideData,
   QuadrantMatrixSlideData, MarketOpportunitySlideData, TimelineRoadmapSlideData,
   FeatureGridSlideData, ArchitectureDiagramSlideData, QuoteCalloutSlideData,
   StatsCalloutSlideData, TeamGridSlideData, CaseStudySlideData,
@@ -10,10 +11,32 @@ import { EXTENDED_FACTORIES, EXTENDED_ARCHETYPE_OPTIONS, ArchetypeOption } from 
 import { EXPANDED_FACTORIES, EXPANDED_ARCHETYPE_OPTIONS } from './expandedSlideFactories';
 import { ENTERPRISE_FACTORIES, ENTERPRISE_ARCHETYPE_OPTIONS } from './enterpriseSlideFactories';
 import { KINETIC_SUITE_ARCHETYPE_OPTIONS, createKineticSuiteSlide } from './kineticSuiteSlideFactories';
+import {
+  NEXTGEN_ARCHETYPE_OPTIONS,
+  NEXTGEN_FACTORIES,
+  NEXT_GEN_ARCHETYPE_OPTIONS,
+  NEXT_GEN_SLIDE_FACTORIES,
+  createThreeHorizonsStrategySlide,
+  createAiAgentFleetTopologySlide,
+  createApiRateLimitGatewaySlide,
+  createMultiCloudDrFailoverSlide,
+  createFintechPaymentClearingSlide,
+  createEsgDecarbonizationRoadmapSlide,
+  createModelContextProtocolMeshSlide,
+  createDataCleanRoomSlide,
+  createDeveloperPlatformIdpSlide,
+  createExecutiveMaSynergySlide,
+  createCyberThreatKillChainSlide,
+  createSupplyChainDigitalTwinSlide,
+  createVoiceAiConversationalMeshSlide,
+  createComplianceSoc2ReadinessLadderSlide,
+  createValueStreamDoraFlywheelSlide,
+} from './nextGenSlideFactories';
 export * from './extendedSlideFactories';
 export * from './expandedSlideFactories';
 export * from './enterpriseSlideFactories';
 export * from './kineticSuiteSlideFactories';
+export * from './nextGenSlideFactories';
 
 export const ORIGINAL_ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   { type: 'metric-grid', label: 'Metric Grid Matrix', category: 'Strategy & Metrics', desc: '4-6 quantitative KPI cards with delta trends', icon: 'BarChart3' },
@@ -39,7 +62,141 @@ export const ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   ...EXPANDED_ARCHETYPE_OPTIONS,
   ...ENTERPRISE_ARCHETYPE_OPTIONS,
   ...KINETIC_SUITE_ARCHETYPE_OPTIONS,
+  ...NEXTGEN_ARCHETYPE_OPTIONS,
 ];
+
+// =============================================================================
+// Slide Archetype Categories & Unified Master Registry
+// =============================================================================
+export const SLIDE_ARCHETYPE_CATEGORIES = [
+  'Strategy & Metrics',
+  'Story & Conversion',
+  'Product & Architecture',
+  'Team & Credibility',
+  'Enterprise',
+  'Kinetic Suite',
+  'next-gen',
+] as const;
+
+export type SlideArchetypeCategory = (typeof SLIDE_ARCHETYPE_CATEGORIES)[number];
+
+export interface SlideArchetypeDefinition {
+  type: NextGenSlideType | SlideType;
+  title: string;
+  category: string;
+  description: string;
+  factory: (id?: string) => SlideData;
+}
+
+export const SLIDE_ARCHETYPE_FACTORIES: Record<string, SlideArchetypeDefinition> = {
+  'three-horizons-strategy-matrix': {
+    type: 'three-horizons-strategy-matrix',
+    title: 'Three Horizons Strategy Matrix',
+    category: 'next-gen',
+    description: 'McKinsey Growth Portfolios (H1/H2/H3) with Capital Allocation & Stage-Gate Metrics',
+    factory: createThreeHorizonsStrategySlide,
+  },
+  'ai-agent-fleet-topology': {
+    type: 'ai-agent-fleet-topology',
+    title: 'AI Agent Fleet Topology',
+    category: 'next-gen',
+    description: 'Supervisor Controller, Dispatcher & Sandboxed Multi-Agent Swarms with Safety Interlocks',
+    factory: createAiAgentFleetTopologySlide,
+  },
+  'api-rate-limit-gateway': {
+    type: 'api-rate-limit-gateway',
+    title: 'API Rate Limit Gateway',
+    category: 'next-gen',
+    description: 'Token-Bucket Quotas, Redis Sliding-Window Sync & HTTP 429 Degradation Circuit Breaker',
+    factory: createApiRateLimitGatewaySlide,
+  },
+  'multi-cloud-dr-failover-mesh': {
+    type: 'multi-cloud-dr-failover-mesh',
+    title: 'Multi-Cloud DR Failover Mesh',
+    category: 'next-gen',
+    description: 'Active-Active BGP Traffic Shifting, Raft Quorum Consensus & Sub-15s RTO Recovery',
+    factory: createMultiCloudDrFailoverSlide,
+  },
+  'fintech-payment-clearing-engine': {
+    type: 'fintech-payment-clearing-engine',
+    title: 'FinTech Payment Clearing Engine',
+    category: 'next-gen',
+    description: 'ISO 20022 Messaging, Sub-15ms ML Fraud Scoring & FedNow Instant Settlement Rails',
+    factory: createFintechPaymentClearingSlide,
+  },
+  'esg-decarbonization-roadmap': {
+    type: 'esg-decarbonization-roadmap',
+    title: 'ESG Decarbonization Roadmap',
+    category: 'next-gen',
+    description: 'SBTi Net-Zero 1.5°C Trajectory Across Scope 1-3 Reduction Wedges & Renewable PPAs',
+    factory: createEsgDecarbonizationRoadmapSlide,
+  },
+  'model-context-protocol-mesh': {
+    type: 'model-context-protocol-mesh',
+    title: 'Model Context Protocol (MCP) Mesh',
+    category: 'next-gen',
+    description: 'JSON-RPC 2.0 Host Handshake, Gateway Discovery & Sandboxed Tool Execution Stream',
+    factory: createModelContextProtocolMeshSlide,
+  },
+  'data-clean-room-collaboration': {
+    type: 'data-clean-room-collaboration',
+    title: 'Data Clean Room Collaboration',
+    category: 'next-gen',
+    description: 'Confidential Computing Enclave, Differential Privacy Budget & Zero Raw PII Egress',
+    factory: createDataCleanRoomSlide,
+  },
+  'developer-platform-idp-hub': {
+    type: 'developer-platform-idp-hub',
+    title: 'Developer Platform IDP Hub',
+    category: 'next-gen',
+    description: 'Self-Service Golden Paths, Spotify Backstage Software Catalog & 42s Onboarding',
+    factory: createDeveloperPlatformIdpSlide,
+  },
+  'executive-mergers-acquisitions-synergy': {
+    type: 'executive-mergers-acquisitions-synergy',
+    title: 'Executive M&A Synergy Waterfall',
+    category: 'next-gen',
+    description: 'M&A Valuation Waterfall, EBITDA Synergies, Workstream Health & Accretive EPS',
+    factory: createExecutiveMaSynergySlide,
+  },
+  'cyber-threat-kill-chain-matrix': {
+    type: 'cyber-threat-kill-chain-matrix',
+    title: 'Cyber Threat Kill Chain Matrix',
+    category: 'next-gen',
+    description: 'Lockheed Martin 7-Stage Kill Chain Defense, MITRE ATT&CK & Automated SOAR Playbooks',
+    factory: createCyberThreatKillChainSlide,
+  },
+  'supply-chain-digital-twin-lattice': {
+    type: 'supply-chain-digital-twin-lattice',
+    title: 'Supply Chain Digital Twin Lattice',
+    category: 'next-gen',
+    description: 'Multimodal Corridors, Chokepoint Anomaly Detection & Autonomous Rerouting Simulation',
+    factory: createSupplyChainDigitalTwinSlide,
+  },
+  'voice-ai-realtime-conversational-mesh': {
+    type: 'voice-ai-realtime-conversational-mesh',
+    title: 'Voice AI Conversational Mesh',
+    category: 'next-gen',
+    description: 'Sub-300ms Full-Duplex VAD, Streaming Conformer ASR, LLM Reasoning & Neural TTS',
+    factory: createVoiceAiConversationalMeshSlide,
+  },
+  'compliance-audit-soc2-readiness-ladder': {
+    type: 'compliance-audit-soc2-readiness-ladder',
+    title: 'SOC 2 Readiness Ladder',
+    category: 'next-gen',
+    description: 'Continuous 5 Trust Criteria Ladder Traversing Gap Analysis to Clean Type II Report',
+    factory: createComplianceSoc2ReadinessLadderSlide,
+  },
+  'value-stream-engineering-dora-flywheel': {
+    type: 'value-stream-engineering-dora-flywheel',
+    title: 'Value Stream & DORA Flywheel',
+    category: 'next-gen',
+    description: 'Elite DORA Metrics, Flow Efficiency Framework & Engineering Revenue Acceleration',
+    factory: createValueStreamDoraFlywheelSlide,
+  },
+};
+
+export const SLIDE_ARCHETYPE_FACTORIES_LIST = Object.values(SLIDE_ARCHETYPE_FACTORIES);
 
 export const createMetricGridSlide = (id = `slide-${Date.now()}`): MetricGridSlideData => ({
   id, type: 'metric-grid', kicker: 'FINANCIAL PERFORMANCE',
@@ -287,6 +444,12 @@ const createFallbackTitleSlide = (id: string): SlideData => ({
 });
 
 export const createArchetypeSlide = (type: SlideType, id = `slide-${Date.now()}`): SlideData => {
+  if (type in SLIDE_ARCHETYPE_FACTORIES) {
+    return SLIDE_ARCHETYPE_FACTORIES[type].factory(id);
+  }
+  if (type in NEXTGEN_FACTORIES) {
+    return NEXTGEN_FACTORIES[type as keyof typeof NEXTGEN_FACTORIES](id);
+  }
   const kineticSlide = createKineticSuiteSlide(type as any, id);
   if (kineticSlide) {
     return kineticSlide;

@@ -57,10 +57,10 @@ export const ChaosKpiStrip: React.FC<ChaosKpiStripProps> = ({ slide }) => {
             Injected Scenarios
           </div>
           <div style={{ color: 'var(--pres-text)' }} className="text-2xl font-bold font-ubuntu tracking-tight">
-            {scenarios.length} <span className="text-sm font-normal font-mono text-amber-400">Vectors</span>
+            {scenarios.length} <span className="text-sm font-normal font-mono text-amber-900 dark:text-amber-400">Vectors</span>
           </div>
         </div>
-        <div className="p-2.5 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
+        <div className="p-2.5 rounded-lg bg-amber-500/10 text-amber-900 dark:text-amber-400 border border-amber-500/20">
           <Flame size={20} />
         </div>
       </div>

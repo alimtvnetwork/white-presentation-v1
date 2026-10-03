@@ -22,7 +22,7 @@ export const ProConItemRow: React.FC<ProConItemRowProps> = ({ item, isPro }) => 
       <div className="flex items-start gap-3">
         <div
           className={`w-7 h-7 rounded-xl flex items-center justify-center shrink-0 mt-0.5 ${
-            isPro ? 'bg-emerald-500/20 text-emerald-400' : 'bg-amber-500/20 text-amber-400'
+            isPro ? 'bg-emerald-500/20 text-emerald-400' : 'bg-amber-500/20 text-amber-900 dark:text-amber-400'
           }`}
         >
           {isPro ? <CheckCircle2 size={16} /> : <AlertCircle size={16} />}

@@ -28,7 +28,7 @@ const HighlightCard: React.FC<{ item: ExecutiveHighlightItem }> = ({ item }) => 
     <div className="plane-2-elevated p-5 rounded-2xl border border-slate-800 bg-slate-900/50 flex flex-col justify-between">
       <div className="flex items-center justify-between mb-2">
         <span style={{ color: 'var(--pres-text-muted)' }} className="font-mono text-xs uppercase tracking-wider">{item.label}</span>
-        <div className={`flex items-center gap-1 text-xs font-mono font-bold px-2 py-0.5 rounded-full ${isPositive ? 'text-emerald-400 bg-emerald-500/10 border border-emerald-500/30' : 'text-amber-400 bg-amber-500/10 border border-amber-500/30'}`}>
+        <div className={`flex items-center gap-1 text-xs font-mono font-bold px-2 py-0.5 rounded-full ${isPositive ? 'text-emerald-400 bg-emerald-500/10 border border-emerald-500/30' : 'text-amber-900 bg-amber-100 border border-amber-400 dark:text-amber-400 dark:bg-amber-500/10 dark:border-amber-500/30'}`}>
           {isPositive ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
           <span>{isPositive ? 'Growth' : 'Track'}</span>
         </div>

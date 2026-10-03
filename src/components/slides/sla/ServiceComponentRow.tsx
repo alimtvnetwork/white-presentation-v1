@@ -39,7 +39,7 @@ export const ServiceComponentRow: React.FC<ServiceComponentRowProps> = ({ servic
           </div>
           <div className="flex items-center gap-1">
             {hasRecentIncident ? (
-              <span className="text-amber-600 dark:text-amber-400 flex items-center gap-1 text-[11px] font-bold">
+              <span className="text-amber-800 dark:text-amber-400 flex items-center gap-1 text-[11px] font-bold">
                 <AlertTriangle size={13} /> Degraded
               </span>
             ) : (

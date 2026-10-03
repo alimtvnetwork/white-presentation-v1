@@ -1,9 +1,10 @@
 # Plans Directory
 
 ## Pending Plans
-None
+None.
 
 ## Completed Plans
+- [34-global-ppt-synthesis-and-15-nextgen-archetypes.md](completed/34-global-ppt-synthesis-and-15-nextgen-archetypes.md)
 - [01-white-presentation-specs.md](completed/01-white-presentation-specs.md)
 - [02-audit-spec-and-release-readiness.md](completed/02-audit-spec-and-release-readiness.md)
 - [03-code-implementation-and-slide-specs.md](completed/03-code-implementation-and-slide-specs.md)
@@ -20,4 +21,6 @@ None
 - [28-deep-global-ppt-and-flat-slide-synthesis.md](completed/28-deep-global-ppt-and-flat-slide-synthesis.md)
 - [29-corporate-ppt-kinetic-flat-slides.md](completed/29-corporate-ppt-kinetic-flat-slides.md)
 - [30-global-ppt-motion-flat-kinetic-slides.md](completed/30-global-ppt-motion-flat-kinetic-slides.md)
+- [30-white-slides-interaction-and-hud-refinement.md](completed/30-white-slides-interaction-and-hud-refinement.md)
 - [31-global-ppt-motion-design-and-15-kinetic-archetypes.md](completed/31-global-ppt-motion-design-and-15-kinetic-archetypes.md)
+- [32-global-ppt-flat-step-and.md](completed/32-global-ppt-flat-step-and.md)

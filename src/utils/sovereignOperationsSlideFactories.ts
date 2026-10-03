@@ -1,4 +1,3 @@
-// lint-allow: file-size reason="15 Sovereign Operations slide archetype default factory generators" max=1200
 import type {
   ZeroTrustPacketInspectionSlideData,
   DatabaseMigrationPipelineSlideData,

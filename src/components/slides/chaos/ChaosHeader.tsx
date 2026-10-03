@@ -26,7 +26,7 @@ export const ChaosHeader: React.FC<ChaosHeaderProps> = ({
           <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-rose-500/10 text-rose-400 border border-rose-500/30 flex items-center gap-1.5">
             <Flame size={13} /> {slide.kicker || 'CHAOS ENGINEERING MATRIX'}
           </span>
-          <span className="font-mono text-xs text-amber-300 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20">
+          <span className="font-mono text-xs text-amber-900 dark:text-amber-300 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20">
             Cluster: {slide.targetCluster || 'Global Edge Mesh'}
           </span>
           <span className="font-mono text-xs text-emerald-300 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20 flex items-center gap-1">

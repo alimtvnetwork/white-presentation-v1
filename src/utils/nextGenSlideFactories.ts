@@ -1,0 +1,7 @@
+export * from './nextgen/strategyAiFactories';
+export * from './nextgen/infraFintechFactories';
+export * from './nextgen/esgProtocolDataFactories';
+export * from './nextgen/platformSecOpsFactories';
+export * from './nextgen/logisticsVoiceFactories';
+export * from './nextgen/complianceDoraFactories';
+export * from './nextgen/registry';

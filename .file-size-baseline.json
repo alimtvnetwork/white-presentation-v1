@@ -6,16 +6,52 @@
       "lines": 3148
     },
     {
+      "path": "src/utils/globalPptSlideFactories.ts",
+      "lines": 1234
+    },
+    {
       "path": "linter-scripts/validate-guidelines.py",
       "lines": 1221
+    },
+    {
+      "path": "src/utils/sovereignOperationsSlideFactories.ts",
+      "lines": 1139
+    },
+    {
+      "path": "src/utils/extendedSlideFactories.ts",
+      "lines": 1118
     },
     {
       "path": "linter-scripts/validate-guidelines.go",
       "lines": 1044
     },
     {
+      "path": "src/utils/kineticSuiteSlideFactories.ts",
+      "lines": 853
+    },
+    {
+      "path": "src/types/extendedArchetypes.ts",
+      "lines": 720
+    },
+    {
+      "path": "src/types/sovereignOperationsArchetypes.ts",
+      "lines": 669
+    },
+    {
+      "path": "src/types/globalPptArchetypes.ts",
+      "lines": 645
+    },
+    {
+      "path": "src/types/kineticSuiteArchetypes.ts",
+      "lines": 558
+    },
+    {
       "path": "linter-scripts/tests/test_placeholder_diff_parser.py",
       "lines": 511
+    },
+    {
+      "path": "src/stores/deckStore.ts",
+      "lines": 498
     },
     {
       "path": "linter-scripts/allowlist-forbidden-string.py",
@@ -42,8 +78,8 @@
       "lines": 371
     },
     {
-      "path": "src/stores/deckStore.ts",
-      "lines": 362
+      "path": "src/utils/enterpriseSlideFactories.ts",
+      "lines": 361
     },
     {
       "path": "linter-scripts/suggest-spec-cross-link-fixes.py",
@@ -74,32 +110,8 @@
       "lines": 311
     },
     {
-      "path": "src/components/slides/WhiteMasterSlide.tsx",
-      "lines": 242
-    },
-    {
-      "path": "src/components/slides/KeyPlayerSlide.tsx",
-      "lines": 119
-    },
-    {
-      "path": "src/components/slides/TalentFunnelSlide.tsx",
-      "lines": 108
-    },
-    {
-      "path": "src/components/canvas/PresentationCanvas.tsx",
-      "lines": 107
-    },
-    {
-      "path": "src/components/slides/CeoPersonaSlide.tsx",
-      "lines": 107
-    },
-    {
-      "path": "src/components/slides/PricingProofSlide.tsx",
-      "lines": 107
-    },
-    {
-      "path": "src/components/canvas/NavigationControls.tsx",
-      "lines": 102
+      "path": "src/types/presentation.ts",
+      "lines": 311
     }
   ]
 }

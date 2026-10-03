@@ -16,8 +16,8 @@ export const ThreatSeverityStrip: React.FC<ThreatSeverityStripProps> = ({
 }) => {
   const levelColors: Record<string, string> = {
     CRITICAL: 'text-rose-400 bg-rose-500/10 border-rose-500/30',
-    ELEVATED: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
-    GUARDED: 'text-yellow-400 bg-yellow-500/10 border-yellow-500/30',
+    ELEVATED: 'text-amber-800 dark:text-amber-300 bg-amber-500/10 border-amber-500/30',
+    GUARDED: 'text-amber-900 dark:text-amber-400 bg-yellow-500/10 border-yellow-500/30',
     NOMINAL: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30',
   };
 
@@ -28,7 +28,7 @@ export const ThreatSeverityStrip: React.FC<ThreatSeverityStripProps> = ({
       label: 'DEFCON Threat Level',
       value: threatLevel,
       sub: 'Real-time IOC correlation',
-      icon: <AlertTriangle size={18} className="text-amber-600 dark:text-amber-400" />,
+      icon: <AlertTriangle size={18} className="text-amber-800 dark:text-amber-400" />,
       tagColor: levelColors[threatLevel] || levelColors.GUARDED,
     },
     {

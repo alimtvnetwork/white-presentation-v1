@@ -23,7 +23,7 @@ export const DrHeader: React.FC<DrHeaderProps> = ({
     <div className="z-10 flex items-start justify-between">
       <div>
         <div className="flex items-center gap-3 mb-2">
-          <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center gap-1.5">
+          <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-amber-500/10 text-amber-900 dark:text-amber-400 border border-amber-500/30 flex items-center gap-1.5">
             <AlertTriangle size={13} /> {slide.kicker || 'DISASTER RECOVERY DRILL'}
           </span>
           <span className="font-mono text-xs text-rose-300 bg-rose-500/10 px-2.5 py-0.5 rounded-full border border-rose-500/20">

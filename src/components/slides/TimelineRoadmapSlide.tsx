@@ -22,7 +22,7 @@ export const TimelineRoadmapSlide: React.FC<{ slide: TimelineRoadmapSlideData }>
     >
       <div className="flex items-center justify-between z-20">
         <div>
-          <div style={{ color: theme.accentColor }} className="text-[13px] font-bold tracking-[0.25em] uppercase mb-2 font-mono" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => ({ ...s, kicker: e.currentTarget.textContent || '' }))}>
+          <div style={{ color: theme.accentColor }} className="text-sm font-bold tracking-[0.25em] px-4 py-1.5 uppercase mb-2 font-mono" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => ({ ...s, kicker: e.currentTarget.textContent || '' }))}>
             {slide.kicker || 'STRATEGIC DELIVERY ROADMAP'}
           </div>
           <h1 style={{ color: theme.textColor, textShadow: theme.headerShadow }} className="font-ubuntu text-[52px] font-extrabold tracking-tight leading-tight slide-up-anim" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => ({ ...s, title: e.currentTarget.textContent || '' }))}>
@@ -61,7 +61,7 @@ export const TimelineRoadmapSlide: React.FC<{ slide: TimelineRoadmapSlideData }>
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span style={{ color: theme.accentColor }} className="font-mono text-sm font-bold tracking-wider uppercase">{period}</span>
-                  <span style={{ color: badgeColor, borderColor: badgeBorder, backgroundColor: badgeBg }} className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold border">
+                  <span style={{ color: badgeColor, borderColor: badgeBorder, backgroundColor: badgeBg }} className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-mono font-bold border">
                     {isCompleted ? <CheckCircle2 size={12} /> : isStepFocused ? <Clock size={12} /> : <Calendar size={12} />}
                     {isCompleted ? 'Completed' : isStepFocused ? 'In Progress' : 'Upcoming'}
                   </span>
@@ -77,7 +77,7 @@ export const TimelineRoadmapSlide: React.FC<{ slide: TimelineRoadmapSlideData }>
                   ))}
                 </div>
               </div>
-              <div className="mt-6 pt-3 border-t border-white/10 font-mono text-[11px] uppercase tracking-wider" style={{ color: theme.subtextColor }}>
+              <div className="mt-6 pt-3 border-t border-white/10 font-mono text-xs uppercase tracking-wider" style={{ color: theme.subtextColor }}>
                 Phase 0{idx + 1} of 0{rawList.length}
               </div>
             </div>

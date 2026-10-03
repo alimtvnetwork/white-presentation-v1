@@ -59,7 +59,7 @@ export const FlagMetricStrip: React.FC<FlagMetricStripProps> = ({ slide }) => {
             {slide.targetReleaseVersion || 'v3.2.0'}
           </div>
         </div>
-        <div className="p-2.5 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
+        <div className="p-2.5 rounded-lg bg-amber-500/10 text-amber-900 dark:text-amber-400 border border-amber-500/20">
           <Radio size={20} />
         </div>
       </div>

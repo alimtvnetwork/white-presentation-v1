@@ -40,7 +40,37 @@
         "case-study-impact",
         "dual-column-pros-cons",
         "interactive-code-playground",
-        "closing-cta-showcase"
+        "closing-cta-showcase",
+        "three-horizons-strategy-matrix",
+        "ai-agent-fleet-topology",
+        "api-rate-limit-gateway",
+        "multi-cloud-dr-failover-mesh",
+        "fintech-payment-clearing-engine",
+        "esg-decarbonization-roadmap",
+        "model-context-protocol-mesh",
+        "data-clean-room-collaboration",
+        "developer-platform-idp-hub",
+        "executive-mergers-acquisitions-synergy",
+        "cyber-threat-kill-chain-matrix",
+        "supply-chain-digital-twin-lattice",
+        "voice-ai-realtime-conversational-mesh",
+        "compliance-audit-soc2-readiness-ladder",
+        "value-stream-engineering-dora-flywheel",
+        "zero-trust-packet-inspection",
+        "database-migration-pipeline",
+        "autonomous-ai-eval-harness",
+        "chaos-engineering-matrix",
+        "ci-cd-artifact-provenance",
+        "disaster-recovery-drill",
+        "feature-flag-rollout-tree",
+        "quantum-cryptography-transition",
+        "global-latency-topology",
+        "microservices-mesh-telemetry",
+        "threat-intelligence-feed",
+        "data-lakehouse-governance",
+        "kubernetes-fleet-orchestrator",
+        "api-monetization-billing",
+        "ai-inference-cluster-telemetry"
       ]
     },
     "title": {
@@ -812,6 +842,959 @@
         "hasPrimaryAction": { "type": "boolean" },
         "isQrActive": { "type": "boolean" },
         "hasCalendarLink": { "type": "boolean" }
+      }
+    },
+    "threeHorizonsStrategyMatrix": {
+      "type": "object",
+      "required": ["id", "type", "title", "horizons", "portfolioSummary", "executiveSignoff"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "three-horizons-strategy-matrix" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "kicker": { "type": "string" },
+        "activeStep": { "type": "integer", "minimum": 1 },
+        "maxSteps": { "type": "integer", "minimum": 1 },
+        "horizons": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "required": ["id", "horizonNumber", "name", "targetCapitalAllocationPercent", "initiatives"],
+            "properties": {
+              "id": { "type": "string" },
+              "horizonNumber": { "enum": [1, 2, 3] },
+              "name": { "type": "string" },
+              "subtitle": { "type": "string" },
+              "timeframeYears": { "type": "string" },
+              "targetCapitalAllocationPercent": { "type": "number" },
+              "targetRevenuePercentage": { "type": "number" },
+              "strategicFocus": { "type": "string" },
+              "stageGateCriteria": { "type": "string" },
+              "isHorizonActive": { "type": "boolean" },
+              "initiatives": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["id", "name", "metricTarget", "isFunded", "isMilestoneAchieved"],
+                  "properties": {
+                    "id": { "type": "string" },
+                    "name": { "type": "string" },
+                    "leadOwner": { "type": "string" },
+                    "metricTarget": { "type": "string" },
+                    "currentValue": { "type": "string" },
+                    "isFunded": { "type": "boolean" },
+                    "isMilestoneAchieved": { "type": "boolean" },
+                    "riskProfile": { "enum": ["LOW", "BALANCED", "HIGH"] }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "portfolioSummary": {
+          "type": "object",
+          "required": ["totalCapExMillionUsd", "projectedRoiMultiplier", "isPortfolioRebalanced", "isReviewApproved"],
+          "properties": {
+            "totalCapExMillionUsd": { "type": "number" },
+            "projectedRoiMultiplier": { "type": "number" },
+            "blendedGrowthRatePercent": { "type": "number" },
+            "isPortfolioRebalanced": { "type": "boolean" },
+            "isReviewApproved": { "type": "boolean" }
+          }
+        },
+        "executiveSignoff": {
+          "type": "object",
+          "required": ["chiefStrategyOfficer", "isApproved"],
+          "properties": {
+            "chiefStrategyOfficer": { "type": "string" },
+            "reviewQuarter": { "type": "string" },
+            "isApproved": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "aiAgentFleetTopology": {
+      "type": "object",
+      "required": ["id", "type", "title", "supervisor", "agentWorkers", "governorMetrics", "liveTelemetry"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "ai-agent-fleet-topology" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "kicker": { "type": "string" },
+        "activeStep": { "type": "integer", "minimum": 1 },
+        "maxSteps": { "type": "integer", "minimum": 1 },
+        "supervisor": {
+          "type": "object",
+          "required": ["controllerId", "modelFamily", "contextWindowTokens", "currentTaskQueueDepth", "isOperational", "isAutonomousDispatchEnabled"],
+          "properties": {
+            "controllerId": { "type": "string" },
+            "modelFamily": { "type": "string" },
+            "contextWindowTokens": { "type": "number" },
+            "currentTaskQueueDepth": { "type": "number" },
+            "isOperational": { "type": "boolean" },
+            "isAutonomousDispatchEnabled": { "type": "boolean" }
+          }
+        },
+        "agentWorkers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "name", "role", "specialization", "status", "activeTokensUsed", "taskSuccessRatePercent", "isHealthy", "isSandboxIsolated", "activeToolName"],
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "role": { "type": "string" },
+              "specialization": { "type": "string" },
+              "status": { "enum": ["IDLE", "EXECUTING", "WAITING_IO", "COMPLETED"] },
+              "activeTokensUsed": { "type": "number" },
+              "taskSuccessRatePercent": { "type": "number" },
+              "isHealthy": { "type": "boolean" },
+              "isSandboxIsolated": { "type": "boolean" },
+              "activeToolName": { "type": "string" }
+            }
+          }
+        },
+        "governorMetrics": {
+          "type": "object",
+          "required": ["tokenBudgetMaxMillion", "tokensConsumedMillion", "loopAnomalyCount", "hasBlockedUnsafeCalls", "isComplianceEnforced"],
+          "properties": {
+            "tokenBudgetMaxMillion": { "type": "number" },
+            "tokensConsumedMillion": { "type": "number" },
+            "loopAnomalyCount": { "type": "number" },
+            "hasBlockedUnsafeCalls": { "type": "boolean" },
+            "isComplianceEnforced": { "type": "boolean" }
+          }
+        },
+        "liveTelemetry": {
+          "type": "object",
+          "required": ["activeAgentsCount", "completedTasksCount", "p95TaskLatencySeconds", "isFleetSynchronized"],
+          "properties": {
+            "activeAgentsCount": { "type": "number" },
+            "completedTasksCount": { "type": "number" },
+            "p95TaskLatencySeconds": { "type": "number" },
+            "isFleetSynchronized": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "apiRateLimitGateway": {
+      "type": "object",
+      "required": ["id", "type", "title", "gatewayTiers", "redisMesh", "trafficTelemetry", "circuitBreaker"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "api-rate-limit-gateway" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "kicker": { "type": "string" },
+        "activeStep": { "type": "integer", "minimum": 1 },
+        "maxSteps": { "type": "integer", "minimum": 1 },
+        "gatewayTiers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["tierId", "tierName", "tokenCapacity", "refillRatePerSec", "burstAllowance", "activeClientsCount", "isTierActive", "isPriorityQueueEnabled"],
+            "properties": {
+              "tierId": { "type": "string" },
+              "tierName": { "enum": ["FREE", "PRO", "ENTERPRISE", "INTERNAL_MESH"] },
+              "tokenCapacity": { "type": "number" },
+              "refillRatePerSec": { "type": "number" },
+              "burstAllowance": { "type": "number" },
+              "activeClientsCount": { "type": "number" },
+              "isTierActive": { "type": "boolean" },
+              "isPriorityQueueEnabled": { "type": "boolean" }
+            }
+          }
+        },
+        "redisMesh": {
+          "type": "object",
+          "required": ["clusterNodesCount", "p99SyncLatencyMs", "isClusterHealthy", "hasConsistentHashing"],
+          "properties": {
+            "clusterNodesCount": { "type": "number" },
+            "p99SyncLatencyMs": { "type": "number" },
+            "isClusterHealthy": { "type": "boolean" },
+            "hasConsistentHashing": { "type": "boolean" }
+          }
+        },
+        "trafficTelemetry": {
+          "type": "object",
+          "required": ["totalRequestsPerSecond", "allowedRequestsPerSecond", "throttled429PerSecond", "cacheHitRatePercent", "isDegradationActive"],
+          "properties": {
+            "totalRequestsPerSecond": { "type": "number" },
+            "allowedRequestsPerSecond": { "type": "number" },
+            "throttled429PerSecond": { "type": "number" },
+            "cacheHitRatePercent": { "type": "number" },
+            "isDegradationActive": { "type": "boolean" }
+          }
+        },
+        "circuitBreaker": {
+          "type": "object",
+          "required": ["state", "failureThresholdPercent", "isTripped", "isAutoRecoveryEnabled"],
+          "properties": {
+            "state": { "enum": ["CLOSED", "HALF_OPEN", "OPEN"] },
+            "failureThresholdPercent": { "type": "number" },
+            "isTripped": { "type": "boolean" },
+            "isAutoRecoveryEnabled": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "multiCloudDrFailoverMesh": {
+      "type": "object",
+      "required": ["id", "type", "title", "cloudRegions", "replicationPipeline", "failoverTelemetry", "quorumStatus"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "multi-cloud-dr-failover-mesh" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "kicker": { "type": "string" },
+        "activeStep": { "type": "integer", "minimum": 1 },
+        "maxSteps": { "type": "integer", "minimum": 1 },
+        "cloudRegions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["regionId", "provider", "location", "trafficWeightPercent", "healthScorePercent", "isHealthy", "isDraining", "isPrimary"],
+            "properties": {
+              "regionId": { "type": "string" },
+              "provider": { "enum": ["AWS", "GCP", "AZURE", "SOVEREIGN_ONPREM"] },
+              "location": { "type": "string" },
+              "trafficWeightPercent": { "type": "number" },
+              "healthScorePercent": { "type": "number" },
+              "isHealthy": { "type": "boolean" },
+              "isDraining": { "type": "boolean" },
+              "isPrimary": { "type": "boolean" }
+            }
+          }
+        },
+        "replicationPipeline": {
+          "type": "object",
+          "required": ["replicationLagMs", "syncMode", "hasZeroDataLossGuarantee", "isReplicaConsistent"],
+          "properties": {
+            "replicationLagMs": { "type": "number" },
+            "syncMode": { "enum": ["SYNCHRONOUS", "ASYNCHRONOUS"] },
+            "hasZeroDataLossGuarantee": { "type": "boolean" },
+            "isReplicaConsistent": { "type": "boolean" }
+          }
+        },
+        "failoverTelemetry": {
+          "type": "object",
+          "required": ["rtoSecondsTarget", "rtoSecondsObserved", "rpoSecondsObserved", "isFailoverArmed", "isAutomaticTriggerEnabled"],
+          "properties": {
+            "rtoSecondsTarget": { "type": "number" },
+            "rtoSecondsObserved": { "type": "number" },
+            "rpoSecondsObserved": { "type": "number" },
+            "isFailoverArmed": { "type": "boolean" },
+            "isAutomaticTriggerEnabled": { "type": "boolean" }
+          }
+        },
+        "quorumStatus": {
+          "type": "object",
+          "required": ["activeVotingMembers", "totalMembers", "hasQuorumConsensus", "isSplitBrainPrevented"],
+          "properties": {
+            "activeVotingMembers": { "type": "number" },
+            "totalMembers": { "type": "number" },
+            "hasQuorumConsensus": { "type": "boolean" },
+            "isSplitBrainPrevented": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "fintechPaymentClearingEngine": {
+      "type": "object",
+      "required": ["id", "type", "title", "clearingStages", "activeTransaction", "fraudEngine", "settlementTelemetry"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "fintech-payment-clearing-engine" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "kicker": { "type": "string" },
+        "activeStep": { "type": "integer", "minimum": 1 },
+        "maxSteps": { "type": "integer", "minimum": 1 },
+        "clearingStages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["stageId", "name", "standard", "latencyTargetMs", "latencyActualMs", "isVerified", "isPassed", "activeRuleSet"],
+            "properties": {
+              "stageId": { "type": "string" },
+              "name": { "type": "string" },
+              "standard": { "type": "string" },
+              "latencyTargetMs": { "type": "number" },
+              "latencyActualMs": { "type": "number" },
+              "isVerified": { "type": "boolean" },
+              "isPassed": { "type": "boolean" },
+              "activeRuleSet": { "type": "string" }
+            }
+          }
+        },
+        "activeTransaction": {
+          "type": "object",
+          "required": ["txnId", "messageType", "senderIbanMasked", "receiverIbanMasked", "amountUsd", "currency", "isAuthorized", "isSanctionsCleared"],
+          "properties": {
+            "txnId": { "type": "string" },
+            "messageType": { "enum": ["pacs.008.001.10", "pacs.002.001.12", "camt.053.001.10"] },
+            "senderIbanMasked": { "type": "string" },
+            "receiverIbanMasked": { "type": "string" },
+            "amountUsd": { "type": "number" },
+            "currency": { "enum": ["USD", "EUR", "GBP"] },
+            "isAuthorized": { "type": "boolean" },
+            "isSanctionsCleared": { "type": "boolean" }
+          }
+        },
+        "fraudEngine": {
+          "type": "object",
+          "required": ["riskScoreZeroToOneHundred", "inferenceDurationMs", "modelVersion", "isApprovedByModel", "hasBiometricAuth"],
+          "properties": {
+            "riskScoreZeroToOneHundred": { "type": "number" },
+            "inferenceDurationMs": { "type": "number" },
+            "modelVersion": { "type": "string" },
+            "isApprovedByModel": { "type": "boolean" },
+            "hasBiometricAuth": { "type": "boolean" }
+          }
+        },
+        "settlementTelemetry": {
+          "type": "object",
+          "required": ["settledTps", "dailyVolumeMillionUsd", "ledgerImmutabilityVerified", "isRealtimeRailsActive"],
+          "properties": {
+            "settledTps": { "type": "number" },
+            "dailyVolumeMillionUsd": { "type": "number" },
+            "ledgerImmutabilityVerified": { "type": "boolean" },
+            "isRealtimeRailsActive": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "esgDecarbonizationRoadmap": {
+      "type": "object",
+      "required": ["id", "type", "title", "milestoneYears", "reductionWedges", "energyMix", "esgScorecard"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "esg-decarbonization-roadmap" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "kicker": { "type": "string" },
+        "activeStep": { "type": "integer", "minimum": 1 },
+        "maxSteps": { "type": "integer", "minimum": 1 },
+        "milestoneYears": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["year", "scope1KiloTons", "scope2KiloTons", "scope3KiloTons", "totalReductionPercent", "isMilestoneAchieved", "isAuditedBySbti", "primaryIntervention"],
+            "properties": {
+              "year": { "type": "integer" },
+              "scope1KiloTons": { "type": "number" },
+              "scope2KiloTons": { "type": "number" },
+              "scope3KiloTons": { "type": "number" },
+              "totalReductionPercent": { "type": "number" },
+              "isMilestoneAchieved": { "type": "boolean" },
+              "isAuditedBySbti": { "type": "boolean" },
+              "primaryIntervention": { "type": "string" }
+            }
+          }
+        },
+        "reductionWedges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["wedgeName", "reductionTonsPerYear", "costPerTonUsd", "isOperationalized", "hasDirectMeasurement"],
+            "properties": {
+              "wedgeName": { "type": "string" },
+              "reductionTonsPerYear": { "type": "number" },
+              "costPerTonUsd": { "type": "number" },
+              "isOperationalized": { "type": "boolean" },
+              "hasDirectMeasurement": { "type": "boolean" }
+            }
+          }
+        },
+        "energyMix": {
+          "type": "object",
+          "required": ["renewablePercentage", "gridAveragePercentage", "nuclearPercentage", "isCarbonNeutralDataCenterAchieved"],
+          "properties": {
+            "renewablePercentage": { "type": "number" },
+            "gridAveragePercentage": { "type": "number" },
+            "nuclearPercentage": { "type": "number" },
+            "isCarbonNeutralDataCenterAchieved": { "type": "boolean" }
+          }
+        },
+        "esgScorecard": {
+          "type": "object",
+          "required": ["cdpRating", "msciEsgScore", "isCompliantWithCsrd"],
+          "properties": {
+            "cdpRating": { "enum": ["A", "A-", "B", "B-"] },
+            "msciEsgScore": { "enum": ["AAA", "AA", "A"] },
+            "isCompliantWithCsrd": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "modelContextProtocolMesh": {
+      "type": "object",
+      "required": ["id", "type", "title", "clientHost", "mcpServers", "activeInvocation", "meshMetrics"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "model-context-protocol-mesh" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "kicker": { "type": "string" },
+        "activeStep": { "type": "integer", "minimum": 1 },
+        "maxSteps": { "type": "integer", "minimum": 1 },
+        "clientHost": {
+          "type": "object",
+          "required": ["hostName", "agentVersion", "protocolVersion", "isConnected", "hasToolAutoApproval"],
+          "properties": {
+            "hostName": { "type": "string" },
+            "agentVersion": { "type": "string" },
+            "protocolVersion": { "type": "string" },
+            "isConnected": { "type": "boolean" },
+            "hasToolAutoApproval": { "type": "boolean" }
+          }
+        },
+        "mcpServers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["serverId", "name", "transport", "toolCount", "resourceCount", "pingLatencyMs", "isHealthy", "isAuthorized", "supportedTools"],
+            "properties": {
+              "serverId": { "type": "string" },
+              "name": { "type": "string" },
+              "transport": { "enum": ["STDIO", "SSE", "WEBSOCKET"] },
+              "toolCount": { "type": "number" },
+              "resourceCount": { "type": "number" },
+              "pingLatencyMs": { "type": "number" },
+              "isHealthy": { "type": "boolean" },
+              "isAuthorized": { "type": "boolean" },
+              "supportedTools": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          }
+        },
+        "activeInvocation": {
+          "type": "object",
+          "required": ["invocationId", "requestedTool", "serverSource", "parametersJson", "executionDurationMs", "isCompleted", "isPolicyPermitted", "requiresUserConfirmation"],
+          "properties": {
+            "invocationId": { "type": "string" },
+            "requestedTool": { "type": "string" },
+            "serverSource": { "type": "string" },
+            "parametersJson": { "type": "string" },
+            "executionDurationMs": { "type": "number" },
+            "isCompleted": { "type": "boolean" },
+            "isPolicyPermitted": { "type": "boolean" },
+            "requiresUserConfirmation": { "type": "boolean" }
+          }
+        },
+        "meshMetrics": {
+          "type": "object",
+          "required": ["totalServersConnected", "totalToolsExposed", "averageRoundtripMs", "isSecuritySandboxActive"],
+          "properties": {
+            "totalServersConnected": { "type": "number" },
+            "totalToolsExposed": { "type": "number" },
+            "averageRoundtripMs": { "type": "number" },
+            "isSecuritySandboxActive": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "dataCleanRoomCollaboration": {
+      "type": "object",
+      "required": ["id", "type", "title", "collaboratingParties", "differentialPrivacy", "enclaveConfig", "outputMetrics"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "data-clean-room-collaboration" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "kicker": { "type": "string" },
+        "activeStep": { "type": "integer", "minimum": 1 },
+        "maxSteps": { "type": "integer", "minimum": 1 },
+        "collaboratingParties": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["partyId", "organizationName", "datasetName", "recordCountMillion", "isEnclaveAttested", "isIngestionCompleted", "hasSignedConsent"],
+            "properties": {
+              "partyId": { "type": "string" },
+              "organizationName": { "type": "string" },
+              "datasetName": { "type": "string" },
+              "recordCountMillion": { "type": "number" },
+              "isEnclaveAttested": { "type": "boolean" },
+              "isIngestionCompleted": { "type": "boolean" },
+              "hasSignedConsent": { "type": "boolean" }
+            }
+          }
+        },
+        "differentialPrivacy": {
+          "type": "object",
+          "required": ["epsilonBudget", "epsilonUsed", "delta", "kAnonymityThreshold", "isBudgetCompliant"],
+          "properties": {
+            "epsilonBudget": { "type": "number" },
+            "epsilonUsed": { "type": "number" },
+            "delta": { "type": "number" },
+            "kAnonymityThreshold": { "type": "number" },
+            "isBudgetCompliant": { "type": "boolean" }
+          }
+        },
+        "enclaveConfig": {
+          "type": "object",
+          "required": ["enclaveType", "attestationHash", "isMemoryEncrypted", "isZeroEgressEnforced"],
+          "properties": {
+            "enclaveType": { "enum": ["AWS_NITRO", "GCP_CONFIDENTIAL", "INTEL_SGX"] },
+            "attestationHash": { "type": "string" },
+            "isMemoryEncrypted": { "type": "boolean" },
+            "isZeroEgressEnforced": { "type": "boolean" }
+          }
+        },
+        "outputMetrics": {
+          "type": "object",
+          "required": ["matchedAudienceMillion", "overlapPercentage", "piiLeaksDetectedCount", "isExportAuthorized"],
+          "properties": {
+            "matchedAudienceMillion": { "type": "number" },
+            "overlapPercentage": { "type": "number" },
+            "piiLeaksDetectedCount": { "type": "number" },
+            "isExportAuthorized": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "developerPlatformIdpHub": {
+      "type": "object",
+      "required": ["id", "type", "title", "goldenTemplates", "serviceCatalog", "provisioningPipeline", "platformAdoption"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "developer-platform-idp-hub" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "kicker": { "type": "string" },
+        "activeStep": { "type": "integer", "minimum": 1 },
+        "maxSteps": { "type": "integer", "minimum": 1 },
+        "goldenTemplates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["templateId", "name", "language", "framework", "estimatedSetupMinutes", "usageCount", "isProductionReady", "isSecurityApproved"],
+            "properties": {
+              "templateId": { "type": "string" },
+              "name": { "type": "string" },
+              "language": { "type": "string" },
+              "framework": { "type": "string" },
+              "estimatedSetupMinutes": { "type": "number" },
+              "usageCount": { "type": "number" },
+              "isProductionReady": { "type": "boolean" },
+              "isSecurityApproved": { "type": "boolean" }
+            }
+          }
+        },
+        "serviceCatalog": {
+          "type": "object",
+          "required": ["totalServicesTracked", "compliantServicesPercentage", "unownedOrphanCount", "isCatalogSynchronized"],
+          "properties": {
+            "totalServicesTracked": { "type": "number" },
+            "compliantServicesPercentage": { "type": "number" },
+            "unownedOrphanCount": { "type": "number" },
+            "isCatalogSynchronized": { "type": "boolean" }
+          }
+        },
+        "provisioningPipeline": {
+          "type": "object",
+          "required": ["activeProvisioningsCount", "avgProvisioningSeconds", "successRatePercent", "isSelfServiceEnabled"],
+          "properties": {
+            "activeProvisioningsCount": { "type": "number" },
+            "avgProvisioningSeconds": { "type": "number" },
+            "successRatePercent": { "type": "number" },
+            "isSelfServiceEnabled": { "type": "boolean" }
+          }
+        },
+        "platformAdoption": {
+          "type": "object",
+          "required": ["developerSatisfactionScore", "weeklyActiveEngineers", "onboardingTimeReductionPercent", "isGoldenPathEnforced"],
+          "properties": {
+            "developerSatisfactionScore": { "type": "number" },
+            "weeklyActiveEngineers": { "type": "number" },
+            "onboardingTimeReductionPercent": { "type": "number" },
+            "isGoldenPathEnforced": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "executiveMergersAcquisitionsSynergy": {
+      "type": "object",
+      "required": ["id", "type", "title", "synergyMilestones", "valuationWaterfall", "integrationStreams", "governanceSignoff"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "executive-mergers-acquisitions-synergy" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "kicker": { "type": "string" },
+        "activeStep": { "type": "integer", "minimum": 1 },
+        "maxSteps": { "type": "integer", "minimum": 1 },
+        "synergyMilestones": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["milestoneId", "phaseName", "targetQuarter", "projectedSavingsMillionUsd", "actualSavingsMillionUsd", "isMilestoneAchieved", "isEpsAccretive", "primaryDriver"],
+            "properties": {
+              "milestoneId": { "type": "string" },
+              "phaseName": { "type": "string" },
+              "targetQuarter": { "type": "string" },
+              "projectedSavingsMillionUsd": { "type": "number" },
+              "actualSavingsMillionUsd": { "type": "number" },
+              "isMilestoneAchieved": { "type": "boolean" },
+              "isEpsAccretive": { "type": "boolean" },
+              "primaryDriver": { "type": "string" }
+            }
+          }
+        },
+        "valuationWaterfall": {
+          "type": "object",
+          "required": ["enterpriseValueMillionUsd", "equityValueMillionUsd", "runRateSynergiesMillionUsd", "netDebtMillionUsd", "ebitdaMultiple"],
+          "properties": {
+            "enterpriseValueMillionUsd": { "type": "number" },
+            "equityValueMillionUsd": { "type": "number" },
+            "runRateSynergiesMillionUsd": { "type": "number" },
+            "netDebtMillionUsd": { "type": "number" },
+            "ebitdaMultiple": { "type": "number" }
+          }
+        },
+        "integrationStreams": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["streamName", "completionPercentage", "riskLevel", "isStreamOnSchedule", "streamLeaderTitle"],
+            "properties": {
+              "streamName": { "enum": ["TECH_INFRA", "GTM_SALES", "PEOPLE_OPS", "LEGAL_REGULATORY"] },
+              "completionPercentage": { "type": "number" },
+              "riskLevel": { "enum": ["LOW", "MEDIUM", "HIGH"] },
+              "isStreamOnSchedule": { "type": "boolean" },
+              "streamLeaderTitle": { "type": "string" }
+            }
+          }
+        },
+        "governanceSignoff": {
+          "type": "object",
+          "required": ["chiefExecutiveOfficer", "chiefFinancialOfficer", "isBoardApproved", "isAntitrustCleared"],
+          "properties": {
+            "chiefExecutiveOfficer": { "type": "string" },
+            "chiefFinancialOfficer": { "type": "string" },
+            "isBoardApproved": { "type": "boolean" },
+            "isAntitrustCleared": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "cyberThreatKillChainMatrix": {
+      "type": "object",
+      "required": ["id", "type", "title", "killChainStages", "threatActor", "socTelemetry", "cisoReview"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "cyber-threat-kill-chain-matrix" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "kicker": { "type": "string" },
+        "activeStep": { "type": "integer", "minimum": 1 },
+        "maxSteps": { "type": "integer", "minimum": 1 },
+        "killChainStages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["stageIndex", "stageName", "mitreTacticId", "primaryThreatVector", "activeDefenseControl", "containmentStatus", "mttdMinutes", "isDefended", "isAutomatedPlaybookTriggered"],
+            "properties": {
+              "stageIndex": { "type": "integer" },
+              "stageName": { "type": "string" },
+              "mitreTacticId": { "type": "string" },
+              "primaryThreatVector": { "type": "string" },
+              "activeDefenseControl": { "type": "string" },
+              "containmentStatus": { "enum": ["CONTAINED", "MONITORING", "NEUTRALIZED"] },
+              "mttdMinutes": { "type": "number" },
+              "isDefended": { "type": "boolean" },
+              "isAutomatedPlaybookTriggered": { "type": "boolean" }
+            }
+          }
+        },
+        "threatActor": {
+          "type": "object",
+          "required": ["adversaryCodename", "originCountry", "targetAsset", "threatSeverity", "isAttributed"],
+          "properties": {
+            "adversaryCodename": { "type": "string" },
+            "originCountry": { "type": "string" },
+            "targetAsset": { "type": "string" },
+            "threatSeverity": { "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"] },
+            "isAttributed": { "type": "boolean" }
+          }
+        },
+        "socTelemetry": {
+          "type": "object",
+          "required": ["activeAlertsCount", "meanTimeToContainMinutes", "automatedContainmentRatePercent", "isSoarActive"],
+          "properties": {
+            "activeAlertsCount": { "type": "number" },
+            "meanTimeToContainMinutes": { "type": "number" },
+            "automatedContainmentRatePercent": { "type": "number" },
+            "isSoarActive": { "type": "boolean" }
+          }
+        },
+        "cisoReview": {
+          "type": "object",
+          "required": ["chiefInformationSecurityOfficer", "isExecutiveBriefingCompleted"],
+          "properties": {
+            "chiefInformationSecurityOfficer": { "type": "string" },
+            "isExecutiveBriefingCompleted": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "supplyChainDigitalTwinLattice": {
+      "type": "object",
+      "required": ["id", "type", "title", "logisticsCorridors", "activeDisruptions", "twinTelemetry", "co2Optimization"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "supply-chain-digital-twin-lattice" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "kicker": { "type": "string" },
+        "activeStep": { "type": "integer", "minimum": 1 },
+        "maxSteps": { "type": "integer", "minimum": 1 },
+        "logisticsCorridors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["corridorId", "originNode", "destinationNode", "transitMode", "averageTransitDays", "disruptionRiskScorePercent", "isCorridorOperational", "isReroutingActive"],
+            "properties": {
+              "corridorId": { "type": "string" },
+              "originNode": { "type": "string" },
+              "destinationNode": { "type": "string" },
+              "transitMode": { "enum": ["OCEAN", "AIR", "RAIL", "ROAD"] },
+              "averageTransitDays": { "type": "number" },
+              "disruptionRiskScorePercent": { "type": "number" },
+              "isCorridorOperational": { "type": "boolean" },
+              "isReroutingActive": { "type": "boolean" }
+            }
+          }
+        },
+        "activeDisruptions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["disruptionId", "chokepointName", "severity", "estimatedDelayDays", "inventoryValueAtRiskMillionUsd", "hasAlternateRouteAvailable", "isContingencyDispatched"],
+            "properties": {
+              "disruptionId": { "type": "string" },
+              "chokepointName": { "type": "string" },
+              "severity": { "enum": ["MODERATE", "SEVERE", "CRITICAL"] },
+              "estimatedDelayDays": { "type": "number" },
+              "inventoryValueAtRiskMillionUsd": { "type": "number" },
+              "hasAlternateRouteAvailable": { "type": "boolean" },
+              "isContingencyDispatched": { "type": "boolean" }
+            }
+          }
+        },
+        "twinTelemetry": {
+          "type": "object",
+          "required": ["totalActiveShipmentsCount", "overallOtifPercentage", "savedDelayDaysAutonomous", "isSimulationEngineSynchronized"],
+          "properties": {
+            "totalActiveShipmentsCount": { "type": "number" },
+            "overallOtifPercentage": { "type": "number" },
+            "savedDelayDaysAutonomous": { "type": "number" },
+            "isSimulationEngineSynchronized": { "type": "boolean" }
+          }
+        },
+        "co2Optimization": {
+          "type": "object",
+          "required": ["fuelSavingsMetricTons", "isGreenLogisticsOptimized"],
+          "properties": {
+            "fuelSavingsMetricTons": { "type": "number" },
+            "isGreenLogisticsOptimized": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "voiceAiRealtimeConversationalMesh": {
+      "type": "object",
+      "required": ["id", "type", "title", "pipelineStages", "activeSession", "turnTakingMetrics", "acousticModel"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "voice-ai-realtime-conversational-mesh" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "kicker": { "type": "string" },
+        "activeStep": { "type": "integer", "minimum": 1 },
+        "maxSteps": { "type": "integer", "minimum": 1 },
+        "pipelineStages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["stageIndex", "stageName", "modelName", "budgetLatencyMs", "actualLatencyMs", "throughputTokensOrAudioPerSec", "isWithinBudget", "isStreamingActive"],
+            "properties": {
+              "stageIndex": { "type": "integer" },
+              "stageName": { "type": "string" },
+              "modelName": { "type": "string" },
+              "budgetLatencyMs": { "type": "number" },
+              "actualLatencyMs": { "type": "number" },
+              "throughputTokensOrAudioPerSec": { "type": "number" },
+              "isWithinBudget": { "type": "boolean" },
+              "isStreamingActive": { "type": "boolean" }
+            }
+          }
+        },
+        "activeSession": {
+          "type": "object",
+          "required": ["sessionId", "sampleRateKhz", "audioCodec", "userTranscript", "agentResponseTranscript", "isFullDuplexActive", "isBargeInDetected"],
+          "properties": {
+            "sessionId": { "type": "string" },
+            "sampleRateKhz": { "type": "number" },
+            "audioCodec": { "enum": ["OPUS", "PCM_16", "FLAC"] },
+            "userTranscript": { "type": "string" },
+            "agentResponseTranscript": { "type": "string" },
+            "isFullDuplexActive": { "type": "boolean" },
+            "isBargeInDetected": { "type": "boolean" }
+          }
+        },
+        "turnTakingMetrics": {
+          "type": "object",
+          "required": ["endToEndLatencyMs", "p99LatencyMs", "interruptionLatencyMs", "isTargetSlaAchieved"],
+          "properties": {
+            "endToEndLatencyMs": { "type": "number" },
+            "p99LatencyMs": { "type": "number" },
+            "interruptionLatencyMs": { "type": "number" },
+            "isTargetSlaAchieved": { "type": "boolean" }
+          }
+        },
+        "acousticModel": {
+          "type": "object",
+          "required": ["voiceId", "naturalnessMosScore", "hasProsodyModeling"],
+          "properties": {
+            "voiceId": { "type": "string" },
+            "naturalnessMosScore": { "type": "number" },
+            "hasProsodyModeling": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "complianceAuditSoc2ReadinessLadder": {
+      "type": "object",
+      "required": ["id", "type", "title", "ladderSteps", "trustCriteriaScores", "auditFirm", "continuousCompliance"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "compliance-audit-soc2-readiness-ladder" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "kicker": { "type": "string" },
+        "activeStep": { "type": "integer", "minimum": 1 },
+        "maxSteps": { "type": "integer", "minimum": 1 },
+        "ladderSteps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["stepIndex", "title", "timeframe", "controlPassRatioPercent", "totalControlsMonitored", "status", "isStepCompleted", "isAuditorSignedOff", "primaryEvidenceArtifact"],
+            "properties": {
+              "stepIndex": { "type": "integer" },
+              "title": { "type": "string" },
+              "timeframe": { "type": "string" },
+              "controlPassRatioPercent": { "type": "number" },
+              "totalControlsMonitored": { "type": "number" },
+              "status": { "enum": ["NOT_STARTED", "IN_PROGRESS", "COMPLETED"] },
+              "isStepCompleted": { "type": "boolean" },
+              "isAuditorSignedOff": { "type": "boolean" },
+              "primaryEvidenceArtifact": { "type": "string" }
+            }
+          }
+        },
+        "trustCriteriaScores": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["criteriaName", "passedControlsCount", "totalControlsCount", "isCriteriaPassed"],
+            "properties": {
+              "criteriaName": { "enum": ["SECURITY", "AVAILABILITY", "CONFIDENTIALITY", "PROCESSING_INTEGRITY", "PRIVACY"] },
+              "passedControlsCount": { "type": "number" },
+              "totalControlsCount": { "type": "number" },
+              "isCriteriaPassed": { "type": "boolean" }
+            }
+          }
+        },
+        "auditFirm": {
+          "type": "object",
+          "required": ["firmName", "leadAuditorName", "observationWindowMonths", "isUnqualifiedOpinionExpected"],
+          "properties": {
+            "firmName": { "type": "string" },
+            "leadAuditorName": { "type": "string" },
+            "observationWindowMonths": { "type": "number" },
+            "isUnqualifiedOpinionExpected": { "type": "boolean" }
+          }
+        },
+        "continuousCompliance": {
+          "type": "object",
+          "required": ["automatedEvidenceIngestionPercent", "failingControlsCount", "isContinuousMonitoringActive"],
+          "properties": {
+            "automatedEvidenceIngestionPercent": { "type": "number" },
+            "failingControlsCount": { "type": "number" },
+            "isContinuousMonitoringActive": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "valueStreamEngineeringDoraFlywheel": {
+      "type": "object",
+      "required": ["id", "type", "title", "doraMetrics", "flowFramework", "flywheelQuadrants", "valueImpact"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "const": "value-stream-engineering-dora-flywheel" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "kicker": { "type": "string" },
+        "activeStep": { "type": "integer", "minimum": 1 },
+        "maxSteps": { "type": "integer", "minimum": 1 },
+        "doraMetrics": {
+          "type": "object",
+          "required": ["deploymentFrequencyPerDay", "deploymentFrequencyTier", "leadTimeHours", "leadTimeTier", "changeFailureRatePercent", "changeFailureTier", "mttrMinutes", "mttrTier", "isEliteStatusAchieved"],
+          "properties": {
+            "deploymentFrequencyPerDay": { "type": "number" },
+            "deploymentFrequencyTier": { "enum": ["ELITE", "HIGH", "MEDIUM", "LOW"] },
+            "leadTimeHours": { "type": "number" },
+            "leadTimeTier": { "enum": ["ELITE", "HIGH", "MEDIUM", "LOW"] },
+            "changeFailureRatePercent": { "type": "number" },
+            "changeFailureTier": { "enum": ["ELITE", "HIGH", "MEDIUM", "LOW"] },
+            "mttrMinutes": { "type": "number" },
+            "mttrTier": { "enum": ["ELITE", "HIGH", "MEDIUM", "LOW"] },
+            "isEliteStatusAchieved": { "type": "boolean" }
+          }
+        },
+        "flowFramework": {
+          "type": "object",
+          "required": ["flowVelocityItemsPerSprint", "flowEfficiencyPercent", "flowTimeDays", "flowLoadActiveItems", "isWipLimitEnforced"],
+          "properties": {
+            "flowVelocityItemsPerSprint": { "type": "number" },
+            "flowEfficiencyPercent": { "type": "number" },
+            "flowTimeDays": { "type": "number" },
+            "flowLoadActiveItems": { "type": "number" },
+            "isWipLimitEnforced": { "type": "boolean" }
+          }
+        },
+        "flywheelQuadrants": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["quadrantIndex", "name", "description", "keyMetric", "status", "isFlywheelAccelerating"],
+            "properties": {
+              "quadrantIndex": { "type": "integer" },
+              "name": { "type": "string" },
+              "description": { "type": "string" },
+              "keyMetric": { "type": "string" },
+              "status": { "enum": ["STABLE", "ACCELERATING", "OPTIMIZING"] },
+              "isFlywheelAccelerating": { "type": "boolean" }
+            }
+          }
+        },
+        "valueImpact": {
+          "type": "object",
+          "required": ["shippedFeaturesQuarterCount", "revenueImpactMillionUsd", "developerSatisfactionScore", "isDeliveryPredictable"],
+          "properties": {
+            "shippedFeaturesQuarterCount": { "type": "number" },
+            "revenueImpactMillionUsd": { "type": "number" },
+            "developerSatisfactionScore": { "type": "number" },
+            "isDeliveryPredictable": { "type": "boolean" }
+          }
+        }
       }
     }
   }

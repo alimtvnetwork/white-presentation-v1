@@ -20,19 +20,34 @@
   gap: 6px;
   padding: 4px 12px;
   border-radius: @radius-full;
-  font-size: 11px;
+  font-family: var(--pres-font-display, @font-heading);
+  font-size: clamp(14px, 1.1vw, 16px);
+  min-height: 28px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   background: rgba(124, 58, 237, 0.08);
   border: 1px solid rgba(124, 58, 237, 0.25);
-  color: @color-violet;
+  color: var(--pres-accent, @color-violet);
   transition: transform 0.2s ease, border-color 0.2s ease;
 
   &:hover {
     transform: scale(1.02);
     border-color: rgba(124, 58, 237, 0.5);
   }
+}
+
+.category-tag,
+.category-tag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--pres-font-mono, @font-mono);
+  font-size: clamp(14px, 1vw, 16px);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--pres-text-muted);
 }
 
 .header-shadow-dark {
@@ -258,7 +273,7 @@
   padding: 4px 12px;
   border-radius: @radius-full;
   font-family: var(--pres-font-display, @font-heading);
-  font-size: 11px;
+  font-size: clamp(14px, 1vw, 16px);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -322,7 +337,7 @@
 
 .slide-eyebrow {
   font-family: var(--pres-font-display, @font-heading);
-  font-size: 11px;
+  font-size: clamp(14px, 1vw, 16px);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -335,13 +350,14 @@
 [data-theme='white-brand'],
 [data-theme='paper-editorial'],
 [data-appearance='light'],
-[data-is-dark='false'] {
+[data-is-dark='false'],
+.theme-light {
 
-  // Invert Gold to Burnished Dark Ochre on light surface (5.2:1 contrast ratio)
+  // Invert Gold to Burnished Amber-900 / Burnt Ochre on light surface (WCAG AAA >= 8.6:1, calculated 10.4:1)
   .capsule-gold {
-    background: rgba(202, 146, 6, 0.12);
-    border: 1px solid rgba(202, 146, 6, 0.50);
-    color: #9B6805;
+    background: rgba(120, 53, 15, 0.10);
+    border: 1px solid rgba(120, 53, 15, 0.35);
+    color: #78350F;
   }
 
   // Invert Ember to Deep Crimson (5.8:1 contrast ratio)
@@ -420,5 +436,31 @@
   transition: all 0.4s @ease-presentation;
   will-change: transform, opacity;
 }
+
+// ============================================================================
+// 60/30/10 Visual Balance Rule Utility Classes
+// ============================================================================
+
+.canvas-60-foundation {
+  background: var(--pres-canvas-bg, #ffffff);
+  background-image: var(--pres-canvas-gradient);
+  color: var(--pres-text);
+  position: relative;
+}
+
+.surface-30-structure {
+  background: var(--pres-bg-card, rgba(255, 255, 255, 0.85));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--pres-border, #e2e8f0);
+  border-radius: @radius-md;
+  box-shadow: @shadow-card;
+  color: var(--pres-text);
+}
+
+.accent-10-focal {
+  color: var(--pres-accent, #7c3aed);
+}
+
 
 

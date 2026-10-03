@@ -39,7 +39,7 @@ export const ChaosExperimentCard: React.FC<ChaosExperimentCardProps> = ({ scenar
           >
             FAULT {scenario.scenarioIndex || index + 1}
           </span>
-          <span className="font-mono text-xs text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
+          <span className="font-mono text-xs text-amber-900 dark:text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
             {scenario.blastRadius}
           </span>
         </div>
@@ -83,7 +83,7 @@ export const ChaosExperimentCard: React.FC<ChaosExperimentCardProps> = ({ scenar
 
       <div className="pt-3 border-t border-white/5 flex items-center justify-between font-mono text-[11px]">
         <span style={{ color: 'var(--pres-text-muted)' }} className="flex items-center gap-1">
-          <RotateCcw size={12} className="text-amber-400" />
+          <RotateCcw size={12} className="text-amber-900 dark:text-amber-400" />
           {scenario.hasAutomatedRollback ? 'Auto-Rollback' : 'Sustained'}
         </span>
         <span className="text-emerald-400 font-bold flex items-center gap-1">

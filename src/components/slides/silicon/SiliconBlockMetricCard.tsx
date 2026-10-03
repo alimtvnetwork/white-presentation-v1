@@ -25,7 +25,7 @@ export const SiliconBlockMetricCard: React.FC<SiliconBlockMetricCardProps> = ({
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Cpu size={14} className={block.isPrimaryCompute ? 'text-amber-700 dark:text-amber-400' : 'text-slate-400'} />
+          <Cpu size={14} className={block.isPrimaryCompute ? 'text-amber-800 dark:text-amber-400' : 'text-slate-400'} />
           <span className="font-bold text-slate-200">{block.blockName}</span>
         </div>
         {block.isPrimaryCompute && (
@@ -44,7 +44,7 @@ export const SiliconBlockMetricCard: React.FC<SiliconBlockMetricCardProps> = ({
         </div>
         <div className="flex flex-col">
           <span className="text-slate-400 text-[10px] flex items-center gap-0.5">
-            <Zap size={10} className="text-amber-600 dark:text-amber-400" /> Power
+            <Zap size={10} className="text-amber-800 dark:text-amber-400" /> Power
           </span>
           <span className="font-bold text-amber-800 dark:text-amber-300">
             {block.powerConsumptionWatts}W

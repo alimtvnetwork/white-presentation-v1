@@ -12,7 +12,7 @@ export const SocKillChainCard: React.FC<SocKillChainCardProps> = ({ attackVector
     <div className="plane-1-raised p-5 rounded-2xl border border-slate-800 bg-slate-900/40 flex flex-col gap-3 h-full font-mono text-xs">
       <div className="flex items-center justify-between border-b border-slate-800 pb-2">
         <span className="font-bold text-slate-300 flex items-center gap-2">
-          <Crosshair size={14} className="text-amber-600 dark:text-amber-400" />
+          <Crosshair size={14} className="text-amber-800 dark:text-amber-400" />
           MITRE ATT&CK Kill Chain Vectors
         </span>
         <span className="text-slate-400">{attackVectors.length} Vectors Tracked</span>

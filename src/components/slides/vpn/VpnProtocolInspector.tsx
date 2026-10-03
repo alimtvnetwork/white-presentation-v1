@@ -56,7 +56,7 @@ export const VpnProtocolInspector: React.FC<VpnProtocolInspectorProps> = ({
           <div className="space-y-2 pt-2">
             <div className="flex justify-between text-slate-400">
               <span>Zero-Log Audit State:</span>
-              <span className="text-amber-600 dark:text-amber-400 font-bold">{isAudited ? 'Cryptographically Sealed' : 'Verified'}</span>
+              <span className="text-amber-800 dark:text-amber-400 font-bold">{isAudited ? 'Cryptographically Sealed' : 'Verified'}</span>
             </div>
             <div className="flex justify-between text-slate-400">
               <span>Handshake Rotation:</span>

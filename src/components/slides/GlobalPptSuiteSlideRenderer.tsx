@@ -15,7 +15,7 @@ import { RealtimeEventStreamFabricSlide } from './RealtimeEventStreamFabricSlide
 import { SupplyChainRiskMatrixSlide } from './SupplyChainRiskMatrixSlide';
 import { TalentCompetencyRadarSlide } from './TalentCompetencyRadarSlide';
 import { SustainabilityEsgScorecardSlide } from './SustainabilityEsgScorecardSlide';
-import { WhiteMasterSlide } from './WhiteMasterSlide';
+import { SovereignOperationsSlideRenderer } from './SovereignOperationsSlideRenderer';
 
 export const GlobalPptSuiteSlideRenderer: React.FC<{ slide: SlideData }> = ({ slide }) => {
   switch (slide.type) {
@@ -34,6 +34,6 @@ export const GlobalPptSuiteSlideRenderer: React.FC<{ slide: SlideData }> = ({ sl
     case 'supply-chain-risk-matrix': return <SupplyChainRiskMatrixSlide slide={slide as any} />;
     case 'talent-competency-radar': return <TalentCompetencyRadarSlide slide={slide as any} />;
     case 'sustainability-esg-scorecard': return <SustainabilityEsgScorecardSlide slide={slide as any} />;
-    default: return <WhiteMasterSlide slide={slide as any} />;
+    default: return <SovereignOperationsSlideRenderer slide={slide} />;
   }
 };

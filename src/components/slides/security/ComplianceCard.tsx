@@ -39,7 +39,7 @@ export const ComplianceCard: React.FC<ComplianceCardProps> = ({ cert }) => {
           className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-full border uppercase ${
             isCertified
               ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
-              : 'bg-amber-500/20 text-amber-300 border-amber-500/30'
+              : 'bg-amber-500/20 text-amber-900 dark:text-amber-300 border-amber-500/30'
           }`}
         >
           {cert.status}

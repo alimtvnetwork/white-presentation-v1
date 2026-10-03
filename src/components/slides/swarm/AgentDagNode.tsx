@@ -36,7 +36,7 @@ export const AgentDagNode: React.FC<AgentDagNodeProps> = ({
       <div>
         <div className="flex items-center justify-between border-b border-slate-800 pb-2 mb-2">
           <div className="flex items-center gap-2">
-            <div className={`w-6 h-6 rounded-lg flex items-center justify-center ${isSelected ? 'bg-amber-500/20 text-amber-300' : 'bg-slate-800 text-slate-300'}`}>
+            <div className={`w-6 h-6 rounded-lg flex items-center justify-center ${isSelected ? 'bg-amber-500/20 text-amber-800 dark:text-amber-300' : 'bg-slate-800 text-slate-300'}`}>
               <Bot size={13} />
             </div>
             <span className="font-bold text-slate-100 text-xs">{node.agentName}</span>
@@ -46,7 +46,7 @@ export const AgentDagNode: React.FC<AgentDagNodeProps> = ({
           </span>
         </div>
 
-        <h4 className="font-bold text-amber-600 dark:text-amber-400 text-[11px] mb-1">{node.agentRole}</h4>
+        <h4 className="font-bold text-amber-800 dark:text-amber-400 text-[11px] mb-1">{node.agentRole}</h4>
         <p className="text-[10px] text-slate-300 leading-normal line-clamp-2">{node.assignedTaskDescription}</p>
       </div>
 

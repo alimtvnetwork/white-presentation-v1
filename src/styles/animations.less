@@ -223,6 +223,53 @@
   }
 }
 
+// Spotlight Background Sweep
+@keyframes spotlightSweep {
+  0% { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+// Float Subtle Vertical Hover
+@keyframes floatSubtle {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -4px, 0); }
+}
+
+// Pulse Accent Border & Glow
+@keyframes pulseAccent {
+  0%, 100% { border-color: hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.3); }
+  50% { border-color: hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.8); }
+}
+
+// 3D Perspective Kinetic Card Entrance
+@keyframes kineticCardEntrance {
+  0% { opacity: 0; transform: perspective(1000px) rotateX(4deg) translate3d(0, 20px, 0); }
+  100% { opacity: 1; transform: perspective(1000px) rotateX(0deg) translate3d(0, 0, 0); }
+}
+
+// Directional Slide Entrances
+@keyframes slideEnterForward {
+  from {
+    opacity: 0;
+    transform: translate3d(80px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideEnterBackward {
+  from {
+    opacity: 0;
+    transform: translate3d(-80px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 // Utility animation classes
 .pop-scale-anim { animation: popScale 0.4s @ease-presentation both; will-change: transform, opacity; }
 .pulse-halo-anim { animation: pulseHalo 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; will-change: box-shadow; }
@@ -251,6 +298,18 @@
 .audio-waveform-pulse-anim { animation: audioWaveformPulse 1.2s ease-in-out infinite; will-change: height, opacity; }
 .dag-node-traverse-anim { animation: dagNodeTraverse 3s ease-in-out infinite; will-change: filter, stroke-dashoffset; }
 .canary-gauge-sweep-anim { animation: canaryGaugeSweep 1.5s @ease-presentation forwards; will-change: stroke-dasharray; }
+.spotlight-sweep,
+.spotlight-sweep-anim,
+.ambient-spotlight-sweep { animation: spotlightSweep 14s ease-in-out infinite; will-change: transform, opacity; }
+.float-subtle,
+.float-subtle-anim,
+.float-vector-subtle { animation: floatSubtle 4s ease-in-out infinite; will-change: transform; }
+.pulse-accent,
+.pulse-accent-anim,
+.pulse-accent-ring { animation: pulseAccent 2.5s cubic-bezier(0.22, 1, 0.36, 1) infinite; will-change: box-shadow, border-color; }
+.kinetic-card-entrance { animation: kineticCardEntrance 0.38s cubic-bezier(0.22, 1, 0.36, 1) both; will-change: transform, opacity; }
+.slide-enter-forward { animation: slideEnterForward 0.4s @ease-presentation forwards; }
+.slide-enter-backward { animation: slideEnterBackward 0.4s @ease-presentation forwards; }
 
 // Stagger delays
 .stagger-1 { animation-delay: 0.08s; }

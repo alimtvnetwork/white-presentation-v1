@@ -9,7 +9,7 @@ export const CountdownLaunchSlide: React.FC<{ slide: CountdownLaunchSlideData }>
   const gates = slide.launchGates || [];
   const urgencyColors: Record<string, string> = {
     normal: 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10',
-    impending: 'text-amber-400 border-amber-500/30 bg-amber-500/10',
+    impending: 'text-amber-900 border-amber-400 bg-amber-100 dark:text-amber-400 dark:border-amber-500/30 dark:bg-amber-500/10',
     critical: 'text-rose-400 border-rose-500/30 bg-rose-500/10',
   };
 

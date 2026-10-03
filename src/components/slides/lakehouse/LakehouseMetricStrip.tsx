@@ -41,7 +41,7 @@ export const LakehouseMetricStrip: React.FC<LakehouseMetricStripProps> = ({
       value: `${rulesCount} Enforced`,
       sub: 'Automated table compaction',
       icon: <FileCheck2 size={18} className="text-amber-600 dark:text-amber-400" />,
-      tagColor: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
+      tagColor: 'text-amber-900 dark:text-amber-400 bg-amber-500/10 border-amber-500/30',
     },
   ];
 

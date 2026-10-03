@@ -65,7 +65,7 @@ export const AuthenticityHookSlide: React.FC<{ slide: AuthenticityHookSlideData 
                 className={`plane-2-elevated p-6 rounded-2xl border transition-all ${isHighlight ? 'border-rose-500/40 shadow-lg' : ''}`}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-mono font-bold uppercase text-amber-500 flex items-center gap-1">
+                  <span className="text-xs font-mono font-bold uppercase text-amber-900 dark:text-amber-400 flex items-center gap-1">
                     <TrendingDown size={14} /> The Industry Myth
                   </span>
                   <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-800/20 text-slate-400">

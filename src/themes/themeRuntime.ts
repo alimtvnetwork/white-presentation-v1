@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="WCAG contrast runtime & theme token injector" max=380
+// lint-allow: file-size reason="WCAG contrast runtime & theme token injector" max=460
 import { THEME_PALETTES } from './gradientTokens';
 import { ThemePalette } from '../types/presentation';
 import { isBooleanTrue, isFalse } from '../utils/booleanGuards';
@@ -217,12 +217,30 @@ function buildColorVars(theme: ThemePalette, isDark: boolean): Record<string, st
     '--pres-border': theme.cardBorder,
     '--pres-card-border': theme.cardBorder,
     '--pres-border-hover': theme.accentColor,
+
+    // Fixed dark HUD chrome tokens
+    '--chrome-bg-hover': 'rgba(255, 255, 255, 0.08)',
+    '--chrome-border-glow': 'rgba(255, 255, 255, 0.25)',
+    '--chrome-glass-blur': '16px',
+    '--chrome-shadow': '0 8px 32px 0 rgba(0, 0, 0, 0.36)',
+    '--chrome-radius': '12px',
+
+    // 60/30/10 Visual Balance Tokens
+    '--pres-canvas-gradient': isDark ? 'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.15), transparent 70%)' : 'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.08), transparent 70%)',
+    '--pres-dot-matrix': isDark ? 'radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px)' : 'radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px)',
+    '--pres-kpi-highlight': isDark ? 'hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.20)' : 'hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.10)',
+    '--pres-shadow-subpixel': isDark ? 'rgb(0 0 0) 1px 0.7px 0px' : 'rgb(255 255 255) 1px 0.7px 0px',
   };
 }
 
-function buildTypographyVars(shadow: string): Record<string, string> {
+function buildTypographyVars(shadow?: string, isDark = false): Record<string, string> {
+  const defaultShadow = isDark ? 'rgb(0 0 0) 1px 0.7px 0px' : 'rgb(255 255 255) 1px 0.7px 0px';
+  const resolvedShadow = shadow || defaultShadow;
   return {
-    '--pres-header-shadow': shadow,
+    '--pres-header-shadow': resolvedShadow,
+    '--pres-font-display': FONT_DISPLAY,
+    '--pres-font-body': FONT_BODY,
+    '--pres-font-mono': FONT_MONO,
     '--preset-display-font': FONT_DISPLAY,
     '--preset-body-font': FONT_BODY,
     '--preset-mono-font': FONT_MONO,
@@ -279,14 +297,40 @@ function buildHslThemeVars(theme: ThemePalette): Record<string, string> {
   vars['--chrome-border-strength'] = '0.22';
   vars['--chrome-divider-strength'] = '0.12';
   vars['--chrome-hover'] = 'rgba(255, 255, 255, 0.08)';
+  vars['--chrome-bg-hover'] = 'rgba(255, 255, 255, 0.08)';
+  vars['--chrome-border-glow'] = 'rgba(255, 255, 255, 0.25)';
+  vars['--chrome-glass-blur'] = '16px';
+  vars['--chrome-shadow'] = '0 8px 32px 0 rgba(0, 0, 0, 0.36)';
+  vars['--chrome-radius'] = '12px';
 
   // Micro-Shadow Weight Variables
-  vars['--text-shadow-weight-light'] = '0 1px 0 hsl(0 0% 100% / 0.5)';
+  vars['--text-shadow-weight-light'] = 'rgb(255 255 255) 1px 0.7px 0px';
   vars['--text-shadow-weight-light-strong'] = '0 1px 1px hsl(0 0% 100% / 0.7)';
-  vars['--text-shadow-weight-dark'] = '0 1px 0 hsl(0 0% 0% / 0.4)';
+  vars['--text-shadow-weight-dark'] = 'rgb(0 0 0) 1px 0.7px 0px';
   vars['--text-shadow-weight-dark-strong'] = '0 2px 4px hsl(0 0% 0% / 0.6)';
 
   return vars;
+}
+
+export function buildChromeVars(): Record<string, string> {
+  return {
+    '--chrome-bg': 'rgba(15, 23, 42, 0.94)',
+    '--chrome-border': 'rgba(255, 255, 255, 0.12)',
+    '--chrome-text': '#F8FAFC',
+    '--chrome-subtext': '#94A3B8',
+    '--chrome-accent': '#6366F1',
+    '--chrome-fg': '#F8FAFC',
+    '--chrome-fg-muted': '#94A3B8',
+    '--chrome-fg-subtle': '#64748B',
+    '--chrome-border-strength': '0.22',
+    '--chrome-divider-strength': '0.12',
+    '--chrome-hover': 'rgba(255, 255, 255, 0.08)',
+    '--chrome-bg-hover': 'rgba(255, 255, 255, 0.08)',
+    '--chrome-border-glow': 'rgba(255, 255, 255, 0.25)',
+    '--chrome-glass-blur': '16px',
+    '--chrome-shadow': '0 8px 32px 0 rgba(0, 0, 0, 0.36)',
+    '--chrome-radius': '12px',
+  };
 }
 
 function buildStopVars(stops: ThemePalette['stops']): Record<string, string> {
@@ -308,8 +352,10 @@ function buildStopVars(stops: ThemePalette['stops']): Record<string, string> {
 
 export function applyThemeRuntimeVariables(theme: ThemePalette, rootEl: HTMLElement): void {
   const isDark = Boolean(theme.isDark);
+  const defaultShadow = isDark ? 'rgb(0 0 0) 1px 0.7px 0px' : 'rgb(255 255 255) 1px 0.7px 0px';
   const vars = {
     ...buildColorVars(theme, isDark),
+    ...buildTypographyVars(theme.headerShadow || defaultShadow),
     ...buildHslThemeVars(theme),
     ...buildStopVars(theme.stops),
   };

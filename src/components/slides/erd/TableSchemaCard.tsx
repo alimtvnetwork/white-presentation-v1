@@ -53,7 +53,7 @@ export const TableSchemaCard: React.FC<TableSchemaCardProps> = ({
               key={col.name}
               className={`p-2 rounded-lg flex items-center justify-between border ${
                 isPk
-                  ? 'bg-amber-500/10 border-amber-500/30 text-amber-200'
+                  ? 'bg-amber-100 border-amber-300 text-amber-900 dark:bg-amber-500/10 dark:border-amber-500/30 dark:text-amber-200'
                   : isFk
                   ? 'bg-purple-500/10 border-purple-500/30 text-purple-200'
                   : 'bg-slate-950/50 border-slate-800/80 text-slate-300'

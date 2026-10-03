@@ -29,7 +29,7 @@ export const FlagHeader: React.FC<FlagHeaderProps> = ({
           <span className="font-mono text-xs text-cyan-300 bg-cyan-500/10 px-2.5 py-0.5 rounded-full border border-cyan-500/20">
             Key: {slide.flagKey || 'feature_kernel_bypass'}
           </span>
-          <span className="font-mono text-xs text-amber-300 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20">
+          <span className="font-mono text-xs text-amber-900 dark:text-amber-300 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20">
             Target: {slide.targetReleaseVersion || 'v3.2.0'}
           </span>
           <span className="font-mono text-xs text-emerald-300 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20 flex items-center gap-1">

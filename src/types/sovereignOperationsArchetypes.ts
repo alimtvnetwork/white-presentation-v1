@@ -1,4 +1,3 @@
-// lint-allow: file-size reason="15 Sovereign Operations slide archetype TypeScript data contracts" max=750
 import type { BaseSlide } from './presentation';
 
 // -----------------------------------------------------------------------------

@@ -152,6 +152,71 @@ export const getGlobalPptSlideSteps = (slide: any): number => {
   }
 };
 
+export const getSovereignOperationsSlideSteps = (slide: any): number => {
+  if (!slide || typeof slide !== 'object') return 0;
+
+  switch (slide.type) {
+    case 'zero-trust-packet-inspection':
+      return slide.inspectionStages?.length || 4;
+    case 'database-migration-pipeline':
+      return slide.migrationPhases?.length || 4;
+    case 'autonomous-ai-eval-harness':
+      return slide.benchmarkSuites?.length || 4;
+    case 'chaos-engineering-matrix':
+      return slide.chaosExperiments?.length || 4;
+    case 'ci-cd-artifact-provenance':
+      return slide.provenanceStages?.length || 4;
+    case 'disaster-recovery-drill':
+      return slide.drillPhases?.length || 4;
+    case 'feature-flag-rollout-tree':
+      return slide.rolloutRings?.length || 4;
+    case 'quantum-cryptography-transition':
+      return (slide as any).transitionStages?.length || 4;
+    case 'global-latency-topology':
+    case 'microservices-mesh-telemetry':
+    case 'threat-intelligence-feed':
+    case 'data-lakehouse-governance':
+    case 'kubernetes-fleet-orchestrator':
+    case 'api-monetization-billing':
+    case 'ai-inference-cluster-telemetry':
+      return slide.maxSteps || 1;
+    default:
+      return 0;
+  }
+};
+
+export const getNextGenSlideSteps = (slide: any): number => {
+  if (!slide || typeof slide !== 'object') return 0;
+
+  switch (slide.type) {
+    case 'three-horizons-strategy-matrix':
+      return slide.horizons?.length || 3;
+    case 'ai-agent-fleet-topology':
+    case 'api-rate-limit-gateway':
+    case 'multi-cloud-dr-failover-mesh':
+    case 'fintech-payment-clearing-engine':
+    case 'model-context-protocol-mesh':
+    case 'data-clean-room-collaboration':
+    case 'supply-chain-digital-twin-lattice':
+    case 'voice-ai-realtime-conversational-mesh':
+      return slide.maxSteps || 4;
+    case 'executive-mergers-acquisitions-synergy':
+      return (slide as any).synergyMilestones?.length || (slide as any).maxSteps || 4;
+    case 'esg-decarbonization-roadmap':
+      return slide.milestoneYears?.length || 4;
+    case 'developer-platform-idp-hub':
+      return slide.goldenTemplates?.length || 4;
+    case 'cyber-threat-kill-chain-matrix':
+      return slide.killChainStages?.length || 4;
+    case 'compliance-audit-soc2-readiness-ladder':
+      return (slide as any).ladderSteps?.length || (slide as any).trustCriteriaScores?.length || 5;
+    case 'value-stream-engineering-dora-flywheel':
+      return (slide as any).flywheelQuadrants?.length || 4;
+    default:
+      return 0;
+  }
+};
+
 const computeSlideMaxSteps = (slide: any): number => {
   const hasSlide = Boolean(slide);
   if (hasSlide) {
@@ -161,7 +226,9 @@ const computeSlideMaxSteps = (slide: any): number => {
       getEnterpriseSlideSteps(slide) ||
       getKineticSlideSteps(slide) ||
       getKineticSuiteSlideSteps(slide) ||
-      getGlobalPptSlideSteps(slide);
+      getGlobalPptSlideSteps(slide) ||
+      getSovereignOperationsSlideSteps(slide) ||
+      getNextGenSlideSteps(slide);
     const hasMultipleSteps = count > 0;
     if (hasMultipleSteps) {
       return count;
@@ -205,6 +272,7 @@ interface DeckStoreState {
   nextStep: () => void;
   prevStep: () => void;
   setStep: (stepIndex: number) => void;
+  setActiveStep: (stepIndex: number) => void;
   getActiveSlideMaxSteps: () => number;
   setTheme: (themeId: string) => void;
   toggleSound: () => void;
@@ -352,6 +420,10 @@ export const useDeckStore = create<DeckStoreState>((set, get) => ({
   },
 
   setStep: (stepIndex: number) => {
+    get().jumpToStep(stepIndex);
+  },
+
+  setActiveStep: (stepIndex: number) => {
     get().jumpToStep(stepIndex);
   },
 

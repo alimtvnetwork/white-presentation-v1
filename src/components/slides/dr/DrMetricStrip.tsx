@@ -56,10 +56,10 @@ export const DrMetricStrip: React.FC<DrMetricStripProps> = ({ slide }) => {
             Drill Phases
           </div>
           <div style={{ color: 'var(--pres-text)' }} className="text-2xl font-bold font-ubuntu tracking-tight">
-            {phases.length} <span className="text-sm font-normal font-mono text-amber-400">Phases</span>
+            {phases.length} <span className="text-sm font-normal font-mono text-amber-900 dark:text-amber-400">Phases</span>
           </div>
         </div>
-        <div className="p-2.5 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
+        <div className="p-2.5 rounded-lg bg-amber-500/10 text-amber-900 dark:text-amber-400 border border-amber-500/20">
           <Activity size={20} />
         </div>
       </div>

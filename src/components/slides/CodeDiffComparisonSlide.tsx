@@ -75,7 +75,7 @@ export const CodeDiffComparisonSlide: React.FC<{ slide: CodeDiffComparisonSlideD
                 <span className="text-[11px] font-mono text-slate-400">{m.metricLabel}</span>
                 <div className="flex items-baseline justify-between">
                   <span className="text-sm font-ubuntu font-bold text-slate-100">{m.metricValue}</span>
-                  <span className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded ${m.hasPositiveImpact ? 'text-emerald-400 bg-emerald-500/10' : 'text-amber-400 bg-amber-500/10'}`}>{m.metricDelta}</span>
+                  <span className={`text-xs font-mono font-bold px-1.5 py-0.5 rounded ${m.hasPositiveImpact ? 'text-emerald-400 bg-emerald-500/10' : 'text-amber-900 bg-amber-100 border-amber-300 dark:text-amber-300 dark:bg-amber-500/10'}`}>{m.metricDelta}</span>
                 </div>
               </div>
             ))}

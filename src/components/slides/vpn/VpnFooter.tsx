@@ -23,7 +23,7 @@ export const VpnFooter: React.FC<VpnFooterProps> = ({
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
           <span><strong>{totalCountriesCount}</strong> Independent Jurisdictions</span>
         </div>
-        <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400">
+        <div className="flex items-center gap-2 text-amber-800 dark:text-amber-400">
           <ShieldCheck size={14} />
           <span>Zero Log Persistence Audit</span>
         </div>
