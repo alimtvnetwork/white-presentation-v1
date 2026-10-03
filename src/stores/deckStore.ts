@@ -43,10 +43,55 @@ const getEnterpriseSlideSteps = (slide: SlideData | any): number => {
   return 0;
 };
 
+export const getKineticSlideSteps = (slide: any): number => {
+  if (!slide || typeof slide !== 'object') return 0;
+
+  switch (slide.type) {
+    case 'personal-vpn':
+      return slide.features?.length || slide.nodes?.length || 4;
+    case 'meeting-transcript':
+      return slide.transcriptSegments?.length || slide.speakerTurns?.length || 3;
+    case 'llm-benchmark':
+      return slide.modelResults?.length || slide.models?.length || 3;
+    case 'services-gravity':
+      return slide.pillars?.length || slide.services?.length || 3;
+    case 'seo-dominance':
+      return slide.eras?.length || 4;
+    case 'staff-aug-pipeline':
+      return slide.vettingStages?.length || slide.stages?.length || 6;
+    case 'craftsmanship-benchmark':
+      return slide.revelations?.length || slide.benchmarks?.length || 3;
+    case 'weekly-cadence':
+      return slide.weeklyRituals?.length || slide.days?.length || 5;
+    case 'competitive-moat':
+      return slide.moatDimensions?.length || slide.moatPillars?.length || 3;
+    case 'rapid-feedback':
+      return slide.cycleStages?.length || slide.loopStages?.length || 4;
+    case 'interactive-poll':
+      return 3;
+    case 'live-qa':
+      return Math.min(5, slide.curatedQuestions?.length || slide.questions?.length || 3);
+    case 'embed-stage':
+      return 2;
+    case 'countdown-launch':
+      return slide.launchPhases?.length || slide.launchGates?.length || 3;
+    case 'executive-takeaways':
+      return slide.actionProtocols?.length || slide.actionItems?.length || 3;
+    default:
+      return 0;
+  }
+};
+
+export const getExtendedSlideStepCount = getKineticSlideSteps;
+
 const computeSlideMaxSteps = (slide: any): number => {
   const hasSlide = Boolean(slide);
   if (hasSlide) {
-    const count = getCoreSlideSteps(slide) || getExpandedSlideSteps(slide) || getEnterpriseSlideSteps(slide);
+    const count =
+      getCoreSlideSteps(slide) ||
+      getExpandedSlideSteps(slide) ||
+      getEnterpriseSlideSteps(slide) ||
+      getKineticSlideSteps(slide);
     const hasMultipleSteps = count > 0;
     if (hasMultipleSteps) {
       return count;

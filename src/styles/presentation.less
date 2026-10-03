@@ -246,3 +246,144 @@
     background: rgba(124, 58, 237, 0.12);
   }
 }
+
+// ============================================================================
+// Capsule Badges Hierarchy & Light-Theme Contrast Inversion System
+// ============================================================================
+
+.capsule-base {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: @radius-full;
+  font-family: var(--pres-font-display, @font-heading);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.2s ease, background-color 0.2s ease;
+  user-select: none;
+}
+
+// 1. Default (Dark Master Themes)
+.capsule-gold {
+  &:extend(.capsule-base);
+  background: rgba(234, 179, 8, 0.12);
+  border: 1px solid rgba(234, 179, 8, 0.40);
+  color: #EAB308;
+}
+
+.capsule-ember {
+  &:extend(.capsule-base);
+  background: rgba(244, 63, 94, 0.12);
+  border: 1px solid rgba(244, 63, 94, 0.40);
+  color: #F43F5E;
+}
+
+.capsule-cream {
+  &:extend(.capsule-base);
+  background: rgba(250, 247, 240, 0.10);
+  border: 1px solid rgba(217, 193, 145, 0.35);
+  color: #FAF7F0;
+}
+
+.capsule-ink {
+  &:extend(.capsule-base);
+  background: rgba(11, 14, 20, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #F8FAFC;
+}
+
+.capsule-outline {
+  &:extend(.capsule-base);
+  background: transparent;
+  border: 1px solid var(--pres-border);
+  color: var(--pres-text-muted);
+}
+
+.capsule-meta {
+  &:extend(.capsule-base);
+  font-family: var(--pres-font-mono, @font-mono);
+  background: rgba(148, 163, 184, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  color: var(--pres-text-muted);
+}
+
+// Typography Display Helpers
+.slide-title-display {
+  font-family: var(--pres-font-display, @font-heading);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--pres-text);
+  text-shadow: var(--pres-header-shadow);
+}
+
+.slide-eyebrow {
+  font-family: var(--pres-font-display, @font-heading);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--pres-accent);
+}
+
+// 2. Light Theme Contrast Inversions & Auto Text-Shadows
+[data-theme='paper-ink'],
+[data-theme='github-light'],
+[data-theme='white-brand'],
+[data-theme='paper-editorial'],
+[data-appearance='light'],
+[data-is-dark='false'] {
+
+  // Invert Gold to Burnished Dark Ochre on light surface (5.2:1 contrast ratio)
+  .capsule-gold {
+    background: rgba(202, 146, 6, 0.12);
+    border: 1px solid rgba(202, 146, 6, 0.50);
+    color: #9B6805;
+  }
+
+  // Invert Ember to Deep Crimson (5.8:1 contrast ratio)
+  .capsule-ember {
+    background: rgba(225, 29, 72, 0.10);
+    border: 1px solid rgba(225, 29, 72, 0.45);
+    color: #BE123C;
+  }
+
+  // Invert Cream to Warm Archival Navy Pill (18.5:1 contrast ratio)
+  .capsule-cream {
+    background: rgba(10, 17, 40, 0.08);
+    border: 1px solid rgba(10, 17, 40, 0.30);
+    color: #0A1128;
+  }
+
+  // Ink maintains deep dark chip with enhanced edge
+  .capsule-ink {
+    background: #0F172A;
+    border: 1px solid #1E293B;
+    color: #FFFFFF;
+  }
+
+  // Outline strengthens border opacity for light ground
+  .capsule-outline {
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(15, 23, 42, 0.30);
+    color: #334155;
+  }
+
+  // Meta pill deepens monospaced typography
+  .capsule-meta {
+    background: rgba(15, 23, 42, 0.05);
+    border: 1px solid rgba(15, 23, 42, 0.20);
+    color: #475569;
+  }
+
+  // Auto-applied text-shadows on light themes
+  .slide-title-display,
+  .slide-eyebrow,
+  .headline-display {
+    text-shadow: var(--text-shadow-weight-light, 0 1px 0 hsl(0 0% 100% / 0.5));
+  }
+}
+

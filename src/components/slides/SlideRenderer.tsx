@@ -44,7 +44,7 @@ import { SessionOutlineSlide } from './SessionOutlineSlide';
 import { CounterStatSlide } from './CounterStatSlide';
 import { PollSurveySlide } from './PollSurveySlide';
 import { TypewriterPromptSlide } from './TypewriterPromptSlide';
-import { ExpandedSlideRenderer } from './ExpandedSlideRenderer';
+import { ExtendedSlideRenderer } from './ExtendedSlideRenderer';
 
 export const SlideRenderer: React.FC<{ slide: SlideData }> = ({ slide }) => {
   switch (slide.type) {
@@ -92,6 +92,6 @@ export const SlideRenderer: React.FC<{ slide: SlideData }> = ({ slide }) => {
     case 'typewriter-prompt': return <TypewriterPromptSlide slide={slide as any} />;
     case 'depth-stack': return <DepthStackSlide slide={slide as any} />;
     case 'before-after-showcase' as any: return <BeforeAfterShowcaseSlide slide={slide as any} />;
-    default: return <ExpandedSlideRenderer slide={slide} />;
+    default: return <ExtendedSlideRenderer slide={slide} />;
   }
 };

@@ -96,3 +96,29 @@
 @pres-stop-7:          var(--pres-stop-7, #6d28d9);
 @pres-stop-8:          var(--pres-stop-8, #4c1d95);
 @pres-stop-9:          var(--pres-stop-9, #0f172a);
+
+:root, [data-theme] {
+  // Unadorned HSL Triplet Definitions (H S% L%)
+  --gold: 41 100% 50%;
+  --gold-glow: 41 100% 65%;
+  --cream: 42 100% 94%;
+  --ember: 14 80% 57%;
+  --ink: 240 20% 4%;
+
+  // Fixed Dark Chrome HUD Tokens
+  --chrome-bg: 0 0% 7%;
+  --chrome-fg: 0 0% 98%;
+  --chrome-fg-muted: 0 0% 98% / 0.78;
+  --chrome-fg-subtle: 0 0% 98% / 0.62;
+  --chrome-border-strength: 0.22;
+  --chrome-divider-strength: 0.12;
+  --chrome-border: 0 0% 100% / var(--chrome-divider-strength);
+  --chrome-hover: 0 0% 100% / 0.08;
+
+  // Micro-Shadow Weight Variables
+  --text-shadow-weight-light: 0 1px 0 hsl(0 0% 100% / 0.5);
+  --text-shadow-weight-light-strong: 0 1px 1px hsl(0 0% 100% / 0.7);
+  --text-shadow-weight-dark: 0 1px 0 hsl(0 0% 0% / 0.4);
+  --text-shadow-weight-dark-strong: 0 2px 4px hsl(0 0% 0% / 0.6);
+}
+

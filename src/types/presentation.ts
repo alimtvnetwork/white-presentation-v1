@@ -1,5 +1,8 @@
 import type { NewSlideType, NewSlideData } from './archetypes';
-import type { ExtendedSlideType, ExtendedSlideData } from './extendedArchetypes';
+import type {
+  ExtendedSlideType, ExtendedSlideData,
+  LegacyExtendedSlideType, LegacyExtendedSlideData,
+} from './extendedArchetypes';
 import type { ExpandedSlideType, ExpandedSlideData } from './expandedArchetypes';
 import type { EnterpriseSlideType, EnterpriseSlideData } from './enterpriseArchetypes';
 export * from './archetypes';
@@ -23,7 +26,8 @@ export type SlideType =
   | NewSlideType
   | ExtendedSlideType
   | ExpandedSlideType
-  | EnterpriseSlideType;
+  | EnterpriseSlideType
+  | LegacyExtendedSlideType;
 
 export type DockPosition =
   | 'bottom-center'
@@ -264,7 +268,8 @@ export type SlideData =
   | NewSlideData
   | ExtendedSlideData
   | ExpandedSlideData
-  | EnterpriseSlideData;
+  | EnterpriseSlideData
+  | LegacyExtendedSlideData;
 
 export type Slide = SlideData;
 

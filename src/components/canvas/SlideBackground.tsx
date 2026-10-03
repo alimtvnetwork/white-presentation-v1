@@ -5,7 +5,7 @@ import { Layers, Shield, Cpu, Terminal, Compass } from 'lucide-react';
 
 export const SlideBackground: React.FC = () => {
   const { activeThemeId } = useDeckStore();
-  const theme = THEME_PALETTES[activeThemeId] || THEME_PALETTES['white-brand'];
+  const theme = THEME_PALETTES[activeThemeId] || THEME_PALETTES['bright-gold'] || THEME_PALETTES['white-brand'];
   const isDark = Boolean(theme.isDark);
 
   return (
@@ -14,7 +14,7 @@ export const SlideBackground: React.FC = () => {
       <div
         className="absolute inset-0"
         style={{
-          background: `radial-gradient(ellipse 65% 55% at 50% 48%, ${theme.accentColor}${isDark ? '1c' : '12'} 0%, transparent 72%)`,
+          background: `radial-gradient(ellipse 65% 55% at 50% 48%, hsl(var(--pres-accent-hsl, var(--pres-accent)) / 0.12) 0%, transparent 72%)`,
         }}
       />
 
@@ -24,7 +24,7 @@ export const SlideBackground: React.FC = () => {
         style={{
           backgroundImage: `linear-gradient(to right, ${isDark ? 'rgba(255,255,255,0.025)' : 'rgba(0,0,0,0.025)'} 1px, transparent 1px),
                             linear-gradient(to bottom, ${isDark ? 'rgba(255,255,255,0.025)' : 'rgba(0,0,0,0.025)'} 1px, transparent 1px),
-                            radial-gradient(circle 1.2px at center, ${theme.accentColor}${isDark ? '25' : '15'} 1px, transparent 1px)`,
+                            radial-gradient(circle 1.2px at center, hsl(var(--pres-accent-hsl, var(--pres-accent)) / 0.12) 1px, transparent 1px)`,
           backgroundSize: '48px 48px, 48px 48px, 12px 12px',
         }}
       />

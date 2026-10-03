@@ -1,0 +1,76 @@
+[
+  {
+    "code": "Task-01",
+    "title": "Author Canonical Specifications under 02-spec/21-app/30-global-ppt-motion-flat-kinetic-slides",
+    "owned_files": [
+      "02-spec/21-app/30-global-ppt-motion-flat-kinetic-slides/readme.md",
+      "02-spec/21-app/30-global-ppt-motion-flat-kinetic-slides/01-overview.md",
+      "02-spec/21-app/30-global-ppt-motion-flat-kinetic-slides/02-data-contracts.md",
+      "02-spec/21-app/30-global-ppt-motion-flat-kinetic-slides/03-visual-and-motion.md",
+      "02-spec/21-app/30-global-ppt-motion-flat-kinetic-slides/04-verification-gates.md"
+    ],
+    "agent_role": "Lead Orchestrator"
+  },
+  {
+    "code": "Task-02",
+    "title": "Review & Adapt Global PPT Color Themes, Tokens, Light-Theme Contract, and Atmospheric Physics",
+    "owned_files": [
+      "src/themes/gradientTokens.ts",
+      "src/themes/themeRuntime.ts",
+      "src/components/canvas/SlideBackground.tsx",
+      "src/utils/motionPhysics.ts"
+    ],
+    "agent_role": "Worker 01"
+  },
+  {
+    "code": "Task-03",
+    "title": "Wire 15 New Slide Types & Step Progression in deckStore & Types",
+    "owned_files": [
+      "src/types/extendedArchetypes.ts",
+      "src/types/presentation.ts",
+      "src/stores/deckStore.ts",
+      "src/utils/extendedSlideFactories.ts"
+    ],
+    "agent_role": "Worker 01"
+  },
+  {
+    "code": "Task-04",
+    "title": "Implement First Wave of New Slides (7 Archetypes: Personal VPN, Meeting Transcript, LLM Benchmark, Gravity Orbit, SEO Dominance, Staff Aug Pipeline, Craftsmanship Benchmark)",
+    "owned_files": [
+      "src/components/slides/PersonalVpnSlide.tsx",
+      "src/components/slides/MeetingTranscriptSlide.tsx",
+      "src/components/slides/LlmBenchmarkSlide.tsx",
+      "src/components/slides/ServicesGravitySlide.tsx",
+      "src/components/slides/SeoDominanceSlide.tsx",
+      "src/components/slides/StaffAugPipelineSlide.tsx",
+      "src/components/slides/CraftsmanshipBenchmarkSlide.tsx"
+    ],
+    "agent_role": "Worker 02"
+  },
+  {
+    "code": "Task-05",
+    "title": "Implement Second Wave of New Slides (8 Archetypes: Weekly Cadence, Competitive Moat, Rapid Feedback, Interactive Poll, Live QA, Embed Stage, Countdown Launch, Executive Takeaways) + ExtendedSlideRenderer",
+    "owned_files": [
+      "src/components/slides/WeeklyCadenceSlide.tsx",
+      "src/components/slides/CompetitiveMoatSlide.tsx",
+      "src/components/slides/RapidFeedbackSlide.tsx",
+      "src/components/slides/InteractivePollSlide.tsx",
+      "src/components/slides/LiveQaSlide.tsx",
+      "src/components/slides/EmbedStageSlide.tsx",
+      "src/components/slides/CountdownLaunchSlide.tsx",
+      "src/components/slides/ExecutiveTakeawaysSlide.tsx",
+      "src/components/slides/ExtendedSlideRenderer.tsx",
+      "src/components/slides/SlideRenderer.tsx",
+      "src/stores/initialDeck.ts"
+    ],
+    "agent_role": "Worker 02"
+  },
+  {
+    "code": "Task-06",
+    "title": "Verify Coding Guidelines, Boolean Guards, Component Sizing (<=100 lines), and 12 Quality Gates",
+    "owned_files": [
+      "src/utils/booleanGuards.ts"
+    ],
+    "agent_role": "Lead Orchestrator"
+  }
+]

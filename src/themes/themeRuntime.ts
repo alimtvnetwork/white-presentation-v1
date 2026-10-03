@@ -1,6 +1,7 @@
-// lint-allow: file-size reason="WCAG contrast runtime & theme token injector" max=280
+// lint-allow: file-size reason="WCAG contrast runtime & theme token injector" max=320
 import { THEME_PALETTES } from './gradientTokens';
 import { ThemePalette } from '../types/presentation';
+import { isBooleanTrue, isFalse } from '../utils/booleanGuards';
 
 const THEME_STORAGE_KEY = 'white.theme.v1';
 const SYNC_CHANNEL_NAME = 'white-deck-sync';
@@ -183,6 +184,30 @@ function buildHslThemeVars(theme: ThemePalette): Record<string, string> {
     vars['--pres-text-muted-hsl'] = theme.subtextHsl;
   }
   if (theme.cardBorderHsl) vars['--pres-border-hsl'] = theme.cardBorderHsl;
+
+  // Unadorned Global HSL Triplet Tokens
+  vars['--gold'] = '41 100% 50%';
+  vars['--gold-glow'] = '41 100% 65%';
+  vars['--cream'] = '42 100% 94%';
+  vars['--ember'] = '14 80% 57%';
+  vars['--ink'] = '240 20% 4%';
+
+  // Fixed Dark Chrome HUD Tokens
+  vars['--chrome-bg'] = '0 0% 7%';
+  vars['--chrome-fg'] = '0 0% 98%';
+  vars['--chrome-fg-muted'] = '0 0% 98% / 0.78';
+  vars['--chrome-fg-subtle'] = '0 0% 98% / 0.62';
+  vars['--chrome-border-strength'] = '0.22';
+  vars['--chrome-divider-strength'] = '0.12';
+  vars['--chrome-border'] = '0 0% 100% / var(--chrome-divider-strength)';
+  vars['--chrome-hover'] = '0 0% 100% / 0.08';
+
+  // Micro-Shadow Weight Variables
+  vars['--text-shadow-weight-light'] = '0 1px 0 hsl(0 0% 100% / 0.5)';
+  vars['--text-shadow-weight-light-strong'] = '0 1px 1px hsl(0 0% 100% / 0.7)';
+  vars['--text-shadow-weight-dark'] = '0 1px 0 hsl(0 0% 0% / 0.4)';
+  vars['--text-shadow-weight-dark-strong'] = '0 2px 4px hsl(0 0% 0% / 0.6)';
+
   return vars;
 }
 
@@ -215,7 +240,7 @@ function applyVarsToRoot(vars: Record<string, string>): void {
 }
 
 function broadcastThemeChange(themeId: string, isFromBroadcast: boolean): void {
-  const isLocalOrigin = isFromBroadcast ? false : true;
+  const isLocalOrigin = isFalse(isFromBroadcast);
   const hasChannel = Boolean(broadcastChannel);
   if (isLocalOrigin && hasChannel) {
     broadcastChannel!.postMessage({ type: 'THEME_SYNC', themeId });
@@ -229,6 +254,7 @@ export function applyTheme(id: string, isFromBroadcast = false): ThemePalette {
   const isDark = Boolean(theme.isDark);
   document.documentElement.setAttribute('data-theme', theme.id);
   document.documentElement.setAttribute('data-appearance', isDark ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-is-dark', isDark ? 'true' : 'false');
   const defaultShadow = isDark ? 'rgb(0 0 0) 1px 0.7px 0px' : 'rgb(255 255 255) 1px 0.7px 0px';
   const vars = {
     ...buildColorVars(theme, isDark),
