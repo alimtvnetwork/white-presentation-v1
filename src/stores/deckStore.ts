@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { PresentationDeck, SlideData } from '../types/presentation';
 import { soundEngine } from '../audio/soundEngine';
 import { calculateNextGenSlideStepCount } from '../types/nextGenArchetypes';
+import { calculateModernSlideStepCount } from '../types/modernArchetypes';
 import { INITIAL_DECK } from './initialDeck';
 
 const getCoreSlideSteps = (slide: any): number => {
@@ -191,6 +192,11 @@ export const getNextGenSlideSteps = (slide: any): number => {
   return calculateNextGenSlideStepCount(slide as any);
 };
 
+export const getModernSlideSteps = (slide: any): number => {
+  if (!slide || typeof slide !== 'object') return 0;
+  return calculateModernSlideStepCount(slide as any);
+};
+
 const computeSlideMaxSteps = (slide: any): number => {
   const hasSlide = Boolean(slide);
   if (hasSlide) {
@@ -202,7 +208,8 @@ const computeSlideMaxSteps = (slide: any): number => {
       getKineticSuiteSlideSteps(slide) ||
       getGlobalPptSlideSteps(slide) ||
       getSovereignOperationsSlideSteps(slide) ||
-      getNextGenSlideSteps(slide);
+      getNextGenSlideSteps(slide) ||
+      getModernSlideSteps(slide);
     const hasMultipleSteps = count > 0;
     if (hasMultipleSteps) {
       return count;

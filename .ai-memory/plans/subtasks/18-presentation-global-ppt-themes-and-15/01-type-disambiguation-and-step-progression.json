@@ -1,0 +1,41 @@
+{
+  "subtaskId": 1,
+  "taskCode": "Task-01",
+  "title": "Type Disambiguation & Step Progression Engine",
+  "status": "COMPLETED",
+  "assignedAgentRole": "Worker 01",
+  "ownedFiles": [
+    "src/types/modern/transformationTypes.ts",
+    "src/components/slides/modern/transformation/FlywheelStageNode.tsx",
+    "src/components/slides/modern/transformation/AiDataFlywheelLifecycleSlide.tsx",
+    "src/utils/modern/transformationFactories.ts",
+    "src/utils/stepProgression.ts"
+  ],
+  "changes": [
+    {
+      "file": "src/types/modern/transformationTypes.ts",
+      "description": "Renamed interface FlywheelStage to AiFlywheelStage to eliminate TS2308 naming collision with deepTechGovernanceTypes.ts, updated AiDataFlywheelLifecycleSlideData with flywheelStages and optional stages property."
+    },
+    {
+      "file": "src/components/slides/modern/transformation/FlywheelStageNode.tsx",
+      "description": "Updated import and FlywheelStageNodeProps to use AiFlywheelStage."
+    },
+    {
+      "file": "src/components/slides/modern/transformation/AiDataFlywheelLifecycleSlide.tsx",
+      "description": "Imported AiFlywheelStage, typed stages array, and supported fallback across flywheelStages/stages."
+    },
+    {
+      "file": "src/utils/modern/transformationFactories.ts",
+      "description": "Updated import to AiFlywheelStage and typed flywheelStages in createAiDataFlywheelLifecycleSlide."
+    },
+    {
+      "file": "src/utils/stepProgression.ts",
+      "description": "Imported isModernSlide and calculateModernSlideStepCount from ../types/modernArchetypes and updated getSlideMaxSteps to support all 15 modern slide archetypes."
+    }
+  ],
+  "verification": {
+    "typeCheck": "PASS: pnpm exec tsc --noEmit exited with 0 errors (TS2308 resolved)",
+    "booleanLint": "PASS: python linter-scripts/check-boolean-guidelines.py passed with 0 violations",
+    "stepCountParity": "PASS: Modern slides calculate intra-slide steps matching calculateModernSlideStepCount"
+  }
+}

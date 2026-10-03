@@ -32,11 +32,17 @@ import {
   createComplianceSoc2ReadinessLadderSlide,
   createValueStreamDoraFlywheelSlide,
 } from './nextGenSlideFactories';
+import {
+  MODERN_FACTORIES,
+  MODERN_ARCHETYPE_OPTIONS,
+  createModernSlide,
+} from './modern/registry';
 export * from './extendedSlideFactories';
 export * from './expandedSlideFactories';
 export * from './enterpriseSlideFactories';
 export * from './kineticSuiteSlideFactories';
 export * from './nextGenSlideFactories';
+export * from './modern/registry';
 
 export const ORIGINAL_ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   { type: 'metric-grid', label: 'Metric Grid Matrix', category: 'Strategy & Metrics', desc: '4-6 quantitative KPI cards with delta trends', icon: 'BarChart3' },
@@ -63,6 +69,7 @@ export const ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   ...ENTERPRISE_ARCHETYPE_OPTIONS,
   ...KINETIC_SUITE_ARCHETYPE_OPTIONS,
   ...NEXTGEN_ARCHETYPE_OPTIONS,
+  ...MODERN_ARCHETYPE_OPTIONS,
 ];
 
 // =============================================================================
@@ -444,6 +451,9 @@ const createFallbackTitleSlide = (id: string): SlideData => ({
 });
 
 export const createArchetypeSlide = (type: SlideType, id = `slide-${Date.now()}`): SlideData => {
+  if (type in MODERN_FACTORIES) {
+    return MODERN_FACTORIES[type as keyof typeof MODERN_FACTORIES](id);
+  }
   if (type in SLIDE_ARCHETYPE_FACTORIES) {
     return SLIDE_ARCHETYPE_FACTORIES[type].factory(id);
   }

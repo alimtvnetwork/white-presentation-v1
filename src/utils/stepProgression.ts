@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react';
+import { isModernSlide, calculateModernSlideStepCount } from '../types/modernArchetypes';
 
 export type StepPhase = 'past' | 'completed' | 'active' | 'future';
 
@@ -269,6 +270,10 @@ export function getSlideMaxSteps(slide: any): number {
     const isGlobal = isGlobalPptSlideType(slide.type);
     if (isGlobal) {
       return calculateGlobalPptSlideStepCount(slide);
+    }
+    const isModern = isModernSlide(slide);
+    if (isModern) {
+      return calculateModernSlideStepCount(slide);
     }
   }
   return 1;

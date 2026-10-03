@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="WCAG contrast runtime & theme token injector" max=465
+// lint-allow: file-size reason="WCAG contrast runtime & theme token injector" max=470
 import { THEME_PALETTES } from './gradientTokens';
 import { ThemePalette } from '../types/presentation';
 import { isBooleanTrue, isFalse } from '../utils/booleanGuards';
@@ -18,6 +18,11 @@ export interface ContrastAuditResult {
   canvasLuma: number;
   accentTextRatio?: number;
   isAccentTextAccessible?: boolean;
+  cardHoverTextRatio?: number;
+  isCardHoverAccessible?: boolean;
+  borderHoverRatio?: number;
+  isBorderHoverAccessible?: boolean;
+  isZeroYellowCompliant?: boolean;
 }
 
 let broadcastChannel: BroadcastChannel | null = null;
@@ -137,23 +142,29 @@ export function logContrastAudit(themeId: string, ratio: number, isAccessible: b
   console.warn(`[ThemeContrast] ${themeId} fails WCAG AA: ${ratio.toFixed(2)}:1 < 4.5:1`);
 }
 
+export function isYellowish(color: string): boolean {
+  const [r, g, b] = parseColorToRgb(color);
+  return r >= 180 && g >= 140 && b <= 110;
+}
+
 export function resolveAccentTextColor(theme: ThemePalette, isDark: boolean): string {
   if (isDark) {
     return theme.accentColor;
   }
+  // Light mode invariant: strictly honor Zero Yellow-on-Light mandate
   if (theme.id === 'white-brand' || theme.id === 'github-light') {
     return '#6D28D9';
   }
+  const canvasLuma = hexToLuminance(theme.canvasBg || '#FFFFFF');
   const stop7 = theme.stops?.[7]?.hex;
   const stop8 = theme.stops?.[8]?.hex;
   const candidate = stop7 || stop8 || '#6D28D9';
-  const canvasLuma = hexToLuminance(theme.canvasBg || '#FFFFFF');
   const candidateLuma = hexToLuminance(candidate);
   const ratio = contrastRatio(candidateLuma, canvasLuma);
-  if (ratio >= 5.5) {
+  if (ratio >= 5.5 && !isYellowish(candidate)) {
     return candidate;
   }
-  if (stop8) {
+  if (stop8 && !isYellowish(stop8)) {
     const stop8Ratio = contrastRatio(hexToLuminance(stop8), canvasLuma);
     if (stop8Ratio >= 5.5) {
       return stop8;
@@ -174,12 +185,23 @@ export function auditThemeContrast(theme: ThemePalette): ContrastAuditResult {
   const accentLuma = hexToLuminance(accentTextColor);
   const accentTextRatio = contrastRatio(accentLuma, canvasLuma);
   const isAccentTextAccessible = accentTextRatio >= 4.5;
+  const isZeroYellowCompliant = isDark || !isYellowish(accentTextColor);
 
-  if (isAccentTextAccessible) {
+  if (isAccentTextAccessible && isZeroYellowCompliant) {
     console.info(`[ThemeContrast] ${theme.id} accent-text passes WCAG AA (${accentTextRatio.toFixed(2)}:1)`);
   } else {
     console.warn(`[ThemeContrast] ${theme.id} accent-text fails WCAG AA: ${accentTextRatio.toFixed(2)}:1 < 4.5:1`);
   }
+
+  // Hover contrast checks across light and dark modes
+  const cardHoverHex = isDark ? '#334155' : '#FFFFFF';
+  const cardHoverLuma = hexToLuminance(cardHoverHex);
+  const cardHoverTextRatio = contrastRatio(textLuma, cardHoverLuma);
+  const isCardHoverAccessible = cardHoverTextRatio >= 4.5;
+
+  const borderHoverLuma = hexToLuminance(theme.accentColor);
+  const borderHoverRatio = contrastRatio(borderHoverLuma, canvasLuma);
+  const isBorderHoverAccessible = borderHoverRatio >= 2.0;
 
   return {
     themeId: theme.id,
@@ -189,6 +211,11 @@ export function auditThemeContrast(theme: ThemePalette): ContrastAuditResult {
     canvasLuma,
     accentTextRatio,
     isAccentTextAccessible,
+    cardHoverTextRatio,
+    isCardHoverAccessible,
+    borderHoverRatio,
+    isBorderHoverAccessible,
+    isZeroYellowCompliant,
   };
 }
 
@@ -197,6 +224,8 @@ function buildColorVars(theme: ThemePalette, isDark: boolean): Record<string, st
     ? `hsl(${theme.accentHsl} / 0.50)`
     : `${theme.accentColor}40`;
   const accentTextColor = resolveAccentTextColor(theme, isDark);
+  const cardBgHover = isDark ? 'rgba(51, 65, 85, 0.95)' : 'rgba(255, 255, 255, 0.98)';
+  const borderHover = theme.accentColor;
 
   return {
     '--pres-bg': theme.canvasBg,
@@ -204,7 +233,8 @@ function buildColorVars(theme: ThemePalette, isDark: boolean): Record<string, st
     '--pres-bg-surface': isDark ? 'rgba(15, 23, 42, 0.95)' : 'rgba(255, 255, 255, 0.95)',
     '--pres-bg-card': theme.cardBg,
     '--pres-card-bg': theme.cardBg,
-    '--pres-bg-card-hover': isDark ? 'rgba(51, 65, 85, 0.95)' : 'rgba(255, 255, 255, 0.98)',
+    '--pres-bg-card-hover': cardBgHover,
+    '--pres-card-bg-hover': cardBgHover,
     '--pres-accent': theme.accentColor,
     '--pres-accent-text': accentTextColor,
     '--pres-accent-glow': accentGlow,
@@ -216,7 +246,8 @@ function buildColorVars(theme: ThemePalette, isDark: boolean): Record<string, st
     '--pres-text-subtle': isDark ? '#64748B' : '#94A3B8',
     '--pres-border': theme.cardBorder,
     '--pres-card-border': theme.cardBorder,
-    '--pres-border-hover': theme.accentColor,
+    '--pres-border-hover': borderHover,
+    '--pres-card-border-hover': borderHover,
 
     // Fixed dark HUD chrome tokens
     '--chrome-bg-hover': 'rgba(255, 255, 255, 0.08)',
@@ -289,22 +320,7 @@ function buildHslThemeVars(theme: ThemePalette): Record<string, string> {
   vars['--ink'] = '240 20% 4%';
 
   // Fixed Dark Chrome HUD Tokens
-  vars['--chrome-bg'] = 'rgba(15, 23, 42, 0.94)';
-  vars['--chrome-border'] = 'rgba(255, 255, 255, 0.12)';
-  vars['--chrome-text'] = '#F8FAFC';
-  vars['--chrome-subtext'] = '#94A3B8';
-  vars['--chrome-accent'] = '#6366F1';
-  vars['--chrome-fg'] = '#F8FAFC';
-  vars['--chrome-fg-muted'] = '#94A3B8';
-  vars['--chrome-fg-subtle'] = '#64748B';
-  vars['--chrome-border-strength'] = '0.22';
-  vars['--chrome-divider-strength'] = '0.12';
-  vars['--chrome-hover'] = 'rgba(255, 255, 255, 0.08)';
-  vars['--chrome-bg-hover'] = 'rgba(255, 255, 255, 0.08)';
-  vars['--chrome-border-glow'] = 'rgba(255, 255, 255, 0.25)';
-  vars['--chrome-glass-blur'] = '16px';
-  vars['--chrome-shadow'] = '0 8px 32px 0 rgba(0, 0, 0, 0.36)';
-  vars['--chrome-radius'] = '12px';
+  Object.assign(vars, buildChromeVars());
 
   // Micro-Shadow Weight Variables
   vars['--text-shadow-weight-light'] = 'rgb(255 255 255) 1px 0.7px 0px';
@@ -353,6 +369,16 @@ function buildStopVars(stops: ThemePalette['stops']): Record<string, string> {
   return vars;
 }
 
+function toggleThemeClass(el: HTMLElement, isDark: boolean): void {
+  if (isDark) {
+    el.classList.add('theme-dark', 'dark');
+    el.classList.remove('theme-light');
+  } else {
+    el.classList.add('theme-light');
+    el.classList.remove('theme-dark', 'dark');
+  }
+}
+
 export function applyThemeRuntimeVariables(theme: ThemePalette, rootEl: HTMLElement): void {
   const isDark = Boolean(theme.isDark);
   const defaultShadow = isDark ? 'rgb(0 0 0) 1px 0.7px 0px' : 'rgb(255 255 255) 1px 0.7px 0px';
@@ -365,25 +391,13 @@ export function applyThemeRuntimeVariables(theme: ThemePalette, rootEl: HTMLElem
   Object.entries(vars).forEach(([key, val]) => {
     rootEl.style.setProperty(key, val);
   });
-  if (isDark) {
-    rootEl.classList.add('theme-dark', 'dark');
-    rootEl.classList.remove('theme-light');
-  } else {
-    rootEl.classList.add('theme-light');
-    rootEl.classList.remove('theme-dark', 'dark');
-  }
+  toggleThemeClass(rootEl, isDark);
 }
 
 export function applyThemeToRoot(palette: ThemePalette, targetRoot?: HTMLElement): void {
   const root = targetRoot || (typeof document !== 'undefined' ? document.documentElement : null);
   if (!root) return;
-  if (palette.isDark) {
-    root.classList.add('theme-dark', 'dark');
-    root.classList.remove('theme-light');
-  } else {
-    root.classList.add('theme-light');
-    root.classList.remove('theme-dark', 'dark');
-  }
+  toggleThemeClass(root, Boolean(palette.isDark));
 }
 
 function applyVarsToRoot(vars: Record<string, string>, isDark: boolean): void {
@@ -391,25 +405,13 @@ function applyVarsToRoot(vars: Record<string, string>, isDark: boolean): void {
   Object.entries(vars).forEach(([key, val]) => {
     root.style.setProperty(key, val);
   });
-  if (isDark) {
-    root.classList.add('theme-dark', 'dark');
-    root.classList.remove('theme-light');
-  } else {
-    root.classList.add('theme-light');
-    root.classList.remove('theme-dark', 'dark');
-  }
+  toggleThemeClass(root, isDark);
   const presRoot = document.getElementById('presentation-root');
   if (presRoot) {
     Object.entries(vars).forEach(([key, val]) => {
       presRoot.style.setProperty(key, val);
     });
-    if (isDark) {
-      presRoot.classList.add('theme-dark', 'dark');
-      presRoot.classList.remove('theme-light');
-    } else {
-      presRoot.classList.add('theme-light');
-      presRoot.classList.remove('theme-dark', 'dark');
-    }
+    toggleThemeClass(presRoot, isDark);
   }
 }
 

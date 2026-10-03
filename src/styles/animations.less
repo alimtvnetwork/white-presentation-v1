@@ -270,6 +270,60 @@
   }
 }
 
+// Active multi-step radial halo breathing pulse
+@keyframes haloExpandPulse {
+  0% {
+    transform: scale(0.98);
+    box-shadow: 0 0 0 0 hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.55);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 16px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.00);
+  }
+  100% {
+    transform: scale(0.98);
+    box-shadow: 0 0 0 0 hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.00);
+  }
+}
+
+// 3-phase kinetic lifecycle reveal transition
+@keyframes kineticPhaseReveal {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0) scale(0.96);
+  }
+  60% {
+    opacity: 0.92;
+    transform: translate3d(0, -2px, 0) scale(1.008);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1.0);
+  }
+}
+
+// Sub-pixel background coordinate grid animation
+@keyframes gridCoordinatePulse {
+  0%, 100% {
+    opacity: 0.025;
+  }
+  50% {
+    opacity: 0.05;
+  }
+}
+
+// Subtle numerical transition for telemetry KPI cards
+@keyframes metricCountSlideUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 // Utility animation classes
 .pop-scale-anim { animation: popScale 0.4s @ease-presentation both; will-change: transform, opacity; }
 .pulse-halo-anim { animation: pulseHalo 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; will-change: box-shadow; }
@@ -310,6 +364,41 @@
 .kinetic-card-entrance { animation: kineticCardEntrance 0.38s cubic-bezier(0.22, 1, 0.36, 1) both; will-change: transform, opacity; }
 .slide-enter-forward { animation: slideEnterForward 0.4s @ease-presentation forwards; }
 .slide-enter-backward { animation: slideEnterBackward 0.4s @ease-presentation forwards; }
+.halo-expand-pulse-anim { animation: haloExpandPulse 2.8s cubic-bezier(0.22, 1, 0.36, 1) infinite; will-change: transform, box-shadow; }
+.kinetic-phase-reveal-anim { animation: kineticPhaseReveal 0.45s @ease-presentation both; will-change: transform, opacity; }
+.grid-coordinate-pulse { animation: gridCoordinatePulse 6s ease-in-out infinite; }
+.metric-count-slide-up { animation: metricCountSlideUp 0.4s @ease-presentation both; will-change: transform, opacity; }
+
+// Reusable 3-phase kinetic lifecycle classes
+.step-phase-completed {
+  opacity: 0.72;
+  filter: grayscale(0.25);
+  transition: opacity 0.35s @ease-presentation, filter 0.35s @ease-presentation, transform 0.35s @ease-presentation;
+
+  &:hover {
+    opacity: 0.95;
+    filter: grayscale(0);
+    transform: translate3d(0, -2px, 0);
+  }
+}
+
+.step-phase-active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1.0);
+  border-color: hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.85);
+  box-shadow: 0 0 24px -4px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.30);
+  transition: all 0.35s @ease-presentation;
+}
+
+.step-phase-future {
+  opacity: 0.38;
+  filter: contrast(0.85);
+  transition: opacity 0.35s @ease-presentation, filter 0.35s @ease-presentation;
+
+  &:hover {
+    opacity: 0.60;
+  }
+}
 
 // Stagger delays
 .stagger-1 { animation-delay: 0.08s; }

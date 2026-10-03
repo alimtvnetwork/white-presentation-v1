@@ -15,6 +15,10 @@ import type {
   NextGenSlideType,
   NextGenSlideData,
 } from './nextGenArchetypes';
+import type {
+  ModernSlideType,
+  ModernSlideData,
+} from './modernArchetypes';
 export * from './archetypes';
 export * from './extendedArchetypes';
 export * from './expandedArchetypes';
@@ -23,6 +27,7 @@ export * from './kineticSuiteArchetypes';
 export * from './globalPptArchetypes';
 export * from './sovereignOperationsArchetypes';
 export * from './nextGenArchetypes';
+export * from './modernArchetypes';
 
 export type SlideType =
   | 'white-master'
@@ -45,7 +50,8 @@ export type SlideType =
   | KineticSuiteSlideType
   | GlobalPptSuiteSlideType
   | SovereignOperationsSlideType
-  | NextGenSlideType;
+  | NextGenSlideType
+  | ModernSlideType;
 
 export type DockPosition =
   | 'bottom-center'
@@ -292,7 +298,8 @@ export type SlideData =
   | KineticSuiteSlideData
   | GlobalPptSuiteSlideData
   | SovereignOperationsSlideData
-  | NextGenSlideData;
+  | NextGenSlideData
+  | ModernSlideData;
 
 export type Slide = SlideData;
 

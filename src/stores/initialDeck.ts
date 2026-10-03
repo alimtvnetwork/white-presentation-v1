@@ -62,6 +62,22 @@ import {
   createStrategicDecarbonizationEsgSlide, createMarketTensionQuadrantSlide,
   createExecutiveCloseContactSlide,
 } from '../utils/nextGenSlideFactories';
+import {
+  createEnterpriseCloudMigrationFunnelSlide, createZeroTrustIdentityPerimeterSlide,
+  createAiDataFlywheelLifecycleSlide, createIncidentCommandWarRoomSlide,
+  createRegulatoryGdprDataLineageSlide,
+} from '../utils/modern/transformationFactories';
+import {
+  createSaasUnitEconomicsBreakdownSlide, createGlobalFintechLedgerSettlementSlide,
+  createMultiTenantDatabaseShardingSlide, createContinuousCompliancePostureSlide,
+  createDeveloperPlatformCatalogMeshSlide,
+} from '../utils/modern/saasFinancialFactories';
+import {
+  createBoardroomMarketInflectionThesisSlide, createAsymmetricThreatDefenseMatrixSlide,
+  createHardwareAcceleratorDieTopologySlide, createCustomerExperienceJourneyDeltaSlide,
+  createExecutiveBoardMandateCtaSlide,
+} from '../utils/modern/boardroomStrategyFactories';
+import { createModernSlide, MODERN_FACTORIES } from '../utils/modern/registry';
 
 export const INITIAL_DECK: PresentationDeck = {
   id: 'white-presentation-v1',
@@ -278,6 +294,21 @@ export const INITIAL_DECK: PresentationDeck = {
     createStrategicDecarbonizationEsgSlide('slide-119'),
     createMarketTensionQuadrantSlide('slide-120'),
     createExecutiveCloseContactSlide('slide-121'),
+    createEnterpriseCloudMigrationFunnelSlide('slide-122'),
+    createZeroTrustIdentityPerimeterSlide('slide-123'),
+    createAiDataFlywheelLifecycleSlide('slide-124'),
+    createIncidentCommandWarRoomSlide('slide-125'),
+    createRegulatoryGdprDataLineageSlide('slide-126'),
+    createSaasUnitEconomicsBreakdownSlide('slide-127'),
+    createGlobalFintechLedgerSettlementSlide('slide-128'),
+    createMultiTenantDatabaseShardingSlide('slide-129'),
+    createContinuousCompliancePostureSlide('slide-130'),
+    createDeveloperPlatformCatalogMeshSlide('slide-131'),
+    createBoardroomMarketInflectionThesisSlide('slide-132'),
+    createAsymmetricThreatDefenseMatrixSlide('slide-133'),
+    createHardwareAcceleratorDieTopologySlide('slide-134'),
+    createCustomerExperienceJourneyDeltaSlide('slide-135'),
+    createExecutiveBoardMandateCtaSlide('slide-136'),
   ],
 };
 

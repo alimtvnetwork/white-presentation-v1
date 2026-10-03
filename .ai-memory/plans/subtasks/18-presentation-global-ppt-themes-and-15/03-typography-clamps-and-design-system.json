@@ -1,0 +1,26 @@
+{
+  "subtaskId": 3,
+  "taskCode": "Task-03",
+  "title": "Typography Clamps & Northern UI/UX Standard",
+  "status": "COMPLETED",
+  "assignedAgentRole": "Worker 02",
+  "ownedFiles": [
+    "src/styles/variables.less",
+    "src/styles/presentation.less"
+  ],
+  "changes": [
+    {
+      "file": "src/styles/variables.less",
+      "description": "Updated @type-kicker and @type-category clamps from clamp(14px, 1.1vw, 16px) to clamp(16px, 1.125vw, 20px) enforcing Northern UI/UX Typography Standard v1.3.3"
+    },
+    {
+      "file": "src/styles/presentation.less",
+      "description": "Updated .kicker-pill-badge, .category-tag, .category-tag-badge, .capsule-base, and .slide-eyebrow to use @type-kicker and @type-category variables ensuring >= 16px font-size floor"
+    }
+  ],
+  "verification": {
+    "sub16pxCheck": "PASS: All kicker, category, capsule, and eyebrow clamps strictly >= 16px",
+    "wcagContrast": "Verified light theme contrast inversions (#78350F for gold, #BE123C for ember, #0A1128 for cream)",
+    "inkStampShadows": "Verified 1px 0.7px 0px micro-shadows"
+  }
+}

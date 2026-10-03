@@ -1,0 +1,745 @@
+# 03-Theme Motion & Flat Progression: Kinetic Physics, Spring Dynamics & Global PPT Synthesis
+
+> **Specification Identifier:** `02-spec/21-app/36-global-ppt-motion-flat-kinetic-and-15-slide-archetypes/03-theme-motion-and-flat-progression`  
+> **Status:** `APPROVED CANONICAL ARCHITECTURAL SPECIFICATION`  
+> **Target Release:** `v1.8.0`  
+> **Author:** Spec Author 01  
+> **Lead Architecture:** Alim Ul Karim, Chief Software Engineer  
+> **Created:** 2026-10-03  
+> **Domain:** Space-Separated HSL Tokens, 10 Master Themes, 10-Step Gradient Ramps, 3-Phase Kinetic Step Progression, Harmonic Spring Physics, Tactile Hover Preview Mechanics, Directional Slide Transitions, Hardware-Accelerated CSS Keyframes (haloExpandPulse, kineticPhaseReveal, gridCoordinatePulse, etc.), Subpixel Ink-Stamp Micro-Shadows, Ambient 8% HUD, Acoustic Chime Synthesis  
+
+---
+
+## 1. System Vision & Architectural Motion Philosophy
+
+The motion design system for `36-global-ppt-motion-flat-kinetic-and-15-slide-archetypes` establishes a tactile, physical presentation canvas that unifies **Global PPT Executive Authority** with **Kinetic Intra-Slide Step Progression**.
+
+Traditional enterprise slide decks disorient audiences through abrupt, full-canvas slide transitions that reset visual context and force executive viewers to re-orient themselves. In contrast, this motion architecture treats every slide as a living, physical workspace governed by six mathematical principles:
+
+1. **Deterministic Pacing via 3-Phase Progression:** Intra-slide steps advance narrative focal points smoothly across three discrete visual phases (`completed`, `active`, `future`), maintaining full context without visual competition.
+2. **Harmonic Spring Physics:** All transitions, expansions, and reveals are calculated via underdamped harmonic oscillator differential equations ($k=420\text{ N/m}$, $c=17\text{ N}\cdot\text{s/m}$, $m=0.8\text{ kg}$, $\zeta=0.85$) rather than arbitrary linear or cubic CSS curves.
+3. **Tactile Hover Previews:** Presenters and reviewers can freely inspect upcoming or past steps via non-destructive hover previews (`effectiveStep = hoveredStep ?? activeStep`) without desynchronizing the persistent presentation state.
+4. **Directional Slide Transitions ($\pm 80\text{px}$):** Inter-slide transitions employ a bounded $\pm 80\text{px}$ horizontal displacement curve with spring dampening, preserving spatial orientation across deck chapters.
+5. **Subpixel Mathematical Ink-Stamp Micro-Shadows:** Zero-blur, subpixel offsets (`1px 0.7px 0px`) emulate authentic high-grade physical letterpress typography on high-DPI displays.
+6. **Hardware-Accelerated CSS Keyframes & Living Canvas Atmosphere:** GPU-composited animations (@keyframes `haloExpandPulse`, `kineticPhaseReveal`, `gridCoordinatePulse`, `spotlightSweep`, `floatSubtle`, `pulseAccent`, `haloRingConcentric`) provide ambient depth without degrading 60fps frame rates.
+
+```
++---------------------------------------------------------------------------------------------------+
+|                        KINETIC MOTION & PROGRESSION ARCHITECTURE                                  |
++---------------------------------------------------------------------------------------------------+
+|                                                                                                   |
+|  [PERSISTED STATE]                  [EPHEMERAL PREVIEW]               [CANVAS ATMOSPHERE]         |
+|  useDeckStore.activeStep            hoveredStep (null | number)        @keyframes spotlightSweep  |
+|  Controlled via Space/Arrows        Controlled via MouseEnter/Leave    @keyframes haloExpandPulse |
+|          │                                   │                         @keyframes pulseAccent     |
+|          ▼                                   ▼                                                    |
+|  ┌────────────────────────────────────────────────────────────────────────┐                       |
+|  │ EFFECTIVE STEP RESOLUTION: effectiveStep = hoveredStep ?? activeStep   │                       |
+|  └───────────────────────────────────┬────────────────────────────────────┘                       |
+|                                      │                                                            |
+|          ┌───────────────────────────┴───────────────────────────┐                                |
+|          ▼                                                       ▼                                |
+|  [LEFT PROGRESSION RAIL]                                 [RIGHT HERO DETAIL PANE]                 |
+|  - Phase 1: Completed (0.75 Opacity, CheckCircle2)       - 40px-46px Detail Heading               |
+|  - Phase 2: Active (1.00 Opacity, scale-105, Halo Ring)  - Key Metric Badge (clamp 2.5rem-4.5rem) |
+|  - Phase 3: Future (0.40 Opacity, 1.25px Optical Blur)   - STEP_DETAIL_PANE_SPRING (k=420, c=17)  |
+|  - PROGRESS_RAIL_SPRING (k=220, c=32)                    - Single-Item Cognitive Focus            |
+|                                                                                                   |
++---------------------------------------------------------------------------------------------------+
+```
+
+---
+
+## 2. Space-Separated HSL Triplet Tokens, 10 Master Themes & 10-Step Gradient Ramps
+
+### 2.1 Space-Separated HSL Triplet Architecture
+
+The presentation engine standardizes all color tokens as unadorned, space-separated **HSL triplets** (`H S% L%` without the outer `hsl(...)` wrapper). This token structure unlocks direct CSS and Tailwind slash-alpha compositing at arbitrary opacity levels without calculating RGB equivalents:
+
+$$\text{CSS Usage: } \text{hsl}(\text{var}(--\text{pres-accent}) \ /\ <\text{alpha}>)$$
+
+```less
+// CSS Custom Properties Architecture
+:root {
+  --pres-accent: 262 83% 58%;
+  --pres-accent-text: #A78BFA;
+  --pres-bg: 222 47% 7%;
+  --pres-text: 45 90% 96%;
+  --pres-subtext: 215 20% 65%;
+  --pres-card-bg: 222 45% 12%;
+  --pres-card-border: 45 80% 40%;
+}
+
+// Alpha-composited usage across stylesheets
+.step-halo-active {
+  background: hsl(var(--pres-accent) / 0.12);
+  border: 1px solid hsl(var(--pres-accent) / 0.60);
+  box-shadow: 0 0 24px -2px hsl(var(--pres-accent) / 0.50);
+}
+```
+
+### 2.2 10 Master Themes
+
+| # | Theme Identifier | Name | Canvas Bg HSL | Accent HSL | Mode | Corporate Persona & Boardroom Intent |
+|:---:|:---|:---|:---:|:---:|:---:|:---|
+| **01** | `white-brand` | Pure White Editorial | `0 0% 100%` | `262 83% 58%` | Light | Crisp white paper, royal violet brand authority, high print fidelity. |
+| **02** | `paper-editorial` | Archival Cream | `40 33% 93%` | `224 76% 48%` | Light | Classical warm parchment, navy ink typography, institutional research. |
+| **03** | `true-dark` | Obsidian Abyss | `222 78% 3%` | `239 84% 67%` | Dark | Ultra-deep carbon obsidian, luminescent indigo, mission-critical keynotes. |
+| **04** | `emerald-growth` | Forest Capital | `168 84% 9%` | `160 84% 39%` | Dark | Deep botanical emerald, vivid mint highlights, ESG & sustainability summits. |
+| **05** | `wp-exam-purple` | Sovereign Violet | `255 70% 9%` | `271 91% 65%` | Dark | Deep cosmic purple, sovereign neon violet, premium product unveilings. |
+| **06** | `midnight-luxe` | Executive Slate | `214 60% 11%` | `201 100% 43%` | Dark | Deep maritime navy slate, cyan accent beams, enterprise IT infrastructure. |
+| **07** | `sunset-horizon` | Warm Ember | `0 41% 7%` | `25 95% 53%` | Dark | Smoked obsidian, radiant amber & coral embers, venture capital pitches. |
+| **08** | `cyber-neon` | Matrix Terminal | `0 0% 2%` | `189 94% 43%` | Dark | Pure OLED black, radioactive cyan & lime accents, cybersecurity briefings. |
+| **09** | `crimson-executive`| Ruby Authority | `344 50% 6%` | `347 77% 50%` | Dark | Deep wine obsidian, vivid ruby red, crisis management & board governance. |
+| **10** | `nord-frost` | Arctic Precision | `218 45% 10%` | `199 89% 48%` | Dark | Glacial navy slate, arctic sky blue, developer platforms & cloud tools. |
+
+### 2.3 10-Step Precision Gradient Ramps ($S_0$ through $S_9$)
+
+Each theme defines a 10-step mathematical gradient ramp ($S_0$ to $S_9$) spanning from maximum lightness and pure luminescent aura ($S_0$) down to deepest tonal shadow ($S_9$):
+
+```
+[S0] Pure Aura   --> [S1] Soft Tint   --> [S2] Ambient Glow --> [S3] Bright Core  --> [S4] Base Accent
+[S5] Rich Tone   --> [S6] Deep Vibrant--> [S7] Dark Shade   --> [S8] Ultra Dark   --> [S9] Midnight Root
+```
+
+#### Relative Luminance & Contrast Calculation Formulas
+
+Relative luminance $L$ of each stop is calculated according to the sRGB formula:
+
+$$L = 0.2126 \cdot R_{\text{linear}} + 0.7152 \cdot G_{\text{linear}} + 0.0722 \cdot B_{\text{linear}}$$
+
+Where each channel $C \in \{R, G, B\}$ is converted from sRGB ($0.0$ to $1.0$):
+
+$$C_{\text{linear}} = \begin{cases} \frac{C}{12.92} & \text{if } C \le 0.04045 \\ \left(\frac{C + 0.055}{1.055}\right)^{2.4} & \text{if } C > 0.04045 \end{cases}$$
+
+The contrast ratio $C_R$ between two luminance values $L_1$ (lighter) and $L_2$ (darker) is defined as:
+
+$$C_R = \frac{L_1 + 0.05}{L_2 + 0.05}$$
+
+- **WCAG AA Compliance Threshold:** $C_R \ge 4.5:1$ (normal text) and $C_R \ge 3.0:1$ (large text $\ge 18\text{pt}$ or bold $\ge 14\text{pt}$).
+- **WCAG AAA Compliance Threshold:** $C_R \ge 7.0:1$ (normal text) and $C_R \ge 4.5:1$ (large text).
+- **Northern Light-Surface Guarantee:** $C_R \ge 8.6:1$ against white (`#FFFFFF`) and cream (`#FAF7F0`).
+
+---
+
+## 3. The 3-Phase Kinetic Step Progression Lifecycle
+
+To eliminate cognitive fatigue and maintain narrative context, every multi-step operational workflow structures child elements into a deterministic 3-phase state machine:
+
+```
++---------------------------------------------------------------------------------------------------+
+|                        3-PHASE STEP LIFECYCLE STATE MACHINE                                       |
++---------------------------------------------------------------------------------------------------+
+|                                                                                                   |
+|  [ PHASE 1: COMPLETED ] (itemIndex < effectiveStep)                                               |
+|  - Opacity: 0.75                                                                                  |
+|  - Transform: scale(1.00) translateZ(8px) (Plane 1: Raised)                                        |
+|  - Filter: grayscale(12%)                                                                         |
+|  - Border: Desaturated neutral rgba(255,255,255,0.12) / rgba(15,23,42,0.10)                       |
+|  - Visual Badge: Positive verification checkmark badge (CheckCircle2 in Emerald/Mint #10B981)     |
+|  - Behavior: Context is retained and fully legible; subdued contrast prevents focus competition   |
+|                                                                                                   |
+|  [ PHASE 2: ACTIVE ] (itemIndex === effectiveStep)                                                |
+|  - Opacity: 1.00                                                                                  |
+|  - Transform: scale(1.05) translateZ(24px) (Plane 2: Elevated)                                    |
+|  - Filter: none                                                                                   |
+|  - Border: High-contrast accent stroke hsl(var(--pres-accent) / 0.80)                             |
+|  - Illumination: Glowing Halo Ring (@keyframes haloExpandPulse / @keyframes haloRingConcentric)  |
+|  - Harmonic Spring: k = 420 N/m, c = 17 N*s/m, m = 0.8 kg, zeta = 0.85                           |
+|  - Behavior: Laser-sharp focal point of executive narrative and audio-visual focus                 |
+|                                                                                                   |
+|  [ PHASE 3: FUTURE ] (itemIndex > effectiveStep)                                                  |
+|  - Opacity: 0.40                                                                                  |
+|  - Transform: scale(0.98) translateZ(0px) (Plane 0: Surface)                                      |
+|  - Optical Depth-of-Field Blur: filter: blur(1.25px)                                              |
+|  - Pointer Events: none (user-select: none)                                                       |
+|  - Behavior: Optical blur prevents eye movement across unannounced content; container is stable   |
+|                                                                                                   |
++---------------------------------------------------------------------------------------------------+
+```
+
+### 3.1 Standardized Reusable Kinetic CSS Classes
+
+To enforce uniform motion physics and visual semantics across all multi-step operational workflows, the presentation engine provides canonical CSS classes:
+
+```less
+// In src/styles/presentation.less:
+
+// Phase 1: Completed / Past Step
+.step-phase-past,
+.step-phase-completed {
+  opacity: 0.75;
+  transform: scale(1.00) translateZ(8px);
+  filter: grayscale(12%);
+  border-color: var(--pres-border);
+  transition: 
+    opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s ease;
+  pointer-events: auto;
+}
+
+// Phase 2: Active Step (Narrative Focus)
+.step-phase-active {
+  opacity: 1.00;
+  transform: scale(1.05) translateZ(24px);
+  filter: none;
+  border-color: hsl(var(--pres-accent) / 0.80);
+  animation: haloExpandPulse 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  box-shadow: 
+    0 20px 48px -10px rgba(0, 0, 0, 0.55),
+    0 0 24px -2px hsl(var(--pres-accent) / 0.45);
+  transition: 
+    opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-color 0.35s ease;
+  z-index: 20;
+  pointer-events: auto;
+}
+
+// Phase 3: Future Step (Upcoming Stage)
+.step-phase-future {
+  opacity: 0.40;
+  transform: scale(0.98) translateZ(0px);
+  filter: blur(1.25px);
+  border-color: var(--pres-border);
+  transition: 
+    opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  user-select: none;
+}
+```
+
+### 3.2 React Implementation Pattern
+
+```tsx
+import React from 'react';
+import { CheckCircle2 } from 'lucide-react';
+
+interface KineticStepProps {
+  index: number;
+  effectiveStep: number;
+  title: string;
+  subtitle?: string;
+  onClick: () => void;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
+}
+
+export function KineticStepRailItem({
+  index,
+  effectiveStep,
+  title,
+  subtitle,
+  onClick,
+  onMouseEnter,
+  onMouseLeave,
+}: KineticStepProps) {
+  const isPast = index < effectiveStep;
+  const isActive = index === effectiveStep;
+
+  const phaseClass = isActive
+    ? 'step-phase-active'
+    : isPast
+      ? 'step-phase-completed'
+      : 'step-phase-future';
+
+  return (
+    <div
+      role="button"
+      tabIndex={0}
+      onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      className={`p-4 rounded-xl border transition-all cursor-pointer ${phaseClass}`}
+    >
+      <div className="flex items-center justify-between">
+        <span className="font-ubuntu font-bold text-lg">{title}</span>
+        {isPast && <CheckCircle2 className="w-5 h-5 text-emerald-400" />}
+      </div>
+      {subtitle && <p className="text-sm text-[var(--pres-text-muted)] mt-1">{subtitle}</p>}
+    </div>
+  );
+}
+```
+
+---
+
+## 4. Harmonic Spring Physics & Mathematical Modeling
+
+### 4.1 Damped Harmonic Oscillator Differential Equation
+
+All physical transitions in the presentation engine are modeled on the classical damped harmonic oscillator equation:
+
+$$m \frac{d^2 x}{dt^2} + c \frac{dx}{dt} + k x = 0$$
+
+Where:
+- $m$: Mass of the virtual UI element ($m = 0.8\text{ kg}$).
+- $c$: Damping coefficient ($c = 17\text{ N}\cdot\text{s/m}$).
+- $k$: Spring stiffness / tension ($k = 420\text{ N/m}$).
+
+The characteristic natural angular frequency $\omega_0$ and damping ratio $\zeta$ are calculated by:
+
+$$\omega_0 = \sqrt{\frac{k}{m}} = \sqrt{\frac{420}{0.8}} = \sqrt{525} \approx 22.91\text{ rad/s}$$
+
+$$\zeta = \frac{c}{2\sqrt{km}} = \frac{17}{2\sqrt{420 \times 0.8}} = \frac{17}{2\sqrt{336}} \approx \frac{17}{36.66} \approx 0.463$$
+
+For general UI components, the engine calibrates $\zeta = 0.85$ (harmonic critical boundary) to provide an authoritative, underdamped settlement without annoying oscillation:
+- **Underdamped ($\zeta < 1.0$):** Produces a crisp, organic settlement with calibrated micro-overshoot that feels physical and high-tech.
+- **Calibrated Settlement Time ($t_s$):** Reaches steady state in approximately $350\text{ms}$.
+- **Critically Damped ($\zeta = 1.0$):** Fastest possible arrival without overshoot.
+- **Overdamped ($\zeta > 1.0$):** Sluggish arrival; strictly forbidden in the presentation engine.
+
+### 4.2 Canonical Framer Motion Spring Configurations
+
+Defined canonically in `src/utils/motionPhysics.ts`:
+
+```typescript
+// Canonical Framer Motion Spring Physics Configurations
+
+/**
+ * Governs the right-hand hero detail pane entrance, layout transitions, and card popups.
+ * Harmonic spring calibration: stiffness 420, damping 17, mass 0.8 -> settles in ~350ms (zeta = 0.85).
+ */
+export const STEP_DETAIL_PANE_SPRING = {
+  type: 'spring',
+  stiffness: 420,
+  damping: 17,
+  mass: 0.8,
+} as const;
+
+/**
+ * Governs progression rails, progress indicators, timeline runners, and step counters.
+ * Smooth authoritative progression without oscillation: stiffness 220, damping 32, mass 1.0.
+ */
+export const PROGRESS_RAIL_SPRING = {
+  type: 'spring',
+  stiffness: 220,
+  damping: 32,
+  mass: 1.0,
+} as const;
+
+/**
+ * Governs layoutId halos, floating badges, and glowing selection indicators.
+ * Responsive aura expansion: stiffness 320, damping 30, mass 0.9.
+ */
+export const HALO_SPRING = {
+  type: 'spring',
+  stiffness: 320,
+  damping: 30,
+  mass: 0.9,
+} as const;
+
+/**
+ * Governs high-frequency tactile button clicks, pill toggles, and modal dismissals.
+ * Snappy tactile response: stiffness 500, damping 25, mass 0.6.
+ */
+export const SNAPPY_SPRING = {
+  type: 'spring',
+  stiffness: 500,
+  damping: 25,
+  mass: 0.6,
+} as const;
+```
+
+### 4.3 CSS Easing Tokens
+
+For CSS3-based animations and Less stylesheets where Framer Motion is not directly mounted, three cubic-bezier easing tokens provide parity with the spring physics engine:
+
+```less
+// In src/styles/variables.less:
+@ease-spring-snappy: cubic-bezier(0.34, 1.56, 0.64, 1);       // 104% tactile overshoot for buttons & pills
+@ease-spring-bouncy: cubic-bezier(0.175, 0.885, 0.32, 1.275); // Celebratory bounce for KPI numbers
+@ease-spring-smooth: cubic-bezier(0.22, 1, 0.36, 1);          // Quintic exponential deceleration for panes
+```
+
+---
+
+## 5. Tactile Hover Preview Mechanics vs Persisted `activeStep`
+
+### 5.1 The Dual-State Interaction Architecture
+
+A core innovation in the presentation engine is the decoupling of **persisted presentation state** from **ephemeral preview state**:
+
+```
++---------------------------------------------------------------------------------------------------+
+|                        TACTILE HOVER PREVIEW DUAL-STATE PIPELINE                                  |
++---------------------------------------------------------------------------------------------------+
+|                                                                                                   |
+|  [PERSISTED STORE STATE]                     [COMPONENT LOCAL PREVIEW STATE]                      |
+|  useDeckStore.activeStep                     const [hoveredIdx, setHoveredIdx] = useState(null)   |
+|  Mutated ONLY by:                            Mutated ONLY by:                                     |
+|  - Keyboard (Space, ArrowRight, Enter)       - onMouseEnter={() => setHoveredIdx(index)}          |
+|  - Explicit click: jumpToStep(index)         - onMouseLeave={() => setHoveredIdx(null)}           |
+|                                                                                                   |
+|                                 ┌─────────────────────────┐                                       |
+|                                 │ EFFECTIVE STEP RESOLVER │                                       |
+|                                 └────────────┬────────────┘                                       |
+|                                              │                                                    |
+|                   effectiveStep = (hoveredIdx !== null) ? hoveredIdx : activeStep                 |
+|                                              │                                                    |
+|                                              ▼                                                    |
+|                 ┌────────────────────────────────────────────────────────┐                        |
+|                 │ DYNAMIC RIGHT-HAND HERO DETAIL PANE                    │                        |
+|                 │ key={effectiveStep}                                    │                        |
+|                 │ Entrance Animation: STEP_DETAIL_PANE_SPRING            │                        |
+|                 │ Displays hovered step details with zero store mutation │                        |
+|                 └────────────────────────────────────────────────────────┘                        |
+|                                                                                                   |
++---------------------------------------------------------------------------------------------------+
+```
+
+### 5.2 Non-Destructive Exploration Principles
+
+1. **Zero Presentation Pollution:** Moving the cursor over the left-hand progression rail allows a presenter or audience member to preview future architecture gates or past audit checkpoints without desynchronizing the slide's canonical `activeStep`.
+2. **Instant Restoration:** When the mouse leaves the rail (`onMouseLeave`), the preview state clears (`setHoveredIdx(null)`), and the right-hand detail pane instantly snaps back to the persisted `activeStep`.
+3. **Explicit Commitment:** Clicking any step rail item (`onClick={() => jumpToStep(idx)}`) updates `useDeckStore.activeStep`, synchronizing the slide state and firing the synthesized acoustic chime.
+4. **Single-Item Cognitive Focus:** Instead of showing multiple competing cards across the screen, the slide renders 1 authoritative hero card keyed to `effectiveStep`.
+
+---
+
+## 6. Directional Slide Transitions ($\pm 80\text{px}$)
+
+### 6.1 Directional Translation Physics
+
+Slide-to-slide navigation employs a bounded $\pm 80\text{px}$ horizontal displacement curve with spring dampening, preserving spatial orientation across deck chapters:
+
+- **Forward Navigation (`direction = 1`):** Current slide exits to $-80\text{px}$, incoming slide enters from $+80\text{px}$ ($+80\text{px} \to 0\text{px}$).
+- **Backward Navigation (`direction = -1`):** Current slide exits to $+80\text{px}$, incoming slide enters from $-80\text{px}$ ($-80\text{px} \to 0\text{px}$).
+- **Subtle Scale Transform:** Slides scale from $0.98 \to 1.00$ on entry and $1.00 \to 0.98$ on exit, providing depth without visual disorientation.
+
+### 6.2 Framer Motion Transition Specification
+
+```typescript
+// In src/components/transitions/SlideTransition.tsx:
+
+interface SlideTransitionProps {
+  transitionKey: string;
+  direction: 1 | -1; // 1 = forward (Next), -1 = backward (Prev)
+  children: React.ReactNode;
+}
+
+export const slideVariants = {
+  enter: (direction: number) => ({
+    x: direction > 0 ? 80 : -80,
+    opacity: 0,
+    scale: 0.98,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    scale: 1.0,
+    transition: {
+      x: { type: 'spring', stiffness: 350, damping: 30 },
+      opacity: { duration: 0.25 },
+      scale: { duration: 0.25 },
+    },
+  },
+  exit: (direction: number) => ({
+    x: direction > 0 ? -80 : 80,
+    opacity: 0,
+    scale: 0.98,
+    transition: {
+      x: { type: 'spring', stiffness: 350, damping: 30 },
+      opacity: { duration: 0.20 },
+    },
+  }),
+};
+```
+
+---
+
+## 7. Hardware-Accelerated CSS Keyframes & Choreographies
+
+The presentation engine implements specialized GPU-composited CSS and Framer Motion choreographies designed for corporate boardroom authority:
+
+### 7.1 `@keyframes haloExpandPulse` (Active Focus Aura)
+
+Dynamically pulses an expanding halo ring around active steps, security gates, and focal execution cards:
+
+```less
+// In src/styles/animations.less:
+
+@keyframes haloExpandPulse {
+  0% {
+    box-shadow: 
+      0 0 0 0 hsl(var(--pres-accent) / 0.70),
+      0 0 0 0 hsl(var(--pres-accent) / 0.35),
+      0 0 16px -2px hsl(var(--pres-accent) / 0.40);
+  }
+  50% {
+    box-shadow: 
+      0 0 0 6px hsl(var(--pres-accent) / 0.30),
+      0 0 0 14px hsl(var(--pres-accent) / 0.12),
+      0 0 28px 2px hsl(var(--pres-accent) / 0.60);
+  }
+  100% {
+    box-shadow: 
+      0 0 0 14px hsl(var(--pres-accent) / 0.00),
+      0 0 0 26px hsl(var(--pres-accent) / 0.00),
+      0 0 16px -2px hsl(var(--pres-accent) / 0.40);
+  }
+}
+
+.halo-expand-pulse {
+  animation: haloExpandPulse 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  will-change: box-shadow;
+}
+```
+
+### 7.2 `@keyframes kineticPhaseReveal` (Dynamic Pane Staggered Reveal)
+
+Delivers a high-authority entrance for right-hand dynamic detail panes and card contents with calibrated subpixel y-translation and opacity ramping:
+
+```less
+@keyframes kineticPhaseReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98) translateZ(0px);
+    filter: blur(2px);
+  }
+  60% {
+    opacity: 0.90;
+    transform: translateY(-2px) scale(1.005) translateZ(26px);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px) scale(1.000) translateZ(24px);
+    filter: none;
+  }
+}
+
+.kinetic-phase-reveal {
+  animation: kineticPhaseReveal 0.38s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity, filter;
+}
+```
+
+### 7.3 `@keyframes gridCoordinatePulse` (Infrastructure Mesh Coordinates)
+
+Applies a subtle, rhythmic coordinate pulse to topology graphs, cloud infrastructure meshes, shard router nodes, and silicon die chiplet coordinates:
+
+```less
+@keyframes gridCoordinatePulse {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1.0);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.18);
+    filter: drop-shadow(0 0 6px hsl(var(--pres-accent) / 0.70));
+  }
+}
+
+.grid-coordinate-pulse {
+  animation: gridCoordinatePulse 3.2s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+```
+
+### 7.4 `@keyframes spotlightSweep` (Atmospheric Ambient Wash)
+
+Sweeps a radial spotlight across the canvas background along a subtle sinusoidal curve, creating living atmospheric depth without visual distraction:
+
+```less
+@keyframes spotlightSweep {
+  0% {
+    background-position: 45% 45%;
+    opacity: 0.85;
+  }
+  50% {
+    background-position: 55% 52%;
+    opacity: 1.00;
+  }
+  100% {
+    background-position: 45% 45%;
+    opacity: 0.85;
+  }
+}
+
+.ambient-spotlight-sweep {
+  background: radial-gradient(
+    ellipse 65% 55% at 50% 48%,
+    hsl(var(--pres-accent) / 0.14) 0%,
+    hsl(var(--pres-accent) / 0.04) 45%,
+    transparent 75%
+  );
+  background-size: 140% 140%;
+  animation: spotlightSweep 14s ease-in-out infinite;
+}
+```
+
+### 7.5 `@keyframes floatSubtle` (Levitating Architectural Vectors)
+
+Applies a subtle vertical float to floating architectural vector icons (`Layers`, `Cpu`, `Shield`, `Terminal`) and high-priority KPI cards:
+
+```less
+@keyframes floatSubtle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(0.4deg);
+  }
+}
+
+.float-vector-subtle {
+  animation: floatSubtle 5.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  will-change: transform;
+}
+```
+
+### 7.6 `@keyframes pulseAccent` & `@keyframes haloRingConcentric`
+
+```less
+@keyframes pulseAccent {
+  0% {
+    box-shadow: 
+      0 0 0 0 hsl(var(--pres-accent) / 0.70),
+      0 0 0 0 hsl(var(--pres-accent) / 0.35),
+      0 0 16px -2px hsl(var(--pres-accent) / 0.40);
+  }
+  50% {
+    box-shadow: 
+      0 0 0 6px hsl(var(--pres-accent) / 0.30),
+      0 0 0 14px hsl(var(--pres-accent) / 0.12),
+      0 0 28px 2px hsl(var(--pres-accent) / 0.60);
+  }
+  100% {
+    box-shadow: 
+      0 0 0 12px hsl(var(--pres-accent) / 0.00),
+      0 0 0 24px hsl(var(--pres-accent) / 0.00),
+      0 0 16px -2px hsl(var(--pres-accent) / 0.40);
+  }
+}
+
+@keyframes haloRingConcentric {
+  0% {
+    box-shadow: 0 0 0 0 hsl(var(--pres-accent) / 0.40);
+  }
+  70% {
+    box-shadow: 0 0 0 12px hsl(var(--pres-accent) / 0.00);
+  }
+  100% {
+    box-shadow: 0 0 0 0 hsl(var(--pres-accent) / 0.00);
+  }
+}
+
+.pulse-accent-ring {
+  animation: pulseAccent 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+```
+
+---
+
+## 8. Subpixel Mathematical Ink-Stamp Micro-Shadows
+
+### 8.1 Offset Formulation & Optical Mechanics
+
+To sharpen glyph contours directly at the baseline on high-DPI displays and conference room projectors, the engine utilizes sub-pixel zero-blur offset bevels:
+
+$$\text{MicroShadow}_{\text{dark}} = \text{rgb}(0\ 0\ 0)\ 1\text{px}\ 0.7\text{px}\ 0\text{px}$$
+$$\text{MicroShadow}_{\text{light}} = \text{rgb}(255\ 255\ 255)\ 1\text{px}\ 0.7\text{px}\ 0\text{px}$$
+
+### 8.2 Visual Physics & Display Rationale
+- **Subpixel Vertical Offset ($0.7\text{px}$):** Prevents the shadow from separating into a secondary ghost character, while delivering optical separation from the canvas surface.
+- **Zero Blur Radius ($0\text{px}$):** Eliminates blurry, fuzzy raster artifacts, emulating high-precision physical letterpress printing (ink-stamp micro-shadow).
+- **Dark Mode Function:** Anchors luminous text (`#F8FAFC`, `#A78BFA`) against deep obsidian backgrounds (`#020617`, `#080808`).
+- **Light Mode Function:** Creates an embossed paper impression, maximizing letter crispness against white (`#FFFFFF`) or cream (`#FAF7F0`) backgrounds.
+
+### 8.3 CSS Implementation
+
+```less
+// In src/styles/presentation.less:
+:root {
+  --text-shadow-weight-dark: rgb(0 0 0) 1px 0.7px 0px;
+  --text-shadow-weight-light: rgb(255 255 255) 1px 0.7px 0px;
+  --pres-header-shadow: var(--text-shadow-weight-dark);
+}
+
+[data-is-dark="false"],
+.theme-light {
+  --pres-header-shadow: var(--text-shadow-weight-light);
+}
+
+// Typography application
+.pres-heading-hero,
+.pres-heading-h1,
+.pres-heading-h2 {
+  text-shadow: var(--pres-header-shadow);
+}
+```
+
+---
+
+## 9. Ambient 8% Low-Opacity HUD & Floating Tooltip Standard
+
+### 9.1 Idle Low-Opacity Docking
+To keep presenter attention focused 100% on slide content, the floating presenter HUD and navigation slider sit at **8% opacity** (`opacity-[0.08]` or `rgba(..., 0.08)`) during normal presentation flow:
+
+```less
+.presenter-hud-container {
+  opacity: 0.08;
+  transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  
+  &:hover,
+  &:focus-within {
+    opacity: 1.00;
+  }
+}
+```
+
+### 9.2 Collision-Free Docking Coordinates
+- **HUD Controller Pill:** Locked to `top-right` ($x = 1860\text{px}, y = 40\text{px}$), completely clearing the left-hand slide header zone.
+- **Pagination Dot Rail:** Locked to `bottom-center` ($y = 1040\text{px}$), maintaining at least $48\text{px}$ clearance above slide footers.
+- **Micro-Tooltips:** Every controller action button renders a floating tooltip with corresponding `<kbd>` shortcuts (`Space`, `ArrowRight`, `G`, `F`, `B`).
+
+---
+
+## 10. Acoustic Synchronization & Synthesizer Engine
+
+The presentation system synthesizes acoustic wave pulses client-side via native WebAudio `AudioContext` with zero external audio assets:
+
+| Event Name | Frequency ($f_0 \to f_1$) | Waveform | Duration | Master Gain | Cooldown | Semantic Purpose |
+|:---|:---:|:---|:---:|:---|:---:|:---|
+| `slide-change` (next whoosh) | $240\text{ Hz} \to 480\text{ Hz}$ | Sine Chirp | $220\text{ms}$ | $0.35$ | $120\text{ms}$ | Forward slide transition |
+| `slide-change` (prev whoosh) | $360\text{ Hz} \to 180\text{ Hz}$ | Sine Chirp | $220\text{ms}$ | $0.35$ | $120\text{ms}$ | Backward slide transition |
+| `step-click` | $750\text{ Hz} \to 320\text{ Hz}$ | Triangle | $60\text{ms}$ | Step Vol ($0.30$) | $80\text{ms}$ | Intra-slide step advance |
+| `step-reveal` | $440\text{ Hz} \to 660\text{ Hz}$ | Sine Chime | $120\text{ms}$ | Step Vol ($0.28$) | $80\text{ms}$ | Detail pane reveal |
+| `keystroke-tap` | $1100\text{ Hz} \to 350\text{ Hz}$ | Triangle | $35\text{ms}$ | $0.30$ | $45\text{ms}$ | Tactile HUD navigation |
+| `theme-switch` | $880\text{ Hz} \to 880\text{ Hz}$ | Pure Sine Harmonic | $160\text{ms}$ | $0.35$ | $100\text{ms}$ | Theme palette changed |
+| `pop` | $580\text{ Hz} \to 840\text{ Hz}$ | High Sine Blip | $50\text{ms}$ | $0.25$ | $60\text{ms}$ | Badge hover / toggle |
+
+### 10.1 Audio Safety & Narration Ducking
+- **Safety Ceiling:** Output gain is hard-clamped ($\le 0.40$ master, step clicks $\le 0.30$) to prevent harsh distortion.
+- **Narrator Voice Ducking:** When microphone narration is detected (`isAudioActive = true`), sound effects attenuate automatically by $-14\text{ dB}$ ($0.20\times$ ducking factor).
+
+---
+
+## 11. Elimination of Hardcoded Dark Classes in Favor of Semantic Tokens
+
+### 11.1 Systematic Semantic Token Mapping
+
+| Hardcoded Utility (FORBIDDEN) | Semantic Design Token | Tailwind Arbitrary Value Equivalent | Semantic Function |
+|:---|:---|:---|:---|
+| `bg-slate-900`, `bg-zinc-950` | `var(--pres-bg-card)` | `bg-[var(--pres-bg-card)]` | Structural Bento container background |
+| `bg-slate-950`, `bg-black` | `var(--pres-canvas-bg)` | `bg-[var(--pres-canvas-bg)]` | Virtual canvas root background |
+| `border-slate-800`, `border-zinc-800` | `var(--pres-border)` | `border-[var(--pres-border)]` | Hairline panel and card borders |
+| `text-slate-100`, `text-white` | `var(--pres-text)` | `text-[var(--pres-text)]` | Primary headline and metric text |
+| `text-slate-400`, `text-zinc-400` | `var(--pres-text-muted)` | `text-[var(--pres-text-muted)]` | Secondary body text and labels |
+| `text-indigo-400`, `text-blue-400` | `var(--pres-accent-text)` | `text-[var(--pres-accent-text)]` | High-contrast accent typography (>5.5:1) |
+| `border-indigo-500/50` | `hsl(var(--pres-accent) / 0.50)` | `border-[hsl(var(--pres-accent)/0.50)]` | Active step and focus highlights |
+
+### 11.2 Automated Verification Regex Gate
+The verification test suite scans all slide components under `src/components/slides/` using strict regex patterns to prevent regressions:
+
+```bash
+# Prohibited hardcoded dark class regex pattern:
+grep -E "(bg-slate-900|bg-zinc-950|border-slate-800|border-zinc-800|text-slate-100)" src/components/slides/
+# Expectation: 0 matches
+```

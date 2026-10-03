@@ -31,6 +31,7 @@ import { StrategicDecarbonizationEsgSlide } from './nextgen/techgov/StrategicDec
 import { MarketTensionQuadrantSlide } from './nextgen/techgov/MarketTensionQuadrantSlide';
 import { ExecutiveCloseContactSlide } from './nextgen/techgov/ExecutiveCloseContactSlide';
 import { WhiteMasterSlide } from './WhiteMasterSlide';
+import { ModernSlideRenderer } from './ModernSlideRenderer';
 
 export const NextGenSlideRenderer: React.FC<{ slide: SlideData }> = ({ slide }) => {
   switch (slide.type) {
@@ -64,6 +65,6 @@ export const NextGenSlideRenderer: React.FC<{ slide: SlideData }> = ({ slide }) 
     case 'strategic-decarbonization-esg': return <StrategicDecarbonizationEsgSlide slide={slide as any} />;
     case 'market-tension-quadrant': return <MarketTensionQuadrantSlide slide={slide as any} />;
     case 'executive-close-contact': return <ExecutiveCloseContactSlide slide={slide as any} />;
-    default: return <WhiteMasterSlide slide={slide as any} />;
+    default: return <ModernSlideRenderer slide={slide} />;
   }
 };
