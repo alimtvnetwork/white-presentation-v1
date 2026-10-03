@@ -1,5 +1,29 @@
 # Changelog
 
+## [v1.4.0] - 2026-10-03
+
+### Added
+- **15 NextGen Slide Archetypes & Interactive Step Reveals:**
+  - Integrated 15 new enterprise and AI architecture slide archetypes: ThreeHorizonsStrategyMatrix, AiAgentFleetTopology, ApiRateLimitGateway, MultiCloudDrFailoverMesh, FintechPaymentClearingEngine, EsgDecarbonizationRoadmap, ModelContextProtocolMesh, DataCleanRoomCollaboration, DeveloperPlatformIdpHub, ExecutiveMergersAcquisitionsSynergy, CyberThreatKillChainMatrix, SupplyChainDigitalTwinLattice, VoiceAiRealtimeConversationalMesh, ComplianceAuditSoc2ReadinessLadder, and ValueStreamEngineeringDoraFlywheel.
+  - Interactive hover and click transitions (`cubic-bezier(0.22, 1, 0.36, 1)`) with step-by-step detail popups on the right-hand side.
+  - Concentric halo pulse animations (`halo-concentric-anim`) for active step indicators.
+- **Global PPT Motion & Design System Synthesis:**
+  - Synthesized Global PPT themes, CSS3 motion transitions, and 60/30/10 visual balance CSS variables (`--pres-dominant-ratio`, `--pres-structural-ratio`, `--pres-accent-ratio`).
+  - Strict Northern UI/UX typography hierarchy: kickers $\ge 16\text{px}$, headings $54\text{px}-62\text{px}$, single active hero card focus.
+  - Strict Zero Yellow-on-Light contrast enforcement repository-wide.
+  - Ambient 8% low-opacity HUD controls docked to `top-right` and slider docked to `bottom-center`.
+- **Specification & Documentation Architecture:**
+  - Authored canonical specification module `02-spec/21-app/35-global-ppt-motion-and-15-nextgen-archetypes/` (01-overview, 02-data-contracts, 03-theme-motion-and-flat-progression, 04-verification-gates, readme).
+  - Updated `02-spec/21-app/readme.md` directory index.
+  - Completed execution plan `.ai-memory/plans/completed/15-v15-global-ppt-archetypes-and-motion.md`.
+
+### Fixed
+- **Component File-Size & TypeScript Zero-Defect Parity:**
+  - Verified all 180+ React components in `src/components/` strictly adhere to the $\le 100$-line ceiling (Hard Rule #6).
+  - Verified 0 TypeScript errors (`pnpm exec tsc --noEmit`) and production build passing in under 5.0s.
+
+---
+
 ## [v1.3.3] - 2026-10-03
 
 ### Added

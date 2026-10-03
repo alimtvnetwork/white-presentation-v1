@@ -48,6 +48,8 @@ This directory houses the canonical, sequential specifications for the **White P
 | [32-global-ppt-motion-flat-step-and-15-slide-archetypes/01-overview.md](32-global-ppt-motion-flat-step-and-15-slide-archetypes/01-overview.md) | **Global PPT Synthesis, Kinetic Flat Progression & 15 Slide Archetypes** | 10 HSL master palettes, fixed dark HUD, dynamic micro-shadows, 3-phase kinetic step lifecycle, 8 multi-step operational workflows and 7 flat sovereign overviews. |
 | [33-global-ppt-motion-and-15-kinetic-archetypes/01-overview.md](33-global-ppt-motion-and-15-kinetic-archetypes/01-overview.md) | **Global PPT Motion Synthesis, Design System & 15 Sovereign Operations** | Full synthesis of Global PPT motion curves, light-theme contrast auto-inversion, `--pres-accent-text` token, concentric halo ring keyframes, and 15 Sovereign Operational slide archetypes. |
 | [34-global-ppt-synthesis-and-15-nextgen-archetypes/01-overview.md](34-global-ppt-synthesis-and-15-nextgen-archetypes/01-overview.md) | **Global PPT Synthesis, 24-App Design System & 15 Next-Gen Archetypes** | Adaptation of Global PPT themes & animation keyframes, 60/30/10 visual balance, 4-plane depth hierarchy, Northern UI/UX typography, Zero Yellow-on-Light contrast remediation, and 15 Next-Gen Enterprise & AI Architecture slide archetypes. |
+| [35-global-ppt-motion-and-15-nextgen-archetypes/01-overview.md](35-global-ppt-motion-and-15-nextgen-archetypes/01-overview.md) | **Global PPT Motion Design, Design System & 15 NextGen Slide Archetypes** | Complete adaptation of Global PPT color themes, kinetic animation keyframes, Northern UI/UX typography scale, Zero Yellow-on-Light contrast rule, interactive step progression engine, and 15 NextGen enterprise slide archetypes. |
+
 
 ---
 

@@ -226,6 +226,9 @@ function buildColorVars(theme: ThemePalette, isDark: boolean): Record<string, st
     '--chrome-radius': '12px',
 
     // 60/30/10 Visual Balance Tokens
+    '--pres-dominant-ratio': '60%',
+    '--pres-structural-ratio': '30%',
+    '--pres-accent-ratio': '10%',
     '--pres-canvas-gradient': isDark ? 'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.15), transparent 70%)' : 'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.08), transparent 70%)',
     '--pres-dot-matrix': isDark ? 'radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px)' : 'radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px)',
     '--pres-kpi-highlight': isDark ? 'hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.20)' : 'hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.10)',
@@ -409,8 +412,8 @@ function broadcastThemeChange(themeId: string, isFromBroadcast: boolean): void {
 
 export function applyTheme(id: string, isFromBroadcast = false): ThemePalette {
   const theme = THEME_PALETTES[id] || THEME_PALETTES['white-brand'];
-  const isServer = typeof document === 'undefined';
-  if (isServer) return theme;
+  const hasDocument = typeof document !== 'undefined';
+  if (isFalse(hasDocument)) return theme;
   const isDark = Boolean(theme.isDark);
   document.documentElement.setAttribute('data-theme', theme.id);
   document.documentElement.setAttribute('data-appearance', isDark ? 'dark' : 'light');

@@ -46,7 +46,7 @@ export const StepsSlide: React.FC<{ slide: StepsSlideData }> = ({ slide }) => {
                   onMouseEnter={() => setHoveredStep(i)}
                   onMouseLeave={() => setHoveredStep(null)}
                   style={{ opacity, backgroundColor: isActive ? `${theme.accentColor}18` : 'transparent', transform: isActive ? 'translateX(8px) scale(1.01)' : 'translateX(0)', transition: STEP_TRANSITION, ...halo }}
-                  className={`flex items-center gap-4 p-4 rounded-2xl border cursor-pointer hover:opacity-100 transition-all ${isActive ? 'border-violet-500/40 shadow-lg' : 'border-transparent hover:border-slate-300 dark:hover:border-slate-700'}`}
+                  className={`flex items-center gap-4 p-4 rounded-2xl border cursor-pointer hover:opacity-100 transition-all ${isActive ? 'border-violet-500/40 shadow-lg halo-concentric-anim' : 'border-transparent hover:border-slate-300 dark:hover:border-slate-700'}`}
                 >
                   <span style={{ color: isActive ? theme.accentColor : theme.subtextColor }} className="font-mono text-2xl font-bold tracking-wider">{String(i + 1).padStart(2, '0')}</span>
                   <div className="flex-1 truncate">
