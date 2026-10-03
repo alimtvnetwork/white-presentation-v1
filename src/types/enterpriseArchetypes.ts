@@ -5,7 +5,7 @@ export interface ExecutiveHighlightItem {
   id: string; label: string; value: string; detail: string; isPositiveTrend?: boolean;
 }
 export interface ExecutivePillarItem {
-  title: string; description: string; icon?: string; hasAccent?: boolean;
+  id?: string; title: string; description: string; icon?: string; hasAccent?: boolean;
 }
 export interface ExecutiveSummarySlideData extends BaseSlide {
   type: 'executive-summary';

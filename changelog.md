@@ -5,6 +5,14 @@ All notable changes to the White Presentation System will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.3.1] - 2026-10-03
+
+### Fixed
+- **Enterprise Type Definitions & TypeScript Zero-Defect Parity:**
+  - Added optional `id?: string` to `ExecutivePillarItem` in `src/types/enterpriseArchetypes.ts`, resolving TS2339.
+  - Verified 100 modular slide `.tsx` components in `src/components/slides/` strictly adhere to the $\le 100$-line ceiling (Hard Rule #6).
+  - Confirmed 0 TypeScript errors (`pnpm exec tsc --noEmit`) and clean production build in 3.05s (`pnpm run build`).
+
 ## [v1.3.0] - 2026-10-02
 
 ### Added
