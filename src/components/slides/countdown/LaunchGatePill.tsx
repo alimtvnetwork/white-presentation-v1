@@ -33,7 +33,7 @@ export const LaunchGatePill: React.FC<LaunchGatePillProps> = ({
     >
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
-          <span className="w-6 h-6 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center justify-center font-mono text-xs font-bold">
+          <span className="w-6 h-6 rounded-full bg-amber-100 text-amber-900 border border-amber-300 dark:bg-amber-500/20 dark:text-amber-300 dark:border-amber-500/30 flex items-center justify-center font-mono text-xs font-bold">
             0{gate.gateNumber || index + 1}
           </span>
           <span className="font-ubuntu text-sm font-bold text-white tracking-wide">
@@ -51,7 +51,7 @@ export const LaunchGatePill: React.FC<LaunchGatePillProps> = ({
               <CheckCircle2 size={13} /> Verified
             </span>
           ) : (
-            <span className="text-amber-400 flex items-center gap-1 text-[11px] font-mono">
+            <span className="text-amber-600 dark:text-amber-400 flex items-center gap-1 text-[11px] font-mono">
               <Clock size={13} /> In Progress
             </span>
           )}
@@ -60,7 +60,7 @@ export const LaunchGatePill: React.FC<LaunchGatePillProps> = ({
 
       <div className="flex items-center justify-between text-xs text-slate-400 font-poppins pt-1 border-t border-slate-800/40">
         <span className="font-mono text-[11px]">Owner: {gate.assignedOwner}</span>
-        {isActive && <span className="text-amber-400 font-mono text-[11px] font-bold">Active Verification Gate</span>}
+        {isActive && <span className="text-amber-600 dark:text-amber-400 font-mono text-[11px] font-bold">Active Verification Gate</span>}
       </div>
     </div>
   );

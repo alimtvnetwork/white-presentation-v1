@@ -20,10 +20,10 @@ export const AiAgentSwarmDagSlide: React.FC<{ slide: AiAgentSwarmDagSlideData }>
     >
       <div className="z-10">
         <div className="flex items-center gap-3 mb-2">
-          <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center gap-1.5">
+          <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-amber-100 text-amber-900 border border-amber-300 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/30 flex items-center gap-1.5">
             <Network size={12} /> {slide.kicker || 'MULTI-AGENT SYSTEMS'}
           </span>
-          <span className="font-mono text-xs text-amber-300 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20">
+          <span className="font-mono text-xs text-amber-800 dark:text-amber-300 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20">
             Active Agent {currentNodeIndex + 1} of {Math.max(nodes.length, 1)}: {activeNode?.agentRole || 'Orchestrator'}
           </span>
         </div>
@@ -41,9 +41,9 @@ export const AiAgentSwarmDagSlide: React.FC<{ slide: AiAgentSwarmDagSlideData }>
 
       <div className="plane-1-raised p-3 rounded-2xl border border-slate-800 bg-slate-900/60 z-10 flex items-center justify-between font-mono text-xs">
         <div className="flex items-center gap-2 text-slate-300">
-          <Bot size={14} className="text-amber-400" />
+          <Bot size={14} className="text-amber-600 dark:text-amber-400" />
           <span className="text-slate-400">Lead Orchestrator:</span>
-          <span className="text-amber-300 font-bold">{slide.orchestratorRole || 'Lead Orchestrator Subagent'}</span>
+          <span className="text-amber-800 dark:text-amber-300 font-bold">{slide.orchestratorRole || 'Lead Orchestrator Subagent'}</span>
         </div>
         <div className="flex items-center gap-2 text-slate-300">
           <span className="text-slate-400">Total Budget:</span>
@@ -69,9 +69,9 @@ export const AiAgentSwarmDagSlide: React.FC<{ slide: AiAgentSwarmDagSlideData }>
 
       <div className="plane-1-raised p-4 rounded-2xl border border-slate-800 bg-slate-950/90 z-10 flex items-center justify-between font-mono text-xs">
         <div className="flex items-center gap-4 text-slate-300">
-          <span className="text-amber-400 font-bold flex items-center gap-1.5"><Bot size={14} /> Active Telemetry:</span>
+          <span className="text-amber-600 dark:text-amber-400 font-bold flex items-center gap-1.5"><Bot size={14} /> Active Telemetry:</span>
           <span>Role: <strong className="text-slate-100">{activeNode?.agentRole}</strong></span>
-          <span>Model: <strong className="text-amber-300 uppercase">{activeNode?.modelIdentifier}</strong></span>
+          <span>Model: <strong className="text-amber-800 dark:text-amber-300 uppercase">{activeNode?.modelIdentifier}</strong></span>
           <span>Duration: <strong className="text-cyan-300">{activeNode?.executionDurationMs}ms</strong></span>
           <span>Tokens: <strong className="text-emerald-300">{activeNode?.tokenCount?.toLocaleString()}</strong></span>
         </div>

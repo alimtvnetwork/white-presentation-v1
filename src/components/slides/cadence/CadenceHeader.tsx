@@ -16,7 +16,7 @@ export const CadenceHeader: React.FC<CadenceHeaderProps> = ({ kicker, title, sub
   return (
     <div className="z-10">
       <div className="flex items-center gap-3 mb-2">
-        <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center gap-1.5">
+        <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-amber-100 text-amber-900 border border-amber-300 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/30 flex items-center gap-1.5">
           <Calendar size={13} />
           {kicker || 'REMOTE CULTURE'}
         </span>

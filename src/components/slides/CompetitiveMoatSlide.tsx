@@ -35,7 +35,7 @@ export const CompetitiveMoatSlide: React.FC<{ slide: CompetitiveMoatSlideData }>
 
       <div className="plane-1-raised p-4 rounded-2xl border border-slate-800 bg-slate-900/40 z-10 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <Sparkles size={18} className="text-amber-400 shrink-0" />
+          <Sparkles size={18} className="text-amber-600 dark:text-amber-400 shrink-0" />
           <span className="font-poppins text-sm text-slate-200 font-medium">
             {slide.shimmerStatement}
           </span>

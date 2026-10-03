@@ -44,7 +44,7 @@ export const GrowthEngineSlide: React.FC<{ slide: GrowthEngineSlideData }> = ({ 
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="font-mono text-xs font-bold text-emerald-400 uppercase tracking-wider">{ch.tag || `VECTOR 0${idx + 1}`}</span>
-                  <span className={`px-2 py-0.5 rounded-full text-xs font-mono font-bold border flex items-center gap-1 ${isPositive ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' : 'bg-amber-500/10 text-amber-400 border-amber-500/30'}`}>
+                  <span className={`px-2 py-0.5 rounded-full text-xs font-mono font-bold border flex items-center gap-1 ${isPositive ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' : 'bg-amber-100 text-amber-900 border-amber-300 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/30'}`}>
                     <ArrowUpRight size={12} /> {ch.growthDelta}
                   </span>
                 </div>

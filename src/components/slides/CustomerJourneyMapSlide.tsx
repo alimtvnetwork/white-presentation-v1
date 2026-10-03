@@ -13,11 +13,11 @@ const JourneyHeader: React.FC<{ kicker?: string; title?: string; persona?: strin
   return (
     <div className="z-10">
       <div className="flex items-center gap-3 mb-2">
-        <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-amber-500/10 text-amber-400 border border-amber-500/30">
+        <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-amber-100 text-amber-900 border border-amber-300 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/30">
           {kicker || 'CUSTOMER EXPERIENCE JOURNEY'}
         </span>
         {hasPersona && (
-          <span className="flex items-center gap-1 font-mono text-xs text-amber-300 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20">
+          <span className="flex items-center gap-1 font-mono text-xs text-amber-800 dark:text-amber-300 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20">
             <User size={12} /> Persona: {persona}
           </span>
         )}
@@ -66,7 +66,7 @@ export const CustomerJourneyMapSlide: React.FC<{ slide: CustomerJourneySlideData
       </div>
 
       <div className="plane-1-raised p-4 rounded-2xl flex items-center justify-between z-10 border border-slate-800 font-mono text-xs">
-        <span className="flex items-center gap-2 text-amber-400 font-bold">
+        <span className="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-bold">
           <Compass size={14} /> Multi-Touchpoint Satisfaction & Opportunity Pipeline
         </span>
         <span style={{ color: 'var(--pres-text-muted)' }}>Customer Experience Journey</span>

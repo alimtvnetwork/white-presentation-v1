@@ -35,10 +35,10 @@ export const RapidFeedbackSlide: React.FC<{ slide: RapidFeedbackSlideData }> = (
 
       <div className="plane-1-raised p-4 rounded-2xl border border-slate-800 bg-slate-900/40 z-10 grid grid-cols-3 gap-6 font-mono text-xs">
         <div className="flex items-center gap-3">
-          <Zap size={18} className="text-amber-400 shrink-0" />
+          <Zap size={18} className="text-amber-600 dark:text-amber-400 shrink-0" />
           <div>
             <div className="text-slate-400 text-[11px]">Deploy Frequency</div>
-            <div className="text-amber-300 font-bold text-sm">{slide.dailyDeployFrequency} Deploys / Day</div>
+            <div className="text-amber-800 dark:text-amber-300 font-bold text-sm">{slide.dailyDeployFrequency} Deploys / Day</div>
           </div>
         </div>
         <div className="flex items-center gap-3">

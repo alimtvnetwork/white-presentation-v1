@@ -387,3 +387,38 @@
   }
 }
 
+// ============================================================================
+// Reusable 3-Phase Kinetic Step Progression Classes
+// ============================================================================
+
+.step-phase-future {
+  opacity: 0.40;
+  transform: translateZ(8px) scale(0.98);
+  filter: blur(1.25px);
+  box-shadow: none;
+  pointer-events: none;
+  transition: all 0.4s @ease-presentation;
+  will-change: transform, opacity, filter;
+}
+
+.step-phase-active {
+  opacity: 1.0;
+  transform: translateY(-4px) translateZ(24px) scale(1.02);
+  filter: blur(0px);
+  border-color: var(--pres-border-hover);
+  box-shadow: 0 20px 35px -10px var(--pres-accent-glow), 0 0 0 1px hsl(var(--pres-accent-hsl) / 0.40);
+  z-index: 20;
+  transition: all 0.4s @ease-presentation;
+  will-change: transform, opacity, box-shadow;
+}
+
+.step-phase-past {
+  opacity: 0.75;
+  transform: translateZ(8px) scale(1.00);
+  filter: none;
+  box-shadow: none;
+  transition: all 0.4s @ease-presentation;
+  will-change: transform, opacity;
+}
+
+

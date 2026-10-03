@@ -20,7 +20,7 @@ export const MindsetShiftSlide: React.FC<{ slide: MindsetShiftSlideData }> = ({ 
     >
       <div className="z-10">
         <div className="flex items-center gap-3 mb-2">
-          <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-amber-500/10 text-amber-400 border border-amber-500/30">
+          <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-amber-100 text-amber-900 border border-amber-300 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/30">
             {slide.kicker || 'PARADIGM TRANSFORMATION'}
           </span>
           <span style={{ color: theme.subtextColor }} className="font-mono text-xs">• 4 Strategic Invariants</span>
@@ -47,7 +47,7 @@ export const MindsetShiftSlide: React.FC<{ slide: MindsetShiftSlideData }> = ({ 
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="font-mono text-xs font-bold text-amber-400 uppercase tracking-wider">
+                  <span className="font-mono text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider">
                     {shift.category || `SHIFT 0${idx + 1}`}
                   </span>
                   {isItemTransformed && (
@@ -63,7 +63,7 @@ export const MindsetShiftSlide: React.FC<{ slide: MindsetShiftSlideData }> = ({ 
                 </div>
 
                 <div className="flex justify-center my-1">
-                  <div className="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center">
+                  <div className="w-6 h-6 rounded-full bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center">
                     <ArrowRight size={12} />
                   </div>
                 </div>
@@ -75,7 +75,7 @@ export const MindsetShiftSlide: React.FC<{ slide: MindsetShiftSlideData }> = ({ 
               </div>
 
               <div className="mt-4 pt-3 border-t border-slate-700/30">
-                <span className="text-[10px] font-mono text-amber-400 font-bold uppercase tracking-wider block mb-1">Benefit</span>
+                <span className="text-[10px] font-mono text-amber-600 dark:text-amber-400 font-bold uppercase tracking-wider block mb-1">Benefit</span>
                 <p className="font-poppins text-xs leading-relaxed" style={{ color: theme.subtextColor }}>{shift.benefit}</p>
               </div>
             </div>
@@ -84,7 +84,7 @@ export const MindsetShiftSlide: React.FC<{ slide: MindsetShiftSlideData }> = ({ 
       </div>
 
       <div className="flex items-center justify-between z-10 pt-4 border-t border-slate-700/30 font-mono text-xs" style={{ color: theme.subtextColor }}>
-        <span className="flex items-center gap-2 text-amber-400 font-bold">
+        <span className="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-bold">
           <Sparkles size={14} /> {slide.principleTag || 'Mathematical determinism always supersedes probabilistic hope.'}
         </span>
         <span className="opacity-70">Deterministic Live DOM Paradigm Shift</span>

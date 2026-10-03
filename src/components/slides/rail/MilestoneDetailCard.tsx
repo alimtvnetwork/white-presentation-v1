@@ -39,7 +39,7 @@ export const MilestoneDetailCard: React.FC<MilestoneDetailCardProps> = ({ node }
         <div className="bg-slate-800/40 p-3 rounded-xl border border-slate-700/50">
           <span className="text-[11px] font-mono text-slate-400 uppercase tracking-wider block mb-1">Target SLA</span>
           <span className="flex items-center gap-1.5 font-mono text-sm font-bold text-slate-200">
-            <Clock size={14} className="text-amber-400" /> {activeMilestone.sla || 'Standard Delivery'}
+            <Clock size={14} className="text-amber-600 dark:text-amber-400" /> {activeMilestone.sla || 'Standard Delivery'}
           </span>
         </div>
         <div className="bg-slate-800/40 p-3 rounded-xl border border-slate-700/50">

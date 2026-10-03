@@ -39,7 +39,7 @@ export const CompetitorMatrixSlide: React.FC<{ slide: CompetitorMatrixSlideData 
             <tr className="border-b border-slate-800 bg-slate-900/60 font-mono text-xs">
               <th className="p-4 pl-6 text-slate-400 w-[35%] uppercase">Capability Evaluation</th>
               <th className="p-4 text-violet-300 bg-violet-500/10 border-x border-violet-500/30 w-[30%]">
-                <div className="flex items-center gap-2 font-bold uppercase"><Crown size={14} className="text-amber-400" /> {slide.ourPlatformName}</div>
+                <div className="flex items-center gap-2 font-bold uppercase"><Crown size={14} className="text-amber-600 dark:text-amber-400" /> {slide.ourPlatformName}</div>
               </th>
               <th className="p-4 text-slate-400 w-[17%] uppercase">{competitors[0] || 'Competitor A'}</th>
               <th className="p-4 text-slate-400 w-[18%] uppercase">{competitors[1] || 'Competitor B'}</th>

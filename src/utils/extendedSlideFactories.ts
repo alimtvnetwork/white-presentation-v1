@@ -1075,7 +1075,7 @@ export const createExtendedSlide = (type: ExtendedSlideType | string, id = `slid
 export interface ArchetypeOption {
   type: SlideType;
   label: string;
-  category: 'Strategy & Metrics' | 'Product & Architecture' | 'Team & Credibility' | 'Story & Conversion';
+  category: 'Strategy & Metrics' | 'Product & Architecture' | 'Team & Credibility' | 'Story & Conversion' | string;
   desc: string;
   icon: string;
 }

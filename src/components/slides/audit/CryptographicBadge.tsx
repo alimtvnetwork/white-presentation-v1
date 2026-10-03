@@ -15,7 +15,7 @@ export const CryptographicBadge: React.FC<CryptographicBadgeProps> = ({
   const getIcon = () => {
     switch (evidenceType) {
       case 'signature':
-        return <KeyRound size={12} className="text-amber-400" />;
+        return <KeyRound size={12} className="text-amber-600 dark:text-amber-400" />;
       case 'sbom':
         return <FileCheck size={12} className="text-cyan-400" />;
       case 'linter':

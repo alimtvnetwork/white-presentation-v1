@@ -19,7 +19,7 @@ export const ServicesGravitySlide: React.FC<{ slide: ServicesGravitySlideData }>
     >
       <div className="z-10">
         <div className="flex items-center gap-3 mb-2">
-          <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center gap-1.5">
+          <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-amber-100 text-amber-900 border border-amber-300 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/30 flex items-center gap-1.5">
             <Orbit size={12} /> {slide.kicker || 'SYSTEM TOPOLOGY'}
           </span>
           <span style={{ color: 'var(--pres-text-muted)' }} className="font-mono text-xs">• Preset: {slide.physicsPreset || 'servicesDefault'}</span>
@@ -43,7 +43,7 @@ export const ServicesGravitySlide: React.FC<{ slide: ServicesGravitySlideData }>
             <circle cx="50%" cy="50%" r="280" fill="none" stroke="currentColor" strokeDasharray="4 4" />
           </svg>
           <div className="relative z-20 w-44 h-44 rounded-full bg-gradient-to-tr from-amber-500/30 via-violet-600/40 to-cyan-500/30 border-2 border-amber-400/60 shadow-[0_0_50px_rgba(245,158,11,0.3)] flex flex-col items-center justify-center text-center p-3 backdrop-blur-md">
-            <Sun size={28} className="text-amber-300 mb-1 animate-pulse" />
+            <Sun size={28} className="text-amber-800 dark:text-amber-300 mb-1 animate-pulse" />
             <span className="font-ubuntu font-bold text-sm text-white leading-tight">{slide.coreSunTitle || 'Event Core'}</span>
             <span className="text-[10px] font-mono text-amber-200/80 mt-1">{slide.coreSunSubtitle || 'Zero-Copy Bus'}</span>
           </div>
@@ -56,7 +56,7 @@ export const ServicesGravitySlide: React.FC<{ slide: ServicesGravitySlideData }>
           <div>
             <div className="flex items-center justify-between mb-4">
               <span className="text-xs font-mono font-bold text-violet-400 uppercase tracking-wider">Node Telemetry</span>
-              <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">P99: {activeService?.p99LatencyMs || 2.4}ms</span>
+              <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-100 text-amber-900 border border-amber-300 dark:bg-amber-500/20 dark:text-amber-300 dark:border-amber-500/30">P99: {activeService?.p99LatencyMs || 2.4}ms</span>
             </div>
             <h3 className="font-ubuntu text-2xl font-bold mb-4" style={{ color: 'var(--pres-text)' }}>{activeService?.name || 'Service Inspector'}</h3>
             <div className="space-y-3 font-mono text-xs" style={{ color: 'var(--pres-text-muted)' }}>

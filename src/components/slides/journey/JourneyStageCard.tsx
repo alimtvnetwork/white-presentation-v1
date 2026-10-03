@@ -15,7 +15,7 @@ const EmotionBadge: React.FC<{ emotion: string }> = ({ emotion }) => {
   if (isFrustrated) {
     return <span className="flex items-center gap-1 text-[11px] font-mono text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded-full border border-rose-500/30"><Frown size={12} /> Frustrated</span>;
   }
-  return <span className="flex items-center gap-1 text-[11px] font-mono text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/30"><Meh size={12} /> Neutral</span>;
+  return <span className="flex items-center gap-1 text-[11px] font-mono text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/30"><Meh size={12} /> Neutral</span>;
 };
 
 interface JourneyStageCardProps {
@@ -41,7 +41,7 @@ export const JourneyStageCard: React.FC<JourneyStageCardProps> = ({
   >
     <div>
       <div className="flex items-center justify-between mb-2">
-        <span className="font-mono text-[11px] font-bold uppercase text-amber-400">Step 0{phaseIdx + 1}</span>
+        <span className="font-mono text-[11px] font-bold uppercase text-amber-600 dark:text-amber-400">Step 0{phaseIdx + 1}</span>
         <EmotionBadge emotion={phase.emotion} />
       </div>
       <h3 className="font-ubuntu text-base font-bold text-slate-100 mb-1">{phase.phaseTitle}</h3>

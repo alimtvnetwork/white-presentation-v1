@@ -14,7 +14,7 @@ export const ServiceComponentRow: React.FC<ServiceComponentRowProps> = ({ servic
   const tierColors: Record<string, string> = {
     core: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
     edge: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30',
-    data: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
+    data: 'bg-amber-100 text-amber-900 border-amber-300 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/30',
     async: 'bg-purple-500/10 text-purple-400 border-purple-500/30',
   };
 
@@ -39,7 +39,7 @@ export const ServiceComponentRow: React.FC<ServiceComponentRowProps> = ({ servic
           </div>
           <div className="flex items-center gap-1">
             {hasRecentIncident ? (
-              <span className="text-amber-400 flex items-center gap-1 text-[11px] font-bold">
+              <span className="text-amber-600 dark:text-amber-400 flex items-center gap-1 text-[11px] font-bold">
                 <AlertTriangle size={13} /> Degraded
               </span>
             ) : (

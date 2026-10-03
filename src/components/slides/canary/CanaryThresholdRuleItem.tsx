@@ -35,7 +35,7 @@ export const CanaryThresholdRuleItem: React.FC<CanaryThresholdRuleItemProps> = (
 
       <div className="flex items-center gap-2">
         {canRollback && (
-          <span className="text-[10px] text-amber-400/90 flex items-center gap-0.5 bg-amber-500/10 px-1.5 py-0.5 rounded border border-amber-500/20">
+          <span className="text-[10px] text-amber-600 dark:text-amber-400/90 flex items-center gap-0.5 bg-amber-500/10 px-1.5 py-0.5 rounded border border-amber-500/20">
             <RotateCcw size={10} /> Auto-Rollback
           </span>
         )}

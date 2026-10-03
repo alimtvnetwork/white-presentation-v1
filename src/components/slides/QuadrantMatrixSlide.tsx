@@ -67,7 +67,7 @@ export const QuadrantMatrixSlide: React.FC<{ slide: QuadrantMatrixSlideData }> =
                 isUs ? 'bg-violet-600 text-white ring-4 ring-violet-500/30 scale-110 z-30 bento-glow-pulse' : 'bg-slate-900/90 text-slate-200 border border-slate-700/80 hover:scale-105 z-20'
               }`}
             >
-              {isUs && <Star size={16} className="text-amber-300 fill-amber-300 shrink-0" />}
+              {isUs && <Star size={16} className="text-amber-800 dark:text-amber-300 fill-amber-300 shrink-0" />}
               <span className="font-ubuntu font-bold text-sm whitespace-nowrap">{it.name}</span>
               {(it.tag || (it as any).badge) && (
                 <span className={`text-[10px] font-mono px-2 py-0.5 rounded-md ${isUs ? 'bg-white/20 text-white' : 'bg-white/10 text-slate-300'}`}>

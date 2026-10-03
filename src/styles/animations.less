@@ -115,9 +115,119 @@
   to { opacity: 1; transform: none; }
 }
 
+// Active Step Halo Pulse
+@keyframes haloPulse {
+  0% {
+    box-shadow: 0 0 0 0 hsl(var(--pres-accent-hsl) / 0.60);
+  }
+  70% {
+    box-shadow: 0 0 0 16px hsl(var(--pres-accent-hsl) / 0.00);
+  }
+  100% {
+    box-shadow: 0 0 0 0 hsl(var(--pres-accent-hsl) / 0.00);
+  }
+}
+
+// Concentric Halo Ring: Expanding multi-wave pulse for focused active narrative step
+@keyframes haloRingConcentric {
+  0% {
+    box-shadow: 0 0 0 0 hsl(var(--pres-accent-hsl) / 0.70), 0 0 12px 2px hsl(var(--pres-accent-hsl) / 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 18px hsl(var(--pres-accent-hsl) / 0.00), 0 0 20px 4px hsl(var(--pres-accent-hsl) / 0.50);
+  }
+  100% {
+    box-shadow: 0 0 0 0 hsl(var(--pres-accent-hsl) / 0.00), 0 0 12px 2px hsl(var(--pres-accent-hsl) / 0.35);
+  }
+}
+
+// Capsule Shimmer: Linear-gradient highlight sweep across capsule pills
+@keyframes capsuleShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+// Traveling SVG Stroke Dash for Connective Rails
+@keyframes svgStrokeDash {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+// Bento Reveal: Staggered entry for grid cells
+@keyframes bentoReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+// 3D Perspective Card Pop for Step Focus
+@keyframes cardPop3D {
+  0% {
+    transform: translateY(0) translateZ(8px) scale(1.00);
+  }
+  100% {
+    transform: translateY(-4px) translateZ(24px) scale(1.02);
+  }
+}
+
+// Audio Waveform Pulse: Live rhythmic bouncing for visualizer bars
+@keyframes audioWaveformPulse {
+  0%, 100% {
+    height: 15%;
+    opacity: 0.6;
+  }
+  50% {
+    height: 95%;
+    opacity: 1;
+  }
+}
+
+// Directed DAG Node Execution Pulse
+@keyframes dagNodeTraverse {
+  0% {
+    stroke-dashoffset: 240;
+    opacity: 0.2;
+    filter: drop-shadow(0 0 4px hsl(var(--pres-accent-hsl) / 0.30));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 20px hsl(var(--pres-accent-hsl) / 0.80));
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.2;
+    filter: drop-shadow(0 0 4px hsl(var(--pres-accent-hsl) / 0.30));
+  }
+}
+
+// Progressive Canary Traffic Sweep
+@keyframes canaryGaugeSweep {
+  from {
+    stroke-dasharray: 0 100;
+  }
+  to {
+    stroke-dasharray: var(--canary-percent, 75) 100;
+  }
+}
+
 // Utility animation classes
 .pop-scale-anim { animation: popScale 0.4s @ease-presentation both; will-change: transform, opacity; }
 .pulse-halo-anim { animation: pulseHalo 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; will-change: box-shadow; }
+.halo-pulse-anim { animation: haloPulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; will-change: box-shadow; }
+.halo-concentric-anim { animation: haloRingConcentric 2.4s @ease-presentation infinite; will-change: box-shadow; }
 .shimmer-glow-anim { background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.25) 50%, transparent 100%); background-size: 200% 100%; animation: shimmerGlow 3s infinite; }
 .slide-step-reveal-anim { animation: slideStepReveal 0.5s @ease-presentation both; will-change: transform, opacity; }
 .flywheel-rotate-anim { animation: flywheelRotate 24s linear infinite; will-change: transform; }
@@ -130,10 +240,17 @@
 .terminal-cursor-blink { animation: terminalCursorBlink 1s infinite; }
 .flywheel-spin-slow { animation: flywheelSpin 30s linear infinite; will-change: transform; }
 .badge-shimmer-anim { background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%); background-size: 200% 100%; animation: badgeShimmer 3.5s infinite; }
+.capsule-shimmer-anim { background: linear-gradient(90deg, transparent 0%, hsl(var(--pres-accent-hsl) / 0.24) 50%, transparent 100%); background-size: 200% 100%; animation: capsuleShimmer 3s ease-in-out infinite; }
 .counter-pulse-anim { animation: counterPulse 0.5s ease-out both; will-change: transform, opacity; }
 .rec-card-fade-in { animation: recCardFadeIn 0.50s @ease-presentation both; will-change: transform, opacity; }
 .reveal-pulse-anim { animation: reveal-pulse 0.65s @ease-presentation 1; will-change: transform, box-shadow; }
 .ba-scroll-pan-anim { animation: baScrollPan 0.85s @ease-presentation both; will-change: clip-path, filter; }
+.svg-stroke-dash-anim { animation: svgStrokeDash 2s linear infinite; will-change: stroke-dashoffset; }
+.bento-reveal-anim { animation: bentoReveal 0.5s @ease-presentation both; will-change: transform, opacity; }
+.card-pop-3d-anim { animation: cardPop3D 0.3s @ease-presentation forwards; will-change: transform; }
+.audio-waveform-pulse-anim { animation: audioWaveformPulse 1.2s ease-in-out infinite; will-change: height, opacity; }
+.dag-node-traverse-anim { animation: dagNodeTraverse 3s ease-in-out infinite; will-change: filter, stroke-dashoffset; }
+.canary-gauge-sweep-anim { animation: canaryGaugeSweep 1.5s @ease-presentation forwards; will-change: stroke-dasharray; }
 
 // Stagger delays
 .stagger-1 { animation-delay: 0.08s; }

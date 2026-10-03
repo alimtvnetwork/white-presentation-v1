@@ -36,7 +36,7 @@ export const ModelScorecard: React.FC<ModelScorecardProps> = ({
           <span className="font-mono text-xs font-bold text-violet-400">{model.provider}</span>
           <div className="flex items-center gap-1.5">
             {isLeader && (
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center gap-1">
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase bg-amber-100 text-amber-900 border border-amber-300 dark:bg-amber-500/20 dark:text-amber-300 dark:border-amber-500/30 flex items-center gap-1">
                 <Sparkles size={10} /> ARENA LEADER
               </span>
             )}
@@ -67,7 +67,7 @@ export const ModelScorecard: React.FC<ModelScorecardProps> = ({
           </div>
           <div className="p-3 rounded-xl bg-black/20 border border-white/5">
             <div className="text-[11px] font-mono" style={{ color: 'var(--pres-text-muted)' }}>Accuracy Score</div>
-            <div className="font-mono text-lg font-bold text-amber-400">{model.evaluationScorePct}%</div>
+            <div className="font-mono text-lg font-bold text-amber-600 dark:text-amber-400">{model.evaluationScorePct}%</div>
           </div>
         </div>
       </div>

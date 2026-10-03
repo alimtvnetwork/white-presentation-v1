@@ -70,6 +70,7 @@ doc/_build/
 *.pem
 *.key
 .ai-memory/temp/
+.ai-memory/temp-agents/
 .ai-memory/cicd/
 .lovable/
 tmp/

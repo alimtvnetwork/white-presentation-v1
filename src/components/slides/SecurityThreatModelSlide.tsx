@@ -39,7 +39,7 @@ export const SecurityThreatModelSlide: React.FC<{ slide: SecurityThreatModelSlid
 
       <div className="plane-1-raised p-3 rounded-2xl border border-slate-800 bg-slate-900/60 z-10 flex items-center justify-between font-mono text-xs">
         <div className="flex items-center gap-4 text-slate-300">
-          <span className="flex items-center gap-1.5"><Lock size={14} className="text-amber-400" /> SOC2: <strong className="text-emerald-400">{slide.isSoc2Compliant ? 'Compliant' : 'Auditing'}</strong></span>
+          <span className="flex items-center gap-1.5"><Lock size={14} className="text-amber-600 dark:text-amber-400" /> SOC2: <strong className="text-emerald-400">{slide.isSoc2Compliant ? 'Compliant' : 'Auditing'}</strong></span>
           <span className="flex items-center gap-1.5"><Cpu size={14} className="text-cyan-400" /> Enclaves: <strong className="text-cyan-300">{slide.hasHardwareIsolation ? 'Active SGX' : 'Standard'}</strong></span>
         </div>
         <span className="flex items-center gap-1 text-emerald-400 font-bold"><CheckCircle2 size={14} /> Zero Critical Unresolved</span>

@@ -27,7 +27,7 @@ export const VpnHeader: React.FC<VpnHeaderProps> = ({
     <div className="z-10 flex flex-col gap-2">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <span className="px-3.5 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-amber-500/10 text-amber-400 border border-amber-500/30">
+          <span className="px-3.5 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-amber-100 text-amber-900 border border-amber-300 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/30">
             {kicker || 'ZERO-TRUST EDGE'}
           </span>
           <span className="flex items-center gap-1.5 font-mono text-xs text-sky-400 bg-sky-500/10 px-3 py-1 rounded-full border border-sky-500/20">

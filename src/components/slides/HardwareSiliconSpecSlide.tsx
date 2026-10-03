@@ -19,10 +19,10 @@ export const HardwareSiliconSpecSlide: React.FC<{ slide: HardwareSiliconSpecSlid
     >
       <div className="z-10">
         <div className="flex items-center gap-3 mb-2">
-          <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center gap-1.5">
+          <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-amber-100 text-amber-900 border border-amber-300 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/30 flex items-center gap-1.5">
             <Cpu size={12} /> {slide.kicker || 'HARDWARE ARCHITECTURE'}
           </span>
-          <span className="font-mono text-xs text-amber-300 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20">
+          <span className="font-mono text-xs text-amber-800 dark:text-amber-300 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20">
             TSMC N3E Foundry Validated | {slide.processNodeNm ?? 3}nm Node | {slide.transistorCountBillions ?? 48.2}B Transistors
           </span>
         </div>
@@ -72,7 +72,7 @@ export const HardwareSiliconSpecSlide: React.FC<{ slide: HardwareSiliconSpecSlid
       </div>
 
       <div className="plane-1-raised p-3 rounded-2xl flex items-center justify-between z-10 border border-slate-800 font-mono text-xs">
-        <span className="flex items-center gap-2 text-amber-400 font-bold">
+        <span className="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-bold">
           <ShieldCheck size={14} /> TSMC N3E Foundry Validated | Zero Timing Violations | A0 Stepping
         </span>
         <span style={{ color: 'var(--pres-text-muted)' }}>Status: Production Ready</span>

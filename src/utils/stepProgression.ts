@@ -1,9 +1,42 @@
 import type { CSSProperties } from 'react';
 
-export type StepPhase = 'past' | 'active' | 'future';
+export type StepPhase = 'past' | 'completed' | 'active' | 'future';
 
 export const STEP_EASING = 'cubic-bezier(0.22, 1, 0.36, 1)';
 export const STEP_TRANSITION = 'all 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
+
+export const PROGRESS_RAIL_SPRING = {
+  type: 'spring',
+  stiffness: 220,
+  damping: 32,
+  mass: 1.0,
+} as const;
+
+export const STEP_DETAIL_PANE_SPRING = {
+  type: 'spring',
+  stiffness: 420,
+  damping: 17,
+  mass: 0.8,
+} as const;
+
+export const HARMONIC_SPRING = STEP_DETAIL_PANE_SPRING;
+
+export const HALO_SPRING = {
+  type: 'spring',
+  stiffness: 320,
+  damping: 30,
+  mass: 0.9,
+} as const;
+
+export function resolveStepPhase(itemIndex: number, activeStep: number): StepPhase {
+  if (itemIndex < activeStep) {
+    return 'completed';
+  }
+  if (itemIndex === activeStep) {
+    return 'active';
+  }
+  return 'future';
+}
 
 export function getStepPhase(index: number, activeStep: number): StepPhase {
   if (index < activeStep) {
@@ -25,9 +58,41 @@ export function getStepHaloStyle(isCurrent: boolean, accentColor: string): CSSPr
   return {};
 }
 
+export function getStepStyle(phase: StepPhase, accentHalo?: string): CSSProperties {
+  const isPastOrCompleted = phase === 'completed' || phase === 'past';
+  if (isPastOrCompleted) {
+    return {
+      opacity: 0.75,
+      transform: 'translateZ(8px) scale(1.00)',
+      filter: 'none',
+      boxShadow: 'none',
+      transition: STEP_TRANSITION,
+    };
+  }
+  const isActive = phase === 'active';
+  if (isActive) {
+    return {
+      opacity: 1.0,
+      transform: 'translateZ(24px) scale(1.02)',
+      filter: 'none',
+      boxShadow: accentHalo || '0 0 24px -2px hsl(var(--pres-accent-hsl) / 0.50)',
+      zIndex: 20,
+      transition: STEP_TRANSITION,
+    };
+  }
+  return {
+    opacity: 0.4,
+    transform: 'translateZ(8px) scale(0.98)',
+    filter: 'blur(1.25px)',
+    boxShadow: 'none',
+    pointerEvents: 'none',
+    transition: STEP_TRANSITION,
+  };
+}
+
 export function getStepPhaseStyle(phase: StepPhase, accentColor: string = '#3b82f6'): CSSProperties {
-  const isPast = phase === 'past';
-  if (isPast) {
+  const isPastOrCompleted = phase === 'past' || phase === 'completed';
+  if (isPastOrCompleted) {
     return {
       opacity: 0.75,
       transform: 'scale(1)',
@@ -57,6 +122,156 @@ export function getStepPhaseStyle(phase: StepPhase, accentColor: string = '#3b82
     pointerEvents: 'none',
     transition: STEP_TRANSITION,
   };
+}
+
+export interface RailPoint {
+  x: number;
+  y: number;
+}
+
+export interface DynamicRailCoordinates {
+  activeX: number;
+  progressPercent: number;
+  totalSteps: number;
+  stepWidth: number;
+}
+
+export function calculateProgressRailPercent(activeStep: number, totalSteps: number): number {
+  const hasMultipleSteps = totalSteps > 1;
+  if (hasMultipleSteps) {
+    const clampedStep = Math.max(0, Math.min(activeStep, totalSteps - 1));
+    return (clampedStep / (totalSteps - 1)) * 100;
+  }
+  return 100;
+}
+
+export function calculateDynamicRailCoordinates(
+  activeStep: number,
+  totalSteps: number,
+  railWidth: number = 1760,
+  startX: number = 80
+): DynamicRailCoordinates {
+  const hasMultipleSteps = totalSteps > 1;
+  const safeTotal = Math.max(1, totalSteps);
+  const clampedStep = Math.max(0, Math.min(activeStep, safeTotal - 1));
+  const stepWidth = hasMultipleSteps ? railWidth / (safeTotal - 1) : railWidth;
+  const activeX = hasMultipleSteps ? startX + clampedStep * stepWidth : startX;
+  const progressPercent = calculateProgressRailPercent(clampedStep, safeTotal);
+
+  return {
+    activeX,
+    progressPercent,
+    totalSteps: safeTotal,
+    stepWidth,
+  };
+}
+
+export function calculateRailNodePositions(
+  totalSteps: number,
+  startX: number = 80,
+  y: number = 300,
+  totalWidth: number = 1760
+): RailPoint[] {
+  const safeCount = Math.max(1, totalSteps);
+  const hasSingleStep = safeCount === 1;
+  if (hasSingleStep) {
+    return [{ x: startX + totalWidth / 2, y }];
+  }
+  const stepInterval = totalWidth / (safeCount - 1);
+  return Array.from({ length: safeCount }, (_, i) => ({
+    x: startX + i * stepInterval,
+    y,
+  }));
+}
+
+export function generateSvgQuadraticBezierPath(
+  start: RailPoint,
+  end: RailPoint,
+  curveOffset: number = 0
+): string {
+  const controlX = (start.x + end.x) / 2;
+  const controlY = (start.y + end.y) / 2 + curveOffset;
+  return `M ${start.x} ${start.y} Q ${controlX} ${controlY} ${end.x} ${end.y}`;
+}
+
+export function generateSvgBezierRailConnector(
+  fromX: number,
+  fromY: number,
+  toX: number,
+  toY: number,
+  curveOffset: number = 0
+): string {
+  const controlX = (fromX + toX) / 2;
+  const controlY = (fromY + toY) / 2 + curveOffset;
+  return `M ${fromX} ${fromY} Q ${controlX} ${controlY} ${toX} ${toY}`;
+}
+
+export function isGlobalPptSlideType(type?: string): boolean {
+  const globalTypes = [
+    'executive-governance-matrix',
+    'okr-cascade-alignment',
+    'cloud-cost-finops-optimizer',
+    'customer-sentiment-radar',
+    'competitive-battlecard',
+    'launch-readiness-checklist',
+    'developer-gateway-sandbox',
+    'rag-pipeline-topology',
+    'soc-incident-war-room',
+    'merkle-tree-state-ledger',
+    'investor-cap-table-waterfall',
+    'realtime-event-stream-fabric',
+    'supply-chain-risk-matrix',
+    'talent-competency-radar',
+    'sustainability-esg-scorecard',
+  ];
+  return Boolean(type && globalTypes.includes(type));
+}
+
+export function calculateGlobalPptSlideStepCount(slide: any): number {
+  const hasSlide = Boolean(slide && typeof slide === 'object');
+  if (hasSlide) {
+    switch (slide.type) {
+      case 'executive-governance-matrix':
+        return Math.max(slide.governancePillars?.length || 4, 1);
+      case 'okr-cascade-alignment':
+        return Math.max(slide.cascadeTiers?.length || 4, 1);
+      case 'competitive-battlecard':
+        return Math.max(slide.battlecardPillars?.length || 3, 1);
+      case 'launch-readiness-checklist':
+        return Math.max(slide.stageGates?.length || 4, 1);
+      case 'developer-gateway-sandbox':
+        return Math.max(slide.gatewayStages?.length || 3, 1);
+      case 'rag-pipeline-topology':
+        return Math.max(slide.pipelineStages?.length || 5, 1);
+      case 'soc-incident-war-room':
+        return Math.max(slide.incidentPhases?.length || 4, 1);
+      case 'merkle-tree-state-ledger':
+        return Math.max(slide.verificationSteps?.length || 4, 1);
+      case 'talent-competency-radar':
+        return Math.max(slide.levelMilestones?.length || 3, 1);
+      case 'cloud-cost-finops-optimizer':
+      case 'customer-sentiment-radar':
+      case 'investor-cap-table-waterfall':
+      case 'realtime-event-stream-fabric':
+      case 'supply-chain-risk-matrix':
+      case 'sustainability-esg-scorecard':
+        return 1;
+      default:
+        return 1;
+    }
+  }
+  return 1;
+}
+
+export function getSlideMaxSteps(slide: any): number {
+  const hasSlide = Boolean(slide && typeof slide === 'object');
+  if (hasSlide) {
+    const isGlobal = isGlobalPptSlideType(slide.type);
+    if (isGlobal) {
+      return calculateGlobalPptSlideStepCount(slide);
+    }
+  }
+  return 1;
 }
 
 export type MotionVariant = 'lift' | 'slide' | 'parallax';

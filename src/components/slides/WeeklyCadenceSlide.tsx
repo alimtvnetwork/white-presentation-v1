@@ -15,7 +15,7 @@ export const WeeklyCadenceSlide: React.FC<{ slide: WeeklyCadenceSlideData }> = (
     >
       <div className="z-10">
         <div className="flex items-center gap-3 mb-2">
-          <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-amber-500/10 text-amber-400 border border-amber-500/30">
+          <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-amber-100 text-amber-900 border border-amber-300 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/30">
             {slide.kicker || 'REMOTE CULTURE'}
           </span>
           <span style={{ color: 'var(--pres-text-muted)' }} className="font-mono text-xs flex items-center gap-1">
@@ -40,9 +40,9 @@ export const WeeklyCadenceSlide: React.FC<{ slide: WeeklyCadenceSlideData }> = (
           <span className="text-cyan-300 font-semibold">{slide.primaryTimezonesText}</span>
         </div>
         <div className="flex items-center gap-2 text-slate-300">
-          <Clock size={16} className="text-amber-400" />
+          <Clock size={16} className="text-amber-600 dark:text-amber-400" />
           <span className="text-slate-400">Golden Overlap:</span>
-          <span className="text-amber-300 font-semibold">{slide.goldenOverlapWindowText}</span>
+          <span className="text-amber-800 dark:text-amber-300 font-semibold">{slide.goldenOverlapWindowText}</span>
         </div>
       </div>
 
@@ -59,7 +59,7 @@ export const WeeklyCadenceSlide: React.FC<{ slide: WeeklyCadenceSlideData }> = (
       </div>
 
       <div className="plane-1-raised p-3.5 rounded-2xl flex items-center justify-between z-10 border border-slate-800 font-mono text-xs">
-        <span className="flex items-center gap-2 text-amber-400 font-bold">
+        <span className="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-bold">
           <Compass size={14} /> Cadence Governance Motto
         </span>
         <span style={{ color: 'var(--pres-text-muted)' }} className="font-poppins italic">

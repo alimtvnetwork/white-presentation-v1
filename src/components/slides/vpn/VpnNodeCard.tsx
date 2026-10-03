@@ -57,7 +57,7 @@ export const VpnNodeCard: React.FC<VpnNodeCardProps> = ({
             </span>
           )}
           {isAuditVerified && (
-            <span className="flex items-center gap-1 text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">
+            <span className="flex items-center gap-1 text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/20">
               <CheckCircle2 size={11} /> Audit Verified
             </span>
           )}

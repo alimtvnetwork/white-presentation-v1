@@ -44,7 +44,7 @@ export const ServiceBubble: React.FC<ServiceBubbleProps> = ({
             {service.category}
           </span>
           {isCritical && (
-            <span className="flex items-center gap-1 text-[9px] font-mono text-amber-300 bg-amber-500/10 px-1.5 py-0.5 rounded border border-amber-500/20">
+            <span className="flex items-center gap-1 text-[9px] font-mono text-amber-800 dark:text-amber-300 bg-amber-500/10 px-1.5 py-0.5 rounded border border-amber-500/20">
               <ShieldAlert size={10} /> Critical
             </span>
           )}

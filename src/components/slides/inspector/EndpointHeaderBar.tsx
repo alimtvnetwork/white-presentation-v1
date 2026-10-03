@@ -47,7 +47,7 @@ export const EndpointHeaderBar: React.FC<EndpointHeaderBarProps> = ({
 
       <div className="flex items-center gap-4">
         <span className="flex items-center gap-1 text-[11px] text-slate-400">
-          <Lock size={12} className="text-amber-400" /> {authStrategy}
+          <Lock size={12} className="text-amber-600 dark:text-amber-400" /> {authStrategy}
         </span>
         <span className="flex items-center gap-1 text-[11px] text-slate-400">
           <Zap size={12} className="text-cyan-400" /> {rateLimitPerMinute.toLocaleString()} req/m

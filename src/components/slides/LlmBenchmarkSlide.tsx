@@ -59,10 +59,10 @@ export const LlmBenchmarkSlide: React.FC<{ slide: LlmBenchmarkSlideData }> = ({ 
           </div>
         </div>
         <div className="p-4 rounded-2xl bg-black/20 border border-white/5 flex items-center gap-3 font-mono">
-          <ShieldCheck className="text-amber-400 shrink-0" size={24} />
+          <ShieldCheck className="text-amber-600 dark:text-amber-400 shrink-0" size={24} />
           <div>
             <div className="text-[11px]" style={{ color: 'var(--pres-text-muted)' }}>Privacy Protocol</div>
-            <div className="text-sm font-bold text-amber-300">Zero-Data-Exfiltration</div>
+            <div className="text-sm font-bold text-amber-800 dark:text-amber-300">Zero-Data-Exfiltration</div>
           </div>
         </div>
       </div>

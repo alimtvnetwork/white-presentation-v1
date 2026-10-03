@@ -10,7 +10,7 @@ const ICONS: Record<string, React.FC<{ size?: number }>> = {
 
 const QUADRANT_STYLES: Record<string, { border: string; bg: string; text: string; label: string }> = {
   strengths: { border: 'border-emerald-500/40', bg: 'bg-emerald-500/5', text: 'text-emerald-400', label: 'STRENGTHS (INTERNAL)' },
-  weaknesses: { border: 'border-amber-500/40', bg: 'bg-amber-500/5', text: 'text-amber-400', label: 'WEAKNESSES (INTERNAL)' },
+  weaknesses: { border: 'border-amber-500/40', bg: 'bg-amber-500/5', text: 'text-amber-700 dark:text-amber-400', label: 'WEAKNESSES (INTERNAL)' },
   opportunities: { border: 'border-indigo-500/40', bg: 'bg-indigo-500/5', text: 'text-indigo-400', label: 'OPPORTUNITIES (EXTERNAL)' },
   threats: { border: 'border-rose-500/40', bg: 'bg-rose-500/5', text: 'text-rose-400', label: 'THREATS (EXTERNAL)' },
 };

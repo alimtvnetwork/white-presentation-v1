@@ -51,13 +51,13 @@ export const EdgeRegionPill: React.FC<EdgeRegionPillProps> = ({ region }) => {
             className={`text-[9px] font-bold px-2 py-0.5 rounded-full border uppercase ${
               isHealthy
                 ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
-                : 'bg-amber-500/15 text-amber-300 border-amber-500/30'
+                : 'bg-amber-100 text-amber-900 border-amber-300 dark:bg-amber-500/15 dark:text-amber-300 dark:border-amber-500/30'
             }`}
           >
             {isHealthy ? 'Operational' : 'Degraded'}
           </span>
           <span className="text-[10px] text-slate-400 mt-0.5 flex items-center gap-1">
-            <Zap size={10} className="text-amber-400" /> {region.throughputGbps} Gbps
+            <Zap size={10} className="text-amber-600 dark:text-amber-400" /> {region.throughputGbps} Gbps
           </span>
         </div>
       </div>

@@ -286,9 +286,28 @@ Conditional evaluations must evaluate positive state directly without explicit e
 
 ---
 
-## 7. Cross-Reference Index
+## 7. Zero Yellow-on-Light Contrast Rule & Northern UI/UX Typography Standard
 
+### 7.1 The Zero Yellow-on-Light Rule (Non-Negotiable)
+Under NO circumstances should yellow, amber, or gold light text/badges ever be placed on light, white, or off-white background canvases or cards.
+- **Prohibited on Light Surfaces:** `text-amber-200`, `text-amber-300`, `text-amber-400`, `text-yellow-200`, `text-yellow-300`, `text-yellow-400`, `bg-amber-400/20 text-amber-300`.
+- **Contrast Failure:** Light yellow text on white achieves only $\approx 1.4:1$ contrast ratio, violating WCAG AA/AAA.
+- **Permitted Usage:**
+  - On **Light Surfaces (`isDark === false`)**: Use high-contrast tokens such as `text-violet-700` / `text-violet-800` with `bg-violet-100`, or deep ink slate (`text-slate-900`).
+  - On **Dark Surfaces (`isDark === true`)**: Warm gold and brand amber (`text-amber-400`, `#F5A623`) are allowed since they contrast against dark slate (`#0B0B0E`) with $C_R \ge 9.5:1$.
+
+### 7.2 Northern UI/UX Typography Scale & Single-Item Focus
+To maximize executive focus and eliminate cognitive clutter during fast presentations:
+- **Kickers / Badges:** Must be at least $14\text{px}$ (`text-sm font-bold uppercase tracking-[0.2em]`). Never use tiny, illegible $10\text{px}–11\text{px}$ micro-text.
+- **Slide Headings:** $44\text{px}–56\text{px}$ with strong visual weight.
+- **Reduced Item Density:** Rather than dumping 4–6 complex competing cards on a slide, present a focused active card with large typography and smooth CSS3 transitions on hover/click.
+
+---
+
+## 8. Cross-Reference Index
+
+- Interaction & HUD Refinement Spec: [../../21-app/30-white-slides-interaction-and-hud-refinement/01-overview.md](../../21-app/30-white-slides-interaction-and-hud-refinement/01-overview.md)
+- Root Cause Analysis: [../../../.ai-memory/rca/01-white-slides-contrast-and-hud-rca.md](../../../.ai-memory/rca/01-white-slides-contrast-and-hud-rca.md)
 - Color & Motion Spec: [../../21-app/25-grounded-global-ppt-and-flat-slide-synthesis/03-color-and-motion-design-system.md](../../21-app/25-grounded-global-ppt-and-flat-slide-synthesis/03-color-and-motion-design-system.md)
 - Quality Verification Gates: [../../21-app/25-grounded-global-ppt-and-flat-slide-synthesis/04-verification-gates.md](../../21-app/25-grounded-global-ppt-and-flat-slide-synthesis/04-verification-gates.md)
-- Subtask Plan: [../../../.ai-memory/plans/subtasks/25-grounded-global-ppt-and-flat/02-slide-components.md](../../../.ai-memory/plans/subtasks/25-grounded-global-ppt-and-flat/02-slide-components.md)
 - Design System Readme: [./readme.md](./readme.md)

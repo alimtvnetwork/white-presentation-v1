@@ -49,7 +49,7 @@ export const SpeakerBubble: React.FC<SpeakerBubbleProps> = ({
                 {turn.speakerName}
               </span>
               {hasHighlight && (
-                <span className="px-2 py-0.2 rounded text-[10px] font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                <span className="px-2 py-0.2 rounded text-[10px] font-mono font-bold bg-amber-100 text-amber-900 border border-amber-300 dark:bg-amber-500/20 dark:text-amber-300 dark:border-amber-500/30">
                   KEY TAKEAWAY
                 </span>
               )}

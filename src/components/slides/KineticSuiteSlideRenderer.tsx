@@ -15,7 +15,7 @@ import { AudioWaveformStudioSlide } from './AudioWaveformStudioSlide';
 import { HardwareSiliconSpecSlide } from './HardwareSiliconSpecSlide';
 import { CohortRetentionHeatmapSlide } from './CohortRetentionHeatmapSlide';
 import { VerifiableAuditLedgerSlide } from './VerifiableAuditLedgerSlide';
-import { WhiteMasterSlide } from './WhiteMasterSlide';
+import { GlobalPptSuiteSlideRenderer } from './GlobalPptSuiteSlideRenderer';
 
 export const KineticSuiteSlideRenderer: React.FC<{ slide: SlideData }> = ({ slide }) => {
   switch (slide.type) {
@@ -34,6 +34,6 @@ export const KineticSuiteSlideRenderer: React.FC<{ slide: SlideData }> = ({ slid
     case 'hardware-silicon-spec': return <HardwareSiliconSpecSlide slide={slide as any} />;
     case 'cohort-retention-heatmap': return <CohortRetentionHeatmapSlide slide={slide as any} />;
     case 'verifiable-audit-ledger': return <VerifiableAuditLedgerSlide slide={slide as any} />;
-    default: return <WhiteMasterSlide slide={slide as any} />;
+    default: return <GlobalPptSuiteSlideRenderer slide={slide} />;
   }
 };

@@ -60,7 +60,7 @@ export const DualColumnProsConsSlide: React.FC<{ slide: DualColumnProsConsSlideD
         </div>
 
         <div className="flex flex-col gap-4">
-          <span className="font-mono text-sm font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+          <span className="font-mono text-sm font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider flex items-center gap-2">
             <AlertTriangle size={16} /> {slide.consHeader || 'Constraints & Mitigations'}
           </span>
           {cons.map((con, idx) => {

@@ -57,9 +57,9 @@ export const RetentionMetricBanner: React.FC<RetentionMetricBannerProps> = ({
         <div className="grid grid-cols-2 gap-3">
           <div className="p-3 rounded-xl bg-slate-950/80 border border-slate-800 flex flex-col gap-0.5">
             <span className="text-slate-400 text-[10px] flex items-center gap-1">
-              <DollarSign size={11} className="text-amber-400" /> LTV / CAC
+              <DollarSign size={11} className="text-amber-600 dark:text-amber-400" /> LTV / CAC
             </span>
-            <span className="text-base font-bold text-amber-300">
+            <span className="text-base font-bold text-amber-800 dark:text-amber-300">
               {ltvToCacRatio}x
             </span>
           </div>

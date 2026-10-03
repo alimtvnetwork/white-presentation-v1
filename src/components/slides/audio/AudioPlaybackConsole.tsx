@@ -18,7 +18,7 @@ export const AudioPlaybackConsole: React.FC<AudioPlaybackConsoleProps> = ({
     <div className="grid grid-cols-12 gap-5 font-mono text-xs">
       <div className="col-span-8 p-4 rounded-2xl bg-slate-900/60 border border-slate-800 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400">
+          <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-600 dark:text-amber-400">
             <Play size={18} className={hasLivePlayback ? 'animate-pulse' : ''} />
           </div>
           <div className="flex flex-col gap-0.5">
@@ -34,9 +34,9 @@ export const AudioPlaybackConsole: React.FC<AudioPlaybackConsoleProps> = ({
         <div className="flex items-center gap-4">
           <div className="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 flex flex-col items-center">
             <span className="text-[10px] text-slate-400 flex items-center gap-1">
-              <Zap size={11} className="text-amber-400" /> Latency
+              <Zap size={11} className="text-amber-600 dark:text-amber-400" /> Latency
             </span>
-            <span className="text-sm font-bold text-amber-300">
+            <span className="text-sm font-bold text-amber-800 dark:text-amber-300">
               {synthesisLatencyMs}ms
             </span>
           </div>

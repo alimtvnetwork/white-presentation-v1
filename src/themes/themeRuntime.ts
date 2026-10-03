@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="WCAG contrast runtime & theme token injector" max=320
+// lint-allow: file-size reason="WCAG contrast runtime & theme token injector" max=380
 import { THEME_PALETTES } from './gradientTokens';
 import { ThemePalette } from '../types/presentation';
 import { isBooleanTrue, isFalse } from '../utils/booleanGuards';
@@ -16,6 +16,8 @@ export interface ContrastAuditResult {
   isAccessible: boolean;
   textLuma: number;
   canvasLuma: number;
+  accentTextRatio?: number;
+  isAccentTextAccessible?: boolean;
 }
 
 let broadcastChannel: BroadcastChannel | null = null;
@@ -62,9 +64,9 @@ export function getStoredTheme(): string {
     return urlTheme!;
   }
   try {
-    return localStorage.getItem(THEME_STORAGE_KEY) || 'bright-gold';
+    return localStorage.getItem(THEME_STORAGE_KEY) || 'white-brand';
   } catch {
-    return 'bright-gold';
+    return 'white-brand';
   }
 }
 
@@ -135,28 +137,85 @@ export function logContrastAudit(themeId: string, ratio: number, isAccessible: b
   console.warn(`[ThemeContrast] ${themeId} fails WCAG AA: ${ratio.toFixed(2)}:1 < 4.5:1`);
 }
 
+export function resolveAccentTextColor(theme: ThemePalette, isDark: boolean): string {
+  if (isDark) {
+    return theme.accentColor;
+  }
+  if (theme.id === 'white-brand' || theme.id === 'github-light') {
+    return '#6D28D9';
+  }
+  const stop7 = theme.stops?.[7]?.hex;
+  const stop8 = theme.stops?.[8]?.hex;
+  const candidate = stop7 || stop8 || '#6D28D9';
+  const canvasLuma = hexToLuminance(theme.canvasBg || '#FFFFFF');
+  const candidateLuma = hexToLuminance(candidate);
+  const ratio = contrastRatio(candidateLuma, canvasLuma);
+  if (ratio >= 5.5) {
+    return candidate;
+  }
+  if (stop8) {
+    const stop8Ratio = contrastRatio(hexToLuminance(stop8), canvasLuma);
+    if (stop8Ratio >= 5.5) {
+      return stop8;
+    }
+  }
+  return '#6D28D9';
+}
+
 export function auditThemeContrast(theme: ThemePalette): ContrastAuditResult {
   const textLuma = hexToLuminance(theme.textColor);
   const canvasLuma = hexToLuminance(theme.canvasBg);
   const ratio = contrastRatio(textLuma, canvasLuma);
   const isAccessible = ratio >= 4.5;
   logContrastAudit(theme.id, ratio, isAccessible);
-  return { themeId: theme.id, ratio, isAccessible, textLuma, canvasLuma };
+
+  const isDark = Boolean(theme.isDark);
+  const accentTextColor = resolveAccentTextColor(theme, isDark);
+  const accentLuma = hexToLuminance(accentTextColor);
+  const accentTextRatio = contrastRatio(accentLuma, canvasLuma);
+  const isAccentTextAccessible = accentTextRatio >= 4.5;
+
+  if (isAccentTextAccessible) {
+    console.info(`[ThemeContrast] ${theme.id} accent-text passes WCAG AA (${accentTextRatio.toFixed(2)}:1)`);
+  } else {
+    console.warn(`[ThemeContrast] ${theme.id} accent-text fails WCAG AA: ${accentTextRatio.toFixed(2)}:1 < 4.5:1`);
+  }
+
+  return {
+    themeId: theme.id,
+    ratio,
+    isAccessible,
+    textLuma,
+    canvasLuma,
+    accentTextRatio,
+    isAccentTextAccessible,
+  };
 }
 
 function buildColorVars(theme: ThemePalette, isDark: boolean): Record<string, string> {
+  const accentGlow = theme.accentHsl
+    ? `hsl(${theme.accentHsl} / 0.50)`
+    : `${theme.accentColor}40`;
+  const accentTextColor = resolveAccentTextColor(theme, isDark);
+
   return {
     '--pres-bg': theme.canvasBg,
+    '--pres-canvas-bg': theme.canvasBg,
     '--pres-bg-surface': isDark ? 'rgba(15, 23, 42, 0.95)' : 'rgba(255, 255, 255, 0.95)',
     '--pres-bg-card': theme.cardBg,
+    '--pres-card-bg': theme.cardBg,
     '--pres-bg-card-hover': isDark ? 'rgba(51, 65, 85, 0.95)' : 'rgba(255, 255, 255, 0.98)',
     '--pres-accent': theme.accentColor,
-    '--pres-accent-glow': `${theme.accentColor}40`,
+    '--pres-accent-text': accentTextColor,
+    '--pres-accent-glow': accentGlow,
     '--pres-accent-hover': theme.accentColor,
     '--pres-text': theme.textColor,
+    '--pres-text-primary': theme.textColor,
     '--pres-text-muted': theme.subtextColor,
+    '--pres-text-secondary': theme.subtextColor,
     '--pres-text-subtle': isDark ? '#64748B' : '#94A3B8',
     '--pres-border': theme.cardBorder,
+    '--pres-card-border': theme.cardBorder,
     '--pres-border-hover': theme.accentColor,
   };
 }
@@ -172,9 +231,21 @@ function buildTypographyVars(shadow: string): Record<string, string> {
 
 function buildHslThemeVars(theme: ThemePalette): Record<string, string> {
   const vars: Record<string, string> = {};
-  if (theme.accentHsl) vars['--pres-accent-hsl'] = theme.accentHsl;
-  if (theme.bgHsl) vars['--pres-bg-hsl'] = theme.bgHsl;
-  if (theme.textHsl) vars['--pres-text-hsl'] = theme.textHsl;
+  if (theme.accentHsl) {
+    vars['--pres-accent-hsl'] = theme.accentHsl;
+  }
+  if (theme.bgHsl) {
+    vars['--pres-bg-hsl'] = theme.bgHsl;
+  }
+  if (theme.canvasBgHsl) {
+    vars['--pres-canvas-bg-hsl'] = theme.canvasBgHsl;
+  } else if (theme.bgHsl) {
+    vars['--pres-canvas-bg-hsl'] = theme.bgHsl;
+  }
+  if (theme.textHsl) {
+    vars['--pres-text-hsl'] = theme.textHsl;
+    vars['--pres-text-primary-hsl'] = theme.textHsl;
+  }
   if (theme.cardBgHsl) {
     vars['--pres-card-bg-hsl'] = theme.cardBgHsl;
     vars['--pres-bg-card-hsl'] = theme.cardBgHsl;
@@ -182,8 +253,12 @@ function buildHslThemeVars(theme: ThemePalette): Record<string, string> {
   if (theme.subtextHsl) {
     vars['--pres-subtext-hsl'] = theme.subtextHsl;
     vars['--pres-text-muted-hsl'] = theme.subtextHsl;
+    vars['--pres-text-secondary-hsl'] = theme.subtextHsl;
   }
-  if (theme.cardBorderHsl) vars['--pres-border-hsl'] = theme.cardBorderHsl;
+  if (theme.cardBorderHsl) {
+    vars['--pres-border-hsl'] = theme.cardBorderHsl;
+    vars['--pres-card-border-hsl'] = theme.cardBorderHsl;
+  }
 
   // Unadorned Global HSL Triplet Tokens
   vars['--gold'] = '41 100% 50%';
@@ -193,14 +268,17 @@ function buildHslThemeVars(theme: ThemePalette): Record<string, string> {
   vars['--ink'] = '240 20% 4%';
 
   // Fixed Dark Chrome HUD Tokens
-  vars['--chrome-bg'] = '0 0% 7%';
-  vars['--chrome-fg'] = '0 0% 98%';
-  vars['--chrome-fg-muted'] = '0 0% 98% / 0.78';
-  vars['--chrome-fg-subtle'] = '0 0% 98% / 0.62';
+  vars['--chrome-bg'] = 'rgba(15, 23, 42, 0.94)';
+  vars['--chrome-border'] = 'rgba(255, 255, 255, 0.12)';
+  vars['--chrome-text'] = '#F8FAFC';
+  vars['--chrome-subtext'] = '#94A3B8';
+  vars['--chrome-accent'] = '#6366F1';
+  vars['--chrome-fg'] = '#F8FAFC';
+  vars['--chrome-fg-muted'] = '#94A3B8';
+  vars['--chrome-fg-subtle'] = '#64748B';
   vars['--chrome-border-strength'] = '0.22';
   vars['--chrome-divider-strength'] = '0.12';
-  vars['--chrome-border'] = '0 0% 100% / var(--chrome-divider-strength)';
-  vars['--chrome-hover'] = '0 0% 100% / 0.08';
+  vars['--chrome-hover'] = 'rgba(255, 255, 255, 0.08)';
 
   // Micro-Shadow Weight Variables
   vars['--text-shadow-weight-light'] = '0 1px 0 hsl(0 0% 100% / 0.5)';
@@ -215,27 +293,63 @@ function buildStopVars(stops: ThemePalette['stops']): Record<string, string> {
   const vars: Record<string, string> = {};
   const hasStops = Array.isArray(stops);
   if (hasStops) {
-    stops.forEach((stop) => {
+    stops.forEach((stop, index) => {
       vars[`--pres-stop-${stop.step}`] = stop.hex;
       vars[`--pres-s${stop.step}`] = stop.hex;
       vars[`--pres-stop-${stop.step}-hsl`] = stop.hsl;
       vars[`--pres-stop-${stop.step}-rgb`] = stop.rgb;
+      vars[`--pres-gradient-stop-${index}`] = stop.hex;
+      vars[`--pres-gradient-stop-${index}-hsl`] = stop.hsl;
+      vars[`--pres-gradient-stop-${index}-rgb`] = stop.rgb;
     });
   }
   return vars;
 }
 
-function applyVarsToRoot(vars: Record<string, string>): void {
+export function applyThemeRuntimeVariables(theme: ThemePalette, rootEl: HTMLElement): void {
+  const isDark = Boolean(theme.isDark);
+  const vars = {
+    ...buildColorVars(theme, isDark),
+    ...buildHslThemeVars(theme),
+    ...buildStopVars(theme.stops),
+  };
+  Object.entries(vars).forEach(([key, val]) => {
+    rootEl.style.setProperty(key, val);
+  });
+  if (isDark) {
+    rootEl.classList.add('theme-dark');
+    rootEl.classList.remove('theme-light');
+  } else {
+    rootEl.classList.add('theme-light');
+    rootEl.classList.remove('theme-dark');
+  }
+}
+
+function applyVarsToRoot(vars: Record<string, string>, isDark: boolean): void {
   const root = document.documentElement;
   Object.entries(vars).forEach(([key, val]) => {
     root.style.setProperty(key, val);
   });
+  if (isDark) {
+    root.classList.add('theme-dark');
+    root.classList.remove('theme-light');
+  } else {
+    root.classList.add('theme-light');
+    root.classList.remove('theme-dark');
+  }
   const presRoot = document.getElementById('presentation-root');
   const hasPresRoot = Boolean(presRoot);
   if (hasPresRoot) {
     Object.entries(vars).forEach(([key, val]) => {
       presRoot!.style.setProperty(key, val);
     });
+    if (isDark) {
+      presRoot!.classList.add('theme-dark');
+      presRoot!.classList.remove('theme-light');
+    } else {
+      presRoot!.classList.add('theme-light');
+      presRoot!.classList.remove('theme-dark');
+    }
   }
 }
 
@@ -262,7 +376,7 @@ export function applyTheme(id: string, isFromBroadcast = false): ThemePalette {
     ...buildHslThemeVars(theme),
     ...buildStopVars(theme.stops),
   };
-  applyVarsToRoot(vars);
+  applyVarsToRoot(vars, isDark);
   saveThemeToStorage(theme.id);
   auditThemeContrast(theme);
   broadcastThemeChange(theme.id, isFromBroadcast);

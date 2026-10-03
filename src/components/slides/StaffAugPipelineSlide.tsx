@@ -19,7 +19,7 @@ export const StaffAugPipelineSlide: React.FC<{ slide: StaffAugPipelineSlideData 
     >
       <div className="z-10">
         <div className="flex items-center gap-3 mb-2">
-          <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center gap-1.5">
+          <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-amber-100 text-amber-900 border border-amber-300 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/30 flex items-center gap-1.5">
             <Filter size={12} /> {slide.kicker || 'TALENT ARCHITECTURE'}
           </span>
           <span style={{ color: 'var(--pres-text-muted)' }} className="font-mono text-xs">• Selectivity: {slide.yieldRatioText || '1,000 : 3 (0.3%)'}</span>
@@ -46,7 +46,7 @@ export const StaffAugPipelineSlide: React.FC<{ slide: StaffAugPipelineSlideData 
           <div>
             <div className="flex items-center justify-between mb-4">
               <span className="text-xs font-mono font-bold text-violet-400 uppercase tracking-wider">Stage Inspector</span>
-              <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+              <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-100 text-amber-900 border border-amber-300 dark:bg-amber-500/20 dark:text-amber-300 dark:border-amber-500/30">
                 Gate 0{activeStage?.stageNumber || 1}
               </span>
             </div>

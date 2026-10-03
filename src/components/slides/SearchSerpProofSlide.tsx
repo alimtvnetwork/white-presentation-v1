@@ -16,7 +16,7 @@ export const SearchSerpProofSlide: React.FC<{ slide: SearchSerpProofSlideData }>
     >
       <div className="z-10">
         <div className="flex items-center gap-3 mb-2">
-          <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-amber-500/10 text-amber-400 border border-amber-500/30">
+          <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-amber-100 text-amber-900 border border-amber-300 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/30">
             {slide.kicker || 'VERIFIABLE ORGANIC PROOF'}
           </span>
           <span style={{ color: 'var(--pres-text-muted)' }} className="font-mono text-xs">• Google SERP Dominance</span>
@@ -43,7 +43,7 @@ export const SearchSerpProofSlide: React.FC<{ slide: SearchSerpProofSlideData }>
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center gap-1.5">
+                  <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-amber-100 text-amber-900 border border-amber-300 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/30 flex items-center gap-1.5">
                     <Trophy size={13} /> {queryItem.rank}
                   </span>
                   <span style={{ color: 'var(--pres-text-muted)' }} className="font-mono text-xs font-semibold">
@@ -52,7 +52,7 @@ export const SearchSerpProofSlide: React.FC<{ slide: SearchSerpProofSlideData }>
                 </div>
 
                 <div className="flex items-center gap-2 p-3 rounded-xl bg-slate-900/60 border border-slate-700/40 mb-5">
-                  <Search size={15} className="text-amber-400 shrink-0" />
+                  <Search size={15} className="text-amber-600 dark:text-amber-400 shrink-0" />
                   <span className="font-ubuntu text-sm font-bold text-white truncate">{queryItem.query}</span>
                 </div>
 
@@ -76,7 +76,7 @@ export const SearchSerpProofSlide: React.FC<{ slide: SearchSerpProofSlideData }>
       </div>
 
       <div className="flex items-center justify-between z-10 pt-4 border-t border-slate-700/30 font-mono text-xs" style={{ color: 'var(--pres-text-muted)' }}>
-        <span className="flex items-center gap-2 text-amber-400 font-bold">
+        <span className="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-bold">
           <TrendingUp size={14} /> {slide.aggregateGrowth || '+420% Organic Search Authority & High-Intent Pipeline'}
         </span>
         <span className="opacity-70">Deterministic Organic Proof Architecture</span>

@@ -64,7 +64,7 @@ export const FinancialBurnRunwaySlide: React.FC<{ slide: FinancialBurnRunwaySlid
 
         <div className="col-span-4 plane-1-raised p-5 rounded-2xl border border-slate-800 bg-slate-900/40 flex flex-col gap-4 font-mono text-xs">
           <div className="flex items-center justify-between border-b border-slate-800 pb-2">
-            <span className="flex items-center gap-2 font-bold text-slate-300"><PieChart size={14} className="text-amber-400" /> Expense Allocation</span>
+            <span className="flex items-center gap-2 font-bold text-slate-300"><PieChart size={14} className="text-amber-600 dark:text-amber-400" /> Expense Allocation</span>
             <span className="text-slate-400">{expenses.length} Categories</span>
           </div>
           <div className="space-y-3 overflow-y-auto flex-1 pr-1">

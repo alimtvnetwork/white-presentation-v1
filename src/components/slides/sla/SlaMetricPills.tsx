@@ -45,11 +45,11 @@ export const SlaMetricPills: React.FC<SlaMetricPillsProps> = ({
       <div className="plane-1-raised p-4 rounded-2xl border border-slate-800 bg-slate-900/60 flex items-center justify-between font-mono">
         <div>
           <span className="text-[10px] text-slate-400 uppercase tracking-widest block">Mean Time to Recover</span>
-          <span className="font-ubuntu text-2xl font-black text-amber-300 tracking-tight">
+          <span className="font-ubuntu text-2xl font-black text-amber-800 dark:text-amber-300 tracking-tight">
             {meanTimeToRecoverMinutes}m
           </span>
         </div>
-        <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 flex items-center justify-center">
+        <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-800 dark:text-amber-300 flex items-center justify-center">
           <Zap size={18} />
         </div>
       </div>

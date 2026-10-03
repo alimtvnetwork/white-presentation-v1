@@ -29,7 +29,20 @@ const toggleFullscreen = (): void => {
 };
 
 export const useDeckShortcuts = (params: DeckShortcutsParams): void => {
-  const { deck, stepAdvance, stepRewind, goToSlide, activeThemeId, setTheme, toggleSound } = useDeckStore();
+  const {
+    deck,
+    activeStep,
+    stepAdvance,
+    stepRewind,
+    jumpToStep,
+    nextSlide,
+    prevSlide,
+    goToSlide,
+    getActiveSlideMaxSteps,
+    activeThemeId,
+    setTheme,
+    toggleSound,
+  } = useDeckStore();
   const { toggleEditMode } = useEditStore();
 
   const cycleTheme = () => {
@@ -42,12 +55,39 @@ export const useDeckShortcuts = (params: DeckShortcutsParams): void => {
       if (e.ctrlKey || e.metaKey || e.altKey || isFormField(e.target)) return;
 
       const k = e.key.toLowerCase();
+      const hasShift = Boolean(e.shiftKey);
+
+      if (hasShift && (k === 'arrowright' || k === ' ')) {
+        e.preventDefault();
+        nextSlide();
+        return;
+      }
+
+      if (hasShift && k === 'arrowleft') {
+        e.preventDefault();
+        prevSlide();
+        return;
+      }
+
       if (['arrowright', ' ', 'enter', 'pagedown'].includes(k)) {
         e.preventDefault();
-        stepAdvance();
+        const maxSteps = getActiveSlideMaxSteps();
+        const hasMultipleSteps = maxSteps > 1;
+        const canAdvance = activeStep < maxSteps - 1;
+        const canStepForward = hasMultipleSteps && canAdvance;
+        if (canStepForward) {
+          stepAdvance();
+        } else {
+          nextSlide();
+        }
       } else if (['arrowleft', 'backspace', 'pageup'].includes(k)) {
         e.preventDefault();
-        stepRewind();
+        const canRewind = activeStep > 0;
+        if (canRewind) {
+          stepRewind();
+        } else {
+          prevSlide();
+        }
       } else if (k === 'f') {
         e.preventDefault();
         toggleFullscreen();
@@ -74,13 +114,18 @@ export const useDeckShortcuts = (params: DeckShortcutsParams): void => {
         params.onToggleShortcutsModal();
       } else if (e.key === 'Escape') {
         params.onCloseModals();
-      } else if (['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'].includes(k)) {
-        const index = k === '0' ? 9 : Number(k) - 1;
-        const theme = Object.keys(THEME_PALETTES)[index];
-        if (theme) {
-          e.preventDefault();
-          setTheme(theme);
+      } else if (['1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(k)) {
+        e.preventDefault();
+        const stepNumber = Number(k);
+        const targetStepIndex = stepNumber - 1;
+        const maxSteps = getActiveSlideMaxSteps();
+        const isStepInRange = targetStepIndex < maxSteps;
+        if (isStepInRange) {
+          jumpToStep(targetStepIndex);
         }
+      } else if (k === '0') {
+        e.preventDefault();
+        jumpToStep(0);
       }
     };
 
@@ -89,5 +134,20 @@ export const useDeckShortcuts = (params: DeckShortcutsParams): void => {
     return () => {
       window.removeEventListener('keydown', onKey);
     };
-  }, [deck.slides.length, stepAdvance, stepRewind, goToSlide, activeThemeId, setTheme, toggleSound, toggleEditMode, params]);
+  }, [
+    deck.slides.length,
+    activeStep,
+    stepAdvance,
+    stepRewind,
+    jumpToStep,
+    nextSlide,
+    prevSlide,
+    goToSlide,
+    getActiveSlideMaxSteps,
+    activeThemeId,
+    setTheme,
+    toggleSound,
+    toggleEditMode,
+    params,
+  ]);
 };

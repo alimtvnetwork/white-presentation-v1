@@ -28,7 +28,7 @@ export const RoadmapMilestoneCard: React.FC<RoadmapMilestoneCardProps> = ({ mile
           </span>
           <div className="flex items-center gap-1.5">
             {isMajor && (
-              <span className="flex items-center gap-1 text-[10px] font-mono text-amber-300 bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/30">
+              <span className="flex items-center gap-1 text-[10px] font-mono text-amber-800 dark:text-amber-300 bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/30">
                 <Sparkles size={10} /> Major
               </span>
             )}

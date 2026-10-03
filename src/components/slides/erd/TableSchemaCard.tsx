@@ -60,7 +60,7 @@ export const TableSchemaCard: React.FC<TableSchemaCardProps> = ({
               }`}
             >
               <div className="flex items-center gap-1.5">
-                {isPk && <Key size={11} className="text-amber-400" />}
+                {isPk && <Key size={11} className="text-amber-600 dark:text-amber-400" />}
                 {isFk && <Link2 size={11} className="text-purple-400" />}
                 <span className="font-bold">{col.name}</span>
               </div>

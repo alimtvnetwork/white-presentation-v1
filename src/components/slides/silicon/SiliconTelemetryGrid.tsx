@@ -22,7 +22,7 @@ export const SiliconTelemetryGrid: React.FC<SiliconTelemetryGridProps> = ({
     <div className="plane-1-raised p-5 rounded-2xl border border-slate-800 bg-slate-900/50 flex flex-col justify-between h-full font-mono text-xs">
       <div className="flex items-center justify-between border-b border-slate-800 pb-2.5">
         <span className="flex items-center gap-2 font-bold text-slate-200">
-          <Cpu size={14} className="text-amber-400" />
+          <Cpu size={14} className="text-amber-600 dark:text-amber-400" />
           Electrical & Thermal Spec Sheet
         </span>
         <span className="text-slate-400">Foundry: TSMC N3E</span>
@@ -35,7 +35,7 @@ export const SiliconTelemetryGrid: React.FC<SiliconTelemetryGridProps> = ({
         </div>
         <div className="p-3 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-between">
           <span className="text-slate-400">Transistor Count</span>
-          <span className="font-bold text-amber-300">{transistorCountBillions} Billion</span>
+          <span className="font-bold text-amber-800 dark:text-amber-300">{transistorCountBillions} Billion</span>
         </div>
         <div className="p-3 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-between">
           <span className="text-slate-400 flex items-center gap-1.5">

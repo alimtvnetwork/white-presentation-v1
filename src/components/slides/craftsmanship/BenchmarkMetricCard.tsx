@@ -33,10 +33,10 @@ export const BenchmarkMetricCard: React.FC<BenchmarkMetricCardProps> = ({
       <div>
         <div className="flex items-center justify-between mb-3">
           <span className="font-ubuntu font-bold text-base text-slate-100 flex items-center gap-2">
-            <ShieldCheck size={16} className="text-amber-400" />
+            <ShieldCheck size={16} className="text-amber-600 dark:text-amber-400" />
             {tier.dimensionName}
           </span>
-          <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+          <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-amber-100 text-amber-900 border border-amber-300 dark:bg-amber-500/20 dark:text-amber-300 dark:border-amber-500/30">
             {tier.metricComparison}
           </span>
         </div>
@@ -54,7 +54,7 @@ export const BenchmarkMetricCard: React.FC<BenchmarkMetricCardProps> = ({
             {isExceeded ? (
               <CheckCircle2 size={14} className="text-emerald-400 shrink-0 mt-0.5" />
             ) : (
-              <ShieldCheck size={14} className="text-amber-400 shrink-0 mt-0.5" />
+              <ShieldCheck size={14} className="text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
             )}
             <div>
               <span className="font-mono text-[10px] text-emerald-400/80 uppercase mr-1">Sovereign:</span>

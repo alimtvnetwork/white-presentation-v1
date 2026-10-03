@@ -15,7 +15,7 @@ export const SiliconDieFloorplan: React.FC<SiliconDieFloorplanProps> = ({
     <div className="plane-1-raised p-5 rounded-2xl border border-slate-800 bg-slate-900/50 flex flex-col justify-between h-full font-mono text-xs">
       <div className="flex items-center justify-between border-b border-slate-800 pb-2.5">
         <span className="flex items-center gap-2 font-bold text-slate-200">
-          <Layers size={14} className="text-amber-400" />
+          <Layers size={14} className="text-amber-600 dark:text-amber-400" />
           Silicon Die Floorplan & Macro Placement
         </span>
         <span className="text-slate-400">
@@ -40,7 +40,7 @@ export const SiliconDieFloorplan: React.FC<SiliconDieFloorplanProps> = ({
                 <span className="font-bold text-slate-200 text-[11px] truncate">
                   {blk.blockName}
                 </span>
-                <span className="text-[10px] text-amber-300 font-bold">
+                <span className="text-[10px] text-amber-800 dark:text-amber-300 font-bold">
                   {blk.clockSpeedGhz}GHz
                 </span>
               </div>
@@ -65,7 +65,7 @@ export const SiliconDieFloorplan: React.FC<SiliconDieFloorplanProps> = ({
       </div>
 
       <div className="flex items-center justify-between pt-2 border-t border-slate-800/80 text-slate-400 text-[11px]">
-        <span className="flex items-center gap-1.5 text-amber-300">
+        <span className="flex items-center gap-1.5 text-amber-800 dark:text-amber-300">
           <Network size={12} /> Gold Wirebond Interconnect
         </span>
         <span>Physical Synthesis: 100% Routed</span>

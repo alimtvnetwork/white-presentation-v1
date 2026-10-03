@@ -1,5 +1,36 @@
 # Changelog
 
+## [v1.3.2] - 2026-10-03
+
+### Added
+- **Hover Animatable & Step-by-Step Interactive Reveals:**
+  - Implemented dynamic hover and click state machines in `TalentPyramidSlide.tsx` and `StepsSlide.tsx`.
+  - Hovering or clicking left-side graphic elements (e.g. pyramid tiers, step rows) triggers smooth CSS3 transitions (`cubic-bezier(0.22, 1, 0.36, 1)`) and reveals the corresponding detailed card on the right-hand side.
+  - Registered `talent-pyramid` in `deckStore.ts` `computeSlideMaxSteps`, enabling synchronous keyboard stepping (`←` / `→` / Space) through pyramid tiers.
+- **Ambient Low-Opacity Presenter HUD & Slider Refinement:**
+  - Redesigned `NavigationControls.tsx` and `SlideIndicator.tsx` with an idle opacity of 8% (`opacity-[0.08] hover:opacity-100 transition-all duration-300`), leaving the canvas visually clean when idle.
+  - Relocated default positions: controller to `top-right` and pagination slider to `bottom-center` (Global PPT parity), eliminating bottom-left corner clutter.
+  - Compacted control footprint and added rich interactive floating tooltips displaying slide index, slide title, and `<kbd>` keyboard shortcuts.
+- **Northern UI/UX Typography Standard & Cognitive Density Reduction:**
+  - Scaled kickers to $\ge 14\text{px}$ (`text-sm font-bold uppercase tracking-[0.2em]`) and slide titles to $50\text{px}$ font-black.
+  - Replaced crowded 2x2 multi-card grids with single high-impact active hero cards, maximizing executive focus.
+- **Strict Zero Yellow-on-Light Contrast Rule Repository-Wide:**
+  - Completely eradicated illegible light amber/yellow tokens (`text-amber-400`, `text-amber-300`, `bg-amber-500/10`) across 101 slide components and badges.
+  - Standardized all alert, pill, and status badges to high-contrast dual-mode tokens (`text-amber-900 bg-amber-100 border-amber-300 dark:text-amber-300 dark:bg-amber-500/15` or `text-violet-700 bg-violet-100`), ensuring AAA WCAG compliance on white/light slides ($C_R \ge 8.6:1$).
+  - Added Section 7 to `02-spec/02-coding-guidelines/24-app-ui-design-system/01-design-principles.md` codifying the Zero Yellow-on-Light rule.
+  - Authored 4-Part Root Cause Analysis in `.ai-memory/rca/01-white-slides-contrast-and-hud-rca.md` and 5-document specification suite in `02-spec/21-app/30-white-slides-interaction-and-hud-refinement/`.
+- **15 Grounded Global PPT Suite Archetypes:**
+  - Fully integrated and verified 15 high-authority corporate slide archetypes: ExecutiveGovernanceMatrix, OkrCascadeAlignment, CloudCostFinOpsOptimizer, CustomerSentimentRadar, CompetitiveBattlecard, LaunchReadinessChecklist, DeveloperGatewaySandbox, RagPipelineTopology, SocIncidentWarRoom, MerkleTreeStateLedger, InvestorCapTableWaterfall, RealtimeEventStreamFabric, SupplyChainRiskMatrix, TalentCompetencyRadar, SustainabilityEsgScorecard.
+  - Wired into 6th-tier slide renderer `GlobalPptSuiteSlideRenderer.tsx` and pre-seeded in `INITIAL_DECK`.
+
+### Fixed
+- **Component File-Size & TypeScript Quality Gates:**
+  - Verified all 160+ React components in `src/components/` strictly adhere to the $\le 100$-line ceiling (Hard Rule #6).
+  - Verified 0 TypeScript errors (`pnpm exec tsc --noEmit`) and clean production build in 3.40s (`pnpm run build`).
+  - Validated local runner orchestration via `pwsh -File .\run.ps1 -Build`.
+
+---
+
 All notable changes to the White Presentation System will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),

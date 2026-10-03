@@ -43,7 +43,7 @@ export const RcaPillarCard: React.FC<RcaPillarCardProps> = ({
             0{index + 1}
           </span>
           {isActionable ? (
-            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-300 flex items-center gap-1">
+            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-800 dark:text-amber-300 flex items-center gap-1">
               <Wrench size={10} /> Actionable
             </span>
           ) : (

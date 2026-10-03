@@ -58,6 +58,9 @@
 // Motion Physics & Deceleration
 @ease-presentation: cubic-bezier(0.22, 1, 0.36, 1);
 @ease-arc:          cubic-bezier(0.4, 0, 0.2, 1);
+@ease-spring-snappy: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+@ease-spring-bouncy: cubic-bezier(0.34, 1.56, 0.64, 1);
+@ease-spring-smooth: cubic-bezier(0.22, 1, 0.36, 1);
 
 // Text Shadow Tokens (High-Definition Micro-Shadows)
 @text-shadow-on-dark:  rgb(0 0 0) 1px 0.7px 0px;
@@ -77,6 +80,7 @@
 @pres-bg-card:         var(--pres-bg-card, rgba(255, 255, 255, 0.85));
 @pres-bg-card-hover:   var(--pres-bg-card-hover, rgba(255, 255, 255, 0.98));
 @pres-accent:          var(--pres-accent, #7c3aed);
+@pres-accent-text:     var(--pres-accent-text, #7c3aed);
 @pres-accent-glow:     var(--pres-accent-glow, rgba(124, 58, 237, 0.25));
 @pres-accent-hover:    var(--pres-accent-hover, #6d28d9);
 @pres-text:            var(--pres-text, #0f172a);
@@ -111,6 +115,7 @@
 
   // HSL Triplet Presentation Fallbacks (H S% L%)
   --pres-accent-hsl: 45 96% 56%;
+  --pres-accent-text: #7c3aed;
   --pres-bg-hsl: 222 47% 7%;
   --pres-text-hsl: 45 90% 96%;
   --pres-card-bg-hsl: 222 45% 12%;

@@ -27,10 +27,10 @@ export const PhonemeTimelineRail: React.FC<PhonemeTimelineRailProps> = ({
     <div className="p-3.5 rounded-2xl bg-slate-900/50 border border-slate-800 flex flex-col gap-2 font-mono text-xs">
       <div className="flex items-center justify-between text-slate-400">
         <span className="flex items-center gap-1.5 font-bold text-slate-300">
-          <AlignLeft size={13} className="text-amber-400" />
+          <AlignLeft size={13} className="text-amber-600 dark:text-amber-400" />
           Phonetic Alignment Rail
         </span>
-        <span className="flex items-center gap-1 text-[11px] text-amber-300">
+        <span className="flex items-center gap-1 text-[11px] text-amber-800 dark:text-amber-300">
           <Sparkles size={11} /> Neural Vocoder Sub-Token Stream
         </span>
       </div>
@@ -45,7 +45,7 @@ export const PhonemeTimelineRail: React.FC<PhonemeTimelineRailProps> = ({
                 : 'bg-slate-950/60 border-slate-800 text-slate-500'
             }`}
           >
-            <span className="text-sm font-ubuntu font-bold text-amber-300">
+            <span className="text-sm font-ubuntu font-bold text-amber-800 dark:text-amber-300">
               {token.phonemeSymbol}
             </span>
             <span className="text-[10px] text-slate-400">

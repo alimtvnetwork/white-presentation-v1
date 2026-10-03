@@ -55,7 +55,7 @@ export const SeoDominanceSlide: React.FC<{ slide: SeoDominanceSlideData }> = ({ 
               </div>
               <div className="p-3 rounded-xl bg-black/20 border border-white/5">
                 <div className="text-[11px]" style={{ color: 'var(--pres-text-muted)' }}>Zero-Click Queries</div>
-                <div className="text-2xl font-bold text-amber-400">{slide.zeroClickQueryPct || 58.5}%</div>
+                <div className="text-2xl font-bold text-amber-600 dark:text-amber-400">{slide.zeroClickQueryPct || 58.5}%</div>
               </div>
             </div>
           </div>

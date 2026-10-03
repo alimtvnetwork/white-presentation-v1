@@ -14,7 +14,7 @@ interface DayScheduleColumnProps {
 const CATEGORY_STYLES: Record<string, string> = {
   'deep-work': 'bg-violet-500/15 text-violet-300 border-violet-500/30',
   'sync-overlap': 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30',
-  'sprint-demo': 'bg-amber-500/15 text-amber-300 border-amber-500/30',
+  'sprint-demo': 'bg-amber-100 text-amber-900 border-amber-300 dark:bg-amber-500/15 dark:text-amber-300 dark:border-amber-500/30',
   'async-rfc': 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30',
 };
 
@@ -41,7 +41,7 @@ export const DayScheduleColumn: React.FC<DayScheduleColumnProps> = ({
         <div className="flex items-center justify-between mb-2">
           <span className="font-ubuntu text-base font-bold text-white tracking-wide">{day.dayName}</span>
           {isRelease && (
-            <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase bg-amber-500/20 text-amber-300 border border-amber-500/40 flex items-center gap-1">
+            <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase bg-amber-100 text-amber-900 border border-amber-300 dark:bg-amber-500/20 dark:text-amber-300 dark:border-amber-500/40 flex items-center gap-1">
               <Zap size={10} /> Release
             </span>
           )}

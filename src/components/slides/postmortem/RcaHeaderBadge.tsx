@@ -21,7 +21,7 @@ export const RcaHeaderBadge: React.FC<RcaHeaderBadgeProps> = ({
     <div className="plane-1-raised p-3 rounded-2xl border border-slate-800 bg-slate-900/60 z-10 flex items-center justify-between font-mono text-xs">
       <div className="flex items-center gap-4 text-slate-300">
         <div className="flex items-center gap-2">
-          <AlertOctagon size={15} className={isSev1 ? 'text-rose-400' : isSev2 ? 'text-amber-400' : 'text-yellow-400'} />
+          <AlertOctagon size={15} className={isSev1 ? 'text-rose-400' : isSev2 ? 'text-amber-700 dark:text-amber-400' : 'text-yellow-400'} />
           <span className="text-slate-400">Incident:</span>
           <span className="text-white font-bold">{incidentId}</span>
         </div>
@@ -30,7 +30,7 @@ export const RcaHeaderBadge: React.FC<RcaHeaderBadgeProps> = ({
             isSev1
               ? 'bg-rose-500/10 text-rose-400 border-rose-500/30'
               : isSev2
-              ? 'bg-amber-500/10 text-amber-400 border-amber-500/30'
+              ? 'bg-amber-100 text-amber-900 border-amber-300 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/30'
               : 'bg-yellow-500/10 text-yellow-400 border-yellow-500/30'
           }`}
         >
