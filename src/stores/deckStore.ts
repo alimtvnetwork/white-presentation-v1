@@ -197,10 +197,46 @@ export const getModernSlideSteps = (slide: any): number => {
   return calculateModernSlideStepCount(slide as any);
 };
 
+export const getCustomizationSlideSteps = (slide: any): number => {
+  if (!slide || typeof slide !== 'object') return 0;
+
+  switch (slide.type) {
+    case 'neural-vector-search-topology':
+      return Math.max(slide.searchStages?.length || slide.stages?.length || 4, 1);
+    case 'model-quantization-speculative-decoding':
+      return Math.max(slide.decodingStages?.length || slide.stages?.length || 4, 1);
+    case 'llm-firewall-red-team-matrix':
+      return Math.max(slide.inspectionLayers?.length || slide.stages?.length || 4, 1);
+    case 'global-anycast-traffic-director':
+      return Math.max(slide.trafficStages?.length || slide.stages?.length || 4, 1);
+    case 'cqrs-event-sourcing-fabric':
+      return Math.max(slide.fabricStages?.length || slide.stages?.length || 4, 1);
+    case 'sbom-slsa-provenance-attestation':
+      return Math.max(slide.pipelinePhases?.length || slide.stages?.length || 4, 1);
+    case 'post-merger-integration-roadmap':
+      return Math.max(slide.integrationHorizons?.length || slide.stages?.length || 4, 1);
+    case 'scope3-carbon-supply-chain-audit':
+      return Math.max(slide.auditPhases?.length || slide.stages?.length || 4, 1);
+    case 'cspm-ciem-cloud-entitlement-graph':
+    case 'confidential-computing-enclave':
+    case 'predictive-autoscaling-pod-matrix':
+    case 'capex-opex-capital-allocation':
+    case 'transfer-pricing-tax-topology':
+    case 'sales-quota-compensation-matrix':
+    case 'executive-succession-leadership-bench':
+      return 1;
+    default:
+      return 0;
+  }
+};
+
+export const calculateCustomizationSlideStepCount = getCustomizationSlideSteps;
+
 const computeSlideMaxSteps = (slide: any): number => {
   const hasSlide = Boolean(slide);
   if (hasSlide) {
     const count =
+      getCustomizationSlideSteps(slide) ||
       getCoreSlideSteps(slide) ||
       getExpandedSlideSteps(slide) ||
       getEnterpriseSlideSteps(slide) ||
@@ -241,6 +277,7 @@ interface DeckStoreState {
   canRewindStep: boolean;
   hasIntraSteps: boolean;
   slideDirection: 1 | -1;
+  transitionType: 'slide' | 'fade' | 'zoom' | 'rise';
   activeThemeId: string;
   isSoundEnabled: boolean;
   nextSlide: () => void;
@@ -256,6 +293,7 @@ interface DeckStoreState {
   setActiveStep: (stepIndex: number) => void;
   getActiveSlideMaxSteps: () => number;
   setTheme: (themeId: string) => void;
+  setTransitionType: (type: 'slide' | 'fade' | 'zoom' | 'rise') => void;
   toggleSound: () => void;
   upsertSlide: (slide: SlideData) => void;
   addSlide: (slide: SlideData) => void;
@@ -274,6 +312,7 @@ export const useDeckStore = create<DeckStoreState>((set, get) => ({
   currentStepIndex: 0,
   ...initialIndicators,
   slideDirection: 1,
+  transitionType: 'slide',
   activeThemeId: 'white-brand',
   isSoundEnabled: true,
 
@@ -411,6 +450,10 @@ export const useDeckStore = create<DeckStoreState>((set, get) => ({
   setTheme: (themeId: string) => {
     if (get().isSoundEnabled) soundEngine.playStepClick();
     set({ activeThemeId: themeId });
+  },
+
+  setTransitionType: (type: 'slide' | 'fade' | 'zoom' | 'rise') => {
+    set({ transitionType: type });
   },
 
   toggleSound: () => {

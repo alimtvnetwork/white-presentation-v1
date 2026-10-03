@@ -30,11 +30,13 @@ export const PresentationCanvas: React.FC = () => {
 
   const { deck, activeSlideIndex, activeThemeId } = useDeckStore();
   const slideDirection = useDeckStore((state) => state.slideDirection || 1);
+  const transitionType = useDeckStore((s) => s.transitionType || 'slide');
   const { isEditMode, cameraPreset } = useEditStore();
   const activeSlide = deck.slides[activeSlideIndex];
-  const theme = THEME_PALETTES[activeThemeId] || THEME_PALETTES['white-brand'];
+  const effectiveThemeId = activeSlide?.themeId || activeThemeId;
+  const theme = THEME_PALETTES[effectiveThemeId] || THEME_PALETTES['white-brand'];
 
-  useEffect(() => { applyTheme(activeThemeId); }, [activeThemeId]);
+  useEffect(() => { applyTheme(effectiveThemeId); }, [effectiveThemeId]);
 
   useDeckShortcuts({
     onToggleShortcutsModal: () => setIsShortcutsOpen((prev) => !prev),
@@ -81,7 +83,7 @@ export const PresentationCanvas: React.FC = () => {
       >
         <SlideBackground />
         {activeSlide && (
-          <SlideTransition transitionKey={activeSlide.id} direction={slideDirection} transitionType="slide">
+          <SlideTransition transitionKey={activeSlide.id} direction={slideDirection} transitionType={transitionType}>
             <SlideRenderer slide={activeSlide} />
           </SlideTransition>
         )}

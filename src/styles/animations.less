@@ -1,4 +1,9 @@
 // Hardware-accelerated CSS keyframe animations for presentation canvas
+:root {
+  --pres-transition-duration: 0.42s;
+  --pres-stagger-interval: 80ms;
+}
+
 @ease-presentation: cubic-bezier(0.22, 1, 0.36, 1);
 
 @keyframes neonPulse {
@@ -370,30 +375,35 @@
 .metric-count-slide-up { animation: metricCountSlideUp 0.4s @ease-presentation both; will-change: transform, opacity; }
 
 // Reusable 3-phase kinetic lifecycle classes
+.step-phase-past,
 .step-phase-completed {
-  opacity: 0.72;
-  filter: grayscale(0.25);
-  transition: opacity 0.35s @ease-presentation, filter 0.35s @ease-presentation, transform 0.35s @ease-presentation;
+  opacity: 0.75;
+  filter: grayscale(0.20);
+  transform: translate3d(0, 0, 8px) scale(1.00);
+  transition: all var(--pres-transition-duration, 0.42s) @ease-presentation;
 
   &:hover {
     opacity: 0.95;
     filter: grayscale(0);
-    transform: translate3d(0, -2px, 0);
+    transform: translate3d(0, -2px, 12px) scale(1.01);
   }
 }
 
 .step-phase-active {
   opacity: 1;
-  transform: translate3d(0, 0, 0) scale(1.0);
+  transform: translate3d(0, 0, 24px) scale(1.02);
+  z-index: 20;
   border-color: hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.85);
-  box-shadow: 0 0 24px -4px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.30);
-  transition: all 0.35s @ease-presentation;
+  box-shadow: 0 0 24px -4px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.35);
+  transition: all var(--pres-transition-duration, 0.42s) @ease-presentation;
 }
 
 .step-phase-future {
   opacity: 0.38;
-  filter: contrast(0.85);
-  transition: opacity 0.35s @ease-presentation, filter 0.35s @ease-presentation;
+  transform: translate3d(0, 0, 8px) scale(0.98);
+  filter: blur(1.25px) contrast(0.85);
+  pointer-events: none;
+  transition: all var(--pres-transition-duration, 0.42s) @ease-presentation;
 
   &:hover {
     opacity: 0.60;

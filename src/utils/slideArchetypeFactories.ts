@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="unified slide archetype registry and default factories" max=480
+// lint-allow: file-size reason="unified slide archetype registry and default factories" max=750
 import {
   SlideType, SlideData, NextGenSlideType, MetricGridSlideData, ProblemSolutionSlideData,
   QuadrantMatrixSlideData, MarketOpportunitySlideData, TimelineRoadmapSlideData,
@@ -37,12 +37,31 @@ import {
   MODERN_ARCHETYPE_OPTIONS,
   createModernSlide,
 } from './modern/registry';
+import {
+  CUSTOMIZATION_FACTORIES,
+  createNeuralVectorSearchTopologySlide,
+  createModelQuantizationSpeculativeDecodingSlide,
+  createLlmFirewallRedTeamMatrixSlide,
+  createGlobalAnycastTrafficDirectorSlide,
+  createCqrsEventSourcingFabricSlide,
+  createSbomSlsaProvenanceAttestationSlide,
+  createPostMergerIntegrationRoadmapSlide,
+  createScope3CarbonSupplyChainAuditSlide,
+  createCspmCiemCloudEntitlementGraphSlide,
+  createConfidentialComputingEnclaveSlide,
+  createPredictiveAutoscalingPodMatrixSlide,
+  createCapexOpexCapitalAllocationSlide,
+  createTransferPricingTaxTopologySlide,
+  createSalesQuotaCompensationMatrixSlide,
+  createExecutiveSuccessionLeadershipBenchSlide,
+} from './customizationSlideFactories';
 export * from './extendedSlideFactories';
 export * from './expandedSlideFactories';
 export * from './enterpriseSlideFactories';
 export * from './kineticSuiteSlideFactories';
 export * from './nextGenSlideFactories';
 export * from './modern/registry';
+export * from './customizationSlideFactories';
 
 export const ORIGINAL_ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   { type: 'metric-grid', label: 'Metric Grid Matrix', category: 'Strategy & Metrics', desc: '4-6 quantitative KPI cards with delta trends', icon: 'BarChart3' },
@@ -62,6 +81,24 @@ export const ORIGINAL_ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   { type: 'call-to-action', label: 'Closing Call to Action', category: 'Story & Conversion', desc: 'High-impact finale with dual CTAs and contact portal', icon: 'CheckCircle2' },
 ];
 
+export const CUSTOMIZATION_ARCHETYPE_OPTIONS: ArchetypeOption[] = [
+  { type: 'neural-vector-search-topology', label: 'Neural Vector Search Topology', category: 'AI Infrastructure', desc: 'HNSW indexing, bi-encoder query embeddings and semantic retrieval', icon: 'Network' },
+  { type: 'model-quantization-speculative-decoding', label: 'Model Quantization & Speculative Decoding', category: 'AI Infrastructure', desc: 'AWQ/FP8 hybrid weights and dual-model drafting throughput', icon: 'Cpu' },
+  { type: 'llm-firewall-red-team-matrix', label: 'LLM Firewall Red Team Matrix', category: 'AI Infrastructure', desc: 'Adversarial jailbreak defense, PII sanitization and safety guardrails', icon: 'ShieldAlert' },
+  { type: 'global-anycast-traffic-director', label: 'Global Anycast Traffic Director', category: 'Platform & Network', desc: 'BGP edge routing, zero-RTT TLS resumption and origin shielding', icon: 'Globe' },
+  { type: 'cqrs-event-sourcing-fabric', label: 'CQRS Event Sourcing Fabric', category: 'Platform & Network', desc: 'Immutable append-only ledger and partitioned read-model streams', icon: 'GitBranch' },
+  { type: 'sbom-slsa-provenance-attestation', label: 'SBOM & SLSA Level 4 Attestation', category: 'Platform & Network', desc: 'Hermetic build provenance, cryptographic signatures and Kyverno gating', icon: 'FileCheck' },
+  { type: 'post-merger-integration-roadmap', label: 'Post-Merger Integration Roadmap', category: 'Corporate Strategy', desc: 'Day-1 cutover, core ERP consolidation and EBITDA synergy realization', icon: 'TrendingUp' },
+  { type: 'scope3-carbon-supply-chain-audit', label: 'Scope 3 Carbon Supply Chain Audit', category: 'Corporate Strategy', desc: 'Tier-1/2 supplier emissions ledger, CBAM and CSRD readiness', icon: 'Leaf' },
+  { type: 'cspm-ciem-cloud-entitlement-graph', label: 'CSPM & CIEM Cloud Entitlement Graph', category: 'Cloud Telemetry', desc: 'Multi-cloud IAM least-privilege risk topology and toxic path detection', icon: 'Key' },
+  { type: 'confidential-computing-enclave', label: 'Confidential Computing Enclave', category: 'Cloud Telemetry', desc: 'AMD SEV-SNP/Intel TDX memory encryption and hardware attestation', icon: 'Lock' },
+  { type: 'predictive-autoscaling-pod-matrix', label: 'Predictive Autoscaling Pod Matrix', category: 'Cloud Telemetry', desc: 'Proactive ML workload forecasting and spot instance slicing', icon: 'Server' },
+  { type: 'capex-opex-capital-allocation', label: 'Capex vs Opex Capital Allocation', category: 'Enterprise Finance', desc: 'Multi-tranche enterprise investment hurdle rates and depreciation', icon: 'DollarSign' },
+  { type: 'transfer-pricing-tax-topology', label: 'Transfer Pricing Tax Topology', category: 'Enterprise Finance', desc: 'OECD BEPS Pillar 2 statutory tax harmonization and cross-border IP flows', icon: 'Receipt' },
+  { type: 'sales-quota-compensation-matrix', label: 'Sales Quota & Compensation Matrix', category: 'Enterprise Finance', desc: 'Rep quota attainment tiers, accelerator triggers and commission curves', icon: 'Target' },
+  { type: 'executive-succession-leadership-bench', label: 'Executive Succession Leadership Bench', category: 'Corporate Strategy', desc: 'Nine-box grid leadership readiness and emergency transition protocols', icon: 'Users' },
+];
+
 export const ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   ...ORIGINAL_ARCHETYPE_OPTIONS,
   ...EXTENDED_ARCHETYPE_OPTIONS,
@@ -70,6 +107,7 @@ export const ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   ...KINETIC_SUITE_ARCHETYPE_OPTIONS,
   ...NEXTGEN_ARCHETYPE_OPTIONS,
   ...MODERN_ARCHETYPE_OPTIONS,
+  ...CUSTOMIZATION_ARCHETYPE_OPTIONS,
 ];
 
 // =============================================================================
@@ -200,6 +238,111 @@ export const SLIDE_ARCHETYPE_FACTORIES: Record<string, SlideArchetypeDefinition>
     category: 'next-gen',
     description: 'Elite DORA Metrics, Flow Efficiency Framework & Engineering Revenue Acceleration',
     factory: createValueStreamDoraFlywheelSlide,
+  },
+  'neural-vector-search-topology': {
+    type: 'neural-vector-search-topology',
+    title: 'Neural Vector Search Topology',
+    category: 'AI Infrastructure',
+    description: 'HNSW indexing, bi-encoder query embeddings and semantic retrieval',
+    factory: createNeuralVectorSearchTopologySlide,
+  },
+  'model-quantization-speculative-decoding': {
+    type: 'model-quantization-speculative-decoding',
+    title: 'Model Quantization & Speculative Decoding',
+    category: 'AI Infrastructure',
+    description: 'AWQ/FP8 hybrid weights and dual-model drafting throughput',
+    factory: createModelQuantizationSpeculativeDecodingSlide,
+  },
+  'llm-firewall-red-team-matrix': {
+    type: 'llm-firewall-red-team-matrix',
+    title: 'LLM Firewall Red Team Matrix',
+    category: 'AI Infrastructure',
+    description: 'Adversarial jailbreak defense, PII sanitization and safety guardrails',
+    factory: createLlmFirewallRedTeamMatrixSlide,
+  },
+  'global-anycast-traffic-director': {
+    type: 'global-anycast-traffic-director',
+    title: 'Global Anycast Traffic Director',
+    category: 'Platform & Network',
+    description: 'BGP edge routing, zero-RTT TLS resumption and origin shielding',
+    factory: createGlobalAnycastTrafficDirectorSlide,
+  },
+  'cqrs-event-sourcing-fabric': {
+    type: 'cqrs-event-sourcing-fabric',
+    title: 'CQRS Event Sourcing Fabric',
+    category: 'Platform & Network',
+    description: 'Immutable append-only ledger and partitioned read-model streams',
+    factory: createCqrsEventSourcingFabricSlide,
+  },
+  'sbom-slsa-provenance-attestation': {
+    type: 'sbom-slsa-provenance-attestation',
+    title: 'SBOM & SLSA Level 4 Attestation',
+    category: 'Platform & Network',
+    description: 'Hermetic build provenance, cryptographic signatures and Kyverno gating',
+    factory: createSbomSlsaProvenanceAttestationSlide,
+  },
+  'post-merger-integration-roadmap': {
+    type: 'post-merger-integration-roadmap',
+    title: 'Post-Merger Integration Roadmap',
+    category: 'Corporate Strategy',
+    description: 'Day-1 cutover, core ERP consolidation and EBITDA synergy realization',
+    factory: createPostMergerIntegrationRoadmapSlide,
+  },
+  'scope3-carbon-supply-chain-audit': {
+    type: 'scope3-carbon-supply-chain-audit',
+    title: 'Scope 3 Carbon Supply Chain Audit',
+    category: 'Corporate Strategy',
+    description: 'Tier-1/2 supplier emissions ledger, CBAM and CSRD readiness',
+    factory: createScope3CarbonSupplyChainAuditSlide,
+  },
+  'cspm-ciem-cloud-entitlement-graph': {
+    type: 'cspm-ciem-cloud-entitlement-graph',
+    title: 'CSPM & CIEM Cloud Entitlement Graph',
+    category: 'Cloud Telemetry',
+    description: 'Multi-cloud IAM least-privilege risk topology and toxic path detection',
+    factory: createCspmCiemCloudEntitlementGraphSlide,
+  },
+  'confidential-computing-enclave': {
+    type: 'confidential-computing-enclave',
+    title: 'Confidential Computing Enclave',
+    category: 'Cloud Telemetry',
+    description: 'AMD SEV-SNP/Intel TDX memory encryption and hardware attestation',
+    factory: createConfidentialComputingEnclaveSlide,
+  },
+  'predictive-autoscaling-pod-matrix': {
+    type: 'predictive-autoscaling-pod-matrix',
+    title: 'Predictive Autoscaling Pod Matrix',
+    category: 'Cloud Telemetry',
+    description: 'Proactive ML workload forecasting and spot instance slicing',
+    factory: createPredictiveAutoscalingPodMatrixSlide,
+  },
+  'capex-opex-capital-allocation': {
+    type: 'capex-opex-capital-allocation',
+    title: 'Capex vs Opex Capital Allocation',
+    category: 'Enterprise Finance',
+    description: 'Multi-tranche enterprise investment hurdle rates and depreciation',
+    factory: createCapexOpexCapitalAllocationSlide,
+  },
+  'transfer-pricing-tax-topology': {
+    type: 'transfer-pricing-tax-topology',
+    title: 'Transfer Pricing Tax Topology',
+    category: 'Enterprise Finance',
+    description: 'OECD BEPS Pillar 2 statutory tax harmonization and cross-border IP flows',
+    factory: createTransferPricingTaxTopologySlide,
+  },
+  'sales-quota-compensation-matrix': {
+    type: 'sales-quota-compensation-matrix',
+    title: 'Sales Quota & Compensation Matrix',
+    category: 'Enterprise Finance',
+    description: 'Rep quota attainment tiers, accelerator triggers and commission curves',
+    factory: createSalesQuotaCompensationMatrixSlide,
+  },
+  'executive-succession-leadership-bench': {
+    type: 'executive-succession-leadership-bench',
+    title: 'Executive Succession Leadership Bench',
+    category: 'Corporate Strategy',
+    description: 'Nine-box grid leadership readiness and emergency transition protocols',
+    factory: createExecutiveSuccessionLeadershipBenchSlide,
   },
 };
 

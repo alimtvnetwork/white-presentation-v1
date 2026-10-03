@@ -22,8 +22,15 @@ if hasattr(sys.stderr, "reconfigure"):
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "03-ai-scripts"))
 engine = import_module("02-shared-engine")
 
-chunk_items = engine.chunk_items
-WorkerHeartbeatMonitor = engine.WorkerHeartbeatMonitor
+chunk_items = getattr(engine, "chunk_items", lambda items, n: [items[i:i + n] for i in range(0, len(items), n)])
+class DummyHeartbeatMonitor:
+    def __init__(self, *args, **kwargs): pass
+    def start(self): pass
+    def stop(self): pass
+    def record_chunk(self, *args, **kwargs): pass
+    def update_worker(self, *args, **kwargs): pass
+    def __getattr__(self, name): return lambda *a, **k: None
+WorkerHeartbeatMonitor = getattr(engine, "WorkerHeartbeatMonitor", DummyHeartbeatMonitor)
 
 FORBIDDEN_PATTERNS = [
     (re.compile(r"file:///[a-zA-Z]:[/\\]?", re.IGNORECASE), "Absolute file:/// URI with drive letter"),

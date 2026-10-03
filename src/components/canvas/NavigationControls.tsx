@@ -8,17 +8,18 @@ import { ThemePopover } from './ThemePopover';
 import { PresenterWebcamButton } from '../webcam/PresenterWebcamButton';
 
 export const NavigationControls: React.FC = () => {
-  const { activeSlideIndex, deck, stepAdvance, stepRewind, isSoundEnabled, toggleSound } = useDeckStore();
+  const { activeSlideIndex, deck, stepAdvance, stepRewind, isSoundEnabled, toggleSound, canAdvanceStep, canRewindStep } =
+    useDeckStore();
   const { dockPosition } = useEditStore();
   const [showLayout, setShowLayout] = useState(false);
   const [showTheme, setShowTheme] = useState(false);
 
+  const isRewindDisabled = activeSlideIndex === 0 && !canRewindStep;
+  const isAdvanceDisabled = activeSlideIndex === deck.slides.length - 1 && !canAdvanceStep;
+
   const handleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().catch(() => {});
-    } else {
-      document.exitFullscreen().catch(() => {});
-    }
+    if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {});
+    else document.exitFullscreen().catch(() => {});
   };
 
   const dockClassMap: Record<DockPosition, string> = {
@@ -70,18 +71,18 @@ export const NavigationControls: React.FC = () => {
 
       <button
         onClick={stepRewind}
-        disabled={activeSlideIndex === 0}
+        disabled={isRewindDisabled}
         className="p-1 rounded-full hover:bg-slate-800 disabled:opacity-30 cursor-pointer transition-colors"
-        title="Previous Slide [←]"
+        title="Rewind Step / Previous Slide [←]"
       >
         <ChevronLeft size={16} />
       </button>
 
       <button
         onClick={stepAdvance}
-        disabled={activeSlideIndex === deck.slides.length - 1}
+        disabled={isAdvanceDisabled}
         className="p-1 rounded-full hover:bg-slate-800 disabled:opacity-30 cursor-pointer transition-colors"
-        title="Next Slide [→ / Space]"
+        title="Advance Step / Next Slide [→ / Space]"
       >
         <ChevronRight size={16} />
       </button>

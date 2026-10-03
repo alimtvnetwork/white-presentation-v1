@@ -27,7 +27,25 @@ function makeStop(
   return { step, label, hex, hsl, rgb, luma, contrastOnWhite };
 }
 
-export const THEME_PALETTES: Record<string, ThemePalette> = {
+export const CANONICAL_THEME_IDS = [
+  'white-brand',
+  'paper-editorial',
+  'true-dark',
+  'emerald-growth',
+  'wp-exam-purple',
+  'midnight-luxe',
+  'sunset-horizon',
+  'cyber-neon',
+  'crimson-executive',
+  'nord-frost',
+  'bright-gold',
+  'noir-gold',
+  'monokai',
+] as const;
+
+export type CanonicalThemeId = (typeof CANONICAL_THEME_IDS)[number];
+
+export const CANONICAL_THEMES: Record<string, ThemePalette> = {
   'white-brand': {
     id: 'white-brand',
     name: 'Pure White Editorial',
@@ -460,6 +478,10 @@ export const THEME_PALETTES: Record<string, ThemePalette> = {
       makeStop(9, 'Deep Monokai Black', '#272822', 'hsl(70, 8%, 15%)', 'rgb(39, 40, 34)', 0.065, 1.0),
     ],
   },
+};
+
+export const THEME_PALETTES: Record<string, ThemePalette> = {
+  ...CANONICAL_THEMES,
 };
 
 export const LEGACY_ALIASES: Record<string, string> = {

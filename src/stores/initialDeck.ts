@@ -78,6 +78,19 @@ import {
   createExecutiveBoardMandateCtaSlide,
 } from '../utils/modern/boardroomStrategyFactories';
 import { createModernSlide, MODERN_FACTORIES } from '../utils/modern/registry';
+import {
+  createNeuralVectorSearchTopologySlide,
+  createModelQuantizationSpeculativeDecodingSlide,
+  createCqrsEventSourcingFabricSlide,
+  createPostMergerIntegrationRoadmapSlide,
+  createCspmCiemCloudEntitlementGraphSlide,
+  createConfidentialComputingEnclaveSlide,
+  createPredictiveAutoscalingPodMatrixSlide,
+  createCapexOpexCapitalAllocationSlide,
+  createTransferPricingTaxTopologySlide,
+  createSalesQuotaCompensationMatrixSlide,
+  createExecutiveSuccessionLeadershipBenchSlide,
+} from '../utils/customizationSlideFactories';
 
 export const INITIAL_DECK: PresentationDeck = {
   id: 'white-presentation-v1',
@@ -309,6 +322,17 @@ export const INITIAL_DECK: PresentationDeck = {
     createHardwareAcceleratorDieTopologySlide('slide-134'),
     createCustomerExperienceJourneyDeltaSlide('slide-135'),
     createExecutiveBoardMandateCtaSlide('slide-136'),
+    createNeuralVectorSearchTopologySlide('slide-137'),
+    createModelQuantizationSpeculativeDecodingSlide('slide-138'),
+    createCqrsEventSourcingFabricSlide('slide-139'),
+    createPostMergerIntegrationRoadmapSlide('slide-140'),
+    createCspmCiemCloudEntitlementGraphSlide('slide-141'),
+    createConfidentialComputingEnclaveSlide('slide-142'),
+    createPredictiveAutoscalingPodMatrixSlide('slide-143'),
+    createCapexOpexCapitalAllocationSlide('slide-144'),
+    createTransferPricingTaxTopologySlide('slide-145'),
+    createSalesQuotaCompensationMatrixSlide('slide-146'),
+    createExecutiveSuccessionLeadershipBenchSlide('slide-147'),
   ],
 };
 

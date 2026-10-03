@@ -1,0 +1,66 @@
+{
+  "subtaskId": 2,
+  "taskCode": "Task-03 & Task-06",
+  "title": "15 Enterprise Slide Archetypes & Factory Integration",
+  "status": "PLAN-READY",
+  "assignedAgentRole": "Worker 02",
+  "archetypes": [
+    "neural-vector-search-topology",
+    "model-quantization-speculative-decoding",
+    "llm-firewall-red-team-matrix",
+    "global-anycast-traffic-director",
+    "cqrs-event-sourcing-fabric",
+    "sbom-slsa-provenance-attestation",
+    "post-merger-integration-roadmap",
+    "scope3-carbon-supply-chain-audit",
+    "cspm-ciem-cloud-entitlement-graph",
+    "confidential-computing-enclave",
+    "predictive-autoscaling-pod-matrix",
+    "capex-opex-capital-allocation",
+    "transfer-pricing-tax-topology",
+    "sales-quota-compensation-matrix",
+    "executive-succession-leadership-bench"
+  ],
+  "ownedFiles": [
+    "src/types/customizationArchetypes.ts",
+    "src/types/customization/workflowTypes.ts",
+    "src/types/customization/telemetryTypes.ts",
+    "src/utils/customizationSlideFactories.ts",
+    "src/utils/customization/factories.ts",
+    "src/utils/customization/options.ts",
+    "src/utils/customization/registry.ts",
+    "src/components/slides/customization/**"
+  ],
+  "plannedChanges": [
+    {
+      "scope": "Type Contracts",
+      "description": "Author master CustomizationSlideType union, 15 BaseSlide-extending data contracts with 100% positive booleans, isCustomizationSlide guard, and calculateCustomizationSlideStepCount function."
+    },
+    {
+      "scope": "Mock Factories & Modal Registry",
+      "description": "Author hydrated mock factories with realistic domain data (Alim Ul Karim as Chief Software Engineer), Lucide icon options, and integrate into ARCHETYPE_OPTIONS and createArchetypeSlide in slideArchetypeFactories.ts."
+    },
+    {
+      "scope": "Modular React Components",
+      "description": "Author 15 dedicated component suites under src/components/slides/customization/ following CODE-RED-006R (<= 100 lines per .tsx), 60/30/10 visual balance, 4-plane depth hierarchy, and WCAG AAA contrast."
+    },
+    {
+      "scope": "Slide Renderer Wiring",
+      "description": "Integrate all 15 customization archetypes into SlideRenderer.tsx dispatch map for seamless in-canvas rendering."
+    }
+  ],
+  "verificationGates": {
+    "gate1_lineCap": "Mandatory <= 100 lines per .tsx component file (CODE-RED-006R)",
+    "gate2_zeroBuilds": "Mandatory zero npm run build / npm test during routine turns (Rule R1)",
+    "gate3_fastChecks": "Sub-5s npx tsc --noEmit static AST type validation",
+    "gate4_positiveBooleans": "100% affirmative booleans (is*, has*, can*, should*) with zero negative prefixes",
+    "gate5_personaTitle": "Alim Ul Karim strictly designated as Chief Software Engineer (Rule R11)",
+    "gate6_liveDomTypography": "100% native live HTML DOM text, zero canvas fillText/strokeText",
+    "gate7_stepProgression": "Group A evaluated dynamically (4 steps), Group B flat (1 step), zero phantom steps",
+    "gate8_wcagContrast": "Zero yellow-on-light text, automatic dark-slate/bronze badge inversion",
+    "gate9_secretsQuarantine": "Sanitized mock fixtures, zero API keys/credentials committed",
+    "gate10_relativePaths": "Zero hardcoded absolute filesystem paths (Rule R14)",
+    "gate11_gitmapCommits": "Atomic hyphen-separated commit syntax: <type>-<scope>-<short-description>",
+    "gate12_canvasCoordinates": "1920x1080 virtual canvas coordinate conformance, zero layout overflow"
+  }
+}

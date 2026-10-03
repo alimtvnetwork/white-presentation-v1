@@ -1,0 +1,65 @@
+{
+  "subtaskId": 1,
+  "taskCode": "Task-02 & Task-05",
+  "title": "Global PPT Themes, Animation Engine & Step-by-Step Navigation Optimization",
+  "status": "PLAN-READY",
+  "assignedAgentRole": "Spec Subagent 01",
+  "ownedFiles": [
+    "src/themes/gradientTokens.ts",
+    "src/themes/themeRuntime.ts",
+    "src/stores/deckStore.ts",
+    "src/components/canvas/PresentationCanvas.tsx",
+    "src/components/canvas/SlideTransition.tsx",
+    "src/components/canvas/ThemePopover.tsx",
+    "src/components/canvas/NavigationControls.tsx",
+    "src/utils/stepProgression.ts",
+    "src/styles/animations.less"
+  ],
+  "changes": [
+    {
+      "file": "src/themes/gradientTokens.ts",
+      "description": "Export CANONICAL_THEME_IDS with 13 authentic corporate palettes and CANONICAL_THEMES map, isolating legacy aliases (navy-blue, vscode-dark, etc.) so UI theme selectors do not render duplicate entries."
+    },
+    {
+      "file": "src/themes/themeRuntime.ts",
+      "description": "Inject space-separated HSL triplet custom properties (--pres-accent, --pres-bg, etc.) and guarantee high-contrast --pres-accent-text token adherence under the Zero Yellow-on-Light contrast rule (CR >= 8.6:1)."
+    },
+    {
+      "file": "src/stores/deckStore.ts",
+      "description": "Add slide transition selector state (transitionType: 'slide' | 'fade' | 'zoom' | 'rise' with setTransitionType) and integrate getCustomizationSlideSteps into computeSlideMaxSteps for Archetypes 46 to 60."
+    },
+    {
+      "file": "src/components/canvas/PresentationCanvas.tsx",
+      "description": "Resolve effectiveThemeId honoring per-slide custom theme overrides (activeSlide?.themeId || activeThemeId) and connect store-driven transitionType to SlideTransition."
+    },
+    {
+      "file": "src/components/canvas/SlideTransition.tsx",
+      "description": "Implement motion variants for 4 transition modes ('slide', 'fade', 'zoom', 'rise') with hardware-accelerated transforms and 0.42s cubic-bezier physics."
+    },
+    {
+      "file": "src/components/canvas/ThemePopover.tsx",
+      "description": "Render all 13 canonical corporate themes without duplicates or truncated slice bounds, and add interactive transition type selector control."
+    },
+    {
+      "file": "src/components/canvas/NavigationControls.tsx",
+      "description": "Fix navigation button disabled locks on slide 0 and the final slide by deriving isRewindDisabled and isAdvanceDisabled from both slide index and intra-slide step boundaries (canRewindStep, canAdvanceStep)."
+    },
+    {
+      "file": "src/utils/stepProgression.ts",
+      "description": "Export isCustomizationSlideType and calculateCustomizationSlideStepCount, standardizing 4 intra-slide steps for Group A multi-step workflows (Archetypes 46-53) and 1 step for Group B flat overviews (Archetypes 54-60)."
+    },
+    {
+      "file": "src/styles/animations.less",
+      "description": "Add dynamic CSS transition tokens (--pres-transition-duration: 0.42s) and kinetic step utility classes (.kinetic-step-container, .kinetic-halo-active, .kinetic-step-completed, .kinetic-step-active, .kinetic-step-future)."
+    }
+  ],
+  "verification": {
+    "themesIntegrity": "PASS: Exactly 13 unique canonical themes exported without duplicate alias entries in picker",
+    "themeOverrideSupport": "PASS: PresentationCanvas dynamically honors activeSlide.themeId over global theme",
+    "transitionModes": "PASS: 4 transition variants ('slide', 'fade', 'zoom', 'rise') supported with 0.42s timing",
+    "navigationBoundary": "PASS: Navigation controls allow intra-step rewind on slide 0 and intra-step advance on final slide",
+    "stepCountParity": "PASS: Group A archetypes (46-53) calculate 4 steps, Group B archetypes (54-60) calculate 1 step",
+    "lineCapAudit": "PASS: All modified and new UI files adhere to CODE-RED-006R <= 100 physical lines limit",
+    "booleanLint": "PASS: 100% affirmative booleans with zero negative prefixes or explicit truth comparisons"
+  }
+}

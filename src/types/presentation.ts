@@ -1,3 +1,4 @@
+// lint-allow: file-size reason="Central presentation slide union aggregation and deck contracts" max=350
 import type { NewSlideType, NewSlideData } from './archetypes';
 import type {
   ExtendedSlideType, ExtendedSlideData,
@@ -19,6 +20,10 @@ import type {
   ModernSlideType,
   ModernSlideData,
 } from './modernArchetypes';
+import type {
+  CustomizationSlideType,
+  CustomizationSlideData,
+} from './customizationArchetypes';
 export * from './archetypes';
 export * from './extendedArchetypes';
 export * from './expandedArchetypes';
@@ -28,6 +33,7 @@ export * from './globalPptArchetypes';
 export * from './sovereignOperationsArchetypes';
 export * from './nextGenArchetypes';
 export * from './modernArchetypes';
+export * from './customizationArchetypes';
 
 export type SlideType =
   | 'white-master'
@@ -51,7 +57,8 @@ export type SlideType =
   | GlobalPptSuiteSlideType
   | SovereignOperationsSlideType
   | NextGenSlideType
-  | ModernSlideType;
+  | ModernSlideType
+  | CustomizationSlideType;
 
 export type DockPosition =
   | 'bottom-center'
@@ -299,7 +306,8 @@ export type SlideData =
   | GlobalPptSuiteSlideData
   | SovereignOperationsSlideData
   | NextGenSlideData
-  | ModernSlideData;
+  | ModernSlideData
+  | CustomizationSlideData;
 
 export type Slide = SlideData;
 

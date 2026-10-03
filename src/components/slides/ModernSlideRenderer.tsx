@@ -1,6 +1,7 @@
 import React from 'react';
 import type { SlideData } from '../../types/presentation';
 import { WhiteMasterSlide } from './WhiteMasterSlide';
+import { CustomizationSlideRenderer } from './CustomizationSlideRenderer';
 import {
   EnterpriseCloudMigrationFunnelSlide,
   ZeroTrustIdentityPerimeterSlide,
@@ -56,6 +57,6 @@ export const ModernSlideRenderer: React.FC<{ slide: SlideData }> = ({ slide }) =
     case 'executive-board-mandate-cta':
       return <ExecutiveBoardMandateCtaSlide slide={slide as any} />;
     default:
-      return <WhiteMasterSlide slide={slide as any} />;
+      return <CustomizationSlideRenderer slide={slide} />;
   }
 };

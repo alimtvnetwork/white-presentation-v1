@@ -7,6 +7,7 @@ import {
   LayoutGrid, Terminal, RotateCw, Users, Award, Quote, Columns3, CheckCircle2,
   BarChart3, Shield, Search, Zap, HelpCircle, Database, ListChecks, Flame,
   ShieldAlert, Crosshair, Scale, Flag, Building2, Cpu,
+  Network, Globe, GitBranch, FileCheck, Leaf, Key, Lock, Server, DollarSign, Receipt, Target,
 } from 'lucide-react';
 
 const ICONS: Record<string, React.FC<{ size?: number }>> = {
@@ -14,6 +15,7 @@ const ICONS: Record<string, React.FC<{ size?: number }>> = {
   Terminal, RotateCw, Users, Award, Quote, Columns3, CheckCircle2,
   Shield, Search, Zap, HelpCircle, Database, ListChecks, Flame,
   ShieldAlert, Crosshair, Scale, Flag, Building2, Cpu,
+  Network, Globe, GitBranch, FileCheck, Leaf, Key, Lock, Server, DollarSign, Receipt, Target,
 };
 
 export const SlideCreatorModal: React.FC = () => {
