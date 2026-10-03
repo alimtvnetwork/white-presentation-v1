@@ -1,0 +1,15 @@
+export { LlmAgenticWorkflowSlide } from './LlmAgenticWorkflowSlide';
+export { ZeroDowntimeBlueGreenSlide } from './ZeroDowntimeBlueGreenSlide';
+export { PostQuantumPqcKemSlide } from './PostQuantumPqcKemSlide';
+export { DeveloperPlatformBackstageSlide } from './DeveloperPlatformBackstageSlide';
+export { Soc2Type2EvidenceStreamSlide } from './Soc2Type2EvidenceStreamSlide';
+export { AiModelDistillationSlide } from './AiModelDistillationSlide';
+export { ExecutiveCompensationClawbackSlide } from './ExecutiveCompensationClawbackSlide';
+export { EnterpriseLlmFineTuningSlide } from './EnterpriseLlmFineTuningSlide';
+export { DistributedVectorIndexSlide } from './DistributedVectorIndexSlide';
+export { RealtimeFinancialFraudSlide } from './RealtimeFinancialFraudSlide';
+export { AutonomousCloudCostSlide } from './AutonomousCloudCostSlide';
+export { LakehouseIcebergAcidSlide } from './LakehouseIcebergAcidSlide';
+export { MultiRegionActiveActiveSlide } from './MultiRegionActiveActiveSlide';
+export { SupplyChainCarbonCbamSlide } from './SupplyChainCarbonCbamSlide';
+export { ChaosMeshNetworkPartitionSlide } from './ChaosMeshNetworkPartitionSlide';

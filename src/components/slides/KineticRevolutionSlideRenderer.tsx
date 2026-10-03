@@ -1,6 +1,7 @@
 import React from 'react';
 import type { SlideData } from '../../types/presentation';
 import { WhiteMasterSlide } from './WhiteMasterSlide';
+import { GlobalPptMasterySlideRenderer } from './GlobalPptMasterySlideRenderer';
 import {
   GpuClusterFabricSlide,
   RagNeedleHaystackSlide,
@@ -52,6 +53,6 @@ export const KineticRevolutionSlideRenderer: React.FC<{ slide: SlideData }> = ({
     case 'boardroom-m-and-a-synergy-realization':
       return <BoardroomMaSynergySlide slide={slide as any} />;
     default:
-      return <WhiteMasterSlide slide={slide as any} />;
+      return <GlobalPptMasterySlideRenderer slide={slide} />;
   }
 };

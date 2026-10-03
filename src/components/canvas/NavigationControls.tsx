@@ -8,11 +8,25 @@ import { ThemePopover } from './ThemePopover';
 import { PresenterWebcamButton } from '../webcam/PresenterWebcamButton';
 
 export const NavigationControls: React.FC = () => {
-  const { activeSlideIndex, deck, stepAdvance, stepRewind, isSoundEnabled, toggleSound, canAdvanceStep, canRewindStep } =
-    useDeckStore();
+  const {
+    activeSlideIndex,
+    deck,
+    stepAdvance,
+    stepRewind,
+    isSoundEnabled,
+    toggleSound,
+    canAdvanceStep,
+    canRewindStep,
+    activeStep,
+    hasIntraSteps,
+    getActiveSlideMaxSteps,
+  } = useDeckStore();
   const { dockPosition } = useEditStore();
   const [showLayout, setShowLayout] = useState(false);
   const [showTheme, setShowTheme] = useState(false);
+
+  const maxSteps = getActiveSlideMaxSteps();
+  const hasMultipleSteps = Boolean(hasIntraSteps && maxSteps > 1);
 
   const isRewindDisabled = activeSlideIndex === 0 && !canRewindStep;
   const isAdvanceDisabled = activeSlideIndex === deck.slides.length - 1 && !canAdvanceStep;
@@ -77,6 +91,15 @@ export const NavigationControls: React.FC = () => {
       >
         <ChevronLeft size={16} />
       </button>
+
+      {hasMultipleSteps && (
+        <span
+          className="px-1.5 py-0.5 rounded bg-violet-950/60 border border-violet-500/30 text-[10px] font-mono text-violet-300 font-semibold"
+          title={`Step ${activeStep + 1} of ${maxSteps}`}
+        >
+          {activeStep + 1}/{maxSteps}
+        </span>
+      )}
 
       <button
         onClick={stepAdvance}

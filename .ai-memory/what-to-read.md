@@ -25,6 +25,7 @@
    - [`02-spec/21-app/24-expanded-slide-system-and-global-ppt-synthesis/01-overview.md`](../02-spec/21-app/24-expanded-slide-system-and-global-ppt-synthesis/01-overview.md) — Expanded 15 slide archetypes and Global PPT synthesis.
    - [`02-spec/21-app/25-grounded-global-ppt-and-flat-slide-synthesis/01-overview.md`](../02-spec/21-app/25-grounded-global-ppt-and-flat-slide-synthesis/01-overview.md) — Grounded synthesis from Global PPT & Flat Slide repos, active step progression engine, spring physics, and 15 production archetypes.
    - [`02-spec/21-app/38-global-ppt-flat-step-interactive-suite/readme.md`](../02-spec/21-app/38-global-ppt-flat-step-interactive-suite/readme.md) — Global PPT Flat Step Interactive Suite, 7 new theme presets, 3D flip motion, and 15 new interactive archetypes.
+   - [`02-spec/21-app/41-global-ppt-mastery-and-15-slide-evolution/readme.md`](../02-spec/21-app/41-global-ppt-mastery-and-15-slide-evolution/readme.md) — Chapter 41: Global PPT Synthesis, Step Engine Mastery, 5 GPU keyframes, and 15 slide archetypes.
 
 4. **Quality & Remediation History:**
    - [`02-spec/25-app-spec-audit/readme.md`](../02-spec/25-app-spec-audit/readme.md) — Audit directory catalog (zero open audit gaps).

@@ -1,8 +1,11 @@
-// lint-allow: file-size reason="authentic 20-theme corporate palette dictionary" max=850
+// lint-allow: file-size reason="authentic 20-theme corporate palette dictionary" max=900
 import { GradientStop, ThemePalette } from '../types/presentation';
 import { isBooleanTrue } from '../utils/booleanGuards';
 
 declare module '../types/presentation' {
+  interface GradientStop {
+    hslRaw?: string;
+  }
   interface ThemePalette {
     accent?: string;
     accentHsl?: string;
@@ -15,6 +18,14 @@ declare module '../types/presentation' {
   }
 }
 
+export function extractHslRaw(hsl: string): string {
+  const match = hsl.match(/hsl\(([^)]+)\)/i);
+  if (match && match[1]) {
+    return match[1].replace(/,/g, ' ').replace(/\s+/g, ' ').trim();
+  }
+  return hsl.replace(/,/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
 function makeStop(
   step: number,
   label: string,
@@ -22,13 +33,16 @@ function makeStop(
   hsl: string,
   rgb: string,
   luma: number,
-  contrastOnWhite: number
+  contrastOnWhite: number,
+  hslRaw?: string
 ): GradientStop {
-  return { step, label, hex, hsl, rgb, luma, contrastOnWhite };
+  const resolvedHslRaw = hslRaw || extractHslRaw(hsl);
+  return { step, label, hex, hsl, rgb, luma, contrastOnWhite, hslRaw: resolvedHslRaw };
 }
 
 export const CANONICAL_THEME_IDS = [
   'white-brand',
+  'corporate-clean',
   'paper-editorial',
   'true-dark',
   'emerald-growth',
@@ -84,6 +98,39 @@ export const CANONICAL_THEMES: Record<string, ThemePalette> = {
       makeStop(7, 'Muted Slate Charcoal', '#64748B', 'hsl(215, 16%, 47%)', 'rgb(100, 116, 139)', 0.22, 4.55),
       makeStop(8, 'Sub-Surface Slate', '#334155', 'hsl(215, 25%, 27%)', 'rgb(51, 65, 85)', 0.12, 8.33),
       makeStop(9, 'Deep Paper Ink', '#0F172A', 'hsl(222, 47%, 11%)', 'rgb(15, 23, 42)', 0.05, 20.0),
+    ],
+  },
+  'corporate-clean': {
+    id: 'corporate-clean',
+    name: 'Corporate Clean',
+    description: 'Crisp white ground, sharp sovereign indigo, high-authority boardroom clarity.',
+    isDark: false,
+    canvasBg: '#FFFFFF',
+    canvasBgHsl: '0 0% 100%',
+    bgHsl: '0 0% 100%',
+    textColor: '#0F172A',
+    textHsl: '222 47% 11%',
+    subtextColor: '#64748B',
+    subtextHsl: '215 16% 47%',
+    cardBg: 'rgba(255, 255, 255, 0.92)',
+    cardBgHsl: '0 0% 100%',
+    cardBorder: 'rgba(99, 102, 241, 0.25)',
+    cardBorderHsl: '239 84% 67%',
+    accentColor: '#4F46E5',
+    accentHsl: '243 75% 59%',
+    dotMatrix: false,
+    headerShadow: 'rgb(255 255 255) 1px 0.7px 0px',
+    stops: [
+      makeStop(0, 'Pure White Canvas', '#FFFFFF', 'hsl(0, 0%, 100%)', 'rgb(255, 255, 255)', 1.00, 1.0, '0 0% 100%'),
+      makeStop(1, 'Soft Indigo Wash', '#F5F7FF', 'hsl(230, 100%, 98%)', 'rgb(245, 247, 255)', 0.97, 1.03, '230 100% 98%'),
+      makeStop(2, 'Indigo Mist Surface', '#EEF2FF', 'hsl(226, 100%, 97%)', 'rgb(238, 242, 255)', 0.94, 1.06, '226 100% 97%'),
+      makeStop(3, 'Border Tint', '#E0E7FF', 'hsl(226, 100%, 94%)', 'rgb(224, 231, 255)', 0.88, 1.14, '226 100% 94%'),
+      makeStop(4, 'Indigo Accent Tint', '#C7D2FE', 'hsl(228, 96%, 89%)', 'rgb(199, 210, 254)', 0.74, 1.35, '228 96% 89%'),
+      makeStop(5, 'Primary Indigo Brand', '#4F46E5', 'hsl(243, 75%, 59%)', 'rgb(79, 70, 229)', 0.40, 2.50, '243 75% 59%'),
+      makeStop(6, 'Deep Sovereign Indigo', '#4338CA', 'hsl(245, 58%, 51%)', 'rgb(67, 56, 202)', 0.30, 3.33, '245 58% 51%'),
+      makeStop(7, 'Muted Slate Charcoal', '#64748B', 'hsl(215, 16%, 47%)', 'rgb(100, 116, 139)', 0.22, 4.55, '215 16% 47%'),
+      makeStop(8, 'Sub-Surface Slate', '#334155', 'hsl(215, 25%, 27%)', 'rgb(51, 65, 85)', 0.12, 8.33, '215 25% 27%'),
+      makeStop(9, 'Deep Paper Ink', '#0F172A', 'hsl(222, 47%, 11%)', 'rgb(15, 23, 42)', 0.05, 20.0, '222 47% 11%'),
     ],
   },
   'paper-editorial': {
@@ -331,10 +378,10 @@ export const CANONICAL_THEMES: Record<string, ThemePalette> = {
     subtextHsl: '351 95% 82%',
     cardBg: 'rgba(35, 12, 18, 0.88)',
     cardBgHsl: '344 49% 9%',
-    cardBorder: 'rgba(225, 29, 72, 0.35)',
-    cardBorderHsl: '347 77% 50%',
-    accentColor: '#E11D48',
-    accentHsl: '347 77% 50%',
+    cardBorder: 'rgba(244, 63, 94, 0.35)',
+    cardBorderHsl: '352 85% 55%',
+    accentColor: '#F43F5E',
+    accentHsl: '352 85% 55%',
     dotMatrix: true,
     headerShadow: 'rgb(0 0 0) 1px 0.7px 0px',
     stops: [
@@ -729,7 +776,13 @@ export const THEME_PALETTES: Record<string, ThemePalette> = {
   ...CANONICAL_THEMES,
 };
 
-export const LEGACY_ALIASES: Record<string, string> = {};
+export const LEGACY_ALIASES: Record<string, string> = {
+  'corporate-clean': 'corporate-clean',
+  'standard-white': 'white-brand',
+  'enterprise-dark': 'true-dark',
+};
+
+export const THEME_ALIASES = LEGACY_ALIASES;
 
 Object.entries(LEGACY_ALIASES).forEach(([legacyId, targetId]) => {
   const targetTheme = THEME_PALETTES[targetId];

@@ -696,6 +696,148 @@
   will-change: transform, box-shadow, opacity;
 }
 
+// ============================================================================
+// CHAPTER 41: GLOBAL PPT MASTERY & KINETIC SYNTHESIS ANIMATIONS
+// Hardware-accelerated GPU choreographies for deep systems visualization
+// ============================================================================
+
+// 1. LLM Agentic DAG Node Pulse (Execution Glow & Edge Routing)
+@keyframes agentDagNodePulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.22),
+                0 0 0 1px rgba(99, 102, 241, 0.30);
+    border-color: rgba(99, 102, 241, 0.40);
+    transform: translateY(0) scale(1.0);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(99, 102, 241, 0.65),
+                0 0 0 2px rgba(99, 102, 241, 0.85);
+    border-color: rgba(99, 102, 241, 1.0);
+    transform: translateY(-2.5px) scale(1.02);
+  }
+}
+
+.animate-agent-dag-pulse {
+  animation: agentDagNodePulse 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform, box-shadow, border-color;
+}
+
+// 2. Zero-Downtime Blue/Green Traffic Shift (Progressive Ramp 10% -> 100%)
+@keyframes blueGreenTrafficShift {
+  0% {
+    background-position: 0% 50%;
+    transform: scale(0.995);
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.25);
+  }
+  50% {
+    background-position: 100% 50%;
+    transform: scale(1.015);
+    box-shadow: 0 0 24px rgba(16, 185, 129, 0.50);
+  }
+  100% {
+    background-position: 0% 50%;
+    transform: scale(0.995);
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.25);
+  }
+}
+
+.animate-blue-green-shift {
+  animation: blueGreenTrafficShift 3s ease-in-out infinite;
+  will-change: transform, box-shadow, background-position;
+}
+
+// 3. Post-Quantum PQC KEM Handshake Beacon (Lattice Quorum Oscillation)
+@keyframes pqcHandshakeBeacon {
+  0%, 100% {
+    transform: scale(1.0) rotate(0deg);
+    box-shadow: 0 0 12px rgba(168, 85, 247, 0.25),
+                inset 0 0 8px rgba(168, 85, 247, 0.15);
+    border-color: rgba(168, 85, 247, 0.35);
+  }
+  50% {
+    transform: scale(1.03) rotate(1.2deg);
+    box-shadow: 0 0 32px rgba(168, 85, 247, 0.70),
+                inset 0 0 16px rgba(168, 85, 247, 0.35),
+                0 0 0 2px rgba(168, 85, 247, 0.90);
+    border-color: rgba(168, 85, 247, 1.0);
+  }
+}
+
+.animate-pqc-beacon {
+  animation: pqcHandshakeBeacon 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform, box-shadow, border-color;
+}
+
+// 4. Developer Platform IDP Golden Path Travel (Pipeline Beam Wave)
+@keyframes idpGoldenPathTravel {
+  0% {
+    stroke-dashoffset: 140;
+    opacity: 0.25;
+    filter: drop-shadow(0 0 2px rgba(245, 158, 11, 0.2));
+  }
+  50% {
+    opacity: 1.0;
+    filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.85));
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.25;
+    filter: drop-shadow(0 0 2px rgba(245, 158, 11, 0.2));
+  }
+}
+
+.animate-idp-path {
+  stroke-dasharray: 12 6;
+  animation: idpGoldenPathTravel 2s linear infinite;
+  will-change: stroke-dashoffset, opacity, filter;
+}
+
+// 5. Lakehouse Iceberg Branch Reveal (ACID Snapshot Partition Commit Wave)
+@keyframes icebergBranchReveal {
+  0% {
+    opacity: 0.30;
+    transform: translateY(4px) scale(0.98);
+    box-shadow: 0 0 0 0 rgba(6, 182, 212, 0);
+  }
+  50% {
+    opacity: 1.0;
+    transform: translateY(-2px) scale(1.015);
+    box-shadow: 0 0 24px rgba(6, 182, 212, 0.55),
+                0 0 0 1.5px rgba(6, 182, 212, 0.80);
+  }
+  100% {
+    opacity: 0.85;
+    transform: translateY(0) scale(1.0);
+    box-shadow: 0 0 12px rgba(6, 182, 212, 0.30);
+  }
+}
+
+.animate-iceberg-reveal {
+  animation: icebergBranchReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity, box-shadow;
+}
+
+// Interactive Step Utility
+.step-interactive {
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+  will-change: transform, box-shadow;
+
+  &:hover {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 10px 20px -6px var(--pres-accent-glow, rgba(124, 58, 237, 0.25));
+    border-color: var(--pres-border-hover, #7c3aed);
+  }
+
+  &:active,
+  &.active,
+  &[data-state='active'] {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 0 0 2px var(--pres-accent, #7c3aed), 0 14px 28px -6px var(--pres-accent-glow, rgba(124, 58, 237, 0.35));
+    border-color: var(--pres-accent, #7c3aed);
+  }
+}
+
 // Reduced motion
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {

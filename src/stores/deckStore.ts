@@ -15,6 +15,7 @@ import {
   calculateCustomizationSlideStepCount,
   getFlatGlobalSuiteSlideSteps,
   getGlobalPptExpansionSlideSteps,
+  getGlobalPptMasterySlideSteps,
 } from '../utils/stepProgression';
 import { INITIAL_DECK } from './initialDeck';
 
@@ -31,6 +32,7 @@ export {
   calculateCustomizationSlideStepCount,
   getFlatGlobalSuiteSlideSteps,
   getGlobalPptExpansionSlideSteps,
+  getGlobalPptMasterySlideSteps,
 };
 
 const computeSlideMaxSteps = (slide: any): number => {

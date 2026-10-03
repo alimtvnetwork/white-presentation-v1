@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="Central keynote presentation deck definition with pre-seeded expansion archetypes" max=440
+// lint-allow: file-size reason="Central keynote presentation deck definition with pre-seeded mastery archetypes" max=500
 import { PresentationDeck } from '../types/presentation';
 import {
   createMetricGridSlide, createProblemSolutionSlide, createQuadrantMatrixSlide,
@@ -134,6 +134,23 @@ import {
   createSaasNetRevenueRetentionSlide,
   createBoardroomMaSynergySlide,
 } from '../utils/kineticRevolutionFactories';
+import {
+  createLlmAgenticWorkflowSlide,
+  createZeroDowntimeBlueGreenSlide,
+  createPostQuantumPqcKemSlide,
+  createDeveloperPlatformBackstageSlide,
+  createSoc2Type2EvidenceStreamSlide,
+  createAiModelDistillationSlide,
+  createExecutiveCompensationClawbackSlide,
+  createEnterpriseLlmFineTuningSlide,
+  createDistributedVectorIndexSlide,
+  createRealtimeFinancialFraudSlide,
+  createAutonomousCloudCostSlide,
+  createLakehouseIcebergAcidSlide,
+  createMultiRegionActiveActiveSlide,
+  createSupplyChainCarbonCbamSlide,
+  createChaosMeshNetworkPartitionSlide,
+} from '../utils/globalPptMasteryFactories';
 
 export const INITIAL_DECK: PresentationDeck = {
   id: 'white-presentation-v1',
@@ -412,6 +429,21 @@ export const INITIAL_DECK: PresentationDeck = {
     createEbpfKernelTelemetrySlide('slide-181'),
     createSaasNetRevenueRetentionSlide('slide-182'),
     createBoardroomMaSynergySlide('slide-183'),
+    createLlmAgenticWorkflowSlide('slide-184'),
+    createZeroDowntimeBlueGreenSlide('slide-185'),
+    createPostQuantumPqcKemSlide('slide-186'),
+    createDeveloperPlatformBackstageSlide('slide-187'),
+    createSoc2Type2EvidenceStreamSlide('slide-188'),
+    createAiModelDistillationSlide('slide-189'),
+    createExecutiveCompensationClawbackSlide('slide-190'),
+    createEnterpriseLlmFineTuningSlide('slide-191'),
+    createDistributedVectorIndexSlide('slide-192'),
+    createRealtimeFinancialFraudSlide('slide-193'),
+    createAutonomousCloudCostSlide('slide-194'),
+    createLakehouseIcebergAcidSlide('slide-195'),
+    createMultiRegionActiveActiveSlide('slide-196'),
+    createSupplyChainCarbonCbamSlide('slide-197'),
+    createChaosMeshNetworkPartitionSlide('slide-198'),
   ],
 };
 

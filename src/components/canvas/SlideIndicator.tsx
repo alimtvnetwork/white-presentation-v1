@@ -4,9 +4,12 @@ import { useEditStore } from '../../stores/editStore';
 import { IndicatorPosition } from '../../types/presentation';
 
 export const SlideIndicator: React.FC = () => {
-  const { deck, activeSlideIndex, goToSlide } = useDeckStore();
+  const { deck, activeSlideIndex, goToSlide, activeStep, hasIntraSteps, getActiveSlideMaxSteps, jumpToStep } = useDeckStore();
   const { indicatorPosition, setIndicatorPosition, dockPosition } = useEditStore();
   const [hoveredDot, setHoveredDot] = useState<number | null>(null);
+
+  const maxSteps = getActiveSlideMaxSteps();
+  const hasValidIntraSteps = Boolean(hasIntraSteps && maxSteps > 1);
 
   const cyclePosition = () => {
     const seq: IndicatorPosition[] = ['bottom-center', 'bottom-left', 'bottom-right', 'top-center'];
@@ -52,6 +55,37 @@ export const SlideIndicator: React.FC = () => {
         <span className="text-slate-600">/</span>
         <span className="text-slate-400">{String(deck.slides.length).padStart(2, '0')}</span>
       </button>
+
+      {hasValidIntraSteps && (
+        <div className="flex items-center gap-1.5 ml-1 border-l border-slate-700/80 pl-2">
+          <span className="text-[10px] text-violet-300 font-semibold whitespace-nowrap">
+            Step {activeStep + 1}/{maxSteps}
+          </span>
+          <div className="flex items-center gap-1">
+            {Array.from({ length: maxSteps }, (_, stepIdx) => {
+              const isCurrentStep = stepIdx === activeStep;
+              const isPastStep = stepIdx < activeStep;
+              return (
+                <button
+                  key={stepIdx}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    jumpToStep(stepIdx);
+                  }}
+                  title={`Jump to Step ${stepIdx + 1}`}
+                  className={`h-1.5 rounded-full transition-all duration-200 cursor-pointer ${
+                    isCurrentStep
+                      ? 'bg-violet-400 w-3 ring-1 ring-violet-300'
+                      : isPastStep
+                      ? 'bg-violet-600/70 hover:bg-violet-500 w-1.5'
+                      : 'bg-slate-700 hover:bg-slate-500 w-1.5'
+                  }`}
+                />
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       <div className="flex items-center gap-1 ml-1 border-l border-slate-700/80 pl-2 max-w-[420px] overflow-x-auto no-scrollbar py-0.5">
         {deck.slides.map((s, i) => (

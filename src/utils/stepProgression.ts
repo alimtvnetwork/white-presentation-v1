@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="Central step progression calculations and kinetic physics" max=560
+// lint-allow: file-size reason="Central step progression calculations and kinetic physics" max=620
 import type { CSSProperties } from 'react';
 import type { SlideData } from '../types/presentation';
 import { isModernSlide, calculateModernSlideStepCount } from '../types/modernArchetypes';
@@ -478,12 +478,41 @@ export function getModernSlideSteps(slide: any): number {
 
 export const getExtendedSlideStepCount = getKineticSlideSteps;
 
-// lint-allow: function-length reason="central step progression cascading priority resolver" max=35
+export const MASTERY_DYNAMIC_TYPES = new Set([
+  'llm-agentic-workflow-dag', 'zero-downtime-blue-green-mesh',
+  'post-quantum-pqc-kem-handshake', 'developer-platform-backstage-portal',
+  'soc2-type2-continuous-evidence-stream', 'ai-model-distillation-pipeline',
+  'executive-compensation-clawback-matrix', 'enterprise-llm-fine-tuning-loss',
+]);
+
+export const MASTERY_FLAT_TYPES = new Set([
+  'distributed-vector-index-sharding', 'realtime-financial-fraud-graph',
+  'autonomous-cloud-cost-anomalies', 'lakehouse-iceberg-acid-lineage',
+  'multi-region-active-active-cockroach', 'supply-chain-carbon-ledger-cbam',
+  'chaos-mesh-network-partition-drill',
+]);
+
+export function getGlobalPptMasterySlideSteps(slide: any): number {
+  const hasSlide = Boolean(slide && typeof slide === 'object');
+  if (!hasSlide) return 0;
+  if (MASTERY_DYNAMIC_TYPES.has(slide.type)) {
+    return slide.stages?.length || 4;
+  }
+  if (MASTERY_FLAT_TYPES.has(slide.type)) {
+    return 1;
+  }
+  return 0;
+}
+
+// lint-allow: function-length reason="central step progression cascading priority resolver" max=40
 export function getSlideMaxSteps(slide: SlideData | any): number {
   const hasSlide = Boolean(slide && typeof slide === 'object');
   if (!hasSlide) {
     return 1;
   }
+
+  const masterySteps = getGlobalPptMasterySlideSteps(slide);
+  if (masterySteps > 0) return masterySteps;
 
   const revolutionSteps = getKineticRevolutionSlideSteps(slide);
   if (revolutionSteps > 0) return revolutionSteps;

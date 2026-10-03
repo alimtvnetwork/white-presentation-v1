@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="WCAG contrast runtime & theme token injector" max=520
+// lint-allow: file-size reason="WCAG contrast runtime & theme token injector" max=580
 import { THEME_PALETTES } from './gradientTokens';
 import { ThemePalette } from '../types/presentation';
 import { isBooleanTrue, isFalse } from '../utils/booleanGuards';
@@ -151,6 +151,7 @@ function getKnownLightAccent(themeId: string): string | null {
   if (themeId === 'github-light') return '#0969DA';
   if (themeId === 'paper-ink') return '#8A5A0E';
   if (themeId === 'white-brand') return '#6D28D9';
+  if (themeId === 'corporate-clean') return '#4338CA';
   return null;
 }
 
@@ -242,6 +243,7 @@ function getPresSurfaceVars(theme: ThemePalette, isDark: boolean): Record<string
     '--pres-card-bg': theme.cardBg,
     '--pres-bg-card-hover': cardBgHover,
     '--pres-card-bg-hover': cardBgHover,
+    '--pres-card-shadow': isDark ? '0 8px 32px rgba(0, 0, 0, 0.36)' : '0 8px 30px rgba(0, 0, 0, 0.05)',
   };
 }
 
@@ -372,11 +374,53 @@ export function getAllThemeVarKeys(): string[] {
   return cachedVarKeys;
 }
 
-export function cleanRootThemeVariables(targetRoot: HTMLElement): void {
+const MANAGED_PRES_VARIABLE_PREFIXES = [
+  '--pres-',
+  '--preset-',
+  '--gradient-',
+  '--gold',
+  '--cream',
+  '--ember',
+  '--ink',
+  '--accent-',
+  '--step-',
+  '--text-shadow-',
+];
+
+export function cleanPreviousThemeVariables(rootEl?: HTMLElement | null): void {
+  const target = rootEl || (typeof document !== 'undefined' ? document.documentElement : null);
+  if (!target) return;
+  const inlineStyle = target.style;
+  const propertiesToRemove: string[] = [];
+
+  for (let i = 0; i < inlineStyle.length; i++) {
+    const propName = inlineStyle[i];
+    const isManaged = MANAGED_PRES_VARIABLE_PREFIXES.some((prefix) =>
+      propName.startsWith(prefix)
+    );
+    if (isManaged) {
+      propertiesToRemove.push(propName);
+    }
+  }
+
+  propertiesToRemove.forEach((prop) => inlineStyle.removeProperty(prop));
+
   const varKeys = getAllThemeVarKeys();
   varKeys.forEach((key) => {
-    targetRoot.style.removeProperty(key);
+    target.style.removeProperty(key);
   });
+}
+
+export function cleanRootThemeVariables(targetRoot: HTMLElement): void {
+  cleanPreviousThemeVariables(targetRoot);
+}
+
+export function extractHslRaw(hsl: string): string {
+  const match = hsl.match(/hsl\(([^)]+)\)/i);
+  if (match && match[1]) {
+    return match[1].replace(/,/g, ' ').replace(/\s+/g, ' ').trim();
+  }
+  return hsl.replace(/,/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
 function buildStopVars(stops: ThemePalette['stops']): Record<string, string> {
@@ -384,12 +428,15 @@ function buildStopVars(stops: ThemePalette['stops']): Record<string, string> {
   const hasStops = Array.isArray(stops);
   if (hasStops) {
     stops.forEach((stop, index) => {
+      const cleanTriplet = stop.hslRaw || extractHslRaw(stop.hsl);
       vars[`--pres-stop-${stop.step}`] = stop.hex;
       vars[`--pres-s${stop.step}`] = stop.hex;
       vars[`--pres-stop-${stop.step}-hsl`] = stop.hsl;
+      vars[`--pres-stop-${stop.step}-hsl-raw`] = cleanTriplet;
       vars[`--pres-stop-${stop.step}-rgb`] = stop.rgb;
       vars[`--pres-gradient-stop-${index}`] = stop.hex;
       vars[`--pres-gradient-stop-${index}-hsl`] = stop.hsl;
+      vars[`--pres-gradient-stop-${index}-hsl-raw`] = cleanTriplet;
       vars[`--pres-gradient-stop-${index}-rgb`] = stop.rgb;
     });
   }

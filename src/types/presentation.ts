@@ -36,6 +36,10 @@ import type {
   KineticRevolutionSlideType,
   KineticRevolutionSlideData,
 } from './kineticRevolutionArchetypes';
+import type {
+  GlobalPptMasterySlideType,
+  GlobalPptMasterySlideData,
+} from './globalPptMasteryArchetypes';
 export * from './archetypes';
 export * from './extendedArchetypes';
 export * from './expandedArchetypes';
@@ -49,6 +53,7 @@ export * from './customizationArchetypes';
 export * from './flatGlobalSuiteTypes';
 export * from './globalPptExpansionArchetypes';
 export * from './kineticRevolutionArchetypes';
+export * from './globalPptMasteryArchetypes';
 
 export type SlideType =
   | 'white-master'
@@ -76,7 +81,8 @@ export type SlideType =
   | CustomizationSlideType
   | FlatGlobalSuiteSlideType
   | GlobalPptExpansionSlideType
-  | KineticRevolutionSlideType;
+  | KineticRevolutionSlideType
+  | GlobalPptMasterySlideType;
 
 export type DockPosition =
   | 'bottom-center'
@@ -328,7 +334,8 @@ export type SlideData =
   | CustomizationSlideData
   | FlatGlobalSuiteSlideData
   | GlobalPptExpansionSlideData
-  | KineticRevolutionSlideData;
+  | KineticRevolutionSlideData
+  | GlobalPptMasterySlideData;
 
 export type Slide = SlideData;
 
