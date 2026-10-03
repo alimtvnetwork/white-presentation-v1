@@ -51,7 +51,7 @@ import {
 export const INITIAL_DECK: PresentationDeck = {
   id: 'white-presentation-v1',
   title: 'White Presentation System - Executive Keynote',
-  version: '1.2.3',
+  version: '1.3.1',
   author: 'Riseup Asia Architectural Team',
   defaultThemeId: 'white-brand',
   canvas: {
