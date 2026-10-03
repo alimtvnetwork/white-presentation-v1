@@ -1,3 +1,4 @@
+// lint-allow: file-size reason="Central keynote presentation deck definition with pre-seeded expansion archetypes" max=420
 import { PresentationDeck } from '../types/presentation';
 import {
   createMetricGridSlide, createProblemSolutionSlide, createQuadrantMatrixSlide,
