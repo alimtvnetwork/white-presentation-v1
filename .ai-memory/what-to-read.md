@@ -24,6 +24,7 @@
    - [`10-title-hero-slide-spec.md`](../02-spec/21-app/10-title-hero-slide-spec.md) to [`18-builder-mode-interactive-canvas-spec.md`](../02-spec/21-app/18-builder-mode-interactive-canvas-spec.md) — 9 foundational archetype specifications.
    - [`02-spec/21-app/24-expanded-slide-system-and-global-ppt-synthesis/01-overview.md`](../02-spec/21-app/24-expanded-slide-system-and-global-ppt-synthesis/01-overview.md) — Expanded 15 slide archetypes and Global PPT synthesis.
    - [`02-spec/21-app/25-grounded-global-ppt-and-flat-slide-synthesis/01-overview.md`](../02-spec/21-app/25-grounded-global-ppt-and-flat-slide-synthesis/01-overview.md) — Grounded synthesis from Global PPT & Flat Slide repos, active step progression engine, spring physics, and 15 production archetypes.
+   - [`02-spec/21-app/38-global-ppt-flat-step-interactive-suite/readme.md`](../02-spec/21-app/38-global-ppt-flat-step-interactive-suite/readme.md) — Global PPT Flat Step Interactive Suite, 7 new theme presets, 3D flip motion, and 15 new interactive archetypes.
 
 4. **Quality & Remediation History:**
    - [`02-spec/25-app-spec-audit/readme.md`](../02-spec/25-app-spec-audit/readme.md) — Audit directory catalog (zero open audit gaps).

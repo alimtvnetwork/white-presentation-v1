@@ -4,6 +4,7 @@
 None.
 
 ## Completed Plans
+- [38-global-ppt-flat-step-interactive-suite.md](completed/38-global-ppt-flat-step-interactive-suite.md)
 - [19-deep-global-ppt-customization-flat.md](completed/19-deep-global-ppt-customization-flat.md)
 - [18-presentation-global-ppt-themes-and-15.md](completed/18-presentation-global-ppt-themes-and-15.md)
 - [35-global-ppt-motion-and-15-nextgen-archetypes.md](completed/35-global-ppt-motion-and-15-nextgen-archetypes.md)
