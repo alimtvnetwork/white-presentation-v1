@@ -82,6 +82,39 @@ export const getKineticSlideSteps = (slide: any): number => {
   }
 };
 
+export const getKineticSuiteSlideSteps = (slide: any): number => {
+  if (!slide || typeof slide !== 'object') return 0;
+
+  switch (slide.type) {
+    case 'code-diff-comparison':
+      return slide.diffReveals?.length || slide.diffChunks?.length || 2;
+    case 'api-endpoint-inspector':
+      return slide.inspectorSteps?.length || slide.parameters?.length || 3;
+    case 'database-schema-erd':
+      return slide.tables?.length || 3;
+    case 'ai-agent-swarm-dag':
+      return slide.swarmPhases?.length || slide.nodes?.length || 3;
+    case 'canary-release-gauge':
+      return slide.canaryStages?.length || slide.stages?.length || 4;
+    case 'incident-rca-postmortem':
+      return slide.rcaPhases?.length || slide.pillars?.length || 4;
+    case 'audio-waveform-studio':
+      return slide.audioPhases?.length || slide.tracks?.length || 3;
+    case 'verifiable-audit-ledger':
+      return slide.evidenceGates?.length || slide.gates?.length || 4;
+    case 'global-cloud-edge-mesh':
+    case 'security-threat-model':
+    case 'financial-burn-runway':
+    case 'bento-kpi-mosaic':
+    case 'slas-and-uptime-status':
+    case 'hardware-silicon-spec':
+    case 'cohort-retention-heatmap':
+      return 1;
+    default:
+      return 1;
+  }
+};
+
 export const getExtendedSlideStepCount = getKineticSlideSteps;
 
 const computeSlideMaxSteps = (slide: any): number => {
@@ -91,7 +124,8 @@ const computeSlideMaxSteps = (slide: any): number => {
       getCoreSlideSteps(slide) ||
       getExpandedSlideSteps(slide) ||
       getEnterpriseSlideSteps(slide) ||
-      getKineticSlideSteps(slide);
+      getKineticSlideSteps(slide) ||
+      getKineticSuiteSlideSteps(slide);
     const hasMultipleSteps = count > 0;
     if (hasMultipleSteps) {
       return count;

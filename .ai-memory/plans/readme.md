@@ -1,7 +1,7 @@
 # Plans Directory
 
 ## Pending Plans
-- None.
+None
 
 ## Completed Plans
 - [01-white-presentation-specs.md](completed/01-white-presentation-specs.md)
@@ -20,3 +20,4 @@
 - [28-deep-global-ppt-and-flat-slide-synthesis.md](completed/28-deep-global-ppt-and-flat-slide-synthesis.md)
 - [29-corporate-ppt-kinetic-flat-slides.md](completed/29-corporate-ppt-kinetic-flat-slides.md)
 - [30-global-ppt-motion-flat-kinetic-slides.md](completed/30-global-ppt-motion-flat-kinetic-slides.md)
+- [31-global-ppt-motion-design-and-15-kinetic-archetypes.md](completed/31-global-ppt-motion-design-and-15-kinetic-archetypes.md)

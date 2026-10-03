@@ -9,9 +9,11 @@ import {
 import { EXTENDED_FACTORIES, EXTENDED_ARCHETYPE_OPTIONS, ArchetypeOption } from './extendedSlideFactories';
 import { EXPANDED_FACTORIES, EXPANDED_ARCHETYPE_OPTIONS } from './expandedSlideFactories';
 import { ENTERPRISE_FACTORIES, ENTERPRISE_ARCHETYPE_OPTIONS } from './enterpriseSlideFactories';
+import { KINETIC_SUITE_ARCHETYPE_OPTIONS, createKineticSuiteSlide } from './kineticSuiteSlideFactories';
 export * from './extendedSlideFactories';
 export * from './expandedSlideFactories';
 export * from './enterpriseSlideFactories';
+export * from './kineticSuiteSlideFactories';
 
 export const ORIGINAL_ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   { type: 'metric-grid', label: 'Metric Grid Matrix', category: 'Strategy & Metrics', desc: '4-6 quantitative KPI cards with delta trends', icon: 'BarChart3' },
@@ -36,6 +38,7 @@ export const ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   ...EXTENDED_ARCHETYPE_OPTIONS,
   ...EXPANDED_ARCHETYPE_OPTIONS,
   ...ENTERPRISE_ARCHETYPE_OPTIONS,
+  ...KINETIC_SUITE_ARCHETYPE_OPTIONS,
 ];
 
 export const createMetricGridSlide = (id = `slide-${Date.now()}`): MetricGridSlideData => ({
@@ -284,6 +287,10 @@ const createFallbackTitleSlide = (id: string): SlideData => ({
 });
 
 export const createArchetypeSlide = (type: SlideType, id = `slide-${Date.now()}`): SlideData => {
+  const kineticSlide = createKineticSuiteSlide(type as any, id);
+  if (kineticSlide) {
+    return kineticSlide;
+  }
   if (type in ENTERPRISE_FACTORIES) {
     return ENTERPRISE_FACTORIES[type as keyof typeof ENTERPRISE_FACTORIES](id);
   }

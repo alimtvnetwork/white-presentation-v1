@@ -372,6 +372,14 @@ Object.entries(LEGACY_ALIASES).forEach(([legacyId, targetId]) => {
   }
 });
 
+/**
+ * Resolves a theme ID deterministically against canonical palettes and legacy aliases.
+ */
+export function resolveTheme(themeId = 'bright-gold'): ThemePalette {
+  const canonicalId = LEGACY_ALIASES[themeId] || themeId;
+  return THEME_PALETTES[canonicalId] || THEME_PALETTES[themeId] || THEME_PALETTES['bright-gold'];
+}
+
 function getCharGradientStop(
   palette: ThemePalette,
   index: number,

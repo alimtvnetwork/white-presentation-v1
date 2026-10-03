@@ -44,7 +44,7 @@ export function getStepPhaseStyle(phase: StepPhase, accentColor: string = '#3b82
       transform: 'scale(1.02)',
       filter: 'none',
       zIndex: 20,
-      boxShadow: `0 0 0 1px ${accentColor}40, 0 0 24px -2px ${accentColor}50`,
+      boxShadow: `0 0 24px -2px ${accentColor}50`,
       transition: STEP_TRANSITION,
     };
   }
@@ -57,4 +57,22 @@ export function getStepPhaseStyle(phase: StepPhase, accentColor: string = '#3b82
     pointerEvents: 'none',
     transition: STEP_TRANSITION,
   };
+}
+
+export type MotionVariant = 'lift' | 'slide' | 'parallax';
+
+/**
+ * Returns the CSS utility class corresponding to a kinetic motion variant.
+ */
+export function getMotionVariantClass(variant?: 'lift' | 'slide' | 'parallax'): string {
+  if (variant === 'lift') {
+    return 'motion-variant-lift';
+  }
+  if (variant === 'slide') {
+    return 'motion-variant-slide';
+  }
+  if (variant === 'parallax') {
+    return 'motion-variant-parallax';
+  }
+  return '';
 }

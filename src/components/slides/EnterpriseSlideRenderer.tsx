@@ -16,7 +16,7 @@ import { DualColumnProsConsSlide } from './DualColumnProsConsSlide';
 import { InteractiveCodePlaygroundSlide } from './InteractiveCodePlaygroundSlide';
 import { ClosingCtaShowcaseSlide } from './ClosingCtaShowcaseSlide';
 import { TimelineRailSlide } from './TimelineRailSlide';
-import { WhiteMasterSlide } from './WhiteMasterSlide';
+import { KineticSuiteSlideRenderer } from './KineticSuiteSlideRenderer';
 
 export const EnterpriseSlideRenderer: React.FC<{ slide: SlideData }> = ({ slide }) => {
   switch (slide.type) {
@@ -36,6 +36,6 @@ export const EnterpriseSlideRenderer: React.FC<{ slide: SlideData }> = ({ slide 
     case 'interactive-code-playground': return <InteractiveCodePlaygroundSlide slide={slide as any} />;
     case 'closing-cta-showcase': return <ClosingCtaShowcaseSlide slide={slide as any} />;
     case 'timeline-rail': return <TimelineRailSlide slide={slide as any} />;
-    default: return <WhiteMasterSlide slide={slide as any} />;
+    default: return <KineticSuiteSlideRenderer slide={slide} />;
   }
 };

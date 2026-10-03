@@ -5,10 +5,12 @@ import type {
 } from './extendedArchetypes';
 import type { ExpandedSlideType, ExpandedSlideData } from './expandedArchetypes';
 import type { EnterpriseSlideType, EnterpriseSlideData } from './enterpriseArchetypes';
+import type { KineticSuiteSlideType, KineticSuiteSlideData } from './kineticSuiteArchetypes';
 export * from './archetypes';
 export * from './extendedArchetypes';
 export * from './expandedArchetypes';
 export * from './enterpriseArchetypes';
+export * from './kineticSuiteArchetypes';
 
 export type SlideType =
   | 'white-master'
@@ -27,7 +29,8 @@ export type SlideType =
   | ExtendedSlideType
   | ExpandedSlideType
   | EnterpriseSlideType
-  | LegacyExtendedSlideType;
+  | LegacyExtendedSlideType
+  | KineticSuiteSlideType;
 
 export type DockPosition =
   | 'bottom-center'
@@ -88,6 +91,7 @@ export interface BaseSlide {
   themeId?: string;
   notes?: string;
   activeStep?: number;
+  maxSteps?: number;
 }
 
 export interface WhiteMasterSlideData extends BaseSlide {
@@ -269,7 +273,8 @@ export type SlideData =
   | ExtendedSlideData
   | ExpandedSlideData
   | EnterpriseSlideData
-  | LegacyExtendedSlideData;
+  | LegacyExtendedSlideData
+  | KineticSuiteSlideData;
 
 export type Slide = SlideData;
 
