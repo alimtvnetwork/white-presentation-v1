@@ -1,6 +1,6 @@
 import React from 'react';
 import type { SlideData } from '../../types/presentation';
-import { WhiteMasterSlide } from './WhiteMasterSlide';
+import { FlatGlobalSuiteSlideRenderer } from './FlatGlobalSuiteSlideRenderer';
 import {
   NeuralVectorSearchTopologySlide,
   ModelQuantizationSpeculativeDecodingSlide,
@@ -54,6 +54,6 @@ export const CustomizationSlideRenderer: React.FC<{ slide: SlideData }> = ({ sli
     case 'executive-succession-leadership-bench':
       return <ExecutiveSuccessionLeadershipBenchSlide slide={slide as any} />;
     default:
-      return <WhiteMasterSlide slide={slide as any} />;
+      return <FlatGlobalSuiteSlideRenderer slide={slide} />;
   }
 };

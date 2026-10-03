@@ -91,6 +91,23 @@ import {
   createSalesQuotaCompensationMatrixSlide,
   createExecutiveSuccessionLeadershipBenchSlide,
 } from '../utils/customizationSlideFactories';
+import {
+  createInteractiveBranchingCloseSlide,
+  createBeforeAfterShowcasePanSlide,
+  createSearchSerpProofLightboxSlide,
+  createCognitiveInversionPunchlineSlide,
+  createTalentPyramidFunnelSvgSlide,
+  createHexagonalTechClusterSlide,
+  createConnectedRoadmapRailPulseSlide,
+  createCampaignPerformanceLightboxSlide,
+  createExecutiveRosterKeypadSlide,
+  createFlatStepProcessFlowSlide,
+  createFlatSplitNarrativeStepperSlide,
+  createFlatTimelineMilestoneRailSlide,
+  createFlatRevealBentoGridSlide,
+  createFlatDepthSentenceStackSlide,
+  createFlatTypewriterCodeWalkthroughSlide,
+} from '../utils/flatGlobalSuiteFactories';
 
 export const INITIAL_DECK: PresentationDeck = {
   id: 'white-presentation-v1',
@@ -333,6 +350,21 @@ export const INITIAL_DECK: PresentationDeck = {
     createTransferPricingTaxTopologySlide('slide-145'),
     createSalesQuotaCompensationMatrixSlide('slide-146'),
     createExecutiveSuccessionLeadershipBenchSlide('slide-147'),
+    createInteractiveBranchingCloseSlide('slide-148'),
+    createBeforeAfterShowcasePanSlide('slide-149'),
+    createSearchSerpProofLightboxSlide('slide-150'),
+    createCognitiveInversionPunchlineSlide('slide-151'),
+    createTalentPyramidFunnelSvgSlide('slide-152'),
+    createHexagonalTechClusterSlide('slide-153'),
+    createConnectedRoadmapRailPulseSlide('slide-154'),
+    createCampaignPerformanceLightboxSlide('slide-155'),
+    createExecutiveRosterKeypadSlide('slide-156'),
+    createFlatStepProcessFlowSlide('slide-157'),
+    createFlatSplitNarrativeStepperSlide('slide-158'),
+    createFlatTimelineMilestoneRailSlide('slide-159'),
+    createFlatRevealBentoGridSlide('slide-160'),
+    createFlatDepthSentenceStackSlide('slide-161'),
+    createFlatTypewriterCodeWalkthroughSlide('slide-162'),
   ],
 };
 

@@ -1,5 +1,18 @@
 # Changelog
 
+## [v1.5.1] - 2026-10-03
+
+### Added
+- **Flat Global Suite Slide Renderer & Initial Deck Pre-Seeding:**
+  - Created `FlatGlobalSuiteSlideRenderer.tsx` and connected it via `CustomizationSlideRenderer.tsx` fallback for seamless rendering of all 15 Module 38 archetypes.
+  - Pre-seeded all 15 Flat Global Suite archetypes in `INITIAL_DECK` in `src/stores/initialDeck.ts` (`slide-148` through `slide-162`).
+  - Extracted `CampaignLightboxModal.tsx` from `CampaignPerformanceLightboxSlide.tsx` to maintain strict $\le 100$-line component compliance (Hard Rule #6).
+  - Exported flatglobal components barrel from `src/components/slides/flatglobal/index.ts`.
+- **Verification & Build Validation:**
+  - `pnpm exec tsc --noEmit` passed with 0 errors.
+  - Production Vite bundle built in 5.67s with 0 errors across 2,786 modules.
+  - All 614 slide components in `src/components/slides/` strictly adhere to the $\le 100$-line ceiling (Hard Rule #6).
+
 ## [v1.5.0] - 2026-10-03
 
 ### Added
