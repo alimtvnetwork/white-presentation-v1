@@ -53,6 +53,14 @@ import {
   createCyberThreatKillChainSlide, createSupplyChainDigitalTwinSlide,
   createVoiceAiConversationalMeshSlide, createComplianceSoc2ReadinessLadderSlide,
   createValueStreamDoraFlywheelSlide,
+  createExecutiveStorytellingHookSlide, createLeadershipSynergyDuoSlide,
+  createOperationalWorkCultureSlide, createBentoCapabilitiesMatrixSlide,
+  createOpportunityCostWaterfallSlide, createBenchmarkRegionalPricingSlide,
+  createSprintOnboardingRoadmapSlide, createSimulatedBrowserShowcaseSlide,
+  createClientTestimonialWallSlide, createGlobalEdgeMeshSlide,
+  createAiGovernanceSafetyGovernorSlide, createDeveloperVelocityFlywheelSlide,
+  createStrategicDecarbonizationEsgSlide, createMarketTensionQuadrantSlide,
+  createExecutiveCloseContactSlide,
 } from '../utils/nextGenSlideFactories';
 
 export const INITIAL_DECK: PresentationDeck = {
@@ -255,6 +263,21 @@ export const INITIAL_DECK: PresentationDeck = {
     createSupplyChainDigitalTwinSlide('slide-104'),
     createVoiceAiConversationalMeshSlide('slide-105'),
     createValueStreamDoraFlywheelSlide('slide-106'),
+    createExecutiveStorytellingHookSlide('slide-107'),
+    createLeadershipSynergyDuoSlide('slide-108'),
+    createOperationalWorkCultureSlide('slide-109'),
+    createBentoCapabilitiesMatrixSlide('slide-110'),
+    createOpportunityCostWaterfallSlide('slide-111'),
+    createBenchmarkRegionalPricingSlide('slide-112'),
+    createSprintOnboardingRoadmapSlide('slide-113'),
+    createSimulatedBrowserShowcaseSlide('slide-114'),
+    createClientTestimonialWallSlide('slide-115'),
+    createGlobalEdgeMeshSlide('slide-116'),
+    createAiGovernanceSafetyGovernorSlide('slide-117'),
+    createDeveloperVelocityFlywheelSlide('slide-118'),
+    createStrategicDecarbonizationEsgSlide('slide-119'),
+    createMarketTensionQuadrantSlide('slide-120'),
+    createExecutiveCloseContactSlide('slide-121'),
   ],
 };
 

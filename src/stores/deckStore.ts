@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { PresentationDeck, SlideData } from '../types/presentation';
 import { soundEngine } from '../audio/soundEngine';
+import { calculateNextGenSlideStepCount } from '../types/nextGenArchetypes';
 import { INITIAL_DECK } from './initialDeck';
 
 const getCoreSlideSteps = (slide: any): number => {
@@ -112,7 +113,7 @@ export const getKineticSuiteSlideSteps = (slide: any): number => {
     case 'cohort-retention-heatmap':
       return 1;
     default:
-      return 1;
+      return 0;
   }
 };
 
@@ -187,34 +188,7 @@ export const getSovereignOperationsSlideSteps = (slide: any): number => {
 
 export const getNextGenSlideSteps = (slide: any): number => {
   if (!slide || typeof slide !== 'object') return 0;
-
-  switch (slide.type) {
-    case 'three-horizons-strategy-matrix':
-      return slide.horizons?.length || 3;
-    case 'ai-agent-fleet-topology':
-    case 'api-rate-limit-gateway':
-    case 'multi-cloud-dr-failover-mesh':
-    case 'fintech-payment-clearing-engine':
-    case 'model-context-protocol-mesh':
-    case 'data-clean-room-collaboration':
-    case 'supply-chain-digital-twin-lattice':
-    case 'voice-ai-realtime-conversational-mesh':
-      return slide.maxSteps || 4;
-    case 'executive-mergers-acquisitions-synergy':
-      return (slide as any).synergyMilestones?.length || (slide as any).maxSteps || 4;
-    case 'esg-decarbonization-roadmap':
-      return slide.milestoneYears?.length || 4;
-    case 'developer-platform-idp-hub':
-      return slide.goldenTemplates?.length || 4;
-    case 'cyber-threat-kill-chain-matrix':
-      return slide.killChainStages?.length || 4;
-    case 'compliance-audit-soc2-readiness-ladder':
-      return (slide as any).ladderSteps?.length || (slide as any).trustCriteriaScores?.length || 5;
-    case 'value-stream-engineering-dora-flywheel':
-      return (slide as any).flywheelQuadrants?.length || 4;
-    default:
-      return 0;
-  }
+  return calculateNextGenSlideStepCount(slide as any);
 };
 
 const computeSlideMaxSteps = (slide: any): number => {

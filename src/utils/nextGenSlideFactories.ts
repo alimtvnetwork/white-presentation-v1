@@ -4,4 +4,7 @@ export * from './nextgen/esgProtocolDataFactories';
 export * from './nextgen/platformSecOpsFactories';
 export * from './nextgen/logisticsVoiceFactories';
 export * from './nextgen/complianceDoraFactories';
+export * from './nextgen/corporateStorytellingFactories';
+export * from './nextgen/commercialFinancialFactories';
+export * from './nextgen/deepTechGovernanceFactories';
 export * from './nextgen/registry';

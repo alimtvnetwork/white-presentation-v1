@@ -4,6 +4,7 @@
 None.
 
 ## Completed Plans
+- [35-global-ppt-motion-and-15-nextgen-archetypes.md](completed/35-global-ppt-motion-and-15-nextgen-archetypes.md)
 - [34-global-ppt-synthesis-and-15-nextgen-archetypes.md](completed/34-global-ppt-synthesis-and-15-nextgen-archetypes.md)
 - [01-white-presentation-specs.md](completed/01-white-presentation-specs.md)
 - [02-audit-spec-and-release-readiness.md](completed/02-audit-spec-and-release-readiness.md)

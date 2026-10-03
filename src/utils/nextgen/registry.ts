@@ -1,3 +1,4 @@
+// lint-allow: file-size reason="unified nextgen slide archetype registry and factory dictionary" max=420
 import type {
   NextGenSlideType,
   NextGenSlideData,
@@ -31,6 +32,27 @@ import {
   createComplianceSoc2ReadinessLadderSlide,
   createValueStreamDoraFlywheelSlide,
 } from './complianceDoraFactories';
+import {
+  createExecutiveStorytellingHookSlide,
+  createLeadershipSynergyDuoSlide,
+  createOperationalWorkCultureSlide,
+  createBentoCapabilitiesMatrixSlide,
+  createOpportunityCostWaterfallSlide,
+} from './corporateStorytellingFactories';
+import {
+  createBenchmarkRegionalPricingSlide,
+  createSprintOnboardingRoadmapSlide,
+  createSimulatedBrowserShowcaseSlide,
+  createClientTestimonialWallSlide,
+  createGlobalEdgeMeshSlide,
+} from './commercialFinancialFactories';
+import {
+  createAiGovernanceSafetyGovernorSlide,
+  createDeveloperVelocityFlywheelSlide,
+  createStrategicDecarbonizationEsgSlide,
+  createMarketTensionQuadrantSlide,
+  createExecutiveCloseContactSlide,
+} from './deepTechGovernanceFactories';
 
 // =============================================================================
 // Master Next-Gen Slide Factory Registry & Defaults Engine
@@ -54,6 +76,21 @@ export const NEXTGEN_FACTORIES: Record<
   'voice-ai-realtime-conversational-mesh': createVoiceAiConversationalMeshSlide,
   'compliance-audit-soc2-readiness-ladder': createComplianceSoc2ReadinessLadderSlide,
   'value-stream-engineering-dora-flywheel': createValueStreamDoraFlywheelSlide,
+  'executive-storytelling-hook': createExecutiveStorytellingHookSlide,
+  'leadership-synergy-duo': createLeadershipSynergyDuoSlide,
+  'operational-work-culture': createOperationalWorkCultureSlide,
+  'bento-capabilities-matrix': createBentoCapabilitiesMatrixSlide,
+  'opportunity-cost-waterfall': createOpportunityCostWaterfallSlide,
+  'benchmark-regional-pricing': createBenchmarkRegionalPricingSlide,
+  'sprint-onboarding-roadmap': createSprintOnboardingRoadmapSlide,
+  'simulated-browser-showcase': createSimulatedBrowserShowcaseSlide,
+  'client-testimonial-wall': createClientTestimonialWallSlide,
+  'global-edge-mesh': createGlobalEdgeMeshSlide,
+  'ai-governance-safety-governor': createAiGovernanceSafetyGovernorSlide,
+  'developer-velocity-flywheel': createDeveloperVelocityFlywheelSlide,
+  'strategic-decarbonization-esg': createStrategicDecarbonizationEsgSlide,
+  'market-tension-quadrant': createMarketTensionQuadrantSlide,
+  'executive-close-contact': createExecutiveCloseContactSlide,
 };
 
 export const NEXT_GEN_SLIDE_FACTORIES = NEXTGEN_FACTORIES;
@@ -88,6 +125,21 @@ export function createAllNextGenSlides(): NextGenSlideData[] {
     createVoiceAiConversationalMeshSlide(),
     createComplianceSoc2ReadinessLadderSlide(),
     createValueStreamDoraFlywheelSlide(),
+    createExecutiveStorytellingHookSlide(),
+    createLeadershipSynergyDuoSlide(),
+    createOperationalWorkCultureSlide(),
+    createBentoCapabilitiesMatrixSlide(),
+    createOpportunityCostWaterfallSlide(),
+    createBenchmarkRegionalPricingSlide(),
+    createSprintOnboardingRoadmapSlide(),
+    createSimulatedBrowserShowcaseSlide(),
+    createClientTestimonialWallSlide(),
+    createGlobalEdgeMeshSlide(),
+    createAiGovernanceSafetyGovernorSlide(),
+    createDeveloperVelocityFlywheelSlide(),
+    createStrategicDecarbonizationEsgSlide(),
+    createMarketTensionQuadrantSlide(),
+    createExecutiveCloseContactSlide(),
   ];
 }
 
@@ -198,6 +250,111 @@ export const NEXTGEN_ARCHETYPE_OPTIONS: ArchetypeOption[] = [
     label: 'Value Stream & DORA Flywheel',
     category: 'Next-Gen Enterprise & AI',
     desc: 'Elite DORA Metrics, Flow Efficiency Framework & Engineering Revenue Acceleration',
+    icon: 'Award',
+  },
+  {
+    type: 'executive-storytelling-hook',
+    label: 'Executive Storytelling Hook',
+    category: 'Next-Gen Enterprise & AI',
+    desc: 'Boardroom Keynote Tension, Catalyst Metrics & Sovereign Strategic Inflection',
+    icon: 'Sparkles',
+  },
+  {
+    type: 'leadership-synergy-duo',
+    label: 'Leadership Synergy Duo',
+    category: 'Next-Gen Enterprise & AI',
+    desc: 'Co-Equal Executive & Technical Leadership Profiles with Collaborative Telemetry',
+    icon: 'Users',
+  },
+  {
+    type: 'operational-work-culture',
+    label: 'Operational Work Culture',
+    category: 'Next-Gen Enterprise & AI',
+    desc: 'Engineering Values, Blameless Postmortems & High-Velocity Cultural Tenets',
+    icon: 'CheckCircle2',
+  },
+  {
+    type: 'bento-capabilities-matrix',
+    label: 'Bento Capabilities Matrix',
+    category: 'Next-Gen Enterprise & AI',
+    desc: 'Asymmetric Bento Mosaic, Hero Capabilities & Real-Time Telemetry Bar',
+    icon: 'LayoutGrid',
+  },
+  {
+    type: 'opportunity-cost-waterfall',
+    label: 'Opportunity Cost Waterfall',
+    category: 'Next-Gen Enterprise & AI',
+    desc: 'Accounting-Grade Financial Waterfall, Technical Debt Friction & Net ROI',
+    icon: 'BarChart3',
+  },
+  {
+    type: 'benchmark-regional-pricing',
+    label: 'Benchmark Regional Pricing',
+    category: 'Next-Gen Enterprise & AI',
+    desc: 'Multi-Region Compute Economics, SLA Guarantees & Tiered Commitment Pricing',
+    icon: 'Scale',
+  },
+  {
+    type: 'sprint-onboarding-roadmap',
+    label: 'Sprint Onboarding Roadmap',
+    category: 'Next-Gen Enterprise & AI',
+    desc: 'Day 1 to 90 Engineering Onboarding Milestones, Golden Paths & Verification Gates',
+    icon: 'Calendar',
+  },
+  {
+    type: 'simulated-browser-showcase',
+    label: 'Simulated Browser Showcase',
+    category: 'Next-Gen Enterprise & AI',
+    desc: 'High-Fidelity macOS Browser Chrome, Interactive Viewport & Live Application Telemetry',
+    icon: 'Terminal',
+  },
+  {
+    type: 'client-testimonial-wall',
+    label: 'Client Testimonial Wall',
+    category: 'Next-Gen Enterprise & AI',
+    desc: 'High-Density Enterprise Testimonials, Quantitative Proof Points & Authenticity Seals',
+    icon: 'Quote',
+  },
+  {
+    type: 'global-edge-mesh',
+    label: 'Global Edge Mesh',
+    category: 'Next-Gen Enterprise & AI',
+    desc: 'Anycast Edge Routing Topology, Sub-50ms Global PoPs & Mesh Health Telemetry',
+    icon: 'Grid',
+  },
+  {
+    type: 'ai-governance-safety-governor',
+    label: 'AI Governance Safety Governor',
+    category: 'Next-Gen Enterprise & AI',
+    desc: 'Real-Time LLM Inference Safety Gates, Injection Firewalls & Audit Verification Ledger',
+    icon: 'ShieldAlert',
+  },
+  {
+    type: 'developer-velocity-flywheel',
+    label: 'Developer Velocity Flywheel',
+    category: 'Next-Gen Enterprise & AI',
+    desc: 'Self-Reinforcing Dev Loop, Sub-10ms Feedback, Instant Preview & DORA Metrics',
+    icon: 'RotateCw',
+  },
+  {
+    type: 'strategic-decarbonization-esg',
+    label: 'Strategic Decarbonization ESG',
+    category: 'Next-Gen Enterprise & AI',
+    desc: 'SBTi Net-Zero Trajectory, Datacenter PUE Telemetry & Renewable Energy Credits',
+    icon: 'Flag',
+  },
+  {
+    type: 'market-tension-quadrant',
+    label: 'Market Tension Quadrant',
+    category: 'Next-Gen Enterprise & AI',
+    desc: '2x2 Strategic Market Quadrant: Velocity vs. Governance Positioning Vector',
+    icon: 'Crosshair',
+  },
+  {
+    type: 'executive-close-contact',
+    label: 'Executive Close & Contact',
+    category: 'Next-Gen Enterprise & AI',
+    desc: 'Boardroom Decision Request, Strategic Milestones Timeline & Executive Signoff',
     icon: 'Award',
   },
 ];

@@ -2,7 +2,7 @@
 
 > **Specification Identifier:** `02-spec/21-app/35-global-ppt-motion-and-15-nextgen-archetypes/01-overview`  
 > **Status:** `APPROVED CANONICAL ARCHITECTURAL SPECIFICATION`  
-> **Target Release:** `v1.8.0`  
+> **Target Release:** `v1.7.0`  
 > **Author:** Spec Author 01  
 > **Lead Architecture:** Alim Ul Karim, Chief Software Engineer  
 > **Created:** 2026-10-03  
@@ -365,54 +365,54 @@ The presentation engine resolves this contrast pathology through automatic dual-
 
 ---
 
-## 7. Complete Catalog of the 15 New Enterprise Archetypes
+## 7. Complete Catalog of the 15 Next-Gen Archetypes
 
-The 15 New Enterprise Archetypes address mission-critical boardroom themes across distributed infrastructure, autonomous AI governance, zero-trust security, and real-time operations. They are structured into **8 Multi-Step Operational Workflows** (`isMultiStep: true`) and **7 Flat Sovereign Telemetry Overviews** (`isMultiStep: false`).
+The 15 Next-Gen Archetypes address mission-critical boardroom narratives, leadership profiles, cultural frameworks, financial waterfalls, interactive simulations, and flat sovereign telemetry overviews. They are structured into **8 Multi-Step Operational Workflows** (`isMultiStep: true`) and **7 High-Density Flat Sovereign Telemetry Overviews** (`isMultiStep: false`).
 
 ```
 +---------------------------------------------------------------------------------------------------+
-|                        15 NEXT-GEN ENTERPRISE & AI ARCHITECTURE ARCHETYPES                        |
+|                        15 NEXT-GEN ENTERPRISE & OPERATIONAL ARCHETYPES (16-30)                    |
 +---------------------------------------------------------------------------------------------------+
 |  [ 8 MULTI-STEP OPERATIONAL WORKFLOWS ]                                                           |
-|  1. zero-trust-packet-inspection  : TLS 1.3, L7 WAF, eBPF sandbox, Casbin RBAC, Envoy routing     |
-|  2. database-migration-pipeline   : DDL evolution, dual-write proxy, backfill, shadow validation  |
-|  3. autonomous-ai-eval-harness    : Hallucination, adversarial red-team, RAG fidelity, consensus  |
-|  4. chaos-engineering-matrix      : AZ partition, DB split-brain, upstream blackhole, OOM drain   |
-|  5. ci-cd-artifact-provenance     : SLSA Level 4, Sigstore Cosign, SBOM, Rekor ledger, OPA gate   |
-|  6. disaster-recovery-drill       : Outage trigger, heartbeat loss, BGP divert, replica promotion |
-|  7. feature-flag-rollout-tree     : Ring 0 Dogfood to Ring 4 Global GA with anomaly kill-switch   |
-|  8. quantum-cryptography-transition: NIST PQC scan, ML-KEM-768 hybrid, HSM firmware, PKI root     |
+|  16. executive-storytelling-hook    : Boardroom keynote tension, catalyst metrics, strategic shift|
+|  17. leadership-synergy-duo         : Executive & tech leadership synergy, shared operational vision|
+|  18. operational-work-culture       : Engineering values, blameless postmortems, cultural tenets  |
+|  19. bento-capabilities-matrix      : Asymmetric bento grid, enterprise capabilities, key telemetry|
+|  20. opportunity-cost-waterfall     : Financial friction, technical debt vs modernization waterfall|
+|  21. benchmark-regional-pricing     : Multi-region cloud economics, compute tiers, SLA comparisons|
+|  22. sprint-onboarding-roadmap      : Day 1-90 onboarding milestones, Golden Paths, autonomy gates|
+|  23. simulated-browser-showcase     : Simulated browser window, URL bar, SSL badge, live telemetry|
 |                                                                                                   |
 |  [ 7 FLAT SOVEREIGN TELEMETRY OVERVIEWS ]                                                         |
-|  9. global-latency-topology       : Anycast edge POP distribution, dark fiber WAN, sub-50ms TTFB  |
-|  10. microservices-mesh-telemetry : Google SRE Four Golden Signals, Istio sidecars, error budget  |
-|  11. threat-intelligence-feed     : CISO SOC cockpit, active APT actors, zero-day CVE tracker     |
-|  12. data-lakehouse-governance    : Medallion Iceberg tiers, PII masking compliance, lineage DAGs |
-|  13. kubernetes-fleet-orchestrator: Multi-cloud EKS/GKE headroom, Karpenter spot, ArgoCD GitOps   |
-|  14. api-monetization-billing     : API metering, usage overage tiers, Stripe sync, gross margin  |
-|  15. ai-inference-cluster-telemetry: H100 / TPU v5p telemetry, Tensor Core FLOPs, HBM3e saturation|
+|  24. client-testimonial-wall        : Enterprise testimonials, verified ROI proof, authenticity seal|
+|  25. global-edge-mesh              : Anycast edge POP distribution, sub-50ms latency topology      |
+|  26. ai-governance-safety-governor : Real-time LLM inference safety, prompt injection firewalls   |
+|  27. developer-velocity-flywheel   : DORA acceleration, local dev loop feedback, CI/CD telemetry   |
+|  28. strategic-decarbonization-esg : Science-Based Targets (SBTi), Scope 1-3 carbon reduction wedge|
+|  29. market-tension-quadrant       : 2x2 strategic quadrant, execution velocity vs governance     |
+|  30. executive-close-contact       : Decision requests, strategic next steps timeline, signoff    |
 +---------------------------------------------------------------------------------------------------+
 ```
 
 ### Complete Archetype Architectural Catalog
 
-| # | Archetype ID | Category | Multi-Step | Step Formula | Core Narrative Function | Key Data Entities |
-|:---:|:---|:---:|:---:|:---|:---|:---|
-| **01** | `zero-trust-packet-inspection` | Operational Workflow | `true` | `stages.length` | Zero-Trust L7 Ingress packet inspection with real-time rule checks and microsecond latency. | Inspection stages, protocol rules, throughput Mpps, latency $\mu s$, eBPF sandbox. |
-| **02** | `database-migration-pipeline` | Operational Workflow | `true` | `phases.length` | Zero-downtime distributed DB migration across dual-write, backfill, and cutover phases. | Migration phases, verification checks, checksum match %, replication lag. |
-| **03** | `autonomous-ai-eval-harness` | Operational Workflow | `true` | `gates.length` | Multi-gate autonomous evaluation harness assessing hallucination, red-teaming, and RAG. | Evaluation gates, test cases, confidence scores, multi-model consensus %. |
-| **04** | `chaos-engineering-matrix` | Operational Workflow | `true` | `experiments.length` | Hypothesis-driven distributed chaos injection across network partitions and kernel faults. | Chaos experiments, steady-state metrics, rollback triggers, blast radius. |
-| **05** | `ci-cd-artifact-provenance` | Operational Workflow | `true` | `stages.length` | Cryptographic SLSA Level 4 supply-chain provenance from Sigstore to OPA admission. | Provenance stages, cryptographic signatures, SBOM packages, Rekor log ID. |
-| **06** | `disaster-recovery-drill` | Operational Workflow | `true` | `phases.length` | Automated cross-region active-active failover with sub-second DNS diversion and RTO/RPO. | Drill phases, RTO/RPO tolerances, health probes, state convergence %. |
-| **07** | `feature-flag-rollout-tree` | Operational Workflow | `true` | `rings.length` | Progressive ring canary delivery (Rings 0-4) with automated anomaly rollbacks. | Deployment rings, target audience %, error budget burn, kill-switch status. |
-| **08** | `quantum-cryptography-transition` | Operational Workflow | `true` | `stages.length` | Enterprise Post-Quantum Cryptography roadmap transitioning from RSA to ML-KEM-768. | Transition stages, algorithm pairs, HSM firmware status, legacy sunset %. |
-| **09** | `global-latency-topology` | Flat Telemetry | `false` | `1` | Global Anycast Edge POP distribution, dark fiber WAN links, sub-50ms TTFB coverage map. | POP regions, latency percentiles (p50/p95/p99), WAN health, traffic Gbps. |
-| **10** | `microservices-mesh-telemetry` | Flat Telemetry | `false` | `1` | Google SRE Four Golden Signals, Istio Envoy sidecars, circuit breakers, and error budget. | Golden signals, active sidecars, circuit breaker trips, error budget burn %. |
-| **11** | `threat-intelligence-feed` | Flat Telemetry | `false` | `1` | Executive CISO SOC live threat intelligence cockpit, active APT actors, zero-day tracker. | Active threats, MITRE ATT&CK vectors, CVE severity, IOC stream count. |
-| **12** | `data-lakehouse-governance` | Flat Telemetry | `false` | `1` | Medallion Apache Iceberg lakehouse governance, Bronze/Silver/Gold tiers, and PII masking. | Storage tiers, catalog tables, PII masking compliance %, lineage DAG nodes. |
-| **13** | `kubernetes-fleet-orchestrator` | Flat Telemetry | `false` | `1` | Multi-cloud Kubernetes fleet capacity, Karpenter spot node optimization, ArgoCD sync. | Cluster count, total vCPUs/RAM, Karpenter spot savings %, ArgoCD sync %. |
-| **14** | `api-monetization-billing` | Flat Telemetry | `false` | `1` | High-throughput API metering, usage overage tiers, Stripe reconciliation, gross margin. | Monthly API revenue, active tenants, overage billings, margin waterfall. |
-| **15** | `ai-inference-cluster-telemetry` | Flat Telemetry | `false` | `1` | NVIDIA H100 / Google TPU v5p fleet telemetry, Tensor Core FLOPs, HBM3e saturation. | Accelerator count, Tensor Core utilization %, HBM3e bandwidth, cluster temp. |
+| # | Global ID | Type Identifier | Component Name | TypeScript Interface | Business Function & Strategic Intent | Layout Category | Step Count Formula | Focus Dynamic |
+|:---:|:---:|:---|:---|:---|:---|:---:|:---:|:---|
+| **01** | **16** | `executive-storytelling-hook` | `ExecutiveStorytellingHookSlide` | `ExecutiveStorytellingHookSlideData` | Frames boardroom keynote tension, strategic paradoxes, and catalyst metrics to capture executive alignment in the opening 60 seconds. | Narrative Hook | $3$ Steps | Status Quo $\to$ Inevitable Inflection $\to$ Sovereign Opportunity |
+| **02** | **17** | `leadership-synergy-duo` | `LeadershipSynergyDuoSlide` | `LeadershipSynergyDuoSlideData` | Profiles co-equal executive and technical leadership synergy (e.g. Chief Software Engineer & Strategic Product Director) with collaborative telemetry. | Leadership Profile | $2$ Steps | Executive 1 Focus $\to$ Executive 2 Focus (Unified Dynamic) |
+| **03** | **18** | `operational-work-culture` | `OperationalWorkCultureSlide` | `OperationalWorkCultureSlideData` | Encodes engineering values, blameless rituals, and high-velocity cultural tenets into verifiable operational telemetry. | Culture Matrix | $\max(\text{tenets.length}, 1) = 4$ | Tenet 1 $\to$ Tenet 2 $\to$ Tenet 3 $\to$ Tenet 4 (Progressive Unpack) |
+| **04** | **19** | `bento-capabilities-matrix` | `BentoCapabilitiesMatrixSlide` | `BentoCapabilitiesMatrixSlideData` | Organizes platform capabilities, AI engines, and enterprise integrations into an Apple/Linear-inspired asymmetric bento mosaic. | Bento Mosaic | $4$ Steps | Hero Cell $\to$ Primary Pillar $\to$ Telemetry Strip $\to$ Micro Metrics |
+| **05** | **20** | `opportunity-cost-waterfall` | `OpportunityCostWaterfallSlide` | `OpportunityCostWaterfallSlideData` | Quantifies financial friction, legacy technical debt, and net ROI acceleration via an accounting-grade waterfall chart. | Financial Waterfall | $\max(\text{bars.length}, 1) = 5$ | Baseline Cost $\to$ Friction Losses $\to$ Modern Gains $\to$ Net Value |
+| **06** | **21** | `benchmark-regional-pricing` | `BenchmarkRegionalPricingSlide` | `BenchmarkRegionalPricingSlideData` | Compares multi-region cloud economics, enterprise compute tiers, and SLA guarantees across global edge geographic zones. | Regional Pricing Table | $\max(\text{regions.length}, 1) = 3$ | US-East Baseline $\to$ EU-Central Expansion $\to$ APAC-South Mesh |
+| **07** | **22** | `sprint-onboarding-roadmap` | `SprintOnboardingRoadmapSlide` | `SprintOnboardingRoadmapSlideData` | Directs developer/executive Day 1 to Day 90 onboarding milestones, Golden Paths, mentor pairing, and autonomy verification gates. | Onboarding Roadmap | $\max(\text{milestones.length}, 1) = 5$ | Day 1 $\to$ Day 14 $\to$ Day 30 $\to$ Day 60 $\to$ Day 90 Cutover |
+| **08** | **23** | `simulated-browser-showcase` | `SimulatedBrowserShowcaseSlide` | `SimulatedBrowserShowcaseSlideData` | Renders a high-fidelity simulated browser window with macOS chrome controls, URL bar, SSL badge, and live interactive DOM application telemetry. | Browser Simulation | $3$ Steps | Window Chrome $\to$ Viewport Workspace $\to$ Interactive Telemetry Panel |
+| **09** | **24** | `client-testimonial-wall` | `ClientTestimonialWallSlide` | `ClientTestimonialWallSlideData` | Displays verified enterprise customer testimonials, quantitative ROI metrics, and cryptographic customer authenticity seals. | Social Proof Masonry | $1$ Step (Flat) | High-Density Customer Quotes & Proof Points |
+| **10** | **25** | `global-edge-mesh` | `GlobalEdgeMeshSlide` | `GlobalEdgeMeshSlideData` | Projects real-time Anycast edge network nodes, sub-50ms round-trip latency paths, and autonomous route failover health. | Infrastructure Topology | $1$ Step (Flat) | Global Edge POP Telemetry & Anycast Latency Map |
+| **11** | **26** | `ai-governance-safety-governor` | `AiGovernanceSafetyGovernorSlide` | `AiGovernanceSafetyGovernorSlideData` | Inspects real-time LLM inference safety, prompt injection firewalls, hallucination filters, and regulatory audit logging gates. | AI Governance Pipeline | $1$ Step (Flat) | Multi-Stage AI Safety Guardrails & Audit Ledger |
+| **12** | **27** | `developer-velocity-flywheel` | `DeveloperVelocityFlywheelSlide` | `DeveloperVelocityFlywheelSlideData` | Visualizes self-reinforcing developer velocity: fast local loops, instant CI/CD gates, preview environments, and live observability. | Velocity Flywheel | $1$ Step (Flat) | Continuous DORA Acceleration & Cycle Time Feedback |
+| **13** | **28** | `strategic-decarbonization-esg` | `StrategicDecarbonizationEsgSlide` | `StrategicDecarbonizationEsgSlideData` | Details Science-Based Targets initiative (SBTi) Scope 1-3 greenhouse gas reductions, datacenter PUE efficiency, and carbon credit offsets. | ESG Sustainability | $1$ Step (Flat) | Net-Zero Decarbonization Wedges & SBTi Telemetry |
+| **14** | **29** | `market-tension-quadrant` | `MarketTensionQuadrantSlide` | `MarketTensionQuadrantSlideData` | Positions platform capabilities on a 2x2 strategic quadrant (Execution Velocity vs. Architectural Governance) with competitor trajectories. | 2x2 Strategic Quadrant | $1$ Step (Flat) | Competitive Landscape & Sovereign Leadership Vector |
+| **15** | **30** | `executive-close-contact` | `ExecutiveCloseContactSlide` | `ExecutiveCloseContactSlideData` | Boardroom closing slide delivering key decision requests, next steps timeline, QR verification badge, and executive contact credentials. | Executive Action Close | $1$ Step (Flat) | Strategic Call to Action & Executive Signoff |
 
 ---
 

@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="WCAG contrast runtime & theme token injector" max=460
+// lint-allow: file-size reason="WCAG contrast runtime & theme token injector" max=465
 import { THEME_PALETTES } from './gradientTokens';
 import { ThemePalette } from '../types/presentation';
 import { isBooleanTrue, isFalse } from '../utils/booleanGuards';
@@ -366,11 +366,23 @@ export function applyThemeRuntimeVariables(theme: ThemePalette, rootEl: HTMLElem
     rootEl.style.setProperty(key, val);
   });
   if (isDark) {
-    rootEl.classList.add('theme-dark');
+    rootEl.classList.add('theme-dark', 'dark');
     rootEl.classList.remove('theme-light');
   } else {
     rootEl.classList.add('theme-light');
-    rootEl.classList.remove('theme-dark');
+    rootEl.classList.remove('theme-dark', 'dark');
+  }
+}
+
+export function applyThemeToRoot(palette: ThemePalette, targetRoot?: HTMLElement): void {
+  const root = targetRoot || (typeof document !== 'undefined' ? document.documentElement : null);
+  if (!root) return;
+  if (palette.isDark) {
+    root.classList.add('theme-dark', 'dark');
+    root.classList.remove('theme-light');
+  } else {
+    root.classList.add('theme-light');
+    root.classList.remove('theme-dark', 'dark');
   }
 }
 
@@ -380,24 +392,23 @@ function applyVarsToRoot(vars: Record<string, string>, isDark: boolean): void {
     root.style.setProperty(key, val);
   });
   if (isDark) {
-    root.classList.add('theme-dark');
+    root.classList.add('theme-dark', 'dark');
     root.classList.remove('theme-light');
   } else {
     root.classList.add('theme-light');
-    root.classList.remove('theme-dark');
+    root.classList.remove('theme-dark', 'dark');
   }
   const presRoot = document.getElementById('presentation-root');
-  const hasPresRoot = Boolean(presRoot);
-  if (hasPresRoot) {
+  if (presRoot) {
     Object.entries(vars).forEach(([key, val]) => {
-      presRoot!.style.setProperty(key, val);
+      presRoot.style.setProperty(key, val);
     });
     if (isDark) {
-      presRoot!.classList.add('theme-dark');
-      presRoot!.classList.remove('theme-light');
+      presRoot.classList.add('theme-dark', 'dark');
+      presRoot.classList.remove('theme-light');
     } else {
-      presRoot!.classList.add('theme-light');
-      presRoot!.classList.remove('theme-dark');
+      presRoot.classList.add('theme-light');
+      presRoot.classList.remove('theme-dark', 'dark');
     }
   }
 }
@@ -425,6 +436,7 @@ export function applyTheme(id: string, isFromBroadcast = false): ThemePalette {
     ...buildHslThemeVars(theme),
     ...buildStopVars(theme.stops),
   };
+  applyThemeToRoot(theme);
   applyVarsToRoot(vars, isDark);
   saveThemeToStorage(theme.id);
   auditThemeContrast(theme);

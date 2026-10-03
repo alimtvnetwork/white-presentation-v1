@@ -15,6 +15,21 @@ import { SupplyChainDigitalTwinSlide } from './nextgen/SupplyChainDigitalTwinSli
 import { VoiceAiConversationalMeshSlide } from './nextgen/VoiceAiConversationalMeshSlide';
 import { ComplianceSoc2ReadinessLadderSlide } from './nextgen/ComplianceSoc2ReadinessLadderSlide';
 import { ValueStreamDoraFlywheelSlide } from './nextgen/ValueStreamDoraFlywheelSlide';
+import { ExecutiveStorytellingHookSlide } from './nextgen/corporate/ExecutiveStorytellingHookSlide';
+import { LeadershipSynergyDuoSlide } from './nextgen/corporate/LeadershipSynergyDuoSlide';
+import { OperationalWorkCultureSlide } from './nextgen/corporate/OperationalWorkCultureSlide';
+import { BentoCapabilitiesMatrixSlide } from './nextgen/corporate/BentoCapabilitiesMatrixSlide';
+import { OpportunityCostWaterfallSlide } from './nextgen/corporate/OpportunityCostWaterfallSlide';
+import { BenchmarkRegionalPricingSlide } from './nextgen/commercial/BenchmarkRegionalPricingSlide';
+import { SprintOnboardingRoadmapSlide } from './nextgen/commercial/SprintOnboardingRoadmapSlide';
+import { SimulatedBrowserShowcaseSlide } from './nextgen/commercial/SimulatedBrowserShowcaseSlide';
+import { ClientTestimonialWallSlide } from './nextgen/commercial/ClientTestimonialWallSlide';
+import { GlobalEdgeMeshSlide } from './nextgen/commercial/GlobalEdgeMeshSlide';
+import { AiGovernanceSafetyGovernorSlide } from './nextgen/techgov/AiGovernanceSafetyGovernorSlide';
+import { DeveloperVelocityFlywheelSlide } from './nextgen/techgov/DeveloperVelocityFlywheelSlide';
+import { StrategicDecarbonizationEsgSlide } from './nextgen/techgov/StrategicDecarbonizationEsgSlide';
+import { MarketTensionQuadrantSlide } from './nextgen/techgov/MarketTensionQuadrantSlide';
+import { ExecutiveCloseContactSlide } from './nextgen/techgov/ExecutiveCloseContactSlide';
 import { WhiteMasterSlide } from './WhiteMasterSlide';
 
 export const NextGenSlideRenderer: React.FC<{ slide: SlideData }> = ({ slide }) => {
@@ -34,6 +49,21 @@ export const NextGenSlideRenderer: React.FC<{ slide: SlideData }> = ({ slide }) 
     case 'voice-ai-realtime-conversational-mesh': return <VoiceAiConversationalMeshSlide slide={slide as any} />;
     case 'compliance-audit-soc2-readiness-ladder': return <ComplianceSoc2ReadinessLadderSlide slide={slide as any} />;
     case 'value-stream-engineering-dora-flywheel': return <ValueStreamDoraFlywheelSlide slide={slide as any} />;
+    case 'executive-storytelling-hook': return <ExecutiveStorytellingHookSlide slide={slide as any} />;
+    case 'leadership-synergy-duo': return <LeadershipSynergyDuoSlide slide={slide as any} />;
+    case 'operational-work-culture': return <OperationalWorkCultureSlide slide={slide as any} />;
+    case 'bento-capabilities-matrix': return <BentoCapabilitiesMatrixSlide slide={slide as any} />;
+    case 'opportunity-cost-waterfall': return <OpportunityCostWaterfallSlide slide={slide as any} />;
+    case 'benchmark-regional-pricing': return <BenchmarkRegionalPricingSlide slide={slide as any} />;
+    case 'sprint-onboarding-roadmap': return <SprintOnboardingRoadmapSlide slide={slide as any} />;
+    case 'simulated-browser-showcase': return <SimulatedBrowserShowcaseSlide slide={slide as any} />;
+    case 'client-testimonial-wall': return <ClientTestimonialWallSlide slide={slide as any} />;
+    case 'global-edge-mesh': return <GlobalEdgeMeshSlide slide={slide as any} />;
+    case 'ai-governance-safety-governor': return <AiGovernanceSafetyGovernorSlide slide={slide as any} />;
+    case 'developer-velocity-flywheel': return <DeveloperVelocityFlywheelSlide slide={slide as any} />;
+    case 'strategic-decarbonization-esg': return <StrategicDecarbonizationEsgSlide slide={slide as any} />;
+    case 'market-tension-quadrant': return <MarketTensionQuadrantSlide slide={slide as any} />;
+    case 'executive-close-contact': return <ExecutiveCloseContactSlide slide={slide as any} />;
     default: return <WhiteMasterSlide slide={slide as any} />;
   }
 };
