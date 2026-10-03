@@ -80,4 +80,32 @@ AI agents MUST sequentially ingest these specification files:
 8. **Positive Booleans Only**:
    - Use `is*` and `has*` prefixes exclusively (e.g. `isDark`, `isEditMode`, `hasCheckmark`, `hasDotMatrix`, `isEnabled`).
 
+---
+
+## 5. Northern UI/UX Typography & Zero Yellow Contrast Standard (v1.3.3)
+
+1. **Strict Zero Yellow-on-Light Contrast Invariant:**
+   - NEVER place yellow, light amber, or gold text or badges on white or light backgrounds.
+   - Contrast ratio on light surfaces MUST satisfy WCAG AAA standards ($C_R \ge 8.6:1$).
+   - Standard dual-mode tokens:
+     - Light mode: `text-amber-900 bg-amber-100 border-amber-300` or `text-violet-900 bg-violet-100 border-violet-300`.
+     - Dark mode: `dark:text-amber-300 dark:bg-amber-500/15 dark:border-amber-500/30`.
+2. **Northern UI/UX Typography Standard (Header Scaling):**
+   - NEVER use micro-text ($\le 12\text{px}$) at the top of slides.
+   - **Kicker Badges**: strictly $\ge 16\text{px}$ (`text-base` font-mono font-bold tracking-[0.2em] uppercase `px-5 py-2 rounded-full`).
+   - **Category Text Beside Kicker**: strictly $\ge 16\text{px}$ (`text-base font-mono font-semibold` in high-contrast slate).
+   - **Slide Headings**: strictly $54\text{px}-62\text{px}$ font-black (`font-ubuntu leading-none tracking-tight`).
+   - **Detail Headings**: strictly $40\text{px}-46\text{px}$ font-black.
+3. **Interactive Step Hover & Single-Item Focus:**
+   - Left-hand steps/tiers MUST be interactive: `onClick={() => jumpToStep(idx)}`, `onMouseEnter={() => setHoveredIdx(idx)}`, `onMouseLeave={() => setHoveredIdx(null)}`.
+   - Apply smooth CSS3 transitions: `transition-all duration-300 cubic-bezier(0.22, 1, 0.36, 1)`, scale-up (`scale-105`), and halo rings.
+   - Right-side pane MUST dynamically pop up and reflect the active/hovered element using `key={activeIdx}` with entrance fade.
+   - Eliminate cognitive crowding: Replace 4–6 small competing cards with 1 large, focused hero card keyed to the active item.
+4. **Ambient 8% Low-Opacity HUD & Floating Tooltip Standard:**
+   - Navigation controls and sliders MUST sit at `opacity-[0.08]` when idle, transitioning to `hover:opacity-100` in 300ms.
+   - Docking positions: Controller at `top-right`, pagination slider at `bottom-center` (zero text collision).
+   - All buttons and pagination dots MUST have descriptive tooltips and `<kbd>` shortcuts.
+5. **Release Verification Gate:**
+   - A release is ONLY valid when TypeScript exits 0, production build succeeds, all components satisfy $\le 100$ lines, local runner `run.ps1` verifies dev server, git commit is created, tag is pushed to remote, and `git status` reports `nothing to commit, working tree clean`.
+
 
