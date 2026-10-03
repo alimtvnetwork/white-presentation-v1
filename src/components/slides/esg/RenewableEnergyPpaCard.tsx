@@ -14,7 +14,7 @@ const getSourceIcon = (source: string) => {
     case 'hydro':
       return <Droplets size={13} className="text-blue-400" />;
     case 'geothermal':
-      return <Flame size={13} className="text-orange-400" />;
+      return <Flame size={13} className="text-orange-600 dark:text-orange-400" />;
     case 'solar':
     default:
       return <Sun size={13} className="text-amber-600 dark:text-amber-400" />;

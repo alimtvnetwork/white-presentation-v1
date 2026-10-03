@@ -11,12 +11,7 @@ interface PacketGateCardProps {
 export const PacketGateCard: React.FC<PacketGateCardProps> = ({ stage, index, activeStep }) => {
   const isCompleted = index < activeStep;
   const isActive = index === activeStep;
-  const phaseClass = isActive
-    ? 'step-phase-active'
-    : isCompleted
-      ? 'step-phase-past'
-      : 'step-phase-future';
-
+  const phaseClass = isActive ? 'step-phase-active' : isCompleted ? 'step-phase-past' : 'step-phase-future';
   const rules = stage.ruleChecks || [];
 
   return (
@@ -82,12 +77,8 @@ export const PacketGateCard: React.FC<PacketGateCardProps> = ({ stage, index, ac
           </div>
           {rules.slice(0, 3).map((rule) => (
             <div key={rule.id} className="flex items-center justify-between text-xs font-mono p-1.5 rounded bg-white/5">
-              <span className="truncate max-w-[170px]" style={{ color: 'var(--pres-text)' }}>
-                {rule.ruleName}
-              </span>
-              <span className="text-emerald-400 flex items-center gap-1 text-[11px]">
-                <ShieldCheck size={11} /> {rule.protocol}
-              </span>
+              <span className="truncate max-w-[170px]" style={{ color: 'var(--pres-text)' }}>{rule.ruleName}</span>
+              <span className="text-emerald-400 flex items-center gap-1 text-[11px]"><ShieldCheck size={11} /> {rule.protocol}</span>
             </div>
           ))}
         </div>
@@ -98,9 +89,7 @@ export const PacketGateCard: React.FC<PacketGateCardProps> = ({ stage, index, ac
           <Zap size={12} className="text-amber-600 dark:text-amber-400" />
           Zero-Copy Kernel
         </span>
-        <span className="text-cyan-400 font-bold">
-          {stage.isVerified ? 'VERIFIED GATE' : 'PENDING'}
-        </span>
+        <span className="text-cyan-400 font-bold">{stage.isVerified ? 'VERIFIED GATE' : 'PENDING'}</span>
       </div>
     </div>
   );
