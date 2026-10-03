@@ -576,6 +576,126 @@
   100% { transform: perspective(1000px) rotateY(0deg); opacity: 1; }
 }
 
+// ============================================================================
+// Kinetic Revolution Keyframe Animations (Module 40)
+// ============================================================================
+
+// 1. GPU interconnect packet travel (1.6s)
+@keyframes fabricNodePulse {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.6;
+    box-shadow: 0 0 0 0 var(--pres-accent-glow, rgba(124, 58, 237, 0.4));
+  }
+  50% {
+    transform: translate3d(16px, 0, 0) scale(1.06);
+    opacity: 1;
+    box-shadow: 0 0 16px 4px var(--pres-accent-glow, rgba(124, 58, 237, 0.6));
+  }
+  100% {
+    transform: translate3d(32px, 0, 0) scale(1);
+    opacity: 0.6;
+    box-shadow: 0 0 0 0 var(--pres-accent-glow, rgba(124, 58, 237, 0));
+  }
+}
+
+.anim-fabric-node-pulse {
+  animation: fabricNodePulse 1.6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  will-change: transform, opacity, box-shadow;
+}
+
+// 2. RAG context depth laser scanner sweep (2.2s)
+@keyframes needleScanGlow {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+    filter: drop-shadow(0 0 4px var(--pres-accent, #7c3aed));
+  }
+  15% {
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+    filter: drop-shadow(0 0 16px var(--pres-accent, #7c3aed));
+  }
+}
+
+.anim-needle-scan-glow {
+  animation: needleScanGlow 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform, opacity, filter;
+}
+
+// 3. Linux kernel syscall probe stream (1.4s)
+@keyframes ebpfProbeTrace {
+  0% {
+    stroke-dashoffset: 120;
+    opacity: 0.35;
+    filter: drop-shadow(0 0 2px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.4));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 10px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.85));
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.35;
+    filter: drop-shadow(0 0 2px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.4));
+  }
+}
+
+.anim-ebpf-probe-trace {
+  stroke-dasharray: 16 8;
+  animation: ebpfProbeTrace 1.4s linear infinite;
+  will-change: stroke-dashoffset, opacity, filter;
+}
+
+// 4. Progressive canary traffic ramp curve (1.2s)
+@keyframes canaryTrafficShift {
+  0% {
+    transform: scaleX(0.08);
+    transform-origin: left center;
+    opacity: 0.4;
+  }
+  50% {
+    transform: scaleX(0.58);
+    transform-origin: left center;
+    opacity: 0.85;
+  }
+  100% {
+    transform: scaleX(1);
+    transform-origin: left center;
+    opacity: 1;
+  }
+}
+
+.anim-canary-traffic-shift {
+  animation: canaryTrafficShift 1.2s cubic-bezier(0.22, 1, 0.36, 1) infinite alternate;
+  will-change: transform, opacity;
+}
+
+// 5. Multiparty cryptographic shard verification pulse (2.0s)
+@keyframes mpcShardAttestation {
+  0%, 100% {
+    transform: scale(0.96);
+    box-shadow: 0 0 0 0 hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.55);
+    opacity: 0.75;
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 0 22px 6px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.35);
+    opacity: 1;
+  }
+}
+
+.anim-mpc-shard-attestation {
+  animation: mpcShardAttestation 2.0s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform, box-shadow, opacity;
+}
+
 // Reduced motion
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {

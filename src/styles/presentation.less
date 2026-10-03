@@ -126,7 +126,7 @@
 .plane-0-surface {
   position: relative;
   z-index: 0;
-  background-color: var(--pres-bg);
+  background-color: var(--pres-bg-surface, var(--pres-bg));
   box-shadow: none;
   border: none;
 }
@@ -163,15 +163,23 @@
 }
 
 .plane-3-floating {
-  position: fixed;
+  position: relative;
   z-index: 50;
-  background: var(--pres-bg-card-hover);
+  background: var(--pres-bg-card);
   backdrop-filter: blur(32px);
   -webkit-backdrop-filter: blur(32px);
-  border: 1px solid var(--pres-border-hover);
+  border: 1px solid var(--pres-border);
   border-radius: @radius-lg;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35), 0 0 25px var(--pres-accent-glow);
-  transition: transform 0.3s @ease-presentation, opacity 0.3s ease;
+  transition: transform 0.3s @ease-presentation, opacity 0.3s ease, border-color 0.25s ease;
+
+  &.plane-fixed {
+    position: fixed;
+  }
+
+  &:hover, &[data-is-active="true"] {
+    border-color: var(--pres-border-hover);
+  }
 }
 
 // Button Variants Catalog
@@ -408,7 +416,7 @@
 // ============================================================================
 
 .step-phase-future {
-  opacity: 0.40;
+  opacity: var(--step-phase-future-opacity, 0.40);
   transform: translateZ(8px) scale(0.98);
   filter: blur(1.25px);
   box-shadow: none;
@@ -418,9 +426,10 @@
 }
 
 .step-phase-active {
-  opacity: 1.0;
+  opacity: var(--step-phase-active-opacity, 1.0);
   transform: translateY(-4px) translateZ(24px) scale(1.02);
   filter: blur(0px);
+  background: var(--pres-bg-card);
   border-color: var(--pres-border-hover);
   box-shadow: 0 20px 35px -10px var(--pres-accent-glow), 0 0 0 1px hsl(var(--pres-accent-hsl) / 0.40);
   z-index: 20;
@@ -429,7 +438,7 @@
 }
 
 .step-phase-past {
-  opacity: 0.75;
+  opacity: var(--step-phase-past-opacity, 0.75);
   transform: translateZ(8px) scale(1.00);
   filter: none;
   box-shadow: none;

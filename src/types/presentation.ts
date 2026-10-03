@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="Central presentation slide union aggregation and deck contracts" max=350
+// lint-allow: file-size reason="Central presentation slide union aggregation and deck contracts" max=380
 import type { NewSlideType, NewSlideData } from './archetypes';
 import type {
   ExtendedSlideType, ExtendedSlideData,
@@ -32,6 +32,10 @@ import type {
   GlobalPptExpansionSlideType,
   GlobalPptExpansionSlideData,
 } from './globalPptExpansionArchetypes';
+import type {
+  KineticRevolutionSlideType,
+  KineticRevolutionSlideData,
+} from './kineticRevolutionArchetypes';
 export * from './archetypes';
 export * from './extendedArchetypes';
 export * from './expandedArchetypes';
@@ -44,6 +48,7 @@ export * from './modernArchetypes';
 export * from './customizationArchetypes';
 export * from './flatGlobalSuiteTypes';
 export * from './globalPptExpansionArchetypes';
+export * from './kineticRevolutionArchetypes';
 
 export type SlideType =
   | 'white-master'
@@ -70,7 +75,8 @@ export type SlideType =
   | ModernSlideType
   | CustomizationSlideType
   | FlatGlobalSuiteSlideType
-  | GlobalPptExpansionSlideType;
+  | GlobalPptExpansionSlideType
+  | KineticRevolutionSlideType;
 
 export type DockPosition =
   | 'bottom-center'
@@ -321,7 +327,8 @@ export type SlideData =
   | ModernSlideData
   | CustomizationSlideData
   | FlatGlobalSuiteSlideData
-  | GlobalPptExpansionSlideData;
+  | GlobalPptExpansionSlideData
+  | KineticRevolutionSlideData;
 
 export type Slide = SlideData;
 

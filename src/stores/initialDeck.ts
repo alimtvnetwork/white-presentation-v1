@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="Central keynote presentation deck definition with pre-seeded expansion archetypes" max=420
+// lint-allow: file-size reason="Central keynote presentation deck definition with pre-seeded expansion archetypes" max=440
 import { PresentationDeck } from '../types/presentation';
 import {
   createMetricGridSlide, createProblemSolutionSlide, createQuadrantMatrixSlide,
@@ -127,6 +127,13 @@ import {
   createInteractiveFaqTabbedDeckSlide,
   createAudienceDecisionForkMatrixSlide,
 } from '../utils/globalPptExpansionFactories';
+import {
+  createGpuClusterFabricSlide,
+  createRagNeedleHaystackSlide,
+  createEbpfKernelTelemetrySlide,
+  createSaasNetRevenueRetentionSlide,
+  createBoardroomMaSynergySlide,
+} from '../utils/kineticRevolutionFactories';
 
 export const INITIAL_DECK: PresentationDeck = {
   id: 'white-presentation-v1',
@@ -400,6 +407,11 @@ export const INITIAL_DECK: PresentationDeck = {
     createIncidentRetrospectiveTimelineSlide('slide-176'),
     createInteractiveFaqTabbedDeckSlide('slide-177'),
     createAudienceDecisionForkMatrixSlide('slide-178'),
+    createGpuClusterFabricSlide('slide-179'),
+    createRagNeedleHaystackSlide('slide-180'),
+    createEbpfKernelTelemetrySlide('slide-181'),
+    createSaasNetRevenueRetentionSlide('slide-182'),
+    createBoardroomMaSynergySlide('slide-183'),
   ],
 };
 

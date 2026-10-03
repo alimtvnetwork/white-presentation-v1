@@ -8,6 +8,7 @@ import {
   BarChart3, Shield, Search, Zap, HelpCircle, Database, ListChecks, Flame,
   ShieldAlert, Crosshair, Scale, Flag, Building2, Cpu,
   Network, Globe, GitBranch, FileCheck, Leaf, Key, Lock, Server, DollarSign, Receipt, Target,
+  Activity, Radar, Binary, Radio, HardDrive, Gauge, GitFork, Workflow, Percent, Coins, GitMerge, Briefcase,
 } from 'lucide-react';
 
 const ICONS: Record<string, React.FC<{ size?: number }>> = {
@@ -16,6 +17,7 @@ const ICONS: Record<string, React.FC<{ size?: number }>> = {
   Shield, Search, Zap, HelpCircle, Database, ListChecks, Flame,
   ShieldAlert, Crosshair, Scale, Flag, Building2, Cpu,
   Network, Globe, GitBranch, FileCheck, Leaf, Key, Lock, Server, DollarSign, Receipt, Target,
+  Activity, Radar, Binary, Radio, HardDrive, Gauge, GitFork, Workflow, Percent, Coins, GitMerge, Briefcase,
 };
 
 export const SlideCreatorModal: React.FC = () => {

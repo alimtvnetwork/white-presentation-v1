@@ -216,6 +216,9 @@ function getCanvasRatioVars(isDark: boolean): Record<string, string> {
     '--pres-dominant-ratio': '60%',
     '--pres-structural-ratio': '30%',
     '--pres-accent-ratio': '10%',
+    '--step-phase-future-opacity': '0.40',
+    '--step-phase-past-opacity': '0.75',
+    '--step-phase-active-opacity': '1.00',
     '--pres-canvas-gradient': isDark
       ? 'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.15), transparent 70%)'
       : 'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.08), transparent 70%)',

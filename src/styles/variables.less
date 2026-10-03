@@ -56,6 +56,16 @@
 @shadow-plane-3:   0 25px 50px -12px rgba(0, 0, 0, 0.35), 0 0 25px var(--pres-accent-glow);
 @pres-elevation-shadow: var(--pres-elevation-shadow, @shadow-plane-2);
 
+// 60/30/10 Ratio Tokens
+@pres-dominant-ratio:   60%;
+@pres-structural-ratio: 30%;
+@pres-accent-ratio:     10%;
+
+// 3-Phase Step Progression Tokens
+@step-future-opacity: 0.40;
+@step-past-opacity:   0.75;
+@step-active-opacity: 1.00;
+
 // Motion Physics & Deceleration
 @ease-presentation: cubic-bezier(0.22, 1, 0.36, 1);
 @ease-arc:          cubic-bezier(0.4, 0, 0.2, 1);
@@ -152,9 +162,17 @@
   --chrome-hover: rgba(255, 255, 255, 0.08);
 
   // 60/30/10 Visual Balance Tokens Fallbacks
+  --pres-dominant-ratio: 60%;
+  --pres-structural-ratio: 30%;
+  --pres-accent-ratio: 10%;
   --pres-canvas-gradient: radial-gradient(ellipse 65% 55% at 50% 48%, rgba(124, 58, 237, 0.12) 0%, transparent 72%);
   --pres-dot-matrix: 0.05;
   --pres-kpi-highlight: var(--pres-accent);
+
+  // 3-Phase Kinetic Step Progression Tokens
+  --step-phase-future-opacity: 0.40;
+  --step-phase-past-opacity: 0.75;
+  --step-phase-active-opacity: 1.00;
 
   // Micro-Shadow Optical Sharpening Variables
   --text-shadow-weight-dark: rgb(0 0 0) 1px 0.7px 0px;

@@ -1,6 +1,7 @@
 import React from 'react';
 import type { SlideData } from '../../types/presentation';
 import { WhiteMasterSlide } from './WhiteMasterSlide';
+import { KineticRevolutionSlideRenderer } from './KineticRevolutionSlideRenderer';
 import {
   ExecutiveMandateScorecardSlide,
   BoardQuorumResolutionLedgerSlide,
@@ -55,6 +56,6 @@ export const GlobalPptExpansionSuiteSlideRenderer: React.FC<{ slide: SlideData }
     case 'audience-decision-fork-matrix':
       return <AudienceDecisionForkMatrixSlide slide={slide as any} />;
     default:
-      return <WhiteMasterSlide slide={slide as any} />;
+      return <KineticRevolutionSlideRenderer slide={slide} />;
   }
 };
