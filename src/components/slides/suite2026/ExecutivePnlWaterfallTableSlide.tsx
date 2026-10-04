@@ -1,8 +1,8 @@
 // lint-allow: file-size reason="ExecutivePnlWaterfallTableSlide kinetic waterfall financial bridge" max=160
 import React from 'react';
-import type { ExecutivePnlWaterfallTableSlideData } from '../../types/suite2026Archetypes';
-import { useDeckStore } from '../../stores/deckStore';
-import { useEditStore } from '../../stores/editStore';
+import type { ExecutivePnlWaterfallTableSlideData } from '../../../types/suite2026Archetypes';
+import { useDeckStore } from '../../../stores/deckStore';
+import { useEditStore } from '../../../stores/editStore';
 import { TrendingUp, CheckCircle2, DollarSign, ShieldCheck, ArrowUpRight, ArrowDownRight } from 'lucide-react';
 
 const DEF_ROWS = [

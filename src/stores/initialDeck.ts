@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="Central keynote presentation deck definition with pre-seeded mastery archetypes" max=650
+// lint-allow: file-size reason="Central keynote presentation deck definition with pre-seeded mastery archetypes" max=750
 import { PresentationDeck } from '../types/presentation';
 import {
   createMetricGridSlide, createProblemSolutionSlide, createQuadrantMatrixSlide,
@@ -220,6 +220,23 @@ import {
   createCustomerHealthScorecardMatrixSlide,
   createValueStreamBottleneckFlowSlide,
 } from '../utils/suite2027SlideFactories';
+import {
+  createSyntheticDataCurationPipelineSlide,
+  createCloudNativeWasmMicroserviceMeshSlide,
+  createSovereignAiDatacenterPowerGridSlide,
+  createAutonomousCodeSecurityPatchingLoopSlide,
+  createCrossCloudMeshLatencyRoutingSlide,
+  createEnterpriseGenaiAppObservabilitySlide,
+  createZeroDowntimeSchemaEvolutionStepperSlide,
+  createEnterpriseSoftwareSupplyChainChokepointSlide,
+  createAiAgentMultiTurnOrchestrationDagSlide,
+  createEnterpriseDataCleanRoomAuditSlide,
+  createHyperscaleK8sCostAllocatorMatrixSlide,
+  createCyberResilienceRansomwareReadinessRadarSlide,
+  createSaasExpansionRetentionWaterfallGaugeSlide,
+  createDeveloperExperienceFrictionIndexHeatmapSlide,
+  createGeopoliticalSovereignCloudComplianceCompassSlide,
+} from '../utils/suite2028SlideFactories';
 
 export const INITIAL_DECK: PresentationDeck = {
   id: 'white-presentation-v1',
@@ -574,6 +591,21 @@ export const INITIAL_DECK: PresentationDeck = {
     createHybridCloudDrFailoverTopologySlide('slide-257'),
     createCustomerHealthScorecardMatrixSlide('slide-258'),
     createValueStreamBottleneckFlowSlide('slide-259'),
+    createSyntheticDataCurationPipelineSlide('slide-260'),
+    createCloudNativeWasmMicroserviceMeshSlide('slide-261'),
+    createSovereignAiDatacenterPowerGridSlide('slide-262'),
+    createAutonomousCodeSecurityPatchingLoopSlide('slide-263'),
+    createCrossCloudMeshLatencyRoutingSlide('slide-264'),
+    createEnterpriseGenaiAppObservabilitySlide('slide-265'),
+    createZeroDowntimeSchemaEvolutionStepperSlide('slide-266'),
+    createEnterpriseSoftwareSupplyChainChokepointSlide('slide-267'),
+    createAiAgentMultiTurnOrchestrationDagSlide('slide-268'),
+    createEnterpriseDataCleanRoomAuditSlide('slide-269'),
+    createHyperscaleK8sCostAllocatorMatrixSlide('slide-270'),
+    createCyberResilienceRansomwareReadinessRadarSlide('slide-271'),
+    createSaasExpansionRetentionWaterfallGaugeSlide('slide-272'),
+    createDeveloperExperienceFrictionIndexHeatmapSlide('slide-273'),
+    createGeopoliticalSovereignCloudComplianceCompassSlide('slide-274'),
   ],
 };
 

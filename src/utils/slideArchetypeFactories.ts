@@ -69,6 +69,7 @@ export * from './globalPptNextGenFactories';
 export * from './globalPptEvolutionFactories';
 export * from './suite2026SlideFactories';
 export * from './suite2027SlideFactories';
+export * from './suite2028SlideFactories';
 import { EXPANSION_FACTORIES } from './globalPptExpansionFactories';
 import { KINETIC_REVOLUTION_FACTORIES, KINETIC_REVOLUTION_ARCHETYPE_OPTIONS } from './kineticRevolutionFactories';
 import { GLOBAL_PPT_MASTERY_FACTORIES, GLOBAL_PPT_MASTERY_ARCHETYPE_OPTIONS } from './globalPptMasteryFactories';
@@ -94,6 +95,25 @@ import {
   createCustomerHealthScorecardMatrixSlide,
   createValueStreamBottleneckFlowSlide,
 } from './suite2027SlideFactories';
+import {
+  SUITE_2028_FACTORIES,
+  SUITE_2028_ARCHETYPE_OPTIONS,
+  createSyntheticDataCurationPipelineSlide,
+  createCloudNativeWasmMicroserviceMeshSlide,
+  createSovereignAiDatacenterPowerGridSlide,
+  createAutonomousCodeSecurityPatchingLoopSlide,
+  createCrossCloudMeshLatencyRoutingSlide,
+  createEnterpriseGenaiAppObservabilitySlide,
+  createZeroDowntimeSchemaEvolutionStepperSlide,
+  createEnterpriseSoftwareSupplyChainChokepointSlide,
+  createAiAgentMultiTurnOrchestrationDagSlide,
+  createEnterpriseDataCleanRoomAuditSlide,
+  createHyperscaleK8sCostAllocatorMatrixSlide,
+  createCyberResilienceRansomwareReadinessRadarSlide,
+  createSaasExpansionRetentionWaterfallGaugeSlide,
+  createDeveloperExperienceFrictionIndexHeatmapSlide,
+  createGeopoliticalSovereignCloudComplianceCompassSlide,
+} from './suite2028SlideFactories';
 
 export const ORIGINAL_ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   { type: 'metric-grid', label: 'Metric Grid Matrix', category: 'Strategy & Metrics', desc: '4-6 quantitative KPI cards with delta trends', icon: 'BarChart3' },
@@ -166,6 +186,7 @@ export const ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   ...GLOBAL_PPT_EVOLUTION_ARCHETYPE_OPTIONS,
   ...SUITE_2026_ARCHETYPE_OPTIONS,
   ...SUITE_2027_ARCHETYPE_OPTIONS,
+  ...SUITE_2028_ARCHETYPE_OPTIONS,
 ];
 
 // =============================================================================
@@ -757,6 +778,9 @@ const createFallbackTitleSlide = (id: string): SlideData => ({
 });
 
 export const createArchetypeSlide = (type: SlideType, id = `slide-${Date.now()}`): SlideData => {
+  if (type in SUITE_2028_FACTORIES) {
+    return SUITE_2028_FACTORIES[type as keyof typeof SUITE_2028_FACTORIES](id);
+  }
   if (type in SUITE_2027_FACTORIES) {
     return SUITE_2027_FACTORIES[type as keyof typeof SUITE_2027_FACTORIES](id);
   }

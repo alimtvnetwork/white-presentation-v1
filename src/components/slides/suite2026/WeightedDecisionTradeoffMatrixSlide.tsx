@@ -106,7 +106,7 @@ export const WeightedDecisionTradeoffMatrixSlide: React.FC<{
                       <span className="text-[15px]">{opt.optionName}</span>
                     </td>
                     {criteria.map((c) => {
-                      const score = opt.scores[c.id] ?? 0;
+                      const score = (opt.scores as Record<string, number>)?.[c.id] ?? 0;
                       return (
                         <td key={c.id} className="py-4 px-3 text-center">
                           <span className={`px-2.5 py-1 rounded font-bold text-[14px] ${score >= 9 ? 'bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30' : score >= 7 ? 'bg-sky-500/15 text-sky-700 dark:text-sky-300' : 'bg-slate-200/60 dark:bg-slate-700/30 text-slate-600 dark:text-slate-400'}`}>

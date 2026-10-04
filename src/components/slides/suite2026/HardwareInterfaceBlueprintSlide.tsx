@@ -1,8 +1,8 @@
 // lint-allow: file-size reason="HardwareInterfaceBlueprintSlide kinetic hardware edge blueprint and pinout inspection" max=160
 import React from 'react';
-import type { HardwareInterfaceBlueprintSlideData } from '../../types/suite2026Archetypes';
-import { useDeckStore } from '../../stores/deckStore';
-import { useEditStore } from '../../stores/editStore';
+import type { HardwareInterfaceBlueprintSlideData } from '../../../types/suite2026Archetypes';
+import { useDeckStore } from '../../../stores/deckStore';
+import { useEditStore } from '../../../stores/editStore';
 import { Cpu, CheckCircle2, ShieldCheck, Zap, HardDrive, Radio, Layers } from 'lucide-react';
 
 const DEF_PINPOINTS = [

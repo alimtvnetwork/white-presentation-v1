@@ -1,8 +1,8 @@
 // lint-allow: file-size reason="IshikawaRootCauseFishboneSlide kinetic RCA defect fishbone decomposition" max=160
 import React from 'react';
-import type { IshikawaRootCauseFishboneSlideData } from '../../types/suite2026Archetypes';
-import { useDeckStore } from '../../stores/deckStore';
-import { useEditStore } from '../../stores/editStore';
+import type { IshikawaRootCauseFishboneSlideData } from '../../../types/suite2026Archetypes';
+import { useDeckStore } from '../../../stores/deckStore';
+import { useEditStore } from '../../../stores/editStore';
 import { AlertTriangle, CheckCircle2, ShieldAlert, GitBranch, ArrowRight, Wrench, Bug } from 'lucide-react';
 
 const DEF_SPINES = [

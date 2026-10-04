@@ -1,8 +1,8 @@
 // lint-allow: file-size reason="GlobalDataJurisdictionBoundarySlide flat sovereign multi-region data residency" max=160
 import React from 'react';
-import type { GlobalDataJurisdictionBoundarySlideData } from '../../types/suite2026Archetypes';
-import { useDeckStore } from '../../stores/deckStore';
-import { useEditStore } from '../../stores/editStore';
+import type { GlobalDataJurisdictionBoundarySlideData } from '../../../types/suite2026Archetypes';
+import { useDeckStore } from '../../../stores/deckStore';
+import { useEditStore } from '../../../stores/editStore';
 import { Globe, ShieldCheck, CheckCircle2, Lock, Cpu, Server } from 'lucide-react';
 
 const DEF_ENCLAVES = [

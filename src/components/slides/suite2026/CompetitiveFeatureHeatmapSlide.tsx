@@ -1,8 +1,8 @@
 // lint-allow: file-size reason="CompetitiveFeatureHeatmapSlide flat sovereign competitive heatmap matrix" max=160
 import React from 'react';
-import type { CompetitiveFeatureHeatmapSlideData } from '../../types/suite2026Archetypes';
-import { useDeckStore } from '../../stores/deckStore';
-import { useEditStore } from '../../stores/editStore';
+import type { CompetitiveFeatureHeatmapSlideData } from '../../../types/suite2026Archetypes';
+import { useDeckStore } from '../../../stores/deckStore';
+import { useEditStore } from '../../../stores/editStore';
 import { ShieldCheck, CheckCircle2, Award, Zap, Star } from 'lucide-react';
 
 const DEF_COMPETITORS = ['Legacy Monolith', 'Cloud Native Co', 'Hyperscaler Suite'];
@@ -78,7 +78,7 @@ export const CompetitiveFeatureHeatmapSlide: React.FC<{ slide?: CompetitiveFeatu
               </div>
               <div className="col-span-2">{renderScoreCell(cap.ourScore, true)}</div>
               {competitors.map((comp) => (
-                <div key={comp} className="col-span-2">{renderScoreCell(cap.competitorScores[comp] || 3, false)}</div>
+                <div key={comp} className="col-span-2">{renderScoreCell((cap.competitorScores as Record<string, number>)?.[comp] || 3, false)}</div>
               ))}
               <div className="col-span-1 flex justify-center text-emerald-600 dark:text-emerald-400">
                 <ShieldCheck size={18} />

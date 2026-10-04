@@ -2,6 +2,7 @@ import React from 'react';
 import type { SlideData } from '../../types/presentation';
 import { WhiteMasterSlide } from './WhiteMasterSlide';
 import * as S from './suite2027';
+import { Suite2028SlideRenderer } from './Suite2028SlideRenderer';
 
 export const Suite2027SlideRenderer: React.FC<{ slide: SlideData; activeStep?: number }> = ({
   slide,
@@ -39,6 +40,6 @@ export const Suite2027SlideRenderer: React.FC<{ slide: SlideData; activeStep?: n
     case 'value-stream-bottleneck-flow':
       return <S.ValueStreamBottleneckFlowSlide slide={slide as any} activeStep={activeStep} />;
     default:
-      return <WhiteMasterSlide slide={slide as any} />;
+      return <Suite2028SlideRenderer slide={slide} activeStep={activeStep} />;
   }
 };

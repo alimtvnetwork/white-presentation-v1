@@ -1,8 +1,8 @@
 // lint-allow: file-size reason="TwoSidedEcosystemFlywheelSlide kinetic platform network flywheel compounding" max=160
 import React from 'react';
-import type { TwoSidedEcosystemFlywheelSlideData } from '../../types/suite2026Archetypes';
-import { useDeckStore } from '../../stores/deckStore';
-import { useEditStore } from '../../stores/editStore';
+import type { TwoSidedEcosystemFlywheelSlideData } from '../../../types/suite2026Archetypes';
+import { useDeckStore } from '../../../stores/deckStore';
+import { useEditStore } from '../../../stores/editStore';
 import { RefreshCw, CheckCircle2, Zap, ArrowRight, Activity, TrendingUp, Sparkles } from 'lucide-react';
 
 const DEF_SUPPLY = [

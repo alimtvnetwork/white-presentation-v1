@@ -1,8 +1,8 @@
 // lint-allow: file-size reason="CustomerPersonaArchetypeSplitSlide kinetic persona comparison breakdown" max=160
 import React from 'react';
-import type { CustomerPersonaArchetypeSplitSlideData } from '../../types/suite2026Archetypes';
-import { useDeckStore } from '../../stores/deckStore';
-import { useEditStore } from '../../stores/editStore';
+import type { CustomerPersonaArchetypeSplitSlideData } from '../../../types/suite2026Archetypes';
+import { useDeckStore } from '../../../stores/deckStore';
+import { useEditStore } from '../../../stores/editStore';
 import { Users, CheckCircle2, UserCheck, Target, Sparkles, Check } from 'lucide-react';
 
 const DEF_DIMENSIONS = [

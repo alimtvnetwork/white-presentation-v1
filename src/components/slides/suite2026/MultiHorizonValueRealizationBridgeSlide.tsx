@@ -1,8 +1,8 @@
 // lint-allow: file-size reason="MultiHorizonValueRealizationBridgeSlide kinetic strategic value horizons" max=160
 import React from 'react';
-import type { MultiHorizonValueRealizationBridgeSlideData } from '../../types/suite2026Archetypes';
-import { useDeckStore } from '../../stores/deckStore';
-import { useEditStore } from '../../stores/editStore';
+import type { MultiHorizonValueRealizationBridgeSlideData } from '../../../types/suite2026Archetypes';
+import { useDeckStore } from '../../../stores/deckStore';
+import { useEditStore } from '../../../stores/editStore';
 import { Compass, CheckCircle2, TrendingUp, DollarSign, ArrowUpRight, Award, Lock, Unlock } from 'lucide-react';
 
 const DEF_HORIZONS = [
