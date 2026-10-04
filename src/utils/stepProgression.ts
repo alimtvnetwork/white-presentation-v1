@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="Central step progression calculations and kinetic physics" max=600
+// lint-allow: file-size reason="Central step progression calculations and kinetic physics" max=660
 import type { CSSProperties } from 'react';
 import type { SlideData } from '../types/presentation';
 import { isModernSlide, calculateModernSlideStepCount } from '../types/modernArchetypes';
@@ -10,6 +10,10 @@ import {
   isNextGenSlide,
   calculateNextGenSlideStepCount,
 } from '../types/nextGenArchetypes';
+import {
+  isGlobalPptEvolutionSlide,
+  calculateGlobalPptEvolutionStepCount,
+} from '../types/globalPptEvolutionArchetypes';
 
 export type StepPhase = 'past' | 'completed' | 'active' | 'future';
 
@@ -520,15 +524,63 @@ export function getGlobalPptNextGenSlideSteps(slide: any): number {
   return 0;
 }
 
-// lint-allow: function-length reason="central step progression cascading priority resolver" max=50
+export const EVOLUTION_DYNAMIC_TYPES = new Set([
+  'pqc-migration-orchestration-flow',
+  'agent-hierarchical-memory-pipeline',
+  'active-active-sharding-consensus-mesh',
+  'zero-trust-api-mesh-authorization',
+  'autonomous-vulnerability-remediation-loop',
+  'edge-compute-workload-orchestrator',
+  'cloud-finops-unit-amortization-ladder',
+  'executive-board-ai-risk-oversight',
+]);
+
+export const EVOLUTION_FLAT_TYPES = new Set([
+  'sovereign-qkd-optical-backbone',
+  'agent-swarm-memory-registry',
+  'hyperscale-database-sharding-topology',
+  'microservices-zero-trust-policy-map',
+  'autonomous-siem-incident-triage-matrix',
+  'edge-infrastructure-fleet-density-matrix',
+  'executive-board-fiduciary-esg-horizon',
+]);
+
+export function getGlobalPptEvolutionSlideSteps(slide: any): number {
+  const hasSlide = Boolean(slide && typeof slide === 'object');
+  if (!hasSlide) return 0;
+  if (isGlobalPptEvolutionSlide(slide)) {
+    return calculateGlobalPptEvolutionStepCount(slide);
+  }
+  if (EVOLUTION_DYNAMIC_TYPES.has(slide.type)) {
+    return slide.migrationStages?.length
+      || slide.pipelineStages?.length
+      || slide.consensusStages?.length
+      || slide.authorizationStages?.length
+      || slide.remediationStages?.length
+      || slide.orchestrationStages?.length
+      || slide.amortizationStages?.length
+      || slide.oversightStages?.length
+      || slide.stages?.length
+      || 4;
+  }
+  if (EVOLUTION_FLAT_TYPES.has(slide.type)) {
+    return 1;
+  }
+  return 0;
+}
+
+// lint-allow: function-length reason="central step progression cascading priority resolver" max=65
 export function getSlideMaxSteps(slide: SlideData | any): number {
   const hasSlide = Boolean(slide && typeof slide === 'object');
   if (!hasSlide) {
     return 1;
   }
 
-  const nextGenSteps = getGlobalPptNextGenSlideSteps(slide);
-  if (nextGenSteps > 0) return nextGenSteps;
+  const evolutionSteps = getGlobalPptEvolutionSlideSteps(slide);
+  if (evolutionSteps > 0) return evolutionSteps;
+
+  const globalPptNextGenSteps = getGlobalPptNextGenSlideSteps(slide);
+  if (globalPptNextGenSteps > 0) return globalPptNextGenSteps;
 
   const masterySteps = getGlobalPptMasterySlideSteps(slide);
   if (masterySteps > 0) return masterySteps;
@@ -566,8 +618,8 @@ export function getSlideMaxSteps(slide: SlideData | any): number {
   const sovereignSteps = getSovereignOperationsSlideSteps(slide);
   if (sovereignSteps > 0) return sovereignSteps;
 
-  const nextGenSteps = getNextGenSlideSteps(slide);
-  if (nextGenSteps > 0) return nextGenSteps;
+  const legacyNextGenSteps = getNextGenSlideSteps(slide);
+  if (legacyNextGenSteps > 0) return legacyNextGenSteps;
 
   const modernSteps = getModernSlideSteps(slide);
   if (modernSteps > 0) return modernSteps;
@@ -583,6 +635,8 @@ export function getSlideMaxSteps(slide: SlideData | any): number {
 export {
   isGlobalPptExpansionSlide,
   calculateGlobalPptExpansionSlideSteps,
+  isGlobalPptEvolutionSlide,
+  calculateGlobalPptEvolutionStepCount,
 };
 
 export type MotionVariant = 'lift' | 'slide' | 'parallax';

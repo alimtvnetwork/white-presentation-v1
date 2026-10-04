@@ -66,10 +66,12 @@ export * from './globalPptExpansionFactories';
 export * from './kineticRevolutionFactories';
 export * from './globalPptMasteryFactories';
 export * from './globalPptNextGenFactories';
+export * from './globalPptEvolutionFactories';
 import { EXPANSION_FACTORIES } from './globalPptExpansionFactories';
 import { KINETIC_REVOLUTION_FACTORIES, KINETIC_REVOLUTION_ARCHETYPE_OPTIONS } from './kineticRevolutionFactories';
 import { GLOBAL_PPT_MASTERY_FACTORIES, GLOBAL_PPT_MASTERY_ARCHETYPE_OPTIONS } from './globalPptMasteryFactories';
 import { GLOBAL_PPT_NEXTGEN_FACTORIES, GLOBAL_PPT_NEXTGEN_ARCHETYPE_OPTIONS } from './globalPptNextGenFactories';
+import { GLOBAL_PPT_EVOLUTION_FACTORIES, GLOBAL_PPT_EVOLUTION_ARCHETYPE_OPTIONS } from './globalPptEvolutionFactories';
 
 export const ORIGINAL_ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   { type: 'metric-grid', label: 'Metric Grid Matrix', category: 'Strategy & Metrics', desc: '4-6 quantitative KPI cards with delta trends', icon: 'BarChart3' },
@@ -139,6 +141,7 @@ export const ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   ...KINETIC_REVOLUTION_ARCHETYPE_OPTIONS,
   ...GLOBAL_PPT_MASTERY_ARCHETYPE_OPTIONS,
   ...GLOBAL_PPT_NEXTGEN_ARCHETYPE_OPTIONS,
+  ...GLOBAL_PPT_EVOLUTION_ARCHETYPE_OPTIONS,
 ];
 
 // =============================================================================
@@ -625,6 +628,9 @@ const createFallbackTitleSlide = (id: string): SlideData => ({
 });
 
 export const createArchetypeSlide = (type: SlideType, id = `slide-${Date.now()}`): SlideData => {
+  if (type in GLOBAL_PPT_EVOLUTION_FACTORIES) {
+    return GLOBAL_PPT_EVOLUTION_FACTORIES[type](id);
+  }
   if (type in GLOBAL_PPT_NEXTGEN_FACTORIES) {
     return GLOBAL_PPT_NEXTGEN_FACTORIES[type](id);
   }

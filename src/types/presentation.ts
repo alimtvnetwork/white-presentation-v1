@@ -44,6 +44,10 @@ import type {
   GlobalPptNextGenSlideType,
   GlobalPptNextGenSlideData,
 } from './globalPptNextGenArchetypes';
+import type {
+  GlobalPptEvolutionSlideType,
+  GlobalPptEvolutionSlideData,
+} from './globalPptEvolutionArchetypes';
 export * from './archetypes';
 export * from './extendedArchetypes';
 export * from './expandedArchetypes';
@@ -59,6 +63,8 @@ export * from './globalPptExpansionArchetypes';
 export * from './kineticRevolutionArchetypes';
 export * from './globalPptMasteryArchetypes';
 export * from './globalPptNextGenArchetypes';
+export * from './globalPptEvolutionArchetypes';
+export type { GoldenPathTemplate } from './nextGenArchetypes';
 
 export type SlideType =
   | 'white-master'
@@ -88,7 +94,8 @@ export type SlideType =
   | GlobalPptExpansionSlideType
   | KineticRevolutionSlideType
   | GlobalPptMasterySlideType
-  | GlobalPptNextGenSlideType;
+  | GlobalPptNextGenSlideType
+  | GlobalPptEvolutionSlideType;
 
 export type DockPosition =
   | 'bottom-center'
@@ -150,6 +157,8 @@ export interface BaseSlide {
   notes?: string;
   activeStep?: number;
   maxSteps?: number;
+  isPublished?: boolean;
+  hasPresenterNotes?: boolean;
 }
 
 export interface WhiteMasterSlideData extends BaseSlide {
@@ -342,7 +351,8 @@ export type SlideData =
   | GlobalPptExpansionSlideData
   | KineticRevolutionSlideData
   | GlobalPptMasterySlideData
-  | GlobalPptNextGenSlideData;
+  | GlobalPptNextGenSlideData
+  | GlobalPptEvolutionSlideData;
 
 export type Slide = SlideData;
 

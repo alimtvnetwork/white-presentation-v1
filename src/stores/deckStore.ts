@@ -89,12 +89,6 @@ interface DeckStoreState {
 const initialSlide = INITIAL_DECK.slides[0] as any;
 const initialIndicators = computeStepIndicators(initialSlide, 0);
 
-const playTactileStepSound = (isSoundEnabled: boolean): void => {
-  if (isSoundEnabled) {
-    soundEngine.playStepClick();
-  }
-};
-
 export const useDeckStore = create<DeckStoreState>((set, get) => ({
   deck: INITIAL_DECK,
   activeSlideIndex: 0,
@@ -181,8 +175,15 @@ export const useDeckStore = create<DeckStoreState>((set, get) => ({
       get().nextSlide();
       return;
     }
-    playTactileStepSound(isSoundEnabled);
     const nextStepIndex = activeStep + 1;
+    if (isSoundEnabled) {
+      const isFinalStep = nextStepIndex === maxSteps - 1;
+      if (isFinalStep) {
+        soundEngine.playStageComplete();
+      } else {
+        soundEngine.playStepAdvance();
+      }
+    }
     const indicators = computeStepIndicators(currentSlide, nextStepIndex);
     set({
       activeStep: nextStepIndex,
@@ -199,7 +200,9 @@ export const useDeckStore = create<DeckStoreState>((set, get) => ({
       get().prevSlide();
       return;
     }
-    playTactileStepSound(isSoundEnabled);
+    if (isSoundEnabled) {
+      soundEngine.playStepRewind();
+    }
     const prevStepIndex = activeStep - 1;
     const indicators = computeStepIndicators(currentSlide, prevStepIndex);
     set({

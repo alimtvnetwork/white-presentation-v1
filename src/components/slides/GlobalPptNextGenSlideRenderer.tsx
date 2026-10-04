@@ -1,7 +1,7 @@
 // lint-allow: file-size reason="GlobalPptNextGenSlideRenderer archetype dispatcher" max=100
 import React from 'react';
 import type { SlideData } from '../../types/presentation';
-import { WhiteMasterSlide } from './WhiteMasterSlide';
+import { GlobalPptEvolutionSlideRenderer } from './GlobalPptEvolutionSlideRenderer';
 import {
   AgenticEvalRedTeamSlide,
   GitOpsArgoCdSyncSlide,
@@ -53,6 +53,6 @@ export const GlobalPptNextGenSlideRenderer: React.FC<{ slide: SlideData }> = ({ 
     case 'enterprise-board-capital-allocation':
       return <BoardCapitalAllocationSlide slide={slide as any} />;
     default:
-      return <WhiteMasterSlide slide={slide as any} />;
+      return <GlobalPptEvolutionSlideRenderer slide={slide} />;
   }
 };

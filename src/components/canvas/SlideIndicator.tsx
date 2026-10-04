@@ -73,7 +73,7 @@ export const SlideIndicator: React.FC = () => {
                     jumpToStep(stepIdx);
                   }}
                   title={`Jump to Step ${stepIdx + 1}`}
-                  className={`h-1.5 rounded-full transition-all duration-200 cursor-pointer ${
+                  className={`relative before:absolute before:-inset-2 before:content-[''] cursor-pointer h-1.5 rounded-full transition-all duration-200 ${
                     isCurrentStep
                       ? 'bg-violet-400 w-3 ring-1 ring-violet-300'
                       : isPastStep
@@ -95,7 +95,7 @@ export const SlideIndicator: React.FC = () => {
             onMouseEnter={() => setHoveredDot(i)}
             onMouseLeave={() => setHoveredDot(null)}
             title={`${i + 1}. ${s.title || `Slide ${i + 1}`}`}
-            className={`h-1.5 rounded-full transition-all duration-200 cursor-pointer ${
+            className={`relative before:absolute before:-inset-2 before:content-[''] cursor-pointer h-1.5 rounded-full transition-all duration-200 ${
               i === activeSlideIndex
                 ? 'bg-violet-500 w-4 ring-2 ring-violet-400/40'
                 : 'bg-slate-700 hover:bg-slate-400 w-1.5'

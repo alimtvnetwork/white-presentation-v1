@@ -786,7 +786,7 @@ export const CANONICAL_THEMES: Record<string, ThemePalette> = {
     textHsl: '166 85% 16%',
     subtextColor: '#047857',
     subtextHsl: '161 94% 24%',
-    cardBg: 'rgba(255, 255, 255, 0.90)',
+    cardBg: 'rgba(255, 255, 255, 0.92)',
     cardBgHsl: '0 0% 100%',
     cardBorder: 'rgba(5, 150, 105, 0.22)',
     cardBorderHsl: '161 94% 30%',

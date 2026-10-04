@@ -357,6 +357,8 @@
 [data-theme='github-light'],
 [data-theme='white-brand'],
 [data-theme='paper-editorial'],
+[data-theme='warm-editorial-terracotta'],
+[data-theme='sapphire-executive-light'],
 [data-appearance='light'],
 [data-is-dark='false'],
 .theme-light {
@@ -477,20 +479,27 @@
 
 .step-interactive {
   cursor: pointer;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s ease,
+              border-color 0.2s ease;
   will-change: transform, box-shadow;
 
   &:hover {
     transform: translateY(-2px) scale(1.01);
-    box-shadow: 0 12px 24px -8px var(--pres-accent-glow, rgba(124, 58, 237, 0.25));
+    box-shadow: 0 10px 20px -6px var(--pres-accent-glow, rgba(124, 58, 237, 0.25));
     border-color: var(--pres-border-hover, #7c3aed);
   }
 
-  &:active,
+  &:active {
+    transform: translateY(1px) scale(0.99);
+    box-shadow: 0 2px 8px -2px var(--pres-accent-glow, rgba(124, 58, 237, 0.20));
+  }
+
   &.active,
   &[data-state='active'] {
     transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 0 0 2px var(--pres-accent, #7c3aed), 0 16px 32px -8px var(--pres-accent-glow, rgba(124, 58, 237, 0.35));
+    box-shadow: 0 0 0 2px var(--pres-accent, #7c3aed),
+                0 14px 28px -6px var(--pres-accent-glow, rgba(124, 58, 237, 0.35));
     border-color: var(--pres-accent, #7c3aed);
   }
 }

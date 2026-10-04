@@ -41,6 +41,9 @@ class PresentationSoundEngine {
   private lastStepClickMs = 0;
   private lastKeystrokeTapMs = 0;
   private lastThemeSwitchMs = 0;
+  private lastStepAdvanceMs = 0;
+  private lastStepRewindMs = 0;
+  private lastStageCompleteMs = 0;
   private isMuted = false;
   private masterVolume = 0.4;
 
@@ -149,6 +152,10 @@ class PresentationSoundEngine {
 
   public playStepAdvance(): void {
     if (this.isMuted) return;
+    const now = performance.now();
+    const hasElapsed = hasCooldownElapsed(now, this.lastStepAdvanceMs, 50);
+    if (!hasElapsed) return;
+    this.lastStepAdvanceMs = now;
     const ctx = this.initContext();
     if (!ctx) return;
     const gain = stepVolume(this.masterVolume) * 0.30;
@@ -161,6 +168,10 @@ class PresentationSoundEngine {
 
   public playStepRewind(): void {
     if (this.isMuted) return;
+    const now = performance.now();
+    const hasElapsed = hasCooldownElapsed(now, this.lastStepRewindMs, 50);
+    if (!hasElapsed) return;
+    this.lastStepRewindMs = now;
     const ctx = this.initContext();
     if (!ctx) return;
     const gain = stepVolume(this.masterVolume) * 0.28;
@@ -173,13 +184,30 @@ class PresentationSoundEngine {
 
   public playStageComplete(): void {
     if (this.isMuted) return;
+    const now = performance.now();
+    const hasElapsed = hasCooldownElapsed(now, this.lastStageCompleteMs, 100);
+    if (!hasElapsed) return;
+    this.lastStageCompleteMs = now;
     const ctx = this.initContext();
     if (!ctx) return;
     const chordGain = this.masterVolume * 0.24;
     try {
-      // Dual-tone harmonic triad resolution (C5 -> E5 -> G5)
-      triggerTone(ctx, { type: 'sine', startFreq: 523.25, endFreq: 659.25, gain: chordGain, duration: 0.18 });
-      triggerTone(ctx, { type: 'sine', startFreq: 659.25, endFreq: 783.99, gain: chordGain * 0.9, duration: 0.24 });
+      // True harmonic C5-E5-G5 triad chord synthesis
+      const frequencies = [523.25, 659.25, 783.99];
+      const audioNow = ctx.currentTime;
+      const masterGain = ctx.createGain();
+      masterGain.gain.setValueAtTime(chordGain, audioNow);
+      masterGain.gain.exponentialRampToValueAtTime(0.0001, audioNow + 0.18);
+      masterGain.connect(ctx.destination);
+
+      frequencies.forEach((freq) => {
+        const osc = ctx.createOscillator();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, audioNow);
+        osc.connect(masterGain);
+        osc.start(audioNow);
+        osc.stop(audioNow + 0.18 + 0.02);
+      });
     } catch {
       // AudioContext policy suppression fallback
     }

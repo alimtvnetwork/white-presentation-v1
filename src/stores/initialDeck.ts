@@ -168,6 +168,23 @@ import {
   createZeroTrustSpiffeSlide,
   createBoardCapitalAllocationSlide,
 } from '../utils/globalPptNextGenFactories';
+import {
+  createPqcMigrationFlowSlide,
+  createAgentHierarchicalMemorySlide,
+  createActiveActiveShardingSlide,
+  createZeroTrustApiMeshSlide,
+  createAutonomousVulnerabilityLoopSlide,
+  createEdgeComputeOrchestratorSlide,
+  createCloudFinopsLadderSlide,
+  createBoardAiRiskOversightSlide,
+  createSovereignQkdBackboneSlide,
+  createAgentSwarmMemoryRegistrySlide,
+  createHyperscaleShardingTopologySlide,
+  createMicroservicesZeroTrustPolicySlide,
+  createAutonomousSiemTriageSlide,
+  createEdgeFleetDensitySlide,
+  createBoardFiduciaryEsgHorizonSlide,
+} from '../utils/globalPptEvolutionFactories';
 
 
 export const INITIAL_DECK: PresentationDeck = {
@@ -477,6 +494,21 @@ export const INITIAL_DECK: PresentationDeck = {
     createCrossBorderDataResidencySlide('slide-211'),
     createZeroTrustSpiffeSlide('slide-212'),
     createBoardCapitalAllocationSlide('slide-213'),
+    createPqcMigrationFlowSlide('slide-214'),
+    createAgentHierarchicalMemorySlide('slide-215'),
+    createActiveActiveShardingSlide('slide-216'),
+    createZeroTrustApiMeshSlide('slide-217'),
+    createAutonomousVulnerabilityLoopSlide('slide-218'),
+    createEdgeComputeOrchestratorSlide('slide-219'),
+    createCloudFinopsLadderSlide('slide-220'),
+    createBoardAiRiskOversightSlide('slide-221'),
+    createSovereignQkdBackboneSlide('slide-222'),
+    createAgentSwarmMemoryRegistrySlide('slide-223'),
+    createHyperscaleShardingTopologySlide('slide-224'),
+    createMicroservicesZeroTrustPolicySlide('slide-225'),
+    createAutonomousSiemTriageSlide('slide-226'),
+    createEdgeFleetDensitySlide('slide-227'),
+    createBoardFiduciaryEsgHorizonSlide('slide-228'),
   ],
 };
 

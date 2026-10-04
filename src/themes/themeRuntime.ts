@@ -1,5 +1,5 @@
 // lint-allow: file-size reason="WCAG contrast runtime & theme token injector" max=580
-import { THEME_PALETTES } from './gradientTokens';
+import { THEME_PALETTES, extractHslRaw } from './gradientTokens';
 import { ThemePalette } from '../types/presentation';
 import { isBooleanTrue, isFalse } from '../utils/booleanGuards';
 
@@ -417,14 +417,6 @@ export function cleanPreviousThemeVariables(rootEl?: HTMLElement | null): void {
 
 export function cleanRootThemeVariables(targetRoot: HTMLElement): void {
   cleanPreviousThemeVariables(targetRoot);
-}
-
-export function extractHslRaw(hsl: string): string {
-  const match = hsl.match(/hsl\(([^)]+)\)/i);
-  if (match && match[1]) {
-    return match[1].replace(/,/g, ' ').replace(/\s+/g, ' ').trim();
-  }
-  return hsl.replace(/,/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
 function buildStopVars(stops: ThemePalette['stops']): Record<string, string> {
