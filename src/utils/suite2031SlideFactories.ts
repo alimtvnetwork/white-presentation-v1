@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="Suite 2031 enterprise slide mock data factories" max=650
+// lint-allow: file-size reason="Suite 2031 enterprise slide mock data factories" max=600
 import type { SlideData } from '../types/presentation';
 import type { ArchetypeOption } from './extendedSlideFactories';
 import type {

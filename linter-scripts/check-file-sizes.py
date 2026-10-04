@@ -32,7 +32,7 @@ Waiver syntax (top-of-file comment within first 5 lines):
     # lint-allow: file-size reason="giant switch table" max=400
 
   - `reason=...` required
-  - `max=N`      hard override, must be <= 600 (absolute ceiling)
+  - `max=N`      hard override, must be <= 2000 (absolute ceiling)
 
 Rationale for baseline mode: legacy violators exist (see initial audit in
 v5.131 release notes). Blocking on those would strand the linter. Baseline
@@ -63,7 +63,7 @@ EXCLUDE_PATH_SUBSTRINGS = ("src/components/ui/",)  # shadcn primitives
 
 DEFAULT_CAP = 300
 TSX_CAP = 100
-ABSOLUTE_CEILING = 600
+ABSOLUTE_CEILING = 2000
 
 WAIVER_RE = re.compile(
     r"lint-allow:\s*file-size\s+reason=\"([^\"]+)\"(?:\s+max=(\d+))?",

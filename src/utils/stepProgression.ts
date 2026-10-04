@@ -22,6 +22,7 @@ import {
 import {
   isSuite2031Slide,
   calculateSuite2031StepCount,
+  SUITE_2031_STAGE_KEYS,
 } from '../types/suite2031Archetypes';
 
 export type StepPhase = 'past' | 'completed' | 'active' | 'future';
@@ -856,6 +857,9 @@ export {
   isSuite2026Slide,
   isSuite2028Slide,
   calculateSuite2028StepCount,
+  isSuite2031Slide,
+  calculateSuite2031StepCount,
+  SUITE_2031_STAGE_KEYS,
 };
 
 export { getStepLifecycleStyle } from './stepLifecycleStyles';

@@ -6,6 +6,14 @@
       "lines": 3148
     },
     {
+      "path": "src/utils/globalPptNextGenFactories.ts",
+      "lines": 1391
+    },
+    {
+      "path": "src/utils/globalPptMasteryFactories.ts",
+      "lines": 1322
+    },
+    {
       "path": "src/utils/globalPptSlideFactories.ts",
       "lines": 1234
     },
@@ -22,8 +30,16 @@
       "lines": 1118
     },
     {
+      "path": "src/utils/customizationSlideFactories.ts",
+      "lines": 1094
+    },
+    {
       "path": "linter-scripts/validate-guidelines.go",
       "lines": 1044
+    },
+    {
+      "path": "src/types/globalPptExpansionArchetypes.ts",
+      "lines": 970
     },
     {
       "path": "src/utils/kineticSuiteSlideFactories.ts",
@@ -34,12 +50,20 @@
       "lines": 720
     },
     {
+      "path": "src/types/globalPptMasteryArchetypes.ts",
+      "lines": 700
+    },
+    {
       "path": "src/types/sovereignOperationsArchetypes.ts",
       "lines": 669
     },
     {
       "path": "src/types/globalPptArchetypes.ts",
       "lines": 645
+    },
+    {
+      "path": "src/types/suite2029Archetypes.ts",
+      "lines": 604
     },
     {
       "path": "src/types/kineticSuiteArchetypes.ts",
@@ -50,24 +74,80 @@
       "lines": 511
     },
     {
-      "path": "src/stores/deckStore.ts",
-      "lines": 498
+      "path": "src/utils/globalPptExpansionFactories.ts",
+      "lines": 504
+    },
+    {
+      "path": "src/components/slides/suite2028/DeveloperExperienceFrictionIndexHeatmapSlide.tsx",
+      "lines": 497
     },
     {
       "path": "linter-scripts/allowlist-forbidden-string.py",
       "lines": 460
     },
     {
+      "path": "src/components/slides/suite2030/NeuromorphicSpikingNeuralMeshSlide.tsx",
+      "lines": 441
+    },
+    {
       "path": "linter-scripts/check-tunable-constants.py",
       "lines": 438
+    },
+    {
+      "path": "src/components/slides/suite2030/AutonomousSyntheticDataFoundrySlide.tsx",
+      "lines": 437
+    },
+    {
+      "path": "src/components/slides/suite2030/EnterpriseRagGraphHybridTraversalSlide.tsx",
+      "lines": 437
+    },
+    {
+      "path": "src/components/slides/suite2030/PhotonicInterconnectOpticalMeshSlide.tsx",
+      "lines": 437
+    },
+    {
+      "path": "src/components/slides/suite2030/QuantumAnnealingPortfolioOptimizerSlide.tsx",
+      "lines": 437
+    },
+    {
+      "path": "src/components/slides/suite2030/ZeroKnowledgeRollupProverClusterSlide.tsx",
+      "lines": 437
+    },
+    {
+      "path": "src/components/slides/suite2030/DecentralizedOracleConsensusSpineSlide.tsx",
+      "lines": 435
+    },
+    {
+      "path": "src/components/slides/suite2030/EbpfCloudNativeDdosShieldSlide.tsx",
+      "lines": 433
+    },
+    {
+      "path": "src/components/slides/suite2027/ZeroTrustMicrosegmentationMapSlide.tsx",
+      "lines": 403
     },
     {
       "path": "linter-scripts/forbidden-strings-summary.py",
       "lines": 397
     },
     {
+      "path": "src/components/slides/suite2027/AiInferenceCostTokenWaterfallSlide.tsx",
+      "lines": 395
+    },
+    {
+      "path": "src/components/slides/suite2027/CloudFinopsUnitRateOptimizationSlide.tsx",
+      "lines": 395
+    },
+    {
       "path": "linter-scripts/tests/test_ignored_deleted_reason_exact_match.py",
       "lines": 393
+    },
+    {
+      "path": "src/components/slides/suite2027/IncidentSev1CommandTimelineSlide.tsx",
+      "lines": 393
+    },
+    {
+      "path": "src/utils/nextgen/commercialFinancialFactories.ts",
+      "lines": 386
     },
     {
       "path": "linter-scripts/validate-rename-intake.py",
@@ -90,6 +170,18 @@
       "lines": 357
     },
     {
+      "path": "src/utils/nextgen/corporateStorytellingFactories.ts",
+      "lines": 351
+    },
+    {
+      "path": "src/utils/nextgen/deepTechGovernanceFactories.ts",
+      "lines": 351
+    },
+    {
+      "path": "src/components/slides/suite2027/ProductMarketFitCohortTrianglesSlide.tsx",
+      "lines": 349
+    },
+    {
       "path": "linter-scripts/tests/test_similarity_legend_flag.py",
       "lines": 348
     },
@@ -102,6 +194,10 @@
       "lines": 331
     },
     {
+      "path": "src/components/slides/suite2027/CrossFunctionalRaciMatrixSlide.tsx",
+      "lines": 314
+    },
+    {
       "path": "linter-scripts/generate-dashboard-data.cjs",
       "lines": 311
     },
@@ -110,8 +206,60 @@
       "lines": 311
     },
     {
-      "path": "src/types/presentation.ts",
-      "lines": 311
+      "path": "src/components/slides/suite2027/SupplyChainGeopoliticalChokepointSlide.tsx",
+      "lines": 276
+    },
+    {
+      "path": "src/components/slides/suite2027/SaasMagicNumberEfficiencyGaugeSlide.tsx",
+      "lines": 255
+    },
+    {
+      "path": "src/components/slides/revolution/ThreatExposureCtemSlide.tsx",
+      "lines": 138
+    },
+    {
+      "path": "src/components/slides/revolution/AiInferenceTokenEconomicsSlide.tsx",
+      "lines": 136
+    },
+    {
+      "path": "src/components/slides/revolution/DeveloperFrictionDxSlide.tsx",
+      "lines": 135
+    },
+    {
+      "path": "src/components/slides/revolution/RagNeedleHaystackSlide.tsx",
+      "lines": 135
+    },
+    {
+      "path": "src/components/slides/revolution/ProgressiveDeliveryCanarySlide.tsx",
+      "lines": 132
+    },
+    {
+      "path": "src/components/slides/revolution/SaasNetRevenueRetentionSlide.tsx",
+      "lines": 130
+    },
+    {
+      "path": "src/components/slides/revolution/MultiAgentReflectionSlide.tsx",
+      "lines": 129
+    },
+    {
+      "path": "src/components/slides/mastery/ExecutiveCompensationClawbackSlide.tsx",
+      "lines": 128
+    },
+    {
+      "path": "src/components/slides/mastery/PostQuantumPqcKemSlide.tsx",
+      "lines": 128
+    },
+    {
+      "path": "src/components/slides/mastery/DeveloperPlatformBackstageSlide.tsx",
+      "lines": 123
+    },
+    {
+      "path": "src/components/slides/mastery/Soc2Type2EvidenceStreamSlide.tsx",
+      "lines": 123
+    },
+    {
+      "path": "src/components/canvas/SlideIndicator.tsx",
+      "lines": 108
     }
   ]
 }

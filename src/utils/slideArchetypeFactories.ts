@@ -72,6 +72,7 @@ export * from './suite2027SlideFactories';
 export * from './suite2028SlideFactories';
 export * from './suite2029SlideFactories';
 export * from './suite2030SlideFactories';
+export * from './suite2031SlideFactories';
 import { EXPANSION_FACTORIES } from './globalPptExpansionFactories';
 import { KINETIC_REVOLUTION_FACTORIES, KINETIC_REVOLUTION_ARCHETYPE_OPTIONS } from './kineticRevolutionFactories';
 import { GLOBAL_PPT_MASTERY_FACTORIES, GLOBAL_PPT_MASTERY_ARCHETYPE_OPTIONS } from './globalPptMasteryFactories';
