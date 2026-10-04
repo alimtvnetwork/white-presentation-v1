@@ -40,22 +40,22 @@ Must follow and spawn agent using
    - 7 Flat Sovereign Overviews (1 step each): Single-step view ($1$ step) with all structural cards rendered at full $1.00$ opacity.
 3. **15 Brand-New Slide Archetypes (Suite 2033 Catalog)**:
    - **8 Kinetic Multi-Step Workflows (4 Steps Each)**:
-     1. `radar-threat-sweep-matrix`: 4-stage cyber threat surveillance, heuristic anomaly scoring, zero-trust containment, and sovereign audit telemetry.
-     2. `pipeline-etl-lineage-flow`: 4-stage streaming data pipeline from multi-region ingestion and schema validation to stream processing and target lakehouse sync.
-     3. `cascade-ramp-liquidity-waterfall`: 4-tier institutional capital liquidity waterfall across senior debt, mezzanine facility, preferred equity, and common surplus runway.
-     4. `telemetry-beacon-mesh`: 4-phase distributed edge telemetry covering cluster health discovery, quorum heartbeats, consensus verification, and failover route re-balancing.
-     5. `cloud-migration-wave-stream`: 4-wave enterprise workload cloud migration covering dependency discovery, container refactoring, pilot cutover, and legacy decommissioning.
-     6. `agentic-dialectic-workflow`: 4-phase autonomous multi-agent reasoning covering hypothesis formation, adversarial debate, formal proof synthesis, and execution dispatch.
-     7. `supply-chain-resilience-corridor`: 4-corridor supply chain continuity covering tier-1 supplier sourcing, multimodal freight transit, hub redundancy, and final-mile SLA assurance.
-     8. `saas-expansion-retention-funnel`: 4-milestone post-sales customer expansion covering initial time-to-value, enterprise adoption, cross-sell expansion, and lighthouse advocacy.
+     1. `strategic-initiative-cascade`: Multi-year strategic horizons cascade (`cascadeHorizons`), high-level OKR mapping, and staged capital allocation.
+     2. `ai-agent-orchestration-pipeline`: 4-phase autonomous multi-agent reasoning, swarm debate, sandboxed tool execution, and consensus verification (`orchestrationPhases`).
+     3. `ma-synergy-realization-bridge`: Post-merger integration financial bridge tracking cumulative EBITDA accretion across 4 chronological waves (`synergyWaves`).
+     4. `zero-day-incident-containment-loop`: Mission-critical cybersecurity crisis containment loop tracking MTTD/MTTR across 4 stages (`containmentSteps`).
+     5. `cloud-migration-wave-stepper`: Enterprise multi-datacenter cloud migration stepper tracking workload cutover across 4 migration waves (`migrationWaves`).
+     6. `customer-lifecycle-expansion-funnel`: Product-led growth customer journey from initial activation through enterprise expansion to global advocacy (`expansionStages`).
+     7. `data-lineage-governance-flow`: End-to-end data provenance and regulatory compliance flow across 4 cryptographic hops (`governanceHops`).
+     8. `product-release-burn-up-cadence`: Enterprise software delivery burn-up cadence and quality-gated release tracker across 4 quality gates (`releaseGates`).
    - **7 Flat Sovereign Overviews (1 Step Each)**:
-     9. `sovereign-cloud-topology-matrix`: Single-step visual topology mapping multi-region cloud infrastructures across sovereign data zones, isolation enclaves, and regulatory flags.
-     10. `board-capital-allocation-mosaic`: Board-level capital deployment strategy covering R&D reinvestment, strategic M&A reserves, share buybacks, and operational cash runway.
-     11. `zero-trust-identity-perimeter`: Comprehensive zero-trust identity architecture mapping biometric tokens, continuous posture checks, adaptive risk engines, and micro-segmentation.
-     12. `competitive-moat-radar-benchmark`: Multi-axis enterprise competitive defensibility scorecard assessing IP defensibility, network effects, distribution, and margin strength.
-     13. `executive-talent-matrix-grid`: 9-box executive talent calibration grid mapping performance vs potential, succession readiness, retention flags, and leadership bench strength.
-     14. `product-synergy-ecosystem-canvas`: Multi-product suite flywheel illustrating core platform modules, cross-product attach rates, shared API data flywheels, and switching costs.
-     15. `esg-carbon-accounting-ledger`: Scope 1-3 corporate emissions accounting scorecard, decarbonization trajectory, renewable energy procurement, and disclosure readiness.
+     9. `global-infrastructure-topology-cockpit`: Multi-region sovereign datacenter clusters, Anycast BGP edge routing, and global backbone health overview.
+     10. `saas-unit-economics-breakdown`: Investor-grade SaaS financial mechanics breakdown: CAC, LTV, Magic Number, Rule of 40, and cohort payback.
+     11. `esg-sustainability-governance-matrix`: Comprehensive 3-pillar ESG framework compliance tracking: Environmental, Social, and Governance.
+     12. `cap-table-ownership-waterfall`: Post-financing equity cap table, shareholder class dilution, and liquidation preference waterfall stack.
+     13. `ai-model-evaluation-benchmark-radar`: Multi-axis LLM frontier model evaluation across 6 critical benchmark axes: Reasoning, Coding, Math, IFEval, Hallucination, and Tools.
+     14. `enterprise-security-posture-radar`: CISO executive board radar mapping compliance across 6 core defense vectors and active certifications.
+     15. `partner-ecosystem-value-map`: Global alliance and partner ecosystem value realization map across GSIs, Hyperscalers, ISVs, and Channel Resellers.
 4. **Specification Deliverables**:
    - `02-spec/21-app/51-suite2033-global-ppt-flat-step-and-15-slide-expansion/01-architecture-spec.md`
    - `02-spec/21-app/51-suite2033-global-ppt-flat-step-and-15-slide-expansion/02-component-spec.md`
@@ -75,10 +75,10 @@ Must follow and spawn agent using
 - [x] Create `02-spec/21-app/51-suite2033-global-ppt-flat-step-and-15-slide-expansion/readme.md`
 - [x] Update `02-spec/21-app/readme.md` to add row 68 for Chapter 51
 - [x] Create `.ai-memory/plans/pending/51-suite2033-global-ppt-flat-step-and-15-slide-expansion.md`
-- [ ] Update `.ai-memory/plans/readme.md` to register pending plan 51
-- [ ] Author `02-spec/21-app/51-suite2033-global-ppt-flat-step-and-15-slide-expansion/02-component-spec.md`
+- [x] Author `02-spec/21-app/51-suite2033-global-ppt-flat-step-and-15-slide-expansion/02-component-spec.md`
+- [x] Author modular subtask plans in `.ai-memory/plans/subtasks/51-suite2033-global-ppt-flat-step-and-15-slide-expansion/`
 - [ ] Add 4 GPU keyframes to `src/styles/animations.less`
-- [ ] Add Suite 2033 TypeScript interfaces to `src/types/suite2033Archetypes.ts`
-- [ ] Implement 15 Suite 2033 slide components under `src/components/slides/suite2033/`
-- [ ] Implement `src/components/slides/Suite2033SlideRenderer.tsx` and wire cascade into `PresentationView.tsx`
-- [ ] Register sample slides in `src/stores/deckSegments/suite2033Segment.ts` and `initialDeck.ts`
+- [ ] Add Suite 2033 TypeScript interfaces to `src/types/suite2033SlideTypes.ts`
+- [ ] Implement 15 Suite 2033 slide components under `src/components/presentation/slides/suite2033/`
+- [ ] Implement `src/components/presentation/slides/suite2033/Suite2033SlideRenderer.tsx` and wire cascade
+- [ ] Register sample slides in `src/stores/deckSegments/suite2033Segment.ts` and `src/stores/initialDeck.ts`
