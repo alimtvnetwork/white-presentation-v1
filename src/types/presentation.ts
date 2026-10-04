@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="Central presentation slide union aggregation and deck contracts" max=420
+// lint-allow: file-size reason="Central presentation slide union aggregation and deck contracts" max=450
 import type { NewSlideType, NewSlideData } from './archetypes';
 import type {
   ExtendedSlideType, ExtendedSlideData,
@@ -72,6 +72,10 @@ import type {
   Suite2031SlideType,
   Suite2031SlideData,
 } from './suite2031Archetypes';
+import type {
+  Suite2032SlideType,
+  Suite2032SlideData,
+} from './suite2032Archetypes';
 export * from './archetypes';
 export * from './extendedArchetypes';
 export * from './expandedArchetypes';
@@ -94,6 +98,7 @@ export * from './suite2028Archetypes';
 export * from './suite2029Archetypes';
 export * from './suite2030Archetypes';
 export * from './suite2031Archetypes';
+export * from './suite2032Archetypes';
 export type { GoldenPathTemplate } from './nextGenArchetypes';
 export type { IncidentActionNode } from './suite2027Archetypes';
 export type { DistillationStage, Suite2029DistillationStage } from './suite2029Archetypes';
@@ -133,7 +138,8 @@ export type SlideType =
   | Suite2028SlideType
   | Suite2029SlideType
   | Suite2030SlideType
-  | Suite2031SlideType;
+  | Suite2031SlideType
+  | Suite2032SlideType;
 
 export type DockPosition =
   | 'bottom-center'
@@ -396,7 +402,8 @@ export type SlideData =
   | Suite2028SlideData
   | Suite2029SlideData
   | Suite2030SlideData
-  | Suite2031SlideData;
+  | Suite2031SlideData
+  | Suite2032SlideData;
 
 export type Slide = SlideData;
 

@@ -1617,6 +1617,80 @@
   will-change: transform, opacity, filter;
 }
 
+// Suite 2032 GPU Keyframes & Utilities
+@keyframes waterfallBridgeFlow {
+  0% {
+    stroke-dashoffset: 160;
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 2px var(--pres-accent));
+  }
+  50% {
+    stroke-dashoffset: 80;
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 10px var(--pres-accent));
+  }
+  100% {
+    stroke-dashoffset: 0;
+    background-position: 200% 50%;
+    filter: drop-shadow(0 0 2px var(--pres-accent));
+  }
+}
+
+@keyframes flywheelOrbitalSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sparklineTrace {
+  0% {
+    stroke-dashoffset: 300;
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 6px var(--pres-accent));
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.85;
+  }
+}
+
+@keyframes terminalCursorPulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 8px var(--pres-accent);
+  }
+  50% {
+    opacity: 0;
+    box-shadow: none;
+  }
+}
+
+.animate-waterfall-bridge {
+  animation: waterfallBridgeFlow 3s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  will-change: stroke-dashoffset, filter;
+}
+
+.animate-flywheel-spin {
+  animation: flywheelOrbitalSpin 8s linear infinite;
+  will-change: transform;
+}
+
+.animate-sparkline-trace {
+  animation: sparklineTrace 2.4s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
+  will-change: stroke-dashoffset, opacity, filter;
+}
+
+.animate-terminal-cursor-pulse {
+  animation: terminalCursorPulse 1s step-end infinite;
+  will-change: opacity, box-shadow;
+}
+
 // Reduced motion
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {

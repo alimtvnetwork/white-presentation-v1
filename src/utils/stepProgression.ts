@@ -24,6 +24,11 @@ import {
   calculateSuite2031StepCount,
   SUITE_2031_STAGE_KEYS,
 } from '../types/suite2031Archetypes';
+import {
+  isSuite2032Slide,
+  calculateSuite2032StepCount,
+  SUITE_2032_STAGE_KEYS,
+} from '../types/suite2032Archetypes';
 
 export type StepPhase = 'past' | 'completed' | 'active' | 'future';
 
@@ -703,6 +708,40 @@ export function getSuite2029SlideSteps(slide: any): number {
   return 0;
 }
 
+export const SUITE_2032_STEP_CALCULATORS: Record<string, StepCalcFn> = {
+  // 8 kinetic steppers: dynamic stage length with fallback to 4:
+  'executive-brief-distillation': (s) => Math.max(1, s.distillationStages?.length || 4),
+  'milestone-roadmap-stream': (s) => Math.max(1, s.roadmapStages?.length || 4),
+  'hex-architecture-mesh': (s) => Math.max(1, s.meshStages?.length || 4),
+  'customer-conversion-funnel': (s) => Math.max(1, s.funnelStages?.length || 4),
+  'transformation-split-canvas': (s) => Math.max(1, s.transformationStages?.length || 4),
+  'deal-ecosystem-flywheel': (s) => Math.max(1, s.flywheelStages?.length || 4),
+  'pnl-runway-waterfall': (s) => Math.max(1, s.waterfallStages?.length || 4),
+  'api-spec-terminal-split': (s) => Math.max(1, s.terminalStages?.length || 4),
+
+  // 7 flat sovereign overviews: return 1:
+  'matrix-feature-benchmark': () => 1,
+  'executive-metrics-pulse': () => 1,
+  'board-governance-roster': () => 1,
+  'editorial-quote-spotlight': () => 1,
+  'bento-capability-mosaic': () => 1,
+  'risk-opportunity-quadrant': () => 1,
+  'commercial-tier-packaging': () => 1,
+};
+
+export function getSuite2032SlideSteps(slide: SlideData | any): number {
+  const hasSlide = Boolean(slide && typeof slide === 'object');
+  if (!hasSlide) return 0;
+  if (isSuite2032Slide(slide)) {
+    const calc = SUITE_2032_STEP_CALCULATORS[slide.type];
+    if (calc) {
+      return calc(slide);
+    }
+    return calculateSuite2032StepCount(slide);
+  }
+  return 0;
+}
+
 export const SUITE_2031_STEP_CALCULATORS: Record<string, StepCalcFn> = {
   // 9 kinetic steppers: dynamic stage length with fallback to 4:
   'dna-data-storage-codec-pipeline': (s) => Math.max(1, s.codecStages?.length || 4),
@@ -774,6 +813,9 @@ export function getSlideMaxSteps(slide: SlideData | any): number {
   if (!hasSlide) {
     return 1;
   }
+
+  const suite2032Steps = getSuite2032SlideSteps(slide);
+  if (suite2032Steps > 0) return suite2032Steps;
 
   const suite2031Steps = getSuite2031SlideSteps(slide);
   if (suite2031Steps > 0) return suite2031Steps;
@@ -860,6 +902,9 @@ export {
   isSuite2031Slide,
   calculateSuite2031StepCount,
   SUITE_2031_STAGE_KEYS,
+  isSuite2032Slide,
+  calculateSuite2032StepCount,
+  SUITE_2032_STAGE_KEYS,
 };
 
 export { getStepLifecycleStyle } from './stepLifecycleStyles';

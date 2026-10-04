@@ -1,7 +1,7 @@
 // lint-allow: file-size reason="Suite 2031 slide archetype renderer dispatcher" max=120
 import React from 'react';
 import type { SlideData } from '../../types/presentation';
-import { WhiteMasterSlide } from './WhiteMasterSlide';
+import { Suite2032SlideRenderer } from './Suite2032SlideRenderer';
 import * as S from './suite2031';
 
 export const Suite2031SlideRenderer: React.FC<{ slide: SlideData; activeStep?: number }> = ({
@@ -40,6 +40,6 @@ export const Suite2031SlideRenderer: React.FC<{ slide: SlideData; activeStep?: n
     case 'enterprise-ai-total-cost-of-ownership-quadrant':
       return <S.EnterpriseAiTotalCostOfOwnershipQuadrantSlide slide={slide as any} activeStep={activeStep} />;
     default:
-      return <WhiteMasterSlide slide={slide as any} />;
+      return <Suite2032SlideRenderer slide={slide} activeStep={activeStep} />;
   }
 };

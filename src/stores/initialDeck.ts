@@ -6,6 +6,7 @@ import {
   deckSegmentModern,
   deckSegmentRevolutionMastery,
   deckSegmentSuites,
+  SUITE_2032_SLIDES,
 } from './deckSegments';
 
 export const INITIAL_DECK: PresentationDeck = {
@@ -26,7 +27,9 @@ export const INITIAL_DECK: PresentationDeck = {
     ...deckSegmentModern,
     ...deckSegmentRevolutionMastery,
     ...deckSegmentSuites,
+    ...SUITE_2032_SLIDES,
   ],
 };
 
+export const INITIAL_SLIDES = INITIAL_DECK.slides;
 export const initialSlides = INITIAL_DECK.slides;

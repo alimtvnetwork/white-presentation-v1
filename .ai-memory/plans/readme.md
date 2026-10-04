@@ -4,6 +4,7 @@
 *(None currently pending)*
 
 ## Completed Plans
+- [50-suite2032-global-ppt-and-15-slide-expansion.md](completed/50-suite2032-global-ppt-and-15-slide-expansion.md)
 - [49-suite2031-kinetic-presentation-expansion.md](completed/49-suite2031-kinetic-presentation-expansion.md)
 - [48-suite2030-kinetic-presentation-expansion.md](completed/48-suite2030-kinetic-presentation-expansion.md)
 - [45-global-ppt-elevation-flat-step-interactive-suite.md](completed/45-global-ppt-elevation-flat-step-interactive-suite.md)
