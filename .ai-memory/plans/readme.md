@@ -1,7 +1,7 @@
 # Plans Directory
 
 ## Pending Plans
-*(None currently pending)*
+- [51-suite2033-global-ppt-flat-step-and-15-slide-expansion.md](pending/51-suite2033-global-ppt-flat-step-and-15-slide-expansion.md)
 
 ## Completed Plans
 - [50-suite2032-global-ppt-and-15-slide-expansion.md](completed/50-suite2032-global-ppt-and-15-slide-expansion.md)
