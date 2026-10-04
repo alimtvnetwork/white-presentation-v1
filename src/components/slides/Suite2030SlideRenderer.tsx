@@ -1,6 +1,6 @@
 import React from 'react';
 import type { SlideData } from '../../types/presentation';
-import { WhiteMasterSlide } from './WhiteMasterSlide';
+import { Suite2031SlideRenderer } from './Suite2031SlideRenderer';
 import * as S from './suite2030';
 
 export const Suite2030SlideRenderer: React.FC<{ slide: SlideData; activeStep?: number }> = ({
@@ -39,6 +39,6 @@ export const Suite2030SlideRenderer: React.FC<{ slide: SlideData; activeStep?: n
     case 'enterprise-saas-efficiency-rule-of-40-quadrant':
       return <S.EnterpriseSaasEfficiencyRuleOf40QuadrantSlide slide={slide as any} activeStep={activeStep} />;
     default:
-      return <WhiteMasterSlide slide={slide as any} />;
+      return <Suite2031SlideRenderer slide={slide} activeStep={activeStep} />;
   }
 };

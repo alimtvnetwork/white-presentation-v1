@@ -239,6 +239,7 @@ import {
 } from '../utils/suite2028SlideFactories';
 import { createSuite2029Slides } from '../utils/suite2029SlideFactories';
 import { createSuite2030Slides } from '../utils/suite2030SlideFactories';
+import { createSuite2031Slides } from '../utils/suite2031SlideFactories';
 
 export const INITIAL_DECK: PresentationDeck = {
   id: 'white-presentation-v1',
@@ -610,6 +611,7 @@ export const INITIAL_DECK: PresentationDeck = {
     createGeopoliticalSovereignCloudComplianceCompassSlide('slide-274'),
     ...createSuite2029Slides(275),
     ...createSuite2030Slides(290),
+    ...createSuite2031Slides(305),
   ],
 };
 
