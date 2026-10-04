@@ -817,6 +817,195 @@
   will-change: transform, opacity, box-shadow;
 }
 
+// ============================================================================
+// 3D PERSPECTIVE FLIP CARD UTILITY CLASSES
+// ============================================================================
+.flip-card-3d {
+  perspective: 1200px;
+  background-color: transparent;
+
+  &:hover .flip-card-inner,
+  &.is-flipped .flip-card-inner,
+  &[data-flipped="true"] .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: inherit;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+// ============================================================================
+// CHAPTER 42: ADVANCED GPU KINETIC CHOREOGRAPHIES & SYSTEMS VISUALIZATIONS
+// ============================================================================
+
+// 1. Agent Red-Team Fuzzing (High-Frequency Jitter & Theme Accent Spikes)
+@keyframes agentRedTeamFuzz {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1.0);
+    box-shadow: 0 0 8px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.20),
+                0 0 0 1px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.25);
+    filter: brightness(1.0);
+  }
+  20% {
+    transform: translate3d(-1.5px, 0.8px, 0) scale(1.008);
+    box-shadow: 0 0 18px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.50),
+                0 0 0 1.5px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.70);
+    filter: brightness(1.08);
+  }
+  40% {
+    transform: translate3d(1.2px, -1.2px, 0) scale(0.995);
+    box-shadow: 0 0 12px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.35);
+    filter: brightness(0.96);
+  }
+  60% {
+    transform: translate3d(-1px, -0.6px, 0) scale(1.012);
+    box-shadow: 0 0 24px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.65),
+                0 0 0 2px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.85);
+    filter: brightness(1.12);
+  }
+  80% {
+    transform: translate3d(1.5px, 0.5px, 0) scale(1.002);
+    box-shadow: 0 0 14px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.40);
+    filter: brightness(1.02);
+  }
+}
+
+.animate-agent-redteam-fuzz {
+  animation: agentRedTeamFuzz 1.6s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  will-change: transform, box-shadow, filter;
+}
+
+// 2. GitOps Drift Reconciliation (Drift Oscillation Snapping into Quorum)
+@keyframes gitopsDriftReconcile {
+  0% {
+    transform: translateX(-4px) scale(0.99);
+    border-color: hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.25);
+    box-shadow: 0 0 0 0 hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.0);
+  }
+  45% {
+    transform: translateX(3px) scale(0.995);
+    border-color: hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.45);
+    box-shadow: 0 0 10px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.25);
+  }
+  65% {
+    transform: translateX(0) scale(1.02);
+    border-color: hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.90);
+    box-shadow: 0 0 22px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.60),
+                0 0 0 2px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.75);
+  }
+  85%, 100% {
+    transform: translateX(0) scale(1.0);
+    border-color: hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.50);
+    box-shadow: 0 0 12px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.30);
+  }
+}
+
+.animate-gitops-drift-reconcile {
+  animation: gitopsDriftReconcile 2.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  will-change: transform, border-color, box-shadow;
+}
+
+// 3. NVMe Fabric Laser Beam (Ultra-High-Speed Throughput Pipeline Wave)
+@keyframes nvmeFabricBeam {
+  0% {
+    stroke-dashoffset: 160;
+    opacity: 0.30;
+    filter: drop-shadow(0 0 2px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.30));
+  }
+  50% {
+    opacity: 1.0;
+    filter: drop-shadow(0 0 12px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.90))
+           drop-shadow(0 0 20px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.50));
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.30;
+    filter: drop-shadow(0 0 2px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.30));
+  }
+}
+
+.animate-nvme-fabric-beam {
+  stroke-dasharray: 16 8;
+  animation: nvmeFabricBeam 1.4s linear infinite;
+  will-change: stroke-dashoffset, opacity, filter;
+}
+
+// 4. Confidential Compute Enclave Attestation (Cryptographic Shield Glow Pulse)
+@keyframes confidentialAttestGlow {
+  0%, 100% {
+    box-shadow: 0 0 12px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.20),
+                inset 0 0 8px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.15);
+    border-color: hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.35);
+    transform: scale(1.0);
+  }
+  50% {
+    box-shadow: 0 0 32px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.65),
+                inset 0 0 20px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.35),
+                0 0 0 3px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.80);
+    border-color: hsl(var(--pres-accent-hsl, 262 83% 58%) / 1.0);
+    transform: scale(1.025);
+  }
+}
+
+.animate-confidential-attest-glow {
+  animation: confidentialAttestGlow 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform, box-shadow, border-color;
+}
+
+// 5. eBPF XDP Line-Rate Packet Deflect (High-Velocity Ricochet & Dissipation)
+@keyframes xdpDropDeflect {
+  0% {
+    transform: translate3d(-18px, 0, 0) scale(0.92);
+    opacity: 0.1;
+    border-color: hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.20);
+  }
+  35% {
+    transform: translate3d(0, 0, 0) scale(1.04);
+    opacity: 1;
+    border-color: hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.95);
+    box-shadow: 0 0 26px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.75),
+                0 0 0 2px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.90);
+  }
+  60% {
+    transform: translate3d(12px, -8px, 0) scale(0.96) rotate(6deg);
+    opacity: 0.6;
+    box-shadow: 0 0 10px hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.30);
+  }
+  100% {
+    transform: translate3d(24px, -16px, 0) scale(0.88) rotate(12deg);
+    opacity: 0;
+    box-shadow: none;
+  }
+}
+
+.animate-xdp-drop-deflect {
+  animation: xdpDropDeflect 1.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  will-change: transform, opacity, box-shadow;
+}
+
 // Interactive Step Utility
 .step-interactive {
   cursor: pointer;

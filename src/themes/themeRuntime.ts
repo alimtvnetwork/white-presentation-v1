@@ -152,6 +152,8 @@ function getKnownLightAccent(themeId: string): string | null {
   if (themeId === 'paper-ink') return '#8A5A0E';
   if (themeId === 'white-brand') return '#6D28D9';
   if (themeId === 'corporate-clean') return '#4338CA';
+  if (themeId === 'clinical-emerald-light') return '#047857';
+  if (themeId === 'ivory-gold') return '#B45309';
   return null;
 }
 
@@ -222,7 +224,7 @@ function getCanvasRatioVars(isDark: boolean): Record<string, string> {
     '--step-phase-active-opacity': '1.00',
     '--pres-canvas-gradient': isDark
       ? 'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.15), transparent 70%)'
-      : 'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.08), transparent 70%)',
+      : 'radial-gradient(ellipse 75% 55% at 90% -10%, hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.07), transparent 65%), radial-gradient(ellipse 70% 50% at 10% 110%, hsl(215 25% 27% / 0.04), transparent 60%)',
     '--pres-dot-matrix': isDark
       ? 'radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px)'
       : 'radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px)',

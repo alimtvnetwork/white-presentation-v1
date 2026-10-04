@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="synthesized web audio sound engine" max=160
+// lint-allow: file-size reason="synthesized web audio sound engine" max=220
 
 interface SynthToneParams {
   type: OscillatorType;
@@ -142,6 +142,44 @@ class PresentationSoundEngine {
     if (!ctx) return;
     try {
       triggerTone(ctx, { type: 'sine', startFreq: 440, endFreq: 660, gain: stepVolume(this.masterVolume) * 0.28, duration: 0.12 });
+    } catch {
+      // AudioContext policy suppression fallback
+    }
+  }
+
+  public playStepAdvance(): void {
+    if (this.isMuted) return;
+    const ctx = this.initContext();
+    if (!ctx) return;
+    const gain = stepVolume(this.masterVolume) * 0.30;
+    try {
+      triggerTone(ctx, { type: 'sine', startFreq: 440, endFreq: 880, gain, duration: 0.05 });
+    } catch {
+      // AudioContext policy suppression fallback
+    }
+  }
+
+  public playStepRewind(): void {
+    if (this.isMuted) return;
+    const ctx = this.initContext();
+    if (!ctx) return;
+    const gain = stepVolume(this.masterVolume) * 0.28;
+    try {
+      triggerTone(ctx, { type: 'sine', startFreq: 660, endFreq: 330, gain, duration: 0.045 });
+    } catch {
+      // AudioContext policy suppression fallback
+    }
+  }
+
+  public playStageComplete(): void {
+    if (this.isMuted) return;
+    const ctx = this.initContext();
+    if (!ctx) return;
+    const chordGain = this.masterVolume * 0.24;
+    try {
+      // Dual-tone harmonic triad resolution (C5 -> E5 -> G5)
+      triggerTone(ctx, { type: 'sine', startFreq: 523.25, endFreq: 659.25, gain: chordGain, duration: 0.18 });
+      triggerTone(ctx, { type: 'sine', startFreq: 659.25, endFreq: 783.99, gain: chordGain * 0.9, duration: 0.24 });
     } catch {
       // AudioContext policy suppression fallback
     }
