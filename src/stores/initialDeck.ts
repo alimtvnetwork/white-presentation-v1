@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="Central keynote presentation deck definition with pre-seeded mastery archetypes" max=600
+// lint-allow: file-size reason="Central keynote presentation deck definition with pre-seeded mastery archetypes" max=650
 import { PresentationDeck } from '../types/presentation';
 import {
   createMetricGridSlide, createProblemSolutionSlide, createQuadrantMatrixSlide,
@@ -203,7 +203,23 @@ import {
   createWeightedDecisionTradeoffMatrixSlide,
   createCustomerChurnInterventionLadderSlide,
 } from '../utils/suite2026SlideFactories';
-
+import {
+  createAiInferenceCostTokenWaterfallSlide,
+  createCrossFunctionalRaciMatrixSlide,
+  createZeroTrustMicrosegmentationMapSlide,
+  createSaasMagicNumberEfficiencyGaugeSlide,
+  createSupplyChainGeopoliticalChokepointSlide,
+  createIncidentSev1CommandTimelineSlide,
+  createCloudFinopsUnitRateOptimizationSlide,
+  createProductMarketFitCohortTrianglesSlide,
+  createEnterpriseAiGovernanceGuardrailsSlide,
+  createDataLakehouseMedallionPipelineSlide,
+  createMergerAcquisitionSynergyBridgeSlide,
+  createDeveloperProductivitySpaceFrameworkSlide,
+  createHybridCloudDrFailoverTopologySlide,
+  createCustomerHealthScorecardMatrixSlide,
+  createValueStreamBottleneckFlowSlide,
+} from '../utils/suite2027SlideFactories';
 
 export const INITIAL_DECK: PresentationDeck = {
   id: 'white-presentation-v1',
@@ -543,6 +559,21 @@ export const INITIAL_DECK: PresentationDeck = {
     createSloErrorBudgetBurnWaterfallSlide('slide-242'),
     createWeightedDecisionTradeoffMatrixSlide('slide-243'),
     createCustomerChurnInterventionLadderSlide('slide-244'),
+    createAiInferenceCostTokenWaterfallSlide('slide-245'),
+    createCrossFunctionalRaciMatrixSlide('slide-246'),
+    createZeroTrustMicrosegmentationMapSlide('slide-247'),
+    createSaasMagicNumberEfficiencyGaugeSlide('slide-248'),
+    createSupplyChainGeopoliticalChokepointSlide('slide-249'),
+    createIncidentSev1CommandTimelineSlide('slide-250'),
+    createCloudFinopsUnitRateOptimizationSlide('slide-251'),
+    createProductMarketFitCohortTrianglesSlide('slide-252'),
+    createEnterpriseAiGovernanceGuardrailsSlide('slide-253'),
+    createDataLakehouseMedallionPipelineSlide('slide-254'),
+    createMergerAcquisitionSynergyBridgeSlide('slide-255'),
+    createDeveloperProductivitySpaceFrameworkSlide('slide-256'),
+    createHybridCloudDrFailoverTopologySlide('slide-257'),
+    createCustomerHealthScorecardMatrixSlide('slide-258'),
+    createValueStreamBottleneckFlowSlide('slide-259'),
   ],
 };
 

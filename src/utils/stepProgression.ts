@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="Central step progression calculations and kinetic physics" max=720
+// lint-allow: file-size reason="Central step progression calculations and kinetic physics" max=760
 import type { CSSProperties } from 'react';
 import type { SlideData } from '../types/presentation';
 import { isModernSlide, calculateModernSlideStepCount } from '../types/modernArchetypes';
@@ -601,12 +601,46 @@ export function getSuite2026SlideSteps(slide: any): number {
   return 0;
 }
 
+export const SUITE_2027_STEP_CALCULATORS: Record<string, StepCalcFn> = {
+  // Flat Sovereign (return 1)
+  'cross-functional-raci-matrix': () => 1,
+  'saas-magic-number-efficiency-gauge': () => 1,
+  'supply-chain-geopolitical-chokepoint': () => 1,
+  'product-market-fit-cohort-triangles': () => 1,
+  'developer-productivity-space-framework': () => 1,
+  'customer-health-scorecard-matrix': () => 1,
+
+  // Kinetic Multi-Step (return s.stages?.length || 4)
+  'ai-inference-cost-token-waterfall': (s) => Math.max(1, s.stages?.length || 4),
+  'zero-trust-microsegmentation-map': (s) => Math.max(1, s.stages?.length || 4),
+  'incident-sev1-command-timeline': (s) => Math.max(1, s.stages?.length || 4),
+  'cloud-finops-unit-rate-optimization': (s) => Math.max(1, s.stages?.length || 4),
+  'enterprise-ai-governance-guardrails': (s) => Math.max(1, s.stages?.length || 4),
+  'data-lakehouse-medallion-pipeline': (s) => Math.max(1, s.stages?.length || 4),
+  'merger-acquisition-synergy-bridge': (s) => Math.max(1, s.stages?.length || 4),
+  'hybrid-cloud-dr-failover-topology': (s) => Math.max(1, s.stages?.length || 4),
+  'value-stream-bottleneck-flow': (s) => Math.max(1, s.stages?.length || 4),
+};
+
+export function getSuite2027SlideSteps(slide: any): number {
+  const hasSlide = Boolean(slide && typeof slide === 'object');
+  if (!hasSlide) return 0;
+  const calc = SUITE_2027_STEP_CALCULATORS[slide.type];
+  if (calc) {
+    return calc(slide);
+  }
+  return 0;
+}
+
 // lint-allow: function-length reason="central step progression cascading priority resolver" max=75
 export function getSlideMaxSteps(slide: SlideData | any): number {
   const hasSlide = Boolean(slide && typeof slide === 'object');
   if (!hasSlide) {
     return 1;
   }
+
+  const suite2027Steps = getSuite2027SlideSteps(slide);
+  if (suite2027Steps > 0) return suite2027Steps;
 
   const suite2026Steps = getSuite2026SlideSteps(slide);
   if (suite2026Steps > 0) return suite2026Steps;
@@ -674,6 +708,7 @@ export {
   calculateGlobalPptEvolutionStepCount,
   isSuite2026Slide,
   getSuite2026SlideSteps,
+  getSuite2027SlideSteps,
 };
 
 export type MotionVariant = 'lift' | 'slide' | 'parallax';

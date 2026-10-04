@@ -1086,6 +1086,54 @@
   will-change: background-position, opacity;
 }
 
+// ============================================================================
+// CHAPTER 44: SUITE 2027 KINETIC KEYFRAMES & UTILITIES
+// ============================================================================
+
+@keyframes pulseBeacon {
+  0%, 100% {
+    box-shadow: 0 0 0 0 var(--pres-accent-glow);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(124, 58, 237, 0);
+  }
+}
+
+@keyframes waterfallGrow {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes morphSpring {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-pulse-beacon {
+  animation: pulseBeacon 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  will-change: box-shadow;
+}
+
+.animate-waterfall-grow {
+  animation: waterfallGrow 0.5s @ease-presentation forwards;
+  transform-origin: bottom center;
+  will-change: transform;
+}
+
+.animate-morph-spring {
+  animation: morphSpring 0.4s @ease-presentation both;
+  will-change: transform, opacity;
+}
 
 // Reduced motion
 @media (prefers-reduced-motion: reduce) {

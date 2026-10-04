@@ -86,7 +86,22 @@
         "talent-competency-gap-heatmap",
         "slo-error-budget-burn-waterfall",
         "weighted-decision-tradeoff-matrix",
-        "customer-churn-intervention-ladder"
+        "customer-churn-intervention-ladder",
+        "ai-inference-cost-token-waterfall",
+        "cross-functional-raci-matrix",
+        "zero-trust-microsegmentation-map",
+        "saas-magic-number-efficiency-gauge",
+        "supply-chain-geopolitical-chokepoint",
+        "incident-sev1-command-timeline",
+        "cloud-finops-unit-rate-optimization",
+        "product-market-fit-cohort-triangles",
+        "enterprise-ai-governance-guardrails",
+        "data-lakehouse-medallion-pipeline",
+        "merger-acquisition-synergy-bridge",
+        "developer-productivity-space-framework",
+        "hybrid-cloud-dr-failover-topology",
+        "customer-health-scorecard-matrix",
+        "value-stream-bottleneck-flow"
       ]
     },
     "title": {

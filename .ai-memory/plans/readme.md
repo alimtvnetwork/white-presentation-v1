@@ -4,6 +4,7 @@
 None.
 
 ## Completed Plans
+- [45-global-ppt-elevation-flat-step-interactive-suite.md](completed/45-global-ppt-elevation-flat-step-interactive-suite.md)
 - [42-global-ppt-nextgen-synthesis-and-15-slide-expansion.md](completed/42-global-ppt-nextgen-synthesis-and-15-slide-expansion.md)
 - [41-global-ppt-synthesis-step-engine.md](completed/41-global-ppt-synthesis-step-engine.md)
 - [40-kinetic-deck-revolution-and-step.md](completed/40-kinetic-deck-revolution-and-step.md)

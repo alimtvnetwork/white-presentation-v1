@@ -420,8 +420,8 @@
 // ============================================================================
 
 .step-phase-future {
-  opacity: var(--step-phase-future-opacity, 0.38);
-  transform: translateZ(0px) scale(0.98);
+  opacity: 0.40;
+  transform: scale(0.98) translateZ(8px);
   filter: blur(1.25px);
   border: 1px solid var(--pres-border);
   box-shadow: none;
@@ -435,12 +435,12 @@
 }
 
 .step-phase-active {
-  opacity: var(--step-phase-active-opacity, 1.0);
-  transform: translateY(-3px) translateZ(24px) scale(1.02);
+  opacity: 1.0;
+  transform: scale(1.02) translateZ(24px);
   filter: blur(0px);
   background: var(--pres-bg-card-hover, var(--pres-bg-card));
   border: 1.5px solid var(--pres-accent);
-  box-shadow: 0 0 24px -2px var(--pres-accent-glow), 0 16px 36px -8px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 24px -2px var(--pres-accent-glow);
   z-index: 20;
   pointer-events: auto;
   transition: opacity 0.35s @ease-presentation,
@@ -452,8 +452,8 @@
 
 .step-phase-past,
 .step-phase-completed {
-  opacity: var(--step-phase-past-opacity, 0.75);
-  transform: translateZ(8px) scale(1.00);
+  opacity: 0.75;
+  transform: scale(1.0) translateZ(8px);
   filter: none;
   background: var(--pres-bg-card);
   border: 1px solid var(--pres-border);
@@ -557,7 +557,7 @@
   .step-phase-active {
     background: var(--pres-bg-card-hover, #ffffff);
     border-color: var(--pres-accent);
-    box-shadow: 0 0 24px -2px var(--pres-accent-glow), 0 12px 28px -6px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 0 24px -2px var(--pres-accent-glow);
   }
 
   .step-phase-past,
@@ -570,7 +570,7 @@
   .step-phase-future {
     background: var(--pres-bg-card, rgba(255, 255, 255, 0.60));
     border-color: var(--pres-border, rgba(0, 0, 0, 0.08));
-    opacity: var(--step-phase-future-opacity, 0.38);
+    opacity: 0.40;
   }
 }
 

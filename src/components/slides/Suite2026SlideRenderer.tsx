@@ -20,6 +20,7 @@ import type {
   CustomerChurnInterventionLadderSlideData,
 } from '../../types/suite2026Archetypes';
 import { WhiteMasterSlide } from './WhiteMasterSlide';
+import { Suite2027SlideRenderer } from './Suite2027SlideRenderer';
 import * as S from './suite2026';
 
 type SlideWithStep<T> = React.FC<{ slide: T; activeStep?: number }>;
@@ -94,6 +95,6 @@ export const Suite2026SlideRenderer: React.FC<{ slide: SlideData; activeStep?: n
       return <Comp slide={slide as CustomerChurnInterventionLadderSlideData} activeStep={activeStep} />;
     }
     default:
-      return <WhiteMasterSlide slide={slide as any} />;
+      return <Suite2027SlideRenderer slide={slide} activeStep={activeStep} />;
   }
 };

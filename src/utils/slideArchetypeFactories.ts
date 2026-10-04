@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="unified slide archetype registry and default factories" max=750
+// lint-allow: file-size reason="unified slide archetype registry and default factories" max=900
 import {
   SlideType, SlideData, NextGenSlideType, MetricGridSlideData, ProblemSolutionSlideData,
   QuadrantMatrixSlideData, MarketOpportunitySlideData, TimelineRoadmapSlideData,
@@ -68,12 +68,32 @@ export * from './globalPptMasteryFactories';
 export * from './globalPptNextGenFactories';
 export * from './globalPptEvolutionFactories';
 export * from './suite2026SlideFactories';
+export * from './suite2027SlideFactories';
 import { EXPANSION_FACTORIES } from './globalPptExpansionFactories';
 import { KINETIC_REVOLUTION_FACTORIES, KINETIC_REVOLUTION_ARCHETYPE_OPTIONS } from './kineticRevolutionFactories';
 import { GLOBAL_PPT_MASTERY_FACTORIES, GLOBAL_PPT_MASTERY_ARCHETYPE_OPTIONS } from './globalPptMasteryFactories';
 import { GLOBAL_PPT_NEXTGEN_FACTORIES, GLOBAL_PPT_NEXTGEN_ARCHETYPE_OPTIONS } from './globalPptNextGenFactories';
 import { GLOBAL_PPT_EVOLUTION_FACTORIES, GLOBAL_PPT_EVOLUTION_ARCHETYPE_OPTIONS } from './globalPptEvolutionFactories';
 import { SUITE_2026_FACTORIES, SUITE_2026_ARCHETYPE_OPTIONS } from './suite2026SlideFactories';
+import {
+  SUITE_2027_FACTORIES,
+  SUITE_2027_ARCHETYPE_OPTIONS,
+  createAiInferenceCostTokenWaterfallSlide,
+  createCrossFunctionalRaciMatrixSlide,
+  createZeroTrustMicrosegmentationMapSlide,
+  createSaasMagicNumberEfficiencyGaugeSlide,
+  createSupplyChainGeopoliticalChokepointSlide,
+  createIncidentSev1CommandTimelineSlide,
+  createCloudFinopsUnitRateOptimizationSlide,
+  createProductMarketFitCohortTrianglesSlide,
+  createEnterpriseAiGovernanceGuardrailsSlide,
+  createDataLakehouseMedallionPipelineSlide,
+  createMergerAcquisitionSynergyBridgeSlide,
+  createDeveloperProductivitySpaceFrameworkSlide,
+  createHybridCloudDrFailoverTopologySlide,
+  createCustomerHealthScorecardMatrixSlide,
+  createValueStreamBottleneckFlowSlide,
+} from './suite2027SlideFactories';
 
 export const ORIGINAL_ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   { type: 'metric-grid', label: 'Metric Grid Matrix', category: 'Strategy & Metrics', desc: '4-6 quantitative KPI cards with delta trends', icon: 'BarChart3' },
@@ -145,6 +165,7 @@ export const ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   ...GLOBAL_PPT_NEXTGEN_ARCHETYPE_OPTIONS,
   ...GLOBAL_PPT_EVOLUTION_ARCHETYPE_OPTIONS,
   ...SUITE_2026_ARCHETYPE_OPTIONS,
+  ...SUITE_2027_ARCHETYPE_OPTIONS,
 ];
 
 // =============================================================================
@@ -163,7 +184,7 @@ export const SLIDE_ARCHETYPE_CATEGORIES = [
 export type SlideArchetypeCategory = (typeof SLIDE_ARCHETYPE_CATEGORIES)[number];
 
 export interface SlideArchetypeDefinition {
-  type: NextGenSlideType | SlideType;
+  type: NextGenSlideType | SlideType | string;
   title: string;
   category: string;
   description: string;
@@ -380,6 +401,111 @@ export const SLIDE_ARCHETYPE_FACTORIES: Record<string, SlideArchetypeDefinition>
     category: 'Corporate Strategy',
     description: 'Nine-box grid leadership readiness and emergency transition protocols',
     factory: createExecutiveSuccessionLeadershipBenchSlide,
+  },
+  'ai-inference-cost-token-waterfall': {
+    type: 'ai-inference-cost-token-waterfall',
+    title: 'AI Inference Cost Token Waterfall',
+    category: 'Strategy & Metrics',
+    description: 'LLM token economics waterfall tracking prompt context, KV cache, speculative decoding, and unit margin',
+    factory: createAiInferenceCostTokenWaterfallSlide,
+  },
+  'cross-functional-raci-matrix': {
+    type: 'cross-functional-raci-matrix',
+    title: 'Cross-Functional RACI Matrix',
+    category: 'Corporate Strategy',
+    description: 'Executive initiative governance matrix assigning Responsible, Accountable, Consulted, and Informed roles',
+    factory: createCrossFunctionalRaciMatrixSlide,
+  },
+  'zero-trust-microsegmentation-map': {
+    type: 'zero-trust-microsegmentation-map',
+    title: 'Zero-Trust Microsegmentation Map',
+    category: 'Platform & Network',
+    description: 'Workload microsegmentation and eBPF packet inspection topology with automated threat quarantine',
+    factory: createZeroTrustMicrosegmentationMapSlide,
+  },
+  'saas-magic-number-efficiency-gauge': {
+    type: 'saas-magic-number-efficiency-gauge',
+    title: 'SaaS Magic Number Efficiency Gauge',
+    category: 'Strategy & Metrics',
+    description: 'Bessemer capital efficiency dials visualizing SaaS Magic Number, CAC payback, and Rule of 40 performance',
+    factory: createSaasMagicNumberEfficiencyGaugeSlide,
+  },
+  'supply-chain-geopolitical-chokepoint': {
+    type: 'supply-chain-geopolitical-chokepoint',
+    title: 'Supply Chain Geopolitical Chokepoints',
+    category: 'Corporate Strategy',
+    description: 'Global maritime trade choke analysis measuring semiconductor supply disruption and alternate routings',
+    factory: createSupplyChainGeopoliticalChokepointSlide,
+  },
+  'incident-sev1-command-timeline': {
+    type: 'incident-sev1-command-timeline',
+    title: 'Incident SEV-1 Command Timeline',
+    category: 'Platform & Network',
+    description: 'Mission-critical incident response sequence with blast radius triage, AST rollback, and MTTR compliance',
+    factory: createIncidentSev1CommandTimelineSlide,
+  },
+  'cloud-finops-unit-rate-optimization': {
+    type: 'cloud-finops-unit-rate-optimization',
+    title: 'Cloud FinOps Unit Rate Optimization',
+    category: 'Strategy & Metrics',
+    description: 'Multi-cloud unit rate cost bridge identifying idle workloads, spot arbitrage, and annualized savings',
+    factory: createCloudFinopsUnitRateOptimizationSlide,
+  },
+  'product-market-fit-cohort-triangles': {
+    type: 'product-market-fit-cohort-triangles',
+    title: 'PMF Cohort Retention Triangles',
+    category: 'Strategy & Metrics',
+    description: 'Longitudinal user retention triangle proving asymptotic plateauing and net negative churn',
+    factory: createProductMarketFitCohortTrianglesSlide,
+  },
+  'enterprise-ai-governance-guardrails': {
+    type: 'enterprise-ai-governance-guardrails',
+    title: 'Enterprise AI Governance Guardrails',
+    category: 'Platform & Network',
+    description: 'Four-stage AI compliance pipeline enforcing prompt shielding, factuality gates, and Merkle audit ledgers',
+    factory: createEnterpriseAiGovernanceGuardrailsSlide,
+  },
+  'data-lakehouse-medallion-pipeline': {
+    type: 'data-lakehouse-medallion-pipeline',
+    title: 'Data Lakehouse Medallion Pipeline',
+    category: 'Product & Architecture',
+    description: 'Streaming Bronze-to-Gold Iceberg data refinery with automated schema evolution and sub-second serving',
+    factory: createDataLakehouseMedallionPipelineSlide,
+  },
+  'merger-acquisition-synergy-bridge': {
+    type: 'merger-acquisition-synergy-bridge',
+    title: 'M&A Synergy Realization Bridge',
+    category: 'Corporate Strategy',
+    description: 'Post-merger value accretion waterfall stepping from baseline EBITDA to full cross-sell enterprise valuation',
+    factory: createMergerAcquisitionSynergyBridgeSlide,
+  },
+  'developer-productivity-space-framework': {
+    type: 'developer-productivity-space-framework',
+    title: 'Developer Productivity SPACE Framework',
+    category: 'Team & Credibility',
+    description: 'Multidimensional engineering health framework assessing satisfaction, performance, activity, and flow',
+    factory: createDeveloperProductivitySpaceFrameworkSlide,
+  },
+  'hybrid-cloud-dr-failover-topology': {
+    type: 'hybrid-cloud-dr-failover-topology',
+    title: 'Hybrid Cloud DR Failover Topology',
+    category: 'Platform & Network',
+    description: 'Automated disaster recovery regional swing with Anycast DNS routing and zero-data-loss replica promotion',
+    factory: createHybridCloudDrFailoverTopologySlide,
+  },
+  'customer-health-scorecard-matrix': {
+    type: 'customer-health-scorecard-matrix',
+    title: 'Customer Health Scorecard Matrix',
+    category: 'Story & Conversion',
+    description: 'Tier-1 enterprise account health scorecard tracking feature adoption, executive alignment, and renewal ARR',
+    factory: createCustomerHealthScorecardMatrixSlide,
+  },
+  'value-stream-bottleneck-flow': {
+    type: 'value-stream-bottleneck-flow',
+    title: 'Value Stream Bottleneck Flow',
+    category: 'Product & Architecture',
+    description: 'Software delivery value stream mapping identifying CI/CD delays, queue wait times, and flow efficiency',
+    factory: createValueStreamBottleneckFlowSlide,
   },
 };
 
@@ -631,6 +757,9 @@ const createFallbackTitleSlide = (id: string): SlideData => ({
 });
 
 export const createArchetypeSlide = (type: SlideType, id = `slide-${Date.now()}`): SlideData => {
+  if (type in SUITE_2027_FACTORIES) {
+    return SUITE_2027_FACTORIES[type as keyof typeof SUITE_2027_FACTORIES](id);
+  }
   if (type in SUITE_2026_FACTORIES) {
     return SUITE_2026_FACTORIES[type as keyof typeof SUITE_2026_FACTORIES](id);
   }
