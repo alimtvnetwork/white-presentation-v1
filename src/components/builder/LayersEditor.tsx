@@ -66,7 +66,7 @@ export const LayersEditor: React.FC = () => {
               onClick={() => {
                 applyEdit((s) => {
                   if (s.type !== 'white-master') return s;
-                  const bulletPoints = s.bulletPoints.map((bp) => ({ ...bp, icon: id }));
+                  const bulletPoints = s.bulletPoints.map((bp: any) => ({ ...bp, icon: id }));
 
                   return { ...s, bulletPoints };
                 });

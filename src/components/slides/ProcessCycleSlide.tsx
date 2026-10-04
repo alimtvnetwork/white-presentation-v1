@@ -63,8 +63,8 @@ export const ProcessCycleSlide: React.FC<{ slide: ProcessCycleSlideData }> = ({ 
                   </span>
                   {stage.metricBadge && <span style={{ borderColor: theme.cardBorder, color: theme.accentColor }} className="px-2.5 py-0.5 rounded-md text-[12px] font-mono border font-semibold">{stage.metricBadge}</span>}
                 </div>
-                <div style={{ color: theme.textColor }} className="font-ubuntu text-[22px] font-bold mb-2" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => (s.type === 'process-cycle' ? { ...s, stages: s.stages.map((st, i) => i === idx ? { ...st, title: e.currentTarget.textContent || '' } : st) } : s))}>{stage.title}</div>
-                <p style={{ color: theme.subtextColor }} className="font-poppins text-[15px] leading-relaxed" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => (s.type === 'process-cycle' ? { ...s, stages: s.stages.map((st, i) => i === idx ? { ...st, description: e.currentTarget.textContent || '' } : st) } : s))}>{stage.description}</p>
+                <div style={{ color: theme.textColor }} className="font-ubuntu text-[22px] font-bold mb-2" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => (s.type === 'process-cycle' ? { ...s, stages: s.stages.map((st: any, i: number) => i === idx ? { ...st, title: e.currentTarget.textContent || '' } : st) } : s))}>{stage.title}</div>
+                <p style={{ color: theme.subtextColor }} className="font-poppins text-[15px] leading-relaxed" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => (s.type === 'process-cycle' ? { ...s, stages: s.stages.map((st: any, i: number) => i === idx ? { ...st, description: e.currentTarget.textContent || '' } : st) } : s))}>{stage.description}</p>
               </div>
             );
           })}

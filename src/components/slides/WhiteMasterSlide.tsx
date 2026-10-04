@@ -60,10 +60,10 @@ export const WhiteMasterSlide: React.FC<{ slide: WhiteMasterSlideData }> = ({ sl
                 <div style={{ background: `linear-gradient(to bottom, ${theme.accentColor}, transparent)` }} className="absolute top-[50px] left-[24px] w-[2px] h-[36px] z-0 opacity-40" />
               )}
               <div className="flex flex-col pt-0.5">
-                <h3 style={{ color: theme.textColor }} className="font-ubuntu text-[20px] font-bold leading-snug mb-1" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => (s.type === 'white-master' ? { ...s, bulletPoints: s.bulletPoints.map((bp) => bp.id === item.id ? { ...bp, title: e.currentTarget.textContent || '' } : bp) } : s))}>
+                <h3 style={{ color: theme.textColor }} className="font-ubuntu text-[20px] font-bold leading-snug mb-1" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => (s.type === 'white-master' ? { ...s, bulletPoints: s.bulletPoints.map((bp: any) => bp.id === item.id ? { ...bp, title: e.currentTarget.textContent || '' } : bp) } : s))}>
                   {item.title}
                 </h3>
-                <p style={{ color: theme.subtextColor }} className="font-poppins text-[16px] leading-[1.35] max-w-[760px]" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => (s.type === 'white-master' ? { ...s, bulletPoints: s.bulletPoints.map((bp) => bp.id === item.id ? { ...bp, description: e.currentTarget.textContent || '' } : bp) } : s))}>
+                <p style={{ color: theme.subtextColor }} className="font-poppins text-[16px] leading-[1.35] max-w-[760px]" contentEditable={isEditMode} suppressContentEditableWarning onBlur={(e) => applyEdit((s) => (s.type === 'white-master' ? { ...s, bulletPoints: s.bulletPoints.map((bp: any) => bp.id === item.id ? { ...bp, description: e.currentTarget.textContent || '' } : bp) } : s))}>
                   {item.description}
                 </p>
               </div>
