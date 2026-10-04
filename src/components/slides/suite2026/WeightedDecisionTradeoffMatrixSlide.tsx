@@ -53,11 +53,11 @@ export const WeightedDecisionTradeoffMatrixSlide: React.FC<{
           </p>
         </div>
         <div className="plane-1-raised p-4 px-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] flex items-center gap-6 font-mono text-[14px]">
-          <div><span style={{ color: 'var(--pres-text-muted)' }} className="text-[12px] block uppercase">Decision Outcome</span><span className="font-bold text-violet-500">{data?.selectedDecisionOutcome || 'Hybrid Sovereign Selected'}</span></div>
-          <div className="w-[1px] h-8 bg-slate-700/40" />
-          <div><span style={{ color: 'var(--pres-text-muted)' }} className="text-[12px] block uppercase">Stakeholder Consensus</span><span className="font-bold text-emerald-500">100% UNANIMOUS</span></div>
-          <div className="w-[1px] h-8 bg-slate-700/40" />
-          <div><span style={{ color: 'var(--pres-text-muted)' }} className="text-[12px] block uppercase">Scoring Engine</span><span className="font-bold text-slate-900 dark:text-slate-100">Weighted Linear Sum</span></div>
+          <div><span style={{ color: 'var(--pres-text-muted)' }} className="text-[14px] block uppercase">Decision Outcome</span><span className="font-bold text-violet-500">{data?.selectedDecisionOutcome || 'Hybrid Sovereign Selected'}</span></div>
+          <div className="w-[1px] h-8 bg-slate-300 dark:bg-slate-700/60" />
+          <div><span style={{ color: 'var(--pres-text-muted)' }} className="text-[14px] block uppercase">Stakeholder Consensus</span><span className="font-bold text-emerald-500">100% UNANIMOUS</span></div>
+          <div className="w-[1px] h-8 bg-slate-300 dark:bg-slate-700/60" />
+          <div><span style={{ color: 'var(--pres-text-muted)' }} className="text-[14px] block uppercase">Scoring Engine</span><span className="font-bold text-slate-900 dark:text-slate-100">Weighted Linear Sum</span></div>
         </div>
       </div>
 
@@ -67,10 +67,10 @@ export const WeightedDecisionTradeoffMatrixSlide: React.FC<{
           return (
             <button key={opt.optionName} onClick={() => jumpToStep(idx)} className={`text-left p-3.5 rounded-xl border transition-all cursor-pointer font-mono text-[14px] flex items-center justify-between ${isActive ? 'border-[var(--pres-accent)] bg-[var(--pres-accent)]/15 shadow-[0_0_20px_var(--pres-accent)] text-slate-900 dark:text-white scale-[1.02]' : idx < currentStep ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 opacity-80' : 'border-[var(--pres-border)] bg-[var(--pres-bg-card)] opacity-40 text-slate-500 dark:text-slate-400 blur-[0.5px]'}`}>
               <div className="flex items-center gap-2.5">
-                <span className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[12px] ${isActive ? 'bg-[var(--pres-accent)] text-white' : idx < currentStep ? 'bg-emerald-500 text-slate-900' : 'bg-slate-800 text-slate-300'}`}>{idx < currentStep ? '✓' : idx + 1}</span>
-                <span className="font-bold truncate text-[13px]">{opt.optionName.split(':')[0]}</span>
+                <span className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[14px] ${isActive ? 'bg-[var(--pres-accent)] text-white' : idx < currentStep ? 'bg-emerald-500 text-slate-900' : 'bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300'}`}>{idx < currentStep ? '✓' : idx + 1}</span>
+                <span className="font-bold truncate text-[14px]">{opt.optionName.split(':')[0]}</span>
               </div>
-              <span className={`text-[12px] px-2 py-0.5 rounded font-bold ${opt.isRecommended ? 'bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30' : 'text-slate-500'}`}>{opt.totalWeightedScore.toFixed(2)} pts</span>
+              <span className={`text-[14px] px-2 py-0.5 rounded font-bold ${opt.isRecommended ? 'bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30' : 'text-slate-500 dark:text-slate-400'}`}>{opt.totalWeightedScore.toFixed(2)} pts</span>
             </button>
           );
         })}
@@ -79,17 +79,17 @@ export const WeightedDecisionTradeoffMatrixSlide: React.FC<{
       <div className="plane-2-elevated rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] p-6 z-10 my-auto h-[460px] flex flex-col justify-between shadow-2xl">
         <div className="flex items-center justify-between pb-3 border-b border-[var(--pres-border)]">
           <span className="font-mono text-[14px] font-bold text-violet-500 dark:text-violet-400 flex items-center gap-2"><GitFork size={16} />MULTI-CRITERIA EVALUATION MATRIX</span>
-          <span className="font-mono text-[12px] px-2.5 py-1 rounded bg-violet-500/10 text-violet-700 dark:text-violet-300 border border-violet-500/20">Weighted 1-10 Scale</span>
+          <span className="font-mono text-[14px] px-2.5 py-1 rounded bg-violet-500/10 text-violet-700 dark:text-violet-300 border border-violet-500/20">Weighted 1-10 Scale</span>
         </div>
         <div className="overflow-x-auto my-auto">
           <table className="w-full text-left font-mono text-[14px]">
             <thead>
-              <tr className="border-b border-[var(--pres-border)] text-slate-500 dark:text-slate-400 text-[12px] uppercase">
+              <tr className="border-b border-[var(--pres-border)] text-slate-500 dark:text-slate-400 text-[14px] uppercase">
                 <th className="py-2.5 px-3">Architectural Option</th>
                 {criteria.map((c) => (
                   <th key={c.id} className="py-2.5 px-3 text-center">
                     <div>{c.criterionName}</div>
-                    <div className="text-[11px] text-violet-500 font-bold">{c.weightPercent}% weight</div>
+                    <div className="text-[14px] text-violet-500 font-bold">{c.weightPercent}% weight</div>
                   </th>
                 ))}
                 <th className="py-2.5 px-3 text-right">Weighted Total</th>
@@ -100,16 +100,16 @@ export const WeightedDecisionTradeoffMatrixSlide: React.FC<{
               {options.map((opt, idx) => {
                 const isSelected = idx === currentStep;
                 return (
-                  <tr key={opt.optionName} onClick={() => jumpToStep(idx)} className={`cursor-pointer transition-all ${isSelected ? 'bg-[var(--pres-accent)]/15 font-bold text-slate-900 dark:text-white' : 'hover:bg-black/5 dark:hover:bg-black/20 text-slate-700 dark:text-slate-300'}`}>
+                  <tr key={opt.optionName} onClick={() => jumpToStep(idx)} className={`cursor-pointer transition-all ${isSelected ? 'bg-[var(--pres-accent)]/15 font-bold text-slate-900 dark:text-white' : 'hover:bg-slate-100/60 dark:hover:bg-slate-800/40 text-slate-700 dark:text-slate-300'}`}>
                     <td className="py-4 px-3 flex items-center gap-2">
-                      <span className={`w-3 h-3 rounded-full ${isSelected ? 'bg-[var(--pres-accent)]' : 'bg-slate-600'}`} />
+                      <span className={`w-3 h-3 rounded-full ${isSelected ? 'bg-[var(--pres-accent)]' : 'bg-slate-400 dark:bg-slate-600'}`} />
                       <span className="text-[15px]">{opt.optionName}</span>
                     </td>
                     {criteria.map((c) => {
                       const score = opt.scores[c.id] ?? 0;
                       return (
                         <td key={c.id} className="py-4 px-3 text-center">
-                          <span className={`px-2.5 py-1 rounded font-bold text-[13px] ${score >= 9 ? 'bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30' : score >= 7 ? 'bg-sky-500/15 text-sky-700 dark:text-sky-300' : 'bg-slate-700/20 text-slate-400'}`}>
+                          <span className={`px-2.5 py-1 rounded font-bold text-[14px] ${score >= 9 ? 'bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30' : score >= 7 ? 'bg-sky-500/15 text-sky-700 dark:text-sky-300' : 'bg-slate-200/60 dark:bg-slate-700/30 text-slate-600 dark:text-slate-400'}`}>
                             {score} / 10
                           </span>
                         </td>
@@ -118,11 +118,11 @@ export const WeightedDecisionTradeoffMatrixSlide: React.FC<{
                     <td className="py-4 px-3 text-right text-[18px] font-ubuntu font-bold text-violet-600 dark:text-violet-400">{opt.totalWeightedScore.toFixed(2)}</td>
                     <td className="py-4 px-3 text-center">
                       {opt.isRecommended ? (
-                        <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30 font-bold text-[12px] flex items-center justify-center gap-1.5 mx-auto w-fit">
+                        <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30 font-bold text-[14px] flex items-center justify-center gap-1.5 mx-auto w-fit">
                           <Award size={14} /> RECOMMENDED
                         </span>
                       ) : (
-                        <span className="text-slate-500 text-[12px]">Alternative</span>
+                        <span className="text-slate-500 dark:text-slate-400 text-[14px]">Alternative</span>
                       )}
                     </td>
                   </tr>
@@ -131,7 +131,7 @@ export const WeightedDecisionTradeoffMatrixSlide: React.FC<{
             </tbody>
           </table>
         </div>
-        <div className="p-3 rounded-xl bg-black/5 dark:bg-black/20 border border-[var(--pres-border)] font-mono text-[13px] flex items-center justify-between text-slate-600 dark:text-slate-300">
+        <div className="p-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/40 border border-[var(--pres-border)] font-mono text-[14px] flex items-center justify-between text-slate-600 dark:text-slate-300">
           <div className="flex items-center gap-2"><ShieldCheck size={16} className="text-emerald-500" /> Mandatory criteria gates strictly enforced: Options failing criteria 1 or 2 are automatically disqualified.</div>
           <span className="text-violet-500 font-bold">Consensus Approved</span>
         </div>

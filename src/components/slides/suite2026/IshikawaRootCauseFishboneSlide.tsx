@@ -46,21 +46,21 @@ export const IshikawaRootCauseFishboneSlide: React.FC<{ slide?: IshikawaRootCaus
             {data?.subtitle || 'Rigorous Ishikawa cause-and-effect fishbone isolating contributory vectors down to zero-allocation memory fixes.'}
           </p>
         </div>
-        <div className="p-4 px-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] backdrop-blur-md flex items-center gap-6 font-mono text-[14px]">
-          <div><span className="text-slate-400 block uppercase">Root Cause</span><span className="text-emerald-400 font-bold">IDENTIFIED & FIXED</span></div>
-          <div className="w-[1px] h-8 bg-slate-700/40" />
-          <div><span className="text-slate-400 block uppercase">Chief Software Engineer</span><span className="text-slate-800 dark:text-slate-200 font-bold">Alim Ul Karim</span></div>
+        <div className="plane-1-raised p-4 px-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] backdrop-blur-md flex items-center gap-6 font-mono text-[14px]">
+          <div><span className="text-slate-500 dark:text-slate-400 block uppercase">Root Cause</span><span className="text-emerald-600 dark:text-emerald-400 font-bold">IDENTIFIED & FIXED</span></div>
+          <div className="w-[1px] h-8 bg-slate-300 dark:bg-slate-700/60" />
+          <div><span className="text-slate-500 dark:text-slate-400 block uppercase">Chief Software Engineer</span><span className="text-slate-800 dark:text-slate-200 font-bold">Alim Ul Karim</span></div>
         </div>
       </div>
 
       <div className="grid grid-cols-4 gap-4 z-10 my-2">
         {STAGES.map((st, idx) => (
-          <button key={st.step} onClick={() => jumpToStep(idx)} className={`text-left p-3.5 rounded-xl border transition-all cursor-pointer font-mono text-[14px] flex items-center justify-between ${idx === currentStep ? 'border-[var(--pres-accent)] bg-[var(--pres-accent)]/15 shadow-xl scale-[1.02] text-white ring-2 ring-[var(--pres-accent)]' : idx < currentStep ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-300 opacity-75' : 'border-[var(--pres-border)] bg-[var(--pres-bg-card)] opacity-40 text-slate-400'}`}>
+          <button key={st.step} onClick={() => jumpToStep(idx)} className={`text-left p-3.5 rounded-xl border transition-all cursor-pointer font-mono text-[14px] flex items-center justify-between ${idx === currentStep ? 'border-[var(--pres-accent)] bg-[var(--pres-accent)]/15 shadow-xl scale-[1.02] text-[var(--pres-text)] ring-2 ring-[var(--pres-accent)] font-bold' : idx < currentStep ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 opacity-90' : 'border-[var(--pres-border)] bg-[var(--pres-bg-card)] opacity-60 text-slate-500 dark:text-slate-400'}`}>
             <div className="flex items-center gap-3">
-              <span className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs ${idx === currentStep ? 'bg-[var(--pres-accent)] text-white' : idx < currentStep ? 'bg-emerald-500 text-slate-900' : 'bg-slate-800 text-slate-300'}`}>{idx < currentStep ? '✓' : idx + 1}</span>
+              <span className={`w-7 h-7 rounded-full flex items-center justify-center font-bold text-[14px] ${idx === currentStep ? 'bg-[var(--pres-accent)] text-white' : idx < currentStep ? 'bg-emerald-500 text-white dark:text-slate-900' : 'bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300'}`}>{idx < currentStep ? '✓' : idx + 1}</span>
               <span className="font-bold">{st.name}</span>
             </div>
-            <span className="text-[12px] opacity-75">Spine {st.step}</span>
+            <span className="text-[14px] opacity-75">Spine {st.step}</span>
           </button>
         ))}
       </div>
@@ -77,22 +77,22 @@ export const IshikawaRootCauseFishboneSlide: React.FC<{ slide?: IshikawaRootCaus
                 className={`plane-1-raised p-5 rounded-2xl border transition-all cursor-pointer shadow-lg ${
                   isSelected
                     ? 'border-[var(--pres-accent)] bg-[var(--pres-accent)]/20 ring-2 ring-[var(--pres-accent)] scale-[1.02] shadow-2xl'
-                    : 'border-slate-800/80 bg-black/20 opacity-65 hover:opacity-100'
+                    : 'border-slate-200 dark:border-slate-800/80 bg-slate-100/60 dark:bg-black/20 opacity-80 hover:opacity-100'
                 }`}
               >
-                <div className="flex items-center justify-between pb-2 border-b border-slate-800/80 mb-3 font-mono text-xs">
-                  <span className={`font-bold uppercase ${isSelected ? 'text-[var(--pres-accent)]' : 'text-slate-400'}`}>
+                <div className="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800/80 mb-3 font-mono text-[14px]">
+                  <span className={`font-bold uppercase ${isSelected ? 'text-[var(--pres-accent)]' : 'text-slate-500 dark:text-slate-400'}`}>
                     {sp.spineCategory}
                   </span>
-                  <span className={`px-2 py-0.5 rounded font-bold ${sp.isPositive ? 'bg-emerald-500/20 text-emerald-300' : 'bg-rose-500/20 text-rose-300'}`}>
+                  <span className={`px-2 py-0.5 rounded font-bold ${sp.isPositive ? 'bg-emerald-500/20 text-emerald-800 dark:text-emerald-300' : 'bg-rose-500/20 text-rose-800 dark:text-rose-300'}`}>
                     Severity {sp.severityRating}/10
                   </span>
                 </div>
-                <div className="font-ubuntu text-base font-bold text-slate-100 mb-2">{sp.primaryCause}</div>
-                <div className="space-y-1 font-mono text-xs text-slate-400">
+                <div className="font-ubuntu text-base font-bold text-slate-900 dark:text-slate-100 mb-2">{sp.primaryCause}</div>
+                <div className="space-y-1 font-mono text-[14px] text-slate-600 dark:text-slate-400">
                   {sp.contributingFactors.map((f, fIdx) => (
                     <div key={fIdx} className="flex items-center gap-2">
-                      <span className="text-violet-400">•</span>
+                      <span className="text-violet-600 dark:text-violet-400">•</span>
                       <span>{f}</span>
                     </div>
                   ))}
@@ -104,48 +104,48 @@ export const IshikawaRootCauseFishboneSlide: React.FC<{ slide?: IshikawaRootCaus
 
         {/* Right: Problem Statement & Resolution Head */}
         <div className="col-span-5 plane-1-raised p-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] backdrop-blur-md flex flex-col justify-between shadow-2xl">
-          <div className="flex items-center justify-between pb-3 border-b border-[var(--pres-border)] font-mono text-sm">
-            <span className="text-rose-400 font-bold uppercase flex items-center gap-2"><Bug size={16} /> INCIDENT PROBLEM STATEMENT</span>
-            <span className="px-2 py-0.5 rounded bg-rose-500/15 text-rose-300 text-xs font-bold">RCA ACTIVE</span>
+          <div className="flex items-center justify-between pb-3 border-b border-[var(--pres-border)] font-mono text-[14px]">
+            <span className="text-rose-600 dark:text-rose-400 font-bold uppercase flex items-center gap-2"><Bug size={16} /> INCIDENT PROBLEM STATEMENT</span>
+            <span className="px-2 py-0.5 rounded bg-rose-500/15 text-rose-800 dark:text-rose-300 text-[14px] font-bold">RCA ACTIVE</span>
           </div>
 
           <div className="space-y-4 my-4 font-mono text-[14px]">
-            <div className="p-4 rounded-xl bg-black/30 border border-slate-800 space-y-1">
-              <span className="text-xs text-slate-400 uppercase">Observable Anomaly:</span>
-              <div className="text-lg font-bold text-rose-300">
+            <div className="p-4 rounded-xl bg-slate-100/60 dark:bg-black/30 border border-slate-200 dark:border-slate-800 space-y-1">
+              <span className="text-[14px] text-slate-500 dark:text-slate-400 uppercase">Observable Anomaly:</span>
+              <div className="text-lg font-bold text-rose-700 dark:text-rose-300">
                 {data?.incidentProblemStatement || 'Transient P99.9 latency breach (>180ms) and dropped Raft leases during Q3 peak traffic.'}
               </div>
             </div>
 
-            <div className="p-4 rounded-xl bg-black/30 border border-slate-800 space-y-2">
-              <span className="text-xs text-slate-400 uppercase">Active Spine Investigation:</span>
-              <div className="text-base font-bold text-slate-100">{activeSpine.spineCategory}</div>
-              <div className="text-xs text-slate-300 font-poppins">{activeSpine.primaryCause}</div>
+            <div className="p-4 rounded-xl bg-slate-100/60 dark:bg-black/30 border border-slate-200 dark:border-slate-800 space-y-2">
+              <span className="text-[14px] text-slate-500 dark:text-slate-400 uppercase">Active Spine Investigation:</span>
+              <div className="text-base font-bold text-slate-900 dark:text-slate-100">{activeSpine.spineCategory}</div>
+              <div className="text-[14px] text-slate-700 dark:text-slate-300 font-poppins">{activeSpine.primaryCause}</div>
             </div>
 
             <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 space-y-1">
-              <span className="text-xs text-emerald-400 font-bold uppercase flex items-center gap-1.5"><Wrench size={14} /> Permanent Fix Verified:</span>
-              <div className="text-xs text-emerald-300 font-poppins">
+              <span className="text-[14px] text-emerald-700 dark:text-emerald-400 font-bold uppercase flex items-center gap-1.5"><Wrench size={14} /> Permanent Fix Verified:</span>
+              <div className="text-[14px] text-emerald-800 dark:text-emerald-300 font-poppins">
                 Zero-allocation ring buffer deployed with eBPF network backpressure. Post-incident chaos fuzzing passed 10M iterations with 0 dropped leases.
               </div>
             </div>
           </div>
 
-          <div className="p-3 rounded-xl bg-black/20 border border-slate-800 font-mono text-xs text-slate-400 flex items-center justify-between">
+          <div className="p-3 rounded-xl bg-slate-100/60 dark:bg-black/20 border border-slate-200 dark:border-slate-800 font-mono text-[14px] text-slate-500 dark:text-slate-400 flex items-center justify-between">
             <span>Remediation Status: 100% PATCHED IN PRODUCTION</span>
-            <span className="text-emerald-400 font-bold">CLOSED</span>
+            <span className="text-emerald-600 dark:text-emerald-400 font-bold">CLOSED</span>
           </div>
         </div>
       </div>
 
       <div className="plane-1-raised p-3.5 px-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] backdrop-blur-md flex items-center justify-between font-mono text-[14px] z-10">
         <div className="flex items-center gap-3">
-          <span className="text-slate-400 uppercase">Investigation Focus:</span>
+          <span className="text-slate-500 dark:text-slate-400 uppercase">Investigation Focus:</span>
           <span className="text-[var(--pres-accent)] font-bold">{activeSpine.spineCategory} — {STAGES[currentStep]?.desc}</span>
         </div>
         <div className="flex items-center gap-4">
-          <span className="text-slate-400">Step {currentStep + 1} of 4</span>
-          <span className="text-emerald-400 font-bold flex items-center gap-1"><CheckCircle2 size={16} /> Zero Recurring Vulnerability</span>
+          <span className="text-slate-500 dark:text-slate-400">Step {currentStep + 1} of 4</span>
+          <span className="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1"><CheckCircle2 size={16} /> Zero Recurring Vulnerability</span>
         </div>
       </div>
     </div>

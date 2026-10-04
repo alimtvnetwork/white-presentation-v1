@@ -37,10 +37,10 @@ export const GlobalDataJurisdictionBoundarySlide: React.FC<{ slide?: GlobalDataJ
             {data?.subtitle || 'Strict physical and cryptographic data boundaries guaranteeing local residency without cross-border telemetry bleed.'}
           </p>
         </div>
-        <div className="p-4 px-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] backdrop-blur-md flex items-center gap-6 font-mono text-[14px]">
-          <div><span className="text-slate-400 block uppercase">Global Coverage</span><span className="text-emerald-400 font-bold">{data?.globalCoveragePercent || 100}% Certified</span></div>
-          <div className="w-[1px] h-8 bg-slate-700/40" />
-          <div><span className="text-slate-400 block uppercase">Chief Software Engineer</span><span className="text-slate-800 dark:text-slate-200 font-bold">Alim Ul Karim</span></div>
+        <div className="plane-1-raised p-4 px-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] backdrop-blur-md flex items-center gap-6 font-mono text-[14px]">
+          <div><span className="text-slate-500 dark:text-slate-400 block uppercase">Global Coverage</span><span className="text-emerald-600 dark:text-emerald-400 font-bold">{data?.globalCoveragePercent || 100}% Certified</span></div>
+          <div className="w-[1px] h-8 bg-slate-300 dark:bg-slate-700/60" />
+          <div><span className="text-slate-500 dark:text-slate-400 block uppercase">Chief Software Engineer</span><span className="text-slate-800 dark:text-slate-200 font-bold">Alim Ul Karim</span></div>
         </div>
       </div>
 
@@ -49,41 +49,41 @@ export const GlobalDataJurisdictionBoundarySlide: React.FC<{ slide?: GlobalDataJ
           <div key={enc.id} className="plane-1-raised p-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] backdrop-blur-md flex flex-col justify-between hover:border-[var(--pres-accent)] transition-all shadow-xl">
             <div className="flex items-center justify-between pb-3 border-b border-[var(--pres-border)]">
               <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-xl bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                <div className="p-2.5 rounded-xl bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30">
                   <Server size={20} />
                 </div>
                 <div>
-                  <h3 className="font-ubuntu text-xl font-bold text-slate-100">{enc.enclaveName}</h3>
-                  <span className="font-mono text-xs text-slate-400">{enc.geographicRegion}</span>
+                  <h3 className="font-ubuntu text-xl font-bold text-slate-900 dark:text-slate-100">{enc.enclaveName}</h3>
+                  <span className="font-mono text-[14px] text-slate-500 dark:text-slate-400">{enc.geographicRegion}</span>
                 </div>
               </div>
-              <span className="font-mono text-xs px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 flex items-center gap-1 font-semibold">
+              <span className="font-mono text-[14px] px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border border-emerald-500/20 flex items-center gap-1 font-semibold">
                 <CheckCircle2 size={13} /> {enc.latencyTargetMs}ms SLA
               </span>
             </div>
 
             <div className="space-y-3 my-4 font-mono text-[14px]">
-              <div className="p-3 rounded-xl bg-black/20 border border-slate-800/60 flex justify-between items-center">
-                <span className="text-xs uppercase text-slate-400">Jurisdiction Governance:</span>
-                <span className="text-slate-200 font-bold text-xs">{enc.jurisdictionLaw}</span>
+              <div className="p-3 rounded-xl bg-slate-100/60 dark:bg-black/20 border border-slate-200 dark:border-slate-800/60 flex justify-between items-center">
+                <span className="text-[14px] uppercase text-slate-500 dark:text-slate-400">Jurisdiction Governance:</span>
+                <span className="text-slate-800 dark:text-slate-200 font-bold text-[14px]">{enc.jurisdictionLaw}</span>
               </div>
-              <div className="p-3 rounded-xl bg-black/20 border border-slate-800/60 flex justify-between items-center">
-                <span className="text-xs uppercase text-slate-400">Data Classification:</span>
-                <span className="text-violet-400 font-bold text-xs">{enc.dataClassification}</span>
+              <div className="p-3 rounded-xl bg-slate-100/60 dark:bg-black/20 border border-slate-200 dark:border-slate-800/60 flex justify-between items-center">
+                <span className="text-[14px] uppercase text-slate-500 dark:text-slate-400">Data Classification:</span>
+                <span className="text-violet-700 dark:text-violet-400 font-bold text-[14px]">{enc.dataClassification}</span>
               </div>
               <div className="grid grid-cols-2 gap-3">
-                <div className="p-2.5 rounded-lg bg-black/30 border border-slate-800/60 flex items-center gap-2 text-xs">
-                  <Lock size={14} className="text-emerald-400" />
-                  <span className="text-slate-300">Dedicated HSM Key Vault</span>
+                <div className="p-2.5 rounded-lg bg-slate-100 dark:bg-black/30 border border-slate-200 dark:border-slate-800/60 flex items-center gap-2 text-[14px]">
+                  <Lock size={14} className="text-emerald-600 dark:text-emerald-400" />
+                  <span className="text-slate-700 dark:text-slate-300">Dedicated HSM Key Vault</span>
                 </div>
-                <div className="p-2.5 rounded-lg bg-black/30 border border-slate-800/60 flex items-center gap-2 text-xs">
-                  <Cpu size={14} className="text-sky-400" />
-                  <span className="text-slate-300">Hardware Enclave Isolation</span>
+                <div className="p-2.5 rounded-lg bg-slate-100 dark:bg-black/30 border border-slate-200 dark:border-slate-800/60 flex items-center gap-2 text-[14px]">
+                  <Cpu size={14} className="text-sky-600 dark:text-sky-400" />
+                  <span className="text-slate-700 dark:text-slate-300">Hardware Enclave Isolation</span>
                 </div>
               </div>
             </div>
 
-            <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 font-mono text-xs text-emerald-400 flex items-center justify-between">
+            <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 font-mono text-[14px] text-emerald-700 dark:text-emerald-400 flex items-center justify-between">
               <span>Boundary Status: ZERO DATA EXFILTRATION GUARANTEE</span>
               <span className="font-bold">VERIFIED</span>
             </div>
@@ -93,12 +93,12 @@ export const GlobalDataJurisdictionBoundarySlide: React.FC<{ slide?: GlobalDataJ
 
       <div className="plane-1-raised p-3.5 px-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] backdrop-blur-md flex items-center justify-between font-mono text-[14px] z-10">
         <div className="flex items-center gap-3">
-          <span className="text-slate-400 uppercase">Perimeter Verification:</span>
-          <span className="text-emerald-400 font-bold">100% Cryptographic Isolation Enforced Across 4 Continents</span>
+          <span className="text-slate-500 dark:text-slate-400 uppercase">Perimeter Verification:</span>
+          <span className="text-emerald-600 dark:text-emerald-400 font-bold">100% Cryptographic Isolation Enforced Across 4 Continents</span>
         </div>
         <div className="flex items-center gap-4">
-          <span className="text-slate-400">Zero Trust Architecture</span>
-          <span className="text-emerald-400 font-bold flex items-center gap-1"><ShieldCheck size={16} /> Certified</span>
+          <span className="text-slate-500 dark:text-slate-400">Zero Trust Architecture</span>
+          <span className="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1"><ShieldCheck size={16} /> Certified</span>
         </div>
       </div>
     </div>

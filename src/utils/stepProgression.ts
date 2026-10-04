@@ -573,22 +573,22 @@ export function getGlobalPptEvolutionSlideSteps(slide: any): number {
 type StepCalcFn = (slide: any) => number;
 
 export const SUITE_2026_STEP_CALCULATORS: Record<string, StepCalcFn> = {
-  'executive-pnl-waterfall-table': (s) => Math.max(1, (s.stepHighlightRowIds?.length || 4) + 1),
-  'competitive-feature-heatmap': (s) => Math.max(1, s.capabilities?.length ? 4 : 1),
-  'customer-persona-archetype-split': (s) => Math.max(1, (s.dimensions?.length || 4) + 1),
-  'global-data-jurisdiction-boundary': (s) => Math.max(1, (s.enclaves?.length || 4) + 1),
-  'hardware-interface-blueprint': (s) => Math.max(1, (s.pinpoints?.length || 4) + 1),
-  'multi-horizon-value-realization-bridge': (s) => Math.max(1, (s.horizons?.length || 5) + 1),
-  'two-sided-ecosystem-flywheel': (s) => Math.max(1, (s.supplyStages?.length || 4) + 1),
-  'ishikawa-root-cause-fishbone': (s) => Math.max(1, (s.spines?.length || 6) + 1),
-  'modular-consumption-pricing-calculator': () => Math.max(1, 4),
+  'executive-pnl-waterfall-table': () => 4,
+  'competitive-feature-heatmap': () => 1,
+  'customer-persona-archetype-split': () => 4,
+  'global-data-jurisdiction-boundary': () => 1,
+  'hardware-interface-blueprint': () => 4,
+  'multi-horizon-value-realization-bridge': (s) => Math.max(1, s.horizons?.length || 3),
+  'two-sided-ecosystem-flywheel': () => 4,
+  'ishikawa-root-cause-fishbone': () => 4,
+  'modular-consumption-pricing-calculator': (s) => Math.max(1, s.tiers?.length || 4),
   'live-product-viewport-walkthrough': (s) => Math.max(1, s.steps?.length || 4),
-  'enterprise-risk-taxonomy-heatmap': (s) => Math.max(1, Math.min(5, s.risks?.length || 4) + 1),
-  'global-partner-tiering-ladder': (s) => Math.max(1, (s.tiers?.length || 4) + 1),
-  'talent-competency-gap-heatmap': (s) => Math.max(1, (s.domains?.length || 4) + 1),
-  'slo-error-budget-burn-waterfall': (s) => Math.max(1, (s.incidents?.length || 3) + 1),
-  'weighted-decision-tradeoff-matrix': (s) => Math.max(1, (s.criteria?.length || 4) + 1),
-  'customer-churn-intervention-ladder': (s) => Math.max(1, (s.stages?.length || 4) + 1),
+  'enterprise-risk-taxonomy-heatmap': (s) => Math.max(1, s.risks?.length || 4),
+  'global-partner-tiering-ladder': (s) => Math.max(1, s.tiers?.length || 4),
+  'talent-competency-gap-heatmap': (s) => Math.max(1, s.domains?.length || 4),
+  'slo-error-budget-burn-waterfall': (s) => Math.max(1, s.incidents?.length || 3),
+  'weighted-decision-tradeoff-matrix': (s) => Math.max(1, s.options?.length || 3),
+  'customer-churn-intervention-ladder': (s) => Math.max(1, s.stages?.length || 4),
 };
 
 export function getSuite2026SlideSteps(slide: any): number {

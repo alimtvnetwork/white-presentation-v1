@@ -45,21 +45,21 @@ export const CustomerPersonaArchetypeSplitSlide: React.FC<{ slide?: CustomerPers
             {data?.subtitle || 'Comparative operational breakdown between Chief Technology Officers and VP SecOps buying centers.'}
           </p>
         </div>
-        <div className="p-4 px-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] backdrop-blur-md flex items-center gap-6 font-mono text-[14px]">
-          <div><span className="text-slate-400 block uppercase">Validation</span><span className="text-emerald-500 font-bold">48 Field Interviews</span></div>
-          <div className="w-[1px] h-8 bg-slate-700/40" />
-          <div><span className="text-slate-400 block uppercase">Chief Software Engineer</span><span className="text-slate-800 dark:text-slate-200 font-bold">Alim Ul Karim</span></div>
+        <div className="plane-1-raised p-4 px-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] backdrop-blur-md flex items-center gap-6 font-mono text-[14px]">
+          <div><span className="text-slate-500 dark:text-slate-400 block uppercase">Validation</span><span className="text-emerald-600 dark:text-emerald-400 font-bold">48 Field Interviews</span></div>
+          <div className="w-[1px] h-8 bg-slate-300 dark:bg-slate-700/60" />
+          <div><span className="text-slate-500 dark:text-slate-400 block uppercase">Chief Software Engineer</span><span className="text-slate-800 dark:text-slate-200 font-bold">Alim Ul Karim</span></div>
         </div>
       </div>
 
       <div className="grid grid-cols-4 gap-4 z-10 my-2">
         {STAGES.map((st, idx) => (
-          <button key={st.step} onClick={() => jumpToStep(idx)} className={`text-left p-3.5 rounded-xl border transition-all cursor-pointer font-mono text-[14px] flex items-center justify-between ${idx === currentStep ? 'border-[var(--pres-accent)] bg-[var(--pres-accent)]/15 shadow-xl scale-[1.02] text-white ring-2 ring-[var(--pres-accent)]' : idx < currentStep ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-300 opacity-75' : 'border-[var(--pres-border)] bg-[var(--pres-bg-card)] opacity-40 text-slate-400'}`}>
+          <button key={st.step} onClick={() => jumpToStep(idx)} className={`text-left p-3.5 rounded-xl border transition-all cursor-pointer font-mono text-[14px] flex items-center justify-between ${idx === currentStep ? 'border-[var(--pres-accent)] bg-[var(--pres-accent)]/15 shadow-xl scale-[1.02] text-[var(--pres-text)] ring-2 ring-[var(--pres-accent)] font-bold' : idx < currentStep ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 opacity-90' : 'border-[var(--pres-border)] bg-[var(--pres-bg-card)] opacity-60 text-slate-500 dark:text-slate-400'}`}>
             <div className="flex items-center gap-3">
-              <span className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs ${idx === currentStep ? 'bg-[var(--pres-accent)] text-white' : idx < currentStep ? 'bg-emerald-500 text-slate-900' : 'bg-slate-800 text-slate-300'}`}>{idx < currentStep ? '✓' : idx + 1}</span>
+              <span className={`w-7 h-7 rounded-full flex items-center justify-center font-bold text-[14px] ${idx === currentStep ? 'bg-[var(--pres-accent)] text-white' : idx < currentStep ? 'bg-emerald-500 text-white dark:text-slate-900' : 'bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300'}`}>{idx < currentStep ? '✓' : idx + 1}</span>
               <span className="font-bold">{st.name}</span>
             </div>
-            <span className="text-[12px] opacity-75">Phase {st.step}</span>
+            <span className="text-[14px] opacity-75">Phase {st.step}</span>
           </button>
         ))}
       </div>
@@ -69,27 +69,27 @@ export const CustomerPersonaArchetypeSplitSlide: React.FC<{ slide?: CustomerPers
         <div className={`plane-1-raised p-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] backdrop-blur-md flex flex-col justify-between transition-all duration-300 ${currentStep === 0 || currentStep === 2 ? 'ring-2 ring-[var(--pres-accent)] shadow-2xl scale-[1.01]' : ''}`}>
           <div className="flex items-center justify-between pb-4 border-b border-[var(--pres-border)]">
             <div className="flex items-center gap-3">
-              <div className="p-3 rounded-xl bg-violet-500/20 text-violet-400 border border-violet-500/30"><UserCheck size={24} /></div>
+              <div className="p-3 rounded-xl bg-violet-500/20 text-violet-700 dark:text-violet-400 border border-violet-500/30"><UserCheck size={24} /></div>
               <div>
-                <h3 className="font-ubuntu text-2xl font-bold text-slate-100">{data?.primaryPersonaTitle || 'Chief Technology Officer (CTO)'}</h3>
-                <span className="font-mono text-sm text-violet-400">Scale, Throughput & Platform Velocity</span>
+                <h3 className="font-ubuntu text-2xl font-bold text-slate-900 dark:text-slate-100">{data?.primaryPersonaTitle || 'Chief Technology Officer (CTO)'}</h3>
+                <span className="font-mono text-[14px] text-violet-700 dark:text-violet-400">Scale, Throughput & Platform Velocity</span>
               </div>
             </div>
-            <span className="font-mono text-sm px-3 py-1 rounded-full bg-violet-500/10 text-violet-300 border border-violet-500/20 font-bold">Primary Archetype</span>
+            <span className="font-mono text-[14px] px-3 py-1 rounded-full bg-violet-500/10 text-violet-800 dark:text-violet-300 border border-violet-500/20 font-bold">Primary Archetype</span>
           </div>
 
           <div className="space-y-4 my-4 font-mono text-[14px]">
             {dimensions.map((dim, idx) => (
-              <div key={dim.id} className={`p-3.5 rounded-xl border transition-all ${idx === currentStep ? 'bg-[var(--pres-accent)]/20 border-[var(--pres-accent)] shadow-md' : 'bg-black/20 border-slate-800/60 opacity-80'}`}>
-                <div className="text-xs uppercase text-slate-400 mb-1 flex items-center justify-between">
+              <div key={dim.id} className={`p-3.5 rounded-xl border transition-all ${idx === currentStep ? 'bg-[var(--pres-accent)]/20 border-[var(--pres-accent)] shadow-md' : 'bg-slate-100/60 dark:bg-black/20 border-slate-200 dark:border-slate-800/60 opacity-90'}`}>
+                <div className="text-[14px] uppercase text-slate-500 dark:text-slate-400 mb-1 flex items-center justify-between">
                   <span>{dim.dimensionName}</span>
-                  {idx === currentStep && <Sparkles size={12} className="text-violet-400" />}
+                  {idx === currentStep && <Sparkles size={14} className="text-violet-600 dark:text-violet-400" />}
                 </div>
-                <div className="font-poppins text-[15px] font-semibold text-slate-200">{dim.primaryPersonaValue}</div>
+                <div className="font-poppins text-[15px] font-semibold text-slate-800 dark:text-slate-200">{dim.primaryPersonaValue}</div>
               </div>
             ))}
           </div>
-          <div className="p-3 rounded-xl bg-violet-500/10 border border-violet-500/20 font-mono text-[13px] text-violet-300 flex items-center gap-2">
+          <div className="p-3 rounded-xl bg-violet-500/10 border border-violet-500/20 font-mono text-[14px] text-violet-800 dark:text-violet-300 flex items-center gap-2">
             <Check size={16} /> Decision Driver: Proven distributed systems architecture without vendor lock-in.
           </div>
         </div>
@@ -98,27 +98,27 @@ export const CustomerPersonaArchetypeSplitSlide: React.FC<{ slide?: CustomerPers
         <div className={`plane-1-raised p-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] backdrop-blur-md flex flex-col justify-between transition-all duration-300 ${currentStep === 1 || currentStep === 3 ? 'ring-2 ring-emerald-500 shadow-2xl scale-[1.01]' : ''}`}>
           <div className="flex items-center justify-between pb-4 border-b border-[var(--pres-border)]">
             <div className="flex items-center gap-3">
-              <div className="p-3 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"><UserCheck size={24} /></div>
+              <div className="p-3 rounded-xl bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30"><UserCheck size={24} /></div>
               <div>
-                <h3 className="font-ubuntu text-2xl font-bold text-slate-100">{data?.secondaryPersonaTitle || 'VP of Security & Compliance'}</h3>
-                <span className="font-mono text-sm text-emerald-400">Zero Trust, Enclave Boundaries & Audits</span>
+                <h3 className="font-ubuntu text-2xl font-bold text-slate-900 dark:text-slate-100">{data?.secondaryPersonaTitle || 'VP of Security & Compliance'}</h3>
+                <span className="font-mono text-[14px] text-emerald-700 dark:text-emerald-400">Zero Trust, Enclave Boundaries & Audits</span>
               </div>
             </div>
-            <span className="font-mono text-sm px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 font-bold">Security Archetype</span>
+            <span className="font-mono text-[14px] px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border border-emerald-500/20 font-bold">Security Archetype</span>
           </div>
 
           <div className="space-y-4 my-4 font-mono text-[14px]">
             {dimensions.map((dim, idx) => (
-              <div key={dim.id} className={`p-3.5 rounded-xl border transition-all ${idx === currentStep ? 'bg-emerald-500/20 border-emerald-500 shadow-md' : 'bg-black/20 border-slate-800/60 opacity-80'}`}>
-                <div className="text-xs uppercase text-slate-400 mb-1 flex items-center justify-between">
+              <div key={dim.id} className={`p-3.5 rounded-xl border transition-all ${idx === currentStep ? 'bg-emerald-500/20 border-emerald-500 shadow-md' : 'bg-slate-100/60 dark:bg-black/20 border-slate-200 dark:border-slate-800/60 opacity-90'}`}>
+                <div className="text-[14px] uppercase text-slate-500 dark:text-slate-400 mb-1 flex items-center justify-between">
                   <span>{dim.dimensionName}</span>
-                  {idx === currentStep && <Sparkles size={12} className="text-emerald-400" />}
+                  {idx === currentStep && <Sparkles size={14} className="text-emerald-600 dark:text-emerald-400" />}
                 </div>
-                <div className="font-poppins text-[15px] font-semibold text-slate-200">{dim.secondaryPersonaValue}</div>
+                <div className="font-poppins text-[15px] font-semibold text-slate-800 dark:text-slate-200">{dim.secondaryPersonaValue}</div>
               </div>
             ))}
           </div>
-          <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 font-mono text-[13px] text-emerald-300 flex items-center gap-2">
+          <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 font-mono text-[14px] text-emerald-800 dark:text-emerald-300 flex items-center gap-2">
             <Check size={16} /> Decision Driver: Continuous automated attestation and zero regulatory data leaks.
           </div>
         </div>
@@ -126,12 +126,12 @@ export const CustomerPersonaArchetypeSplitSlide: React.FC<{ slide?: CustomerPers
 
       <div className="plane-1-raised p-3.5 px-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] backdrop-blur-md flex items-center justify-between font-mono text-[14px] z-10">
         <div className="flex items-center gap-3">
-          <span className="text-slate-400 uppercase">Focus Attribute:</span>
+          <span className="text-slate-500 dark:text-slate-400 uppercase">Focus Attribute:</span>
           <span className="text-[var(--pres-accent)] font-bold">{dimensions[currentStep]?.dimensionName}</span>
         </div>
         <div className="flex items-center gap-4">
-          <span className="text-slate-400">Step {currentStep + 1} of 4</span>
-          <span className="text-emerald-400 font-bold flex items-center gap-1"><CheckCircle2 size={16} /> Double-Validated ICP</span>
+          <span className="text-slate-500 dark:text-slate-400">Step {currentStep + 1} of 4</span>
+          <span className="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1"><CheckCircle2 size={16} /> Double-Validated ICP</span>
         </div>
       </div>
     </div>

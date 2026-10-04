@@ -67,11 +67,13 @@ export * from './kineticRevolutionFactories';
 export * from './globalPptMasteryFactories';
 export * from './globalPptNextGenFactories';
 export * from './globalPptEvolutionFactories';
+export * from './suite2026SlideFactories';
 import { EXPANSION_FACTORIES } from './globalPptExpansionFactories';
 import { KINETIC_REVOLUTION_FACTORIES, KINETIC_REVOLUTION_ARCHETYPE_OPTIONS } from './kineticRevolutionFactories';
 import { GLOBAL_PPT_MASTERY_FACTORIES, GLOBAL_PPT_MASTERY_ARCHETYPE_OPTIONS } from './globalPptMasteryFactories';
 import { GLOBAL_PPT_NEXTGEN_FACTORIES, GLOBAL_PPT_NEXTGEN_ARCHETYPE_OPTIONS } from './globalPptNextGenFactories';
 import { GLOBAL_PPT_EVOLUTION_FACTORIES, GLOBAL_PPT_EVOLUTION_ARCHETYPE_OPTIONS } from './globalPptEvolutionFactories';
+import { SUITE_2026_FACTORIES, SUITE_2026_ARCHETYPE_OPTIONS } from './suite2026SlideFactories';
 
 export const ORIGINAL_ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   { type: 'metric-grid', label: 'Metric Grid Matrix', category: 'Strategy & Metrics', desc: '4-6 quantitative KPI cards with delta trends', icon: 'BarChart3' },
@@ -142,6 +144,7 @@ export const ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   ...GLOBAL_PPT_MASTERY_ARCHETYPE_OPTIONS,
   ...GLOBAL_PPT_NEXTGEN_ARCHETYPE_OPTIONS,
   ...GLOBAL_PPT_EVOLUTION_ARCHETYPE_OPTIONS,
+  ...SUITE_2026_ARCHETYPE_OPTIONS,
 ];
 
 // =============================================================================
@@ -628,6 +631,9 @@ const createFallbackTitleSlide = (id: string): SlideData => ({
 });
 
 export const createArchetypeSlide = (type: SlideType, id = `slide-${Date.now()}`): SlideData => {
+  if (type in SUITE_2026_FACTORIES) {
+    return SUITE_2026_FACTORIES[type as keyof typeof SUITE_2026_FACTORIES](id);
+  }
   if (type in GLOBAL_PPT_EVOLUTION_FACTORIES) {
     return GLOBAL_PPT_EVOLUTION_FACTORIES[type](id);
   }

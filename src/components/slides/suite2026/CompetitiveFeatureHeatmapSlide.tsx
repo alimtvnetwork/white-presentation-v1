@@ -27,7 +27,7 @@ export const CompetitiveFeatureHeatmapSlide: React.FC<{ slide?: CompetitiveFeatu
     const isFull = score >= 9;
     const isMedium = score >= 5 && score < 9;
     return (
-      <div className={`flex items-center justify-center gap-1.5 p-2 rounded-lg font-mono font-bold text-[14px] ${isOurScore ? 'bg-[var(--pres-accent)]/20 text-white ring-1 ring-[var(--pres-accent)]' : isFull ? 'bg-emerald-500/15 text-emerald-400' : isMedium ? 'bg-amber-500/15 text-amber-800 dark:text-amber-300' : 'bg-slate-800/40 text-slate-500'}`}>
+      <div className={`flex items-center justify-center gap-1.5 p-2 rounded-lg font-mono font-bold text-[14px] ${isOurScore ? 'bg-[var(--pres-accent)]/20 text-slate-900 dark:text-white ring-1 ring-[var(--pres-accent)]' : isFull ? 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-400' : isMedium ? 'bg-amber-500/15 text-amber-800 dark:text-amber-300' : 'bg-slate-200/60 dark:bg-slate-800/40 text-slate-600 dark:text-slate-400'}`}>
         {isOurScore && <Star size={13} className="text-amber-800 dark:text-amber-300 fill-amber-300" />}
         <span>{score}/10</span>
       </div>
@@ -53,17 +53,17 @@ export const CompetitiveFeatureHeatmapSlide: React.FC<{ slide?: CompetitiveFeatu
             {data?.subtitle || 'Grounded empirical matrix comparing core architecture against legacy and hyperscaler alternatives.'}
           </p>
         </div>
-        <div className="p-4 px-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] backdrop-blur-md flex items-center gap-6 font-mono text-[14px]">
-          <div><span className="text-slate-400 block uppercase">Market Segment</span><span className="text-violet-400 font-bold">{data?.marketSegment || 'Enterprise Deep-Tech'}</span></div>
-          <div className="w-[1px] h-8 bg-slate-700/40" />
-          <div><span className="text-slate-400 block uppercase">Chief Software Engineer</span><span className="text-slate-800 dark:text-slate-200 font-bold">Alim Ul Karim</span></div>
+        <div className="plane-1-raised p-4 px-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] backdrop-blur-md flex items-center gap-6 font-mono text-[14px]">
+          <div><span className="text-slate-500 dark:text-slate-400 block uppercase">Market Segment</span><span className="text-violet-700 dark:text-violet-400 font-bold">{data?.marketSegment || 'Enterprise Deep-Tech'}</span></div>
+          <div className="w-[1px] h-8 bg-slate-300 dark:bg-slate-700/60" />
+          <div><span className="text-slate-500 dark:text-slate-400 block uppercase">Chief Software Engineer</span><span className="text-slate-800 dark:text-slate-200 font-bold">Alim Ul Karim</span></div>
         </div>
       </div>
 
       <div className="plane-1-raised rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] backdrop-blur-md p-6 z-10 my-auto shadow-2xl">
-        <div className="grid grid-cols-12 gap-4 pb-4 border-b border-[var(--pres-border)] font-mono text-[14px] font-bold text-slate-400 uppercase">
+        <div className="grid grid-cols-12 gap-4 pb-4 border-b border-[var(--pres-border)] font-mono text-[14px] font-bold text-slate-500 dark:text-slate-400 uppercase">
           <div className="col-span-5">Core Enterprise Capability</div>
-          <div className="col-span-2 text-center text-white bg-[var(--pres-accent)]/20 py-1 rounded-md border border-[var(--pres-accent)]/40">Our Platform</div>
+          <div className="col-span-2 text-center text-[var(--pres-text)] bg-[var(--pres-accent)]/20 py-1 rounded-md border border-[var(--pres-accent)]/40">Our Platform</div>
           {competitors.map((comp) => (
             <div key={comp} className="col-span-2 text-center py-1">{comp}</div>
           ))}
@@ -71,16 +71,16 @@ export const CompetitiveFeatureHeatmapSlide: React.FC<{ slide?: CompetitiveFeatu
         </div>
         <div className="space-y-3 mt-3 font-mono text-[14px]">
           {capabilities.map((cap) => (
-            <div key={cap.id} className="grid grid-cols-12 gap-4 items-center p-3 rounded-xl border border-slate-800/60 bg-black/20 hover:bg-slate-800/30 transition-all">
+            <div key={cap.id} className="grid grid-cols-12 gap-4 items-center p-3 rounded-xl border border-slate-200 dark:border-slate-800/60 bg-slate-100/60 dark:bg-black/20 hover:bg-slate-200/60 dark:hover:bg-slate-800/30 transition-all">
               <div className="col-span-5 flex items-center gap-2">
-                <span className="px-2 py-0.5 rounded text-[12px] bg-slate-800 text-slate-400 border border-slate-700">[{cap.category}]</span>
-                <span className="font-semibold text-slate-200">{cap.capabilityName}</span>
+                <span className="px-2 py-0.5 rounded text-[14px] bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-400 border border-slate-300 dark:border-slate-700">[{cap.category}]</span>
+                <span className="font-semibold text-slate-800 dark:text-slate-200">{cap.capabilityName}</span>
               </div>
               <div className="col-span-2">{renderScoreCell(cap.ourScore, true)}</div>
               {competitors.map((comp) => (
                 <div key={comp} className="col-span-2">{renderScoreCell(cap.competitorScores[comp] || 3, false)}</div>
               ))}
-              <div className="col-span-1 flex justify-center text-emerald-400">
+              <div className="col-span-1 flex justify-center text-emerald-600 dark:text-emerald-400">
                 <ShieldCheck size={18} />
               </div>
             </div>
@@ -90,12 +90,12 @@ export const CompetitiveFeatureHeatmapSlide: React.FC<{ slide?: CompetitiveFeatu
 
       <div className="plane-1-raised p-3.5 px-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] backdrop-blur-md flex items-center justify-between font-mono text-[14px] z-10">
         <div className="flex items-center gap-3">
-          <span className="text-slate-400 uppercase">Benchmark Verdict:</span>
-          <span className="text-emerald-400 font-bold">100% Core Architectural Advantage on Critical Paths</span>
+          <span className="text-slate-500 dark:text-slate-400 uppercase">Benchmark Verdict:</span>
+          <span className="text-emerald-600 dark:text-emerald-400 font-bold">100% Core Architectural Advantage on Critical Paths</span>
         </div>
         <div className="flex items-center gap-4">
-          <span className="text-slate-400">Gartner / Forrester Standard</span>
-          <span className="text-emerald-400 font-bold flex items-center gap-1"><CheckCircle2 size={16} /> Verified 2026</span>
+          <span className="text-slate-500 dark:text-slate-400">Gartner / Forrester Standard</span>
+          <span className="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1"><CheckCircle2 size={16} /> Verified 2026</span>
         </div>
       </div>
     </div>

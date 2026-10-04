@@ -49,11 +49,11 @@ export const ModularConsumptionPricingCalculatorSlide: React.FC<{
           </p>
         </div>
         <div className="plane-1-raised p-4 px-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] flex items-center gap-6 font-mono text-[14px]">
-          <div><span style={{ color: 'var(--pres-text-muted)' }} className="text-[12px] block uppercase">Currency</span><span className="font-bold text-slate-900 dark:text-slate-100">{data?.currencyCode || 'USD ($)'}</span></div>
-          <div className="w-[1px] h-8 bg-slate-700/40" />
-          <div><span style={{ color: 'var(--pres-text-muted)' }} className="text-[12px] block uppercase">Est. Monthly Base</span><span className="font-bold text-violet-500">{(data?.estimatedMonthlyUsage || 12500000).toLocaleString()} Units</span></div>
-          <div className="w-[1px] h-8 bg-slate-700/40" />
-          <div><span style={{ color: 'var(--pres-text-muted)' }} className="text-[12px] block uppercase">SLA Grade</span><span className="font-bold text-emerald-500">99.99% Financial SLA</span></div>
+          <div><span style={{ color: 'var(--pres-text-muted)' }} className="text-[14px] block uppercase">Currency</span><span className="font-bold text-slate-900 dark:text-slate-100">{data?.currencyCode || 'USD ($)'}</span></div>
+          <div className="w-[1px] h-8 bg-slate-300 dark:bg-slate-700/60" />
+          <div><span style={{ color: 'var(--pres-text-muted)' }} className="text-[14px] block uppercase">Est. Monthly Base</span><span className="font-bold text-violet-500">{(data?.estimatedMonthlyUsage || 12500000).toLocaleString()} Units</span></div>
+          <div className="w-[1px] h-8 bg-slate-300 dark:bg-slate-700/60" />
+          <div><span style={{ color: 'var(--pres-text-muted)' }} className="text-[14px] block uppercase">SLA Grade</span><span className="font-bold text-emerald-500">99.99% Financial SLA</span></div>
         </div>
       </div>
 
@@ -63,10 +63,10 @@ export const ModularConsumptionPricingCalculatorSlide: React.FC<{
           return (
             <button key={t.id} onClick={() => jumpToStep(idx)} className={`text-left p-3.5 rounded-xl border transition-all cursor-pointer font-mono text-[14px] flex items-center justify-between ${isActive ? 'border-[var(--pres-accent)] bg-[var(--pres-accent)]/15 shadow-[0_0_20px_var(--pres-accent)] text-slate-900 dark:text-white scale-[1.02]' : idx < currentStep ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 opacity-80' : 'border-[var(--pres-border)] bg-[var(--pres-bg-card)] opacity-40 text-slate-500 dark:text-slate-400 blur-[0.5px]'}`}>
               <div className="flex items-center gap-2.5">
-                <span className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[12px] ${isActive ? 'bg-[var(--pres-accent)] text-white' : idx < currentStep ? 'bg-emerald-500 text-slate-900' : 'bg-slate-800 text-slate-300'}`}>{idx < currentStep ? '✓' : idx + 1}</span>
-                <span className="font-bold truncate text-[13px]">{t.tierName}</span>
+                <span className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[14px] ${isActive ? 'bg-[var(--pres-accent)] text-white' : idx < currentStep ? 'bg-emerald-500 text-slate-900' : 'bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300'}`}>{idx < currentStep ? '✓' : idx + 1}</span>
+                <span className="font-bold truncate text-[14px]">{t.tierName}</span>
               </div>
-              <span className="text-[12px] opacity-80">${t.costPerUnitUsd.toFixed(4)}/u</span>
+              <span className="text-[14px] opacity-80">${t.costPerUnitUsd.toFixed(4)}/u</span>
             </button>
           );
         })}
@@ -76,21 +76,21 @@ export const ModularConsumptionPricingCalculatorSlide: React.FC<{
         <div className="plane-1-raised p-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] flex flex-col justify-between">
           <div className="flex items-center justify-between pb-3 border-b border-[var(--pres-border)]">
             <span className="font-mono text-[14px] font-bold text-violet-500 dark:text-violet-400 flex items-center gap-2"><Layers size={16} />TIER ARCHITECTURE</span>
-            <span className="font-mono text-[12px] px-2.5 py-1 rounded bg-violet-500/10 text-violet-700 dark:text-violet-300 border border-violet-500/20">{activeTier.tierName}</span>
+            <span className="font-mono text-[14px] px-2.5 py-1 rounded bg-violet-500/10 text-violet-700 dark:text-violet-300 border border-violet-500/20">{activeTier.tierName}</span>
           </div>
           <div className="space-y-3 font-mono text-[14px] my-3">
-            <div className="p-3.5 rounded-xl bg-black/5 dark:bg-black/20 border border-[var(--pres-border)] space-y-1">
-              <span className="text-[12px] text-slate-500 dark:text-slate-400 block uppercase">Unit Metric Standard</span>
+            <div className="p-3.5 rounded-xl bg-slate-100/80 dark:bg-slate-800/40 border border-[var(--pres-border)] space-y-1">
+              <span className="text-[14px] text-slate-500 dark:text-slate-400 block uppercase">Unit Metric Standard</span>
               <div className="font-bold text-[16px] text-slate-900 dark:text-slate-100">{activeTier.unitMetricName}</div>
-              <div className="text-[12px] text-slate-500">Sub-millisecond telemetry counting with verifiable cryptographic receipt.</div>
+              <div className="text-[14px] text-slate-500 dark:text-slate-400">Sub-millisecond telemetry counting with verifiable cryptographic receipt.</div>
             </div>
-            <div className="p-3.5 rounded-xl bg-black/5 dark:bg-black/20 border border-[var(--pres-border)] space-y-1">
-              <span className="text-[12px] text-slate-500 dark:text-slate-400 block uppercase">Minimum Monthly Commitment</span>
+            <div className="p-3.5 rounded-xl bg-slate-100/80 dark:bg-slate-800/40 border border-[var(--pres-border)] space-y-1">
+              <span className="text-[14px] text-slate-500 dark:text-slate-400 block uppercase">Minimum Monthly Commitment</span>
               <div className="font-bold text-[16px] text-slate-900 dark:text-slate-100">{activeTier.minimumCommitment.toLocaleString()} Units</div>
-              <div className="text-[12px] text-emerald-600 dark:text-emerald-400 font-bold">Unused units rollover with zero forfeiture penalty.</div>
+              <div className="text-[14px] text-emerald-600 dark:text-emerald-400 font-bold">Unused units rollover with zero forfeiture penalty.</div>
             </div>
           </div>
-          <div className="p-3 rounded-xl bg-violet-500/10 border border-violet-500/20 font-mono text-[13px] text-violet-700 dark:text-violet-300 flex items-center gap-2">
+          <div className="p-3 rounded-xl bg-violet-500/10 border border-violet-500/20 font-mono text-[14px] text-violet-700 dark:text-violet-300 flex items-center gap-2">
             <Sparkles size={16} /> {activeTier.isRecommended ? '★ Recommended Tier for Enterprise Production Workloads' : 'Volume-Weighted Linear Amortization Active'}
           </div>
         </div>
@@ -98,21 +98,21 @@ export const ModularConsumptionPricingCalculatorSlide: React.FC<{
         <div className="plane-2-elevated p-6 rounded-2xl border-2 border-[var(--pres-accent)] bg-[var(--pres-bg-card)] shadow-2xl flex flex-col justify-between scale-[1.01]">
           <div className="flex items-center justify-between pb-3 border-b border-[var(--pres-border)]">
             <span className="font-mono text-[14px] font-bold text-[var(--pres-accent)] flex items-center gap-2"><DollarSign size={16} />LIVE SIMULATOR</span>
-            <span className="font-mono text-[12px] px-2.5 py-1 rounded bg-[var(--pres-accent)]/15 text-[var(--pres-accent)] border border-[var(--pres-accent)]/30 font-bold">Step {currentStep + 1} of 4</span>
+            <span className="font-mono text-[14px] px-2.5 py-1 rounded bg-[var(--pres-accent)]/15 text-[var(--pres-accent)] border border-[var(--pres-accent)]/30 font-bold">Step {currentStep + 1} of 4</span>
           </div>
           <div className="space-y-4 font-mono text-[14px] my-3">
-            <div className="p-4 rounded-xl bg-black/5 dark:bg-black/20 border border-[var(--pres-border)] space-y-2">
-              <span className="text-[12px] text-slate-500 dark:text-slate-400 block uppercase">Estimated Monthly Consumption</span>
+            <div className="p-4 rounded-xl bg-slate-100/80 dark:bg-slate-800/40 border border-[var(--pres-border)] space-y-2">
+              <span className="text-[14px] text-slate-500 dark:text-slate-400 block uppercase">Estimated Monthly Consumption</span>
               <div className="text-[32px] font-bold text-slate-900 dark:text-white font-ubuntu">{calculatedMonthlyUnits.toLocaleString()}</div>
-              <div className="text-[13px] text-slate-500 dark:text-slate-400">Rate: ${activeTier.costPerUnitUsd.toFixed(4)} per {activeTier.unitMetricName.toLowerCase()}</div>
+              <div className="text-[14px] text-slate-500 dark:text-slate-400">Rate: ${activeTier.costPerUnitUsd.toFixed(4)} per {activeTier.unitMetricName.toLowerCase()}</div>
             </div>
             <div className="p-4 rounded-xl bg-[var(--pres-accent)]/10 border border-[var(--pres-accent)]/30 space-y-1">
-              <span className="text-[12px] text-[var(--pres-accent)] block uppercase font-bold">Estimated Monthly Invoiced Spend</span>
+              <span className="text-[14px] text-[var(--pres-accent)] block uppercase font-bold">Estimated Monthly Invoiced Spend</span>
               <div className="text-[36px] font-bold text-[var(--pres-accent)] font-ubuntu">${calculatedSpend.toLocaleString()}</div>
-              <div className="text-[12px] text-slate-600 dark:text-slate-300">Predictable linear scaling with zero surge multiplier.</div>
+              <div className="text-[14px] text-slate-600 dark:text-slate-300">Predictable linear scaling with zero surge multiplier.</div>
             </div>
           </div>
-          <div className="p-3 rounded-xl bg-black/5 dark:bg-black/20 border border-[var(--pres-border)] font-mono text-[13px] text-emerald-600 dark:text-emerald-400 flex items-center gap-2">
+          <div className="p-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/40 border border-[var(--pres-border)] font-mono text-[14px] text-emerald-600 dark:text-emerald-400 flex items-center gap-2">
             <CheckCircle2 size={16} /> Volume discount applied: {(0.0050 - activeTier.costPerUnitUsd > 0 ? ((0.0050 - activeTier.costPerUnitUsd) / 0.0050 * 100).toFixed(0) : '0')}% savings vs on-demand
           </div>
         </div>
@@ -120,23 +120,23 @@ export const ModularConsumptionPricingCalculatorSlide: React.FC<{
         <div className="plane-1-raised p-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] flex flex-col justify-between">
           <div className="flex items-center justify-between pb-3 border-b border-[var(--pres-border)]">
             <span className="font-mono text-[14px] font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-2"><TrendingUp size={16} />ENTERPRISE GUARANTEES</span>
-            <span className="font-mono text-[12px] px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20">Active Policy</span>
+            <span className="font-mono text-[14px] px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20">Active Policy</span>
           </div>
           <div className="space-y-3 font-mono text-[14px] my-3">
-            <div className="p-3.5 rounded-xl bg-black/5 dark:bg-black/20 border border-[var(--pres-border)] space-y-1">
-              <span className="font-bold text-slate-900 dark:text-slate-200">100% Granular Audit Trails</span>
-              <div className="text-[13px] text-slate-500 dark:text-slate-400">Cryptographically verifiable CSV/JSON export delivered to designated S3 bucket every hour.</div>
+            <div className="p-3.5 rounded-xl bg-slate-100/80 dark:bg-slate-800/40 border border-[var(--pres-border)] space-y-1">
+              <span className="font-bold text-slate-900 dark:text-slate-100">100% Granular Audit Trails</span>
+              <div className="text-[14px] text-slate-500 dark:text-slate-400">Cryptographically verifiable CSV/JSON export delivered to designated S3 bucket every hour.</div>
             </div>
-            <div className="p-3.5 rounded-xl bg-black/5 dark:bg-black/20 border border-[var(--pres-border)] space-y-1">
-              <span className="font-bold text-slate-900 dark:text-slate-200">Zero Overage Cliff-Edge Penalty</span>
-              <div className="text-[13px] text-slate-500 dark:text-slate-400">Overage capacity continues at the negotiated rate without throttled throughput or penalty rates.</div>
+            <div className="p-3.5 rounded-xl bg-slate-100/80 dark:bg-slate-800/40 border border-[var(--pres-border)] space-y-1">
+              <span className="font-bold text-slate-900 dark:text-slate-100">Zero Overage Cliff-Edge Penalty</span>
+              <div className="text-[14px] text-slate-500 dark:text-slate-400">Overage capacity continues at the negotiated rate without throttled throughput or penalty rates.</div>
             </div>
-            <div className="p-3.5 rounded-xl bg-black/5 dark:bg-black/20 border border-[var(--pres-border)] space-y-1">
-              <span className="font-bold text-slate-900 dark:text-slate-200">Multi-Entity Sub-Account Billing</span>
-              <div className="text-[13px] text-slate-500 dark:text-slate-400">Hierarchical cost-center tagging across global subsidiary accounts and isolated departments.</div>
+            <div className="p-3.5 rounded-xl bg-slate-100/80 dark:bg-slate-800/40 border border-[var(--pres-border)] space-y-1">
+              <span className="font-bold text-slate-900 dark:text-slate-100">Multi-Entity Sub-Account Billing</span>
+              <div className="text-[14px] text-slate-500 dark:text-slate-400">Hierarchical cost-center tagging across global subsidiary accounts and isolated departments.</div>
             </div>
           </div>
-          <div className="p-3 rounded-xl bg-black/5 dark:bg-black/20 border border-[var(--pres-border)] font-mono text-[13px] text-slate-700 dark:text-slate-300">
+          <div className="p-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/40 border border-[var(--pres-border)] font-mono text-[14px] text-slate-700 dark:text-slate-300">
             Enterprise Master Services Agreement (MSA) with 45-day invoice terms available upon request.
           </div>
         </div>

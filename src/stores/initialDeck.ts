@@ -185,6 +185,24 @@ import {
   createEdgeFleetDensitySlide,
   createBoardFiduciaryEsgHorizonSlide,
 } from '../utils/globalPptEvolutionFactories';
+import {
+  createExecutivePnlWaterfallTableSlide,
+  createCompetitiveFeatureHeatmapSlide,
+  createCustomerPersonaArchetypeSplitSlide,
+  createGlobalDataJurisdictionBoundarySlide,
+  createHardwareInterfaceBlueprintSlide,
+  createMultiHorizonValueRealizationBridgeSlide,
+  createTwoSidedEcosystemFlywheelSlide,
+  createIshikawaRootCauseFishboneSlide,
+  createModularConsumptionPricingCalculatorSlide,
+  createLiveProductViewportWalkthroughSlide,
+  createEnterpriseRiskTaxonomyHeatmapSlide,
+  createGlobalPartnerTieringLadderSlide,
+  createTalentCompetencyGapHeatmapSlide,
+  createSloErrorBudgetBurnWaterfallSlide,
+  createWeightedDecisionTradeoffMatrixSlide,
+  createCustomerChurnInterventionLadderSlide,
+} from '../utils/suite2026SlideFactories';
 
 
 export const INITIAL_DECK: PresentationDeck = {
@@ -509,6 +527,22 @@ export const INITIAL_DECK: PresentationDeck = {
     createAutonomousSiemTriageSlide('slide-226'),
     createEdgeFleetDensitySlide('slide-227'),
     createBoardFiduciaryEsgHorizonSlide('slide-228'),
+    createExecutivePnlWaterfallTableSlide('slide-229'),
+    createCompetitiveFeatureHeatmapSlide('slide-230'),
+    createCustomerPersonaArchetypeSplitSlide('slide-231'),
+    createGlobalDataJurisdictionBoundarySlide('slide-232'),
+    createHardwareInterfaceBlueprintSlide('slide-233'),
+    createMultiHorizonValueRealizationBridgeSlide('slide-234'),
+    createTwoSidedEcosystemFlywheelSlide('slide-235'),
+    createIshikawaRootCauseFishboneSlide('slide-236'),
+    createModularConsumptionPricingCalculatorSlide('slide-237'),
+    createLiveProductViewportWalkthroughSlide('slide-238'),
+    createEnterpriseRiskTaxonomyHeatmapSlide('slide-239'),
+    createGlobalPartnerTieringLadderSlide('slide-240'),
+    createTalentCompetencyGapHeatmapSlide('slide-241'),
+    createSloErrorBudgetBurnWaterfallSlide('slide-242'),
+    createWeightedDecisionTradeoffMatrixSlide('slide-243'),
+    createCustomerChurnInterventionLadderSlide('slide-244'),
   ],
 };
 

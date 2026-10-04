@@ -47,11 +47,11 @@ export const CustomerChurnInterventionLadderSlide: React.FC<{
           </p>
         </div>
         <div className="plane-1-raised p-4 px-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] flex items-center gap-6 font-mono text-[14px]">
-          <div><span style={{ color: 'var(--pres-text-muted)' }} className="text-[12px] block uppercase">Customer Segment</span><span className="font-bold text-slate-900 dark:text-slate-100">{data?.customerSegmentName || 'Strategic Enterprise Tier'}</span></div>
-          <div className="w-[1px] h-8 bg-slate-700/40" />
-          <div><span style={{ color: 'var(--pres-text-muted)' }} className="text-[12px] block uppercase">ARR Protected</span><span className="font-bold text-emerald-500">${(totalArrPreserved / 1000000).toFixed(1)}M Total</span></div>
-          <div className="w-[1px] h-8 bg-slate-700/40" />
-          <div><span style={{ color: 'var(--pres-text-muted)' }} className="text-[12px] block uppercase">Predictive Engine</span><span className="font-bold text-violet-500">AI ML ACTIVE</span></div>
+          <div><span style={{ color: 'var(--pres-text-muted)' }} className="text-[14px] block uppercase">Customer Segment</span><span className="font-bold text-slate-900 dark:text-slate-100">{data?.customerSegmentName || 'Strategic Enterprise Tier'}</span></div>
+          <div className="w-[1px] h-8 bg-slate-300 dark:bg-slate-700/60" />
+          <div><span style={{ color: 'var(--pres-text-muted)' }} className="text-[14px] block uppercase">ARR Protected</span><span className="font-bold text-emerald-500">${(totalArrPreserved / 1000000).toFixed(1)}M Total</span></div>
+          <div className="w-[1px] h-8 bg-slate-300 dark:bg-slate-700/60" />
+          <div><span style={{ color: 'var(--pres-text-muted)' }} className="text-[14px] block uppercase">Predictive Engine</span><span className="font-bold text-violet-500">AI ML ACTIVE</span></div>
         </div>
       </div>
 
@@ -64,31 +64,31 @@ export const CustomerChurnInterventionLadderSlide: React.FC<{
               <div>
                 <div className="flex items-center justify-between pb-3 border-b border-[var(--pres-border)]">
                   <div className="flex items-center gap-2">
-                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center font-mono font-bold text-[13px] ${isActive ? 'bg-[var(--pres-accent)] text-white' : 'bg-black/20 text-slate-400'}`}>
+                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center font-mono font-bold text-[14px] ${isActive ? 'bg-[var(--pres-accent)] text-white' : 'bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300'}`}>
                       {idx + 1}
                     </div>
                     <span className="font-ubuntu font-bold text-[17px] text-slate-900 dark:text-white truncate">Step {st.stageIndex}</span>
                   </div>
-                  <span className={`font-mono text-[12px] px-2 py-0.5 rounded font-bold ${st.healthScoreThreshold <= 40 ? 'bg-rose-500/20 text-rose-700 dark:text-rose-400 border border-rose-500/30' : 'bg-amber-500/20 text-amber-800 dark:text-amber-300 border border-amber-500/30'}`}>&lt; {st.healthScoreThreshold} Health</span>
+                  <span className={`font-mono text-[14px] px-2 py-0.5 rounded font-bold ${st.healthScoreThreshold <= 40 ? 'bg-rose-500/20 text-rose-700 dark:text-rose-400 border border-rose-500/30' : 'bg-amber-500/20 text-amber-800 dark:text-amber-300 border border-amber-500/30'}`}>&lt; {st.healthScoreThreshold} Health</span>
                 </div>
-                <div className="my-4 space-y-3 font-mono text-[13px]">
+                <div className="my-4 space-y-3 font-mono text-[14px]">
                   <div>
-                    <span className="text-[12px] text-slate-500 dark:text-slate-400 uppercase block">Stage Strategy</span>
+                    <span className="text-[14px] text-slate-500 dark:text-slate-400 uppercase block">Stage Strategy</span>
                     <div className="font-bold text-[15px] text-slate-900 dark:text-white mt-0.5">{st.stageName}</div>
                   </div>
-                  <div className="p-3 rounded-xl bg-black/5 dark:bg-black/20 border border-[var(--pres-border)] space-y-1">
-                    <span className="text-[11px] text-slate-500 dark:text-slate-400 uppercase block">Telemetry Trigger</span>
-                    <div className="font-poppins text-[13px] text-slate-700 dark:text-slate-300 leading-snug">{st.interventionTrigger}</div>
+                  <div className="p-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/40 border border-[var(--pres-border)] space-y-1">
+                    <span className="text-[14px] text-slate-500 dark:text-slate-400 uppercase block">Telemetry Trigger</span>
+                    <div className="font-poppins text-[14px] text-slate-700 dark:text-slate-200 leading-snug">{st.interventionTrigger}</div>
                   </div>
                   <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex justify-between items-center">
-                    <span className="text-[12px] text-emerald-700 dark:text-emerald-400 font-bold flex items-center gap-1"><DollarSign size={14} />ARR Saved</span>
+                    <span className="text-[14px] text-emerald-700 dark:text-emerald-400 font-bold flex items-center gap-1"><DollarSign size={14} />ARR Saved</span>
                     <span className="font-bold text-[15px] text-emerald-700 dark:text-emerald-300">${(st.annualRecurringRevenuePreserved / 1000000).toFixed(1)}M</span>
                   </div>
                 </div>
               </div>
-              <div className="pt-3 border-t border-[var(--pres-border)] font-mono text-[12px] flex items-center justify-between">
-                <span className="text-slate-500">Escalation SLA:</span>
-                <span className={`font-bold ${st.hasCustomerSuccessEscalation ? 'text-violet-600 dark:text-violet-400' : 'text-slate-400'}`}>{st.hasCustomerSuccessEscalation ? 'VP Escalation' : 'Automated Playbook'}</span>
+              <div className="pt-3 border-t border-[var(--pres-border)] font-mono text-[14px] flex items-center justify-between">
+                <span className="text-slate-500 dark:text-slate-400">Escalation SLA:</span>
+                <span className={`font-bold ${st.hasCustomerSuccessEscalation ? 'text-violet-600 dark:text-violet-400' : 'text-slate-500 dark:text-slate-400'}`}>{st.hasCustomerSuccessEscalation ? 'VP Escalation' : 'Automated Playbook'}</span>
               </div>
             </div>
           );

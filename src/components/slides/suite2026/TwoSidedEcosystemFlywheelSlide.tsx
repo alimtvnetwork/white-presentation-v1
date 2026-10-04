@@ -54,40 +54,40 @@ export const TwoSidedEcosystemFlywheelSlide: React.FC<{ slide?: TwoSidedEcosyste
             {data?.subtitle || 'Dual-sided platform mechanics where developer module density accelerates enterprise transaction liquidity.'}
           </p>
         </div>
-        <div className="p-4 px-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] backdrop-blur-md flex items-center gap-6 font-mono text-[14px]">
-          <div><span className="text-slate-400 block uppercase">Network Moat</span><span className="text-emerald-400 font-bold">SELF-COMPOUNDING</span></div>
-          <div className="w-[1px] h-8 bg-slate-700/40" />
-          <div><span className="text-slate-400 block uppercase">Chief Software Engineer</span><span className="text-slate-800 dark:text-slate-200 font-bold">Alim Ul Karim</span></div>
+        <div className="plane-1-raised p-4 px-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] backdrop-blur-md flex items-center gap-6 font-mono text-[14px]">
+          <div><span className="text-slate-500 dark:text-slate-400 block uppercase">Network Moat</span><span className="text-emerald-600 dark:text-emerald-400 font-bold">SELF-COMPOUNDING</span></div>
+          <div className="w-[1px] h-8 bg-slate-300 dark:bg-slate-700/60" />
+          <div><span className="text-slate-500 dark:text-slate-400 block uppercase">Chief Software Engineer</span><span className="text-slate-800 dark:text-slate-200 font-bold">Alim Ul Karim</span></div>
         </div>
       </div>
 
       <div className="grid grid-cols-4 gap-4 z-10 my-2">
         {STAGES.map((st, idx) => (
-          <button key={st.step} onClick={() => jumpToStep(idx)} className={`text-left p-3.5 rounded-xl border transition-all cursor-pointer font-mono text-[14px] flex items-center justify-between ${idx === currentStep ? 'border-[var(--pres-accent)] bg-[var(--pres-accent)]/15 shadow-xl scale-[1.02] text-white ring-2 ring-[var(--pres-accent)]' : idx < currentStep ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-300 opacity-75' : 'border-[var(--pres-border)] bg-[var(--pres-bg-card)] opacity-40 text-slate-400'}`}>
+          <button key={st.step} onClick={() => jumpToStep(idx)} className={`text-left p-3.5 rounded-xl border transition-all cursor-pointer font-mono text-[14px] flex items-center justify-between ${idx === currentStep ? 'border-[var(--pres-accent)] bg-[var(--pres-accent)]/15 shadow-xl scale-[1.02] text-[var(--pres-text)] ring-2 ring-[var(--pres-accent)] font-bold' : idx < currentStep ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 opacity-90' : 'border-[var(--pres-border)] bg-[var(--pres-bg-card)] opacity-60 text-slate-500 dark:text-slate-400'}`}>
             <div className="flex items-center gap-3">
-              <span className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs ${idx === currentStep ? 'bg-[var(--pres-accent)] text-white' : idx < currentStep ? 'bg-emerald-500 text-slate-900' : 'bg-slate-800 text-slate-300'}`}>{idx < currentStep ? '✓' : idx + 1}</span>
+              <span className={`w-7 h-7 rounded-full flex items-center justify-center font-bold text-[14px] ${idx === currentStep ? 'bg-[var(--pres-accent)] text-white' : idx < currentStep ? 'bg-emerald-500 text-white dark:text-slate-900' : 'bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300'}`}>{idx < currentStep ? '✓' : idx + 1}</span>
               <span className="font-bold">{st.name}</span>
             </div>
-            <span className="text-[12px] opacity-75">Loop {st.step}</span>
+            <span className="text-[14px] opacity-75">Loop {st.step}</span>
           </button>
         ))}
       </div>
 
       <div className="grid grid-cols-12 gap-8 z-10 my-auto h-[480px] items-center">
         {/* Left: Supply-Side Platform Pillars */}
-        <div className="col-span-5 space-y-3">
-          <div className="text-xs font-mono font-bold uppercase text-violet-400 tracking-wider mb-2">SUPPLY SIDE: DEVELOPERS & BUILDERS</div>
+        <div className="col-span-5 space-y-3 plane-1-raised p-4 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] backdrop-blur-md">
+          <div className="text-[14px] font-mono font-bold uppercase text-violet-700 dark:text-violet-400 tracking-wider mb-2">SUPPLY SIDE: DEVELOPERS & BUILDERS</div>
           {supply.map((item, idx) => {
             const isSelected = idx === currentStep;
             return (
-              <div key={item.id} className={`p-4 rounded-xl border transition-all font-mono text-[14px] flex items-center justify-between ${isSelected ? 'bg-violet-500/20 border-violet-400 ring-2 ring-violet-400 shadow-xl scale-[1.02]' : 'bg-black/20 border-slate-800/60 opacity-60'}`}>
+              <div key={item.id} className={`p-4 rounded-xl border transition-all font-mono text-[14px] flex items-center justify-between ${isSelected ? 'bg-violet-500/20 border-violet-400 ring-2 ring-violet-400 shadow-xl scale-[1.02]' : 'bg-slate-100/60 dark:bg-black/20 border-slate-200 dark:border-slate-800/60 opacity-80'}`}>
                 <div>
-                  <div className="text-xs text-slate-400">Step 0{item.stageIndex}</div>
-                  <div className="font-bold text-slate-100">{item.stageTitle}</div>
+                  <div className="text-[14px] text-slate-500 dark:text-slate-400">Step 0{item.stageIndex}</div>
+                  <div className="font-bold text-slate-900 dark:text-slate-100">{item.stageTitle}</div>
                 </div>
                 <div className="text-right">
-                  <div className="text-violet-300 font-bold">{item.metricLabel}</div>
-                  <div className="text-xs text-slate-400">{item.velocityMultiplier}x Velocity</div>
+                  <div className="text-violet-800 dark:text-violet-300 font-bold">{item.metricLabel}</div>
+                  <div className="text-[14px] text-slate-500 dark:text-slate-400">{item.velocityMultiplier}x Velocity</div>
                 </div>
               </div>
             );
@@ -95,29 +95,29 @@ export const TwoSidedEcosystemFlywheelSlide: React.FC<{ slide?: TwoSidedEcosyste
         </div>
 
         {/* Center: Flywheel Compounding Core */}
-        <div className="col-span-2 flex flex-col items-center justify-center text-center p-4 rounded-2xl bg-[var(--pres-bg-card)] border border-[var(--pres-border)] backdrop-blur-md shadow-2xl">
+        <div className="col-span-2 plane-1-raised flex flex-col items-center justify-center text-center p-4 rounded-2xl bg-[var(--pres-bg-card)] border border-[var(--pres-border)] backdrop-blur-md shadow-2xl">
           <div className="w-20 h-20 rounded-full bg-[var(--pres-accent)]/20 border-2 border-[var(--pres-accent)] flex items-center justify-center text-[var(--pres-accent)] mb-3 animate-spin-slow">
             <RefreshCw size={36} />
           </div>
-          <span className="font-ubuntu text-base font-bold text-slate-100">Flywheel Core</span>
-          <span className="font-mono text-xs text-emerald-400 mt-1">{activeStage.name}</span>
-          <span className="font-mono text-[10px] text-slate-400 mt-2 px-2 py-1 rounded bg-black/40 border border-slate-800">Compounding 5.2x</span>
+          <span className="font-ubuntu text-base font-bold text-slate-900 dark:text-slate-100">Flywheel Core</span>
+          <span className="font-mono text-[14px] text-emerald-700 dark:text-emerald-400 mt-1">{activeStage.name}</span>
+          <span className="font-mono text-[14px] text-slate-700 dark:text-slate-400 mt-2 px-2 py-1 rounded bg-slate-100 dark:bg-black/40 border border-slate-200 dark:border-slate-800">Compounding 5.2x</span>
         </div>
 
         {/* Right: Demand-Side Enterprise Growth */}
-        <div className="col-span-5 space-y-3">
-          <div className="text-xs font-mono font-bold uppercase text-emerald-400 tracking-wider mb-2">DEMAND SIDE: ENTERPRISE & BUYERS</div>
+        <div className="col-span-5 space-y-3 plane-1-raised p-4 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] backdrop-blur-md">
+          <div className="text-[14px] font-mono font-bold uppercase text-emerald-700 dark:text-emerald-400 tracking-wider mb-2">DEMAND SIDE: ENTERPRISE & BUYERS</div>
           {demand.map((item, idx) => {
             const isSelected = idx === currentStep;
             return (
-              <div key={item.id} className={`p-4 rounded-xl border transition-all font-mono text-[14px] flex items-center justify-between ${isSelected ? 'bg-emerald-500/20 border-emerald-400 ring-2 ring-emerald-400 shadow-xl scale-[1.02]' : 'bg-black/20 border-slate-800/60 opacity-60'}`}>
+              <div key={item.id} className={`p-4 rounded-xl border transition-all font-mono text-[14px] flex items-center justify-between ${isSelected ? 'bg-emerald-500/20 border-emerald-400 ring-2 ring-emerald-400 shadow-xl scale-[1.02]' : 'bg-slate-100/60 dark:bg-black/20 border-slate-200 dark:border-slate-800/60 opacity-80'}`}>
                 <div>
-                  <div className="text-xs text-slate-400">Step 0{item.stageIndex}</div>
-                  <div className="font-bold text-slate-100">{item.stageTitle}</div>
+                  <div className="text-[14px] text-slate-500 dark:text-slate-400">Step 0{item.stageIndex}</div>
+                  <div className="font-bold text-slate-900 dark:text-slate-100">{item.stageTitle}</div>
                 </div>
                 <div className="text-right">
-                  <div className="text-emerald-300 font-bold">{item.metricLabel}</div>
-                  <div className="text-xs text-slate-400">{item.velocityMultiplier}x Multiplier</div>
+                  <div className="text-emerald-800 dark:text-emerald-300 font-bold">{item.metricLabel}</div>
+                  <div className="text-[14px] text-slate-500 dark:text-slate-400">{item.velocityMultiplier}x Multiplier</div>
                 </div>
               </div>
             );
@@ -127,12 +127,12 @@ export const TwoSidedEcosystemFlywheelSlide: React.FC<{ slide?: TwoSidedEcosyste
 
       <div className="plane-1-raised p-3.5 px-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] backdrop-blur-md flex items-center justify-between font-mono text-[14px] z-10">
         <div className="flex items-center gap-3">
-          <span className="text-slate-400 uppercase">Loop Insight:</span>
+          <span className="text-slate-500 dark:text-slate-400 uppercase">Loop Insight:</span>
           <span className="text-[var(--pres-accent)] font-bold">{activeStage.name}: {activeStage.desc}</span>
         </div>
         <div className="flex items-center gap-4">
-          <span className="text-slate-400">Step {currentStep + 1} of 4</span>
-          <span className="text-emerald-400 font-bold flex items-center gap-1"><CheckCircle2 size={16} /> Self-Reinforcing Moat</span>
+          <span className="text-slate-500 dark:text-slate-400">Step {currentStep + 1} of 4</span>
+          <span className="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1"><CheckCircle2 size={16} /> Self-Reinforcing Moat</span>
         </div>
       </div>
     </div>

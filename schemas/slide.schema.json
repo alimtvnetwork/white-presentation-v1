@@ -70,7 +70,23 @@
         "data-lakehouse-governance",
         "kubernetes-fleet-orchestrator",
         "api-monetization-billing",
-        "ai-inference-cluster-telemetry"
+        "ai-inference-cluster-telemetry",
+        "executive-pnl-waterfall-table",
+        "competitive-feature-heatmap",
+        "customer-persona-archetype-split",
+        "global-data-jurisdiction-boundary",
+        "hardware-interface-blueprint",
+        "multi-horizon-value-realization-bridge",
+        "two-sided-ecosystem-flywheel",
+        "ishikawa-root-cause-fishbone",
+        "modular-consumption-pricing-calculator",
+        "live-product-viewport-walkthrough",
+        "enterprise-risk-taxonomy-heatmap",
+        "global-partner-tiering-ladder",
+        "talent-competency-gap-heatmap",
+        "slo-error-budget-burn-waterfall",
+        "weighted-decision-tradeoff-matrix",
+        "customer-churn-intervention-ladder"
       ]
     },
     "title": {

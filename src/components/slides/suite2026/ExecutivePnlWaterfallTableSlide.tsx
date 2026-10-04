@@ -49,27 +49,27 @@ export const ExecutivePnlWaterfallTableSlide: React.FC<{ slide?: ExecutivePnlWat
             {data?.subtitle || 'Sequential financial realization table with audited line-item variance and operating cash margin expansion.'}
           </p>
         </div>
-        <div className="p-4 px-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] backdrop-blur-md flex items-center gap-6 font-mono text-[14px]">
-          <div><span className="text-slate-400 block uppercase">Net EBITDA</span><span className="text-emerald-500 font-bold">${data?.netEbitdaMillions || 33.5}M (+28.6%)</span></div>
-          <div className="w-[1px] h-8 bg-slate-700/40" />
-          <div><span className="text-slate-400 block uppercase">Chief Software Engineer</span><span className="text-slate-800 dark:text-slate-200 font-bold">Alim Ul Karim</span></div>
+        <div className="plane-1-raised p-4 px-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] backdrop-blur-md flex items-center gap-6 font-mono text-[14px]">
+          <div><span className="text-slate-500 dark:text-slate-400 block uppercase">Net EBITDA</span><span className="text-emerald-600 dark:text-emerald-400 font-bold">${data?.netEbitdaMillions || 33.5}M (+28.6%)</span></div>
+          <div className="w-[1px] h-8 bg-slate-300 dark:bg-slate-700/60" />
+          <div><span className="text-slate-500 dark:text-slate-400 block uppercase">Chief Software Engineer</span><span className="text-slate-800 dark:text-slate-200 font-bold">Alim Ul Karim</span></div>
         </div>
       </div>
 
       <div className="grid grid-cols-4 gap-4 z-10 my-3">
         {STAGES.map((st, idx) => (
-          <button key={st.step} onClick={() => jumpToStep(idx)} className={`text-left p-3.5 rounded-xl border transition-all cursor-pointer font-mono text-[14px] flex items-center justify-between ${idx === currentStep ? 'border-[var(--pres-accent)] bg-[var(--pres-accent)]/15 shadow-2xl scale-[1.02] text-white ring-2 ring-[var(--pres-accent)]' : idx < currentStep ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-300 opacity-75' : 'border-[var(--pres-border)] bg-[var(--pres-bg-card)] opacity-40 text-slate-400'}`}>
+          <button key={st.step} onClick={() => jumpToStep(idx)} className={`text-left p-3.5 rounded-xl border transition-all cursor-pointer font-mono text-[14px] flex items-center justify-between ${idx === currentStep ? 'border-[var(--pres-accent)] bg-[var(--pres-accent)]/15 shadow-2xl scale-[1.02] text-[var(--pres-text)] ring-2 ring-[var(--pres-accent)] font-bold' : idx < currentStep ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 opacity-90' : 'border-[var(--pres-border)] bg-[var(--pres-bg-card)] opacity-60 text-slate-500 dark:text-slate-400'}`}>
             <div className="flex items-center gap-3">
-              <span className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs ${idx === currentStep ? 'bg-[var(--pres-accent)] text-white' : idx < currentStep ? 'bg-emerald-500 text-slate-900' : 'bg-slate-800 text-slate-300'}`}>{idx < currentStep ? '✓' : idx + 1}</span>
+              <span className={`w-7 h-7 rounded-full flex items-center justify-center font-bold text-[14px] ${idx === currentStep ? 'bg-[var(--pres-accent)] text-white' : idx < currentStep ? 'bg-emerald-500 text-white dark:text-slate-900' : 'bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300'}`}>{idx < currentStep ? '✓' : idx + 1}</span>
               <span className="font-bold">{st.name}</span>
             </div>
-            <span className="text-[12px] opacity-75">Stage {st.step}</span>
+            <span className="text-[14px] opacity-75">Stage {st.step}</span>
           </button>
         ))}
       </div>
 
       <div className="plane-1-raised rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] backdrop-blur-md p-6 z-10 my-auto shadow-xl">
-        <div className="grid grid-cols-12 gap-4 pb-3 border-b border-[var(--pres-border)] font-mono text-[14px] font-bold text-slate-400 uppercase">
+        <div className="grid grid-cols-12 gap-4 pb-3 border-b border-[var(--pres-border)] font-mono text-[14px] font-bold text-slate-500 dark:text-slate-400 uppercase">
           <div className="col-span-4">Line Item Category</div>
           <div className="col-span-2 text-right">Amount (USD)</div>
           <div className="col-span-2 text-right">YoY Variance</div>
@@ -81,28 +81,28 @@ export const ExecutivePnlWaterfallTableSlide: React.FC<{ slide?: ExecutivePnlWat
             const isHighlighted = activeStage.range.includes(row.id);
             const barWidthPercent = Math.min(100, Math.round((Math.abs(row.amountMillions) / 150) * 100));
             return (
-              <div key={row.id} className={`grid grid-cols-12 gap-4 items-center p-3 rounded-xl border transition-all ${isHighlighted ? 'bg-[var(--pres-accent)]/15 border-[var(--pres-accent)] ring-1 ring-[var(--pres-accent)] scale-[1.01] shadow-lg' : row.isSubtotal ? 'bg-slate-800/40 border-slate-700/60 font-bold' : 'border-transparent hover:bg-slate-800/20'}`}>
+              <div key={row.id} className={`grid grid-cols-12 gap-4 items-center p-3 rounded-xl border transition-all ${isHighlighted ? 'bg-[var(--pres-accent)]/15 border-[var(--pres-accent)] ring-1 ring-[var(--pres-accent)] scale-[1.01] shadow-lg' : row.isSubtotal ? 'bg-slate-100 dark:bg-slate-800/40 border-slate-300 dark:border-slate-700/60 font-bold' : 'border-transparent hover:bg-slate-100/60 dark:hover:bg-slate-800/20'}`}>
                 <div className="col-span-4 flex items-center gap-2">
-                  <span className="text-slate-400 text-xs">[{row.category}]</span>
-                  <span className={`font-semibold ${row.isSubtotal ? 'text-emerald-400 font-bold' : 'text-slate-200'}`}>{row.label}</span>
+                  <span className="text-slate-500 dark:text-slate-400 text-[14px]">[{row.category}]</span>
+                  <span className={`font-semibold ${row.isSubtotal ? 'text-emerald-700 dark:text-emerald-400 font-bold' : 'text-slate-800 dark:text-slate-200'}`}>{row.label}</span>
                 </div>
-                <div className={`col-span-2 text-right font-bold ${row.isPositive ? 'text-emerald-400' : 'text-rose-400'}`}>
+                <div className={`col-span-2 text-right font-bold ${row.isPositive ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'}`}>
                   {row.amountMillions > 0 ? `$${row.amountMillions.toFixed(1)}M` : `($${Math.abs(row.amountMillions).toFixed(1)}M)`}
                 </div>
                 <div className="col-span-2 text-right flex items-center justify-end gap-1 font-semibold">
                   {row.variancePercent && row.variancePercent > 0 ? (
-                    <span className="text-emerald-400 flex items-center"><ArrowUpRight size={14} /> +{row.variancePercent}%</span>
+                    <span className="text-emerald-600 dark:text-emerald-400 flex items-center"><ArrowUpRight size={14} /> +{row.variancePercent}%</span>
                   ) : (
-                    <span className="text-rose-400 flex items-center"><ArrowDownRight size={14} /> {row.variancePercent}%</span>
+                    <span className="text-rose-600 dark:text-rose-400 flex items-center"><ArrowDownRight size={14} /> {row.variancePercent}%</span>
                   )}
                 </div>
                 <div className="col-span-3 px-3">
-                  <div className="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                  <div className="w-full bg-slate-200 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden">
                     <div className={`h-full rounded-full transition-all duration-500 ${row.isPositive ? 'bg-emerald-500' : 'bg-rose-500'}`} style={{ width: `${barWidthPercent}%` }} />
                   </div>
                 </div>
                 <div className="col-span-1 flex justify-center">
-                  <span className="text-emerald-400" title="Audited Financials"><ShieldCheck size={16} /></span>
+                  <span className="text-emerald-600 dark:text-emerald-400" title="Audited Financials"><ShieldCheck size={16} /></span>
                 </div>
               </div>
             );
@@ -111,8 +111,8 @@ export const ExecutivePnlWaterfallTableSlide: React.FC<{ slide?: ExecutivePnlWat
       </div>
 
       <div className="plane-1-raised p-3.5 px-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] backdrop-blur-md flex items-center justify-between font-mono text-[14px] z-10">
-        <div className="flex items-center gap-3"><span className="text-slate-400 uppercase">Focus Stage:</span><span className="text-[var(--pres-accent)] font-bold">{activeStage.name} — {activeStage.desc}</span></div>
-        <div className="flex items-center gap-4"><span className="text-slate-400">Step {currentStep + 1} of 4</span><span className="text-emerald-400 font-bold flex items-center gap-1"><CheckCircle2 size={16} /> GAAP Compliant</span></div>
+        <div className="flex items-center gap-3"><span className="text-slate-500 dark:text-slate-400 uppercase">Focus Stage:</span><span className="text-[var(--pres-accent)] font-bold">{activeStage.name} — {activeStage.desc}</span></div>
+        <div className="flex items-center gap-4"><span className="text-slate-500 dark:text-slate-400">Step {currentStep + 1} of 4</span><span className="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1"><CheckCircle2 size={16} /> GAAP Compliant</span></div>
       </div>
     </div>
   );

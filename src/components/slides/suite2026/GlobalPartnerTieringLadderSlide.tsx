@@ -46,11 +46,11 @@ export const GlobalPartnerTieringLadderSlide: React.FC<{
           </p>
         </div>
         <div className="plane-1-raised p-4 px-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] flex items-center gap-6 font-mono text-[14px]">
-          <div><span style={{ color: 'var(--pres-text-muted)' }} className="text-[12px] block uppercase">Active Partners</span><span className="font-bold text-slate-900 dark:text-slate-100">{data?.partnerCountGlobal || 342} Certified</span></div>
-          <div className="w-[1px] h-8 bg-slate-700/40" />
-          <div><span style={{ color: 'var(--pres-text-muted)' }} className="text-[12px] block uppercase">Channel Incentive</span><span className="font-bold text-emerald-500">BACK-END REBATE ACTIVE</span></div>
-          <div className="w-[1px] h-8 bg-slate-700/40" />
-          <div><span style={{ color: 'var(--pres-text-muted)' }} className="text-[12px] block uppercase">MDF Allocation</span><span className="font-bold text-violet-500">100% Matching Fund</span></div>
+          <div><span style={{ color: 'var(--pres-text-muted)' }} className="text-[14px] block uppercase">Active Partners</span><span className="font-bold text-slate-900 dark:text-slate-100">{data?.partnerCountGlobal || 342} Certified</span></div>
+          <div className="w-[1px] h-8 bg-slate-300 dark:bg-slate-700/60" />
+          <div><span style={{ color: 'var(--pres-text-muted)' }} className="text-[14px] block uppercase">Channel Incentive</span><span className="font-bold text-emerald-500">BACK-END REBATE ACTIVE</span></div>
+          <div className="w-[1px] h-8 bg-slate-300 dark:bg-slate-700/60" />
+          <div><span style={{ color: 'var(--pres-text-muted)' }} className="text-[14px] block uppercase">MDF Allocation</span><span className="font-bold text-violet-500">100% Matching Fund</span></div>
         </div>
       </div>
 
@@ -64,36 +64,36 @@ export const GlobalPartnerTieringLadderSlide: React.FC<{
               <div>
                 <div className="flex items-center justify-between pb-3 border-b border-[var(--pres-border)]">
                   <div className="flex items-center gap-2">
-                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center font-mono font-bold text-[13px] ${isActive ? 'bg-[var(--pres-accent)] text-white' : 'bg-black/20 text-slate-400'}`}>
+                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center font-mono font-bold text-[14px] ${isActive ? 'bg-[var(--pres-accent)] text-white' : 'bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300'}`}>
                       {idx + 1}
                     </div>
                     <span className="font-ubuntu font-bold text-[18px] text-slate-900 dark:text-white truncate">{t.tierName}</span>
                   </div>
-                  {t.isRecommended && <span className="font-mono text-[11px] px-2 py-0.5 rounded bg-violet-500/20 text-violet-700 dark:text-violet-300 border border-violet-500/30 font-bold">★ FOCUS</span>}
+                  {t.isRecommended && <span className="font-mono text-[14px] px-2 py-0.5 rounded bg-violet-500/20 text-violet-700 dark:text-violet-300 border border-violet-500/30 font-bold">★ FOCUS</span>}
                 </div>
-                <div className="my-4 space-y-3 font-mono text-[13px]">
-                  <div className="p-3 rounded-xl bg-black/5 dark:bg-black/20 border border-[var(--pres-border)] flex justify-between items-center">
-                    <span className="text-slate-500 dark:text-slate-400 text-[12px] uppercase">ARR Commitment</span>
+                <div className="my-4 space-y-3 font-mono text-[14px]">
+                  <div className="p-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/40 border border-[var(--pres-border)] flex justify-between items-center">
+                    <span className="text-slate-500 dark:text-slate-400 text-[14px] uppercase">ARR Commitment</span>
                     <span className="font-bold text-[16px] text-slate-900 dark:text-white">${t.revenueCommitmentMillions}M+</span>
                   </div>
-                  <div className="p-3 rounded-xl bg-black/5 dark:bg-black/20 border border-[var(--pres-border)] flex justify-between items-center">
-                    <span className="text-slate-500 dark:text-slate-400 text-[12px] uppercase">Partner Margin</span>
+                  <div className="p-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/40 border border-[var(--pres-border)] flex justify-between items-center">
+                    <span className="text-slate-500 dark:text-slate-400 text-[14px] uppercase">Partner Margin</span>
                     <span className="font-bold text-[16px] text-emerald-600 dark:text-emerald-400">{t.rebatePercent}% Gross</span>
                   </div>
-                  <div className="p-3 rounded-xl bg-black/5 dark:bg-black/20 border border-[var(--pres-border)] flex justify-between items-center">
-                    <span className="text-slate-500 dark:text-slate-400 text-[12px] uppercase">Required Certs</span>
+                  <div className="p-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/40 border border-[var(--pres-border)] flex justify-between items-center">
+                    <span className="text-slate-500 dark:text-slate-400 text-[14px] uppercase">Required Certs</span>
                     <span className="font-bold text-[15px] text-slate-900 dark:text-white">{t.technicalCertificationCount} Architects</span>
                   </div>
                 </div>
               </div>
-              <div className="space-y-2 pt-3 border-t border-[var(--pres-border)] font-mono text-[12px]">
+              <div className="space-y-2 pt-3 border-t border-[var(--pres-border)] font-mono text-[14px]">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 size={14} className={t.hasDedicatedPartnerManager ? 'text-emerald-500' : 'text-slate-500'} />
-                  <span className={t.hasDedicatedPartnerManager ? 'text-slate-800 dark:text-slate-200' : 'text-slate-500'}>Dedicated Partner Director</span>
+                  <span className={t.hasDedicatedPartnerManager ? 'text-slate-800 dark:text-slate-100' : 'text-slate-500'}>Dedicated Partner Director</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Crown size={14} className={t.hasExecutiveAccess ? 'text-amber-500' : 'text-slate-500'} />
-                  <span className={t.hasExecutiveAccess ? 'text-slate-800 dark:text-slate-200 font-bold' : 'text-slate-500'}>Executive Advisory Access</span>
+                  <span className={t.hasExecutiveAccess ? 'text-slate-800 dark:text-slate-100 font-bold' : 'text-slate-500'}>Executive Advisory Access</span>
                 </div>
               </div>
             </div>
