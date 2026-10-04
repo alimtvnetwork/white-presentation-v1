@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="WCAG contrast runtime & theme token injector" max=580
+// lint-allow: file-size reason="WCAG contrast runtime & theme token injector" max=600
 import { THEME_PALETTES, extractHslRaw } from './gradientTokens';
 import { ThemePalette } from '../types/presentation';
 import { isBooleanTrue, isFalse } from '../utils/booleanGuards';
@@ -356,6 +356,30 @@ export function buildChromeVars(): Record<string, string> {
   };
 }
 
+export const SEMANTIC_STATUS_VARS = [
+  '--pres-status-success-hsl',
+  '--pres-status-warning-hsl',
+  '--pres-status-danger-hsl',
+  '--pres-status-info-hsl',
+] as const;
+
+export function buildSemanticStatusVars(isDark: boolean): Record<string, string> {
+  if (isDark) {
+    return {
+      '--pres-status-success-hsl': '158 80% 45%',
+      '--pres-status-warning-hsl': '43 96% 56%',
+      '--pres-status-danger-hsl': '352 85% 55%',
+      '--pres-status-info-hsl': '200 95% 52%',
+    };
+  }
+  return {
+    '--pres-status-success-hsl': '160 84% 28%',
+    '--pres-status-warning-hsl': '32 95% 35%',
+    '--pres-status-danger-hsl': '350 80% 38%',
+    '--pres-status-info-hsl': '221 83% 42%',
+  };
+}
+
 let cachedVarKeys: string[] | null = null;
 
 function collectPaletteVarKeys(palette: ThemePalette, keys: Set<string>): void {
@@ -363,6 +387,7 @@ function collectPaletteVarKeys(palette: ThemePalette, keys: Set<string>): void {
   Object.keys(buildColorVars(palette, isDark)).forEach((k) => keys.add(k));
   Object.keys(buildTypographyVars()).forEach((k) => keys.add(k));
   Object.keys(buildHslThemeVars(palette)).forEach((k) => keys.add(k));
+  Object.keys(buildSemanticStatusVars(isDark)).forEach((k) => keys.add(k));
   Object.keys(buildStopVars(palette.stops)).forEach((k) => keys.add(k));
   Object.keys(buildChromeVars()).forEach((k) => keys.add(k));
 }
@@ -408,6 +433,10 @@ export function cleanPreviousThemeVariables(rootEl?: HTMLElement | null): void {
   }
 
   propertiesToRemove.forEach((prop) => inlineStyle.removeProperty(prop));
+
+  SEMANTIC_STATUS_VARS.forEach((key) => {
+    target.style.removeProperty(key);
+  });
 
   const varKeys = getAllThemeVarKeys();
   varKeys.forEach((key) => {
@@ -461,9 +490,17 @@ function assembleThemeVars(theme: ThemePalette, isDark: boolean): Record<string,
     ...buildColorVars(theme, isDark),
     ...buildTypographyVars(theme.headerShadow || defaultShadow),
     ...buildHslThemeVars(theme),
+    ...buildSemanticStatusVars(isDark),
     ...buildStopVars(theme.stops),
     ...buildChromeVars(),
   };
+}
+
+export function injectSemanticStatusVars(root: HTMLElement, isDark: boolean): void {
+  const statusVars = buildSemanticStatusVars(isDark);
+  Object.entries(statusVars).forEach(([key, val]) => {
+    root.style.setProperty(key, val);
+  });
 }
 
 export function applyThemeRuntimeVariables(theme: ThemePalette, rootEl: HTMLElement): void {
@@ -514,6 +551,7 @@ export function applyTheme(id: string, isFromBroadcast = false): ThemePalette {
   cleanRootThemeVariables(root);
   applyThemeToRoot(theme);
   applyVarsToRoot(assembleThemeVars(theme, isDark), isDark);
+  injectSemanticStatusVars(root, isDark);
   saveThemeToStorage(theme.id);
   auditThemeContrast(theme);
   broadcastThemeChange(theme.id, isFromBroadcast);

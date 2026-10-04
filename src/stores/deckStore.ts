@@ -64,7 +64,7 @@ interface DeckStoreState {
   canRewindStep: boolean;
   hasIntraSteps: boolean;
   slideDirection: 1 | -1;
-  transitionType: 'slide' | 'fade' | 'zoom' | 'rise' | 'flip';
+  transitionType: 'slide' | 'fade' | 'zoom' | 'rise' | 'flip' | 'kinetic-morph';
   activeThemeId: string;
   isSoundEnabled: boolean;
   nextSlide: () => void;
@@ -80,7 +80,7 @@ interface DeckStoreState {
   setActiveStep: (stepIndex: number) => void;
   getActiveSlideMaxSteps: () => number;
   setTheme: (themeId: string) => void;
-  setTransitionType: (type: 'slide' | 'fade' | 'zoom' | 'rise' | 'flip') => void;
+  setTransitionType: (type: 'slide' | 'fade' | 'zoom' | 'rise' | 'flip' | 'kinetic-morph') => void;
   toggleSound: () => void;
   upsertSlide: (slide: SlideData) => void;
   addSlide: (slide: SlideData) => void;
@@ -249,7 +249,7 @@ export const useDeckStore = create<DeckStoreState>((set, get) => ({
     set({ activeThemeId: themeId });
   },
 
-  setTransitionType: (type: 'slide' | 'fade' | 'zoom' | 'rise' | 'flip') => {
+  setTransitionType: (type: 'slide' | 'fade' | 'zoom' | 'rise' | 'flip' | 'kinetic-morph') => {
     set({ transitionType: type });
   },
 

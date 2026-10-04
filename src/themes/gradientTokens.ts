@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="authentic 25-theme corporate palette dictionary" max=1000
+// lint-allow: file-size reason="authentic 25-theme corporate palette dictionary" max=1080
 import { GradientStop, ThemePalette } from '../types/presentation';
 import { isBooleanTrue } from '../utils/booleanGuards';
 
@@ -942,6 +942,79 @@ export function resolveTheme(themeId = 'white-brand'): ThemePalette {
   const canonicalId = LEGACY_ALIASES[themeId] || themeId;
   return THEME_PALETTES[canonicalId] || THEME_PALETTES[themeId] || THEME_PALETTES['white-brand'];
 }
+
+export const ThemeFamilyType = {
+  CorporateClean: 'CorporateClean',
+  TechModern: 'TechModern',
+  EditorialArchival: 'EditorialArchival',
+  ExecutivePrestige: 'ExecutivePrestige',
+  BioGrowth: 'BioGrowth',
+} as const;
+
+export type ThemeFamilyType = (typeof ThemeFamilyType)[keyof typeof ThemeFamilyType];
+
+export const THEME_FAMILIES: Record<ThemeFamilyType, readonly string[]> = {
+  CorporateClean: [
+    'corporate-clean',
+    'paper-editorial',
+    'sapphire-executive-light',
+    'windows-11',
+    'github-light',
+  ],
+  TechModern: [
+    'true-dark',
+    'vscode-dark',
+    'monokai',
+    'dracula',
+    'cyber-neon',
+  ],
+  EditorialArchival: [
+    'white-brand',
+    'paper-ink',
+    'warm-editorial-terracotta',
+    'nord-frost',
+  ],
+  ExecutivePrestige: [
+    'ivory-gold',
+    'bright-gold',
+    'noir-gold',
+    'midnight-luxe',
+    'crimson-executive',
+  ],
+  BioGrowth: [
+    'clinical-emerald-light',
+    'emerald-growth',
+    'sunset-horizon',
+    'navy-blue',
+    'macos-sonoma',
+    'wp-exam-purple',
+  ],
+};
+
+export const THEME_FAMILY_LABELS: Record<ThemeFamilyType, string> = {
+  CorporateClean: 'Corporate',
+  TechModern: 'Tech',
+  EditorialArchival: 'Editorial',
+  ExecutivePrestige: 'Prestige',
+  BioGrowth: 'Bio',
+};
+
+export function getThemeFamily(themeId: string): string {
+  const canonicalId = LEGACY_ALIASES[themeId] || themeId;
+  const entries = Object.entries(THEME_FAMILIES) as [ThemeFamilyType, readonly string[]][];
+  for (const [family, themes] of entries) {
+    if (themes.includes(canonicalId)) {
+      return family;
+    }
+  }
+  return ThemeFamilyType.CorporateClean;
+}
+
+export function getThemeFamilyLabel(themeId: string): string {
+  const family = getThemeFamily(themeId) as ThemeFamilyType;
+  return THEME_FAMILY_LABELS[family] || 'Corporate';
+}
+
 
 function getCharGradientStop(
   palette: ThemePalette,

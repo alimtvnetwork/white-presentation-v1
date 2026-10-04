@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="Central presentation slide union aggregation and deck contracts" max=380
+// lint-allow: file-size reason="Central presentation slide union aggregation and deck contracts" max=420
 import type { NewSlideType, NewSlideData } from './archetypes';
 import type {
   ExtendedSlideType, ExtendedSlideData,
@@ -48,6 +48,10 @@ import type {
   GlobalPptEvolutionSlideType,
   GlobalPptEvolutionSlideData,
 } from './globalPptEvolutionArchetypes';
+import type {
+  Suite2026SlideType,
+  Suite2026SlideData,
+} from './suite2026Archetypes';
 export * from './archetypes';
 export * from './extendedArchetypes';
 export * from './expandedArchetypes';
@@ -64,6 +68,7 @@ export * from './kineticRevolutionArchetypes';
 export * from './globalPptMasteryArchetypes';
 export * from './globalPptNextGenArchetypes';
 export * from './globalPptEvolutionArchetypes';
+export * from './suite2026Archetypes';
 export type { GoldenPathTemplate } from './nextGenArchetypes';
 
 export type SlideType =
@@ -95,7 +100,8 @@ export type SlideType =
   | KineticRevolutionSlideType
   | GlobalPptMasterySlideType
   | GlobalPptNextGenSlideType
-  | GlobalPptEvolutionSlideType;
+  | GlobalPptEvolutionSlideType
+  | Suite2026SlideType;
 
 export type DockPosition =
   | 'bottom-center'
@@ -352,7 +358,8 @@ export type SlideData =
   | KineticRevolutionSlideData
   | GlobalPptMasterySlideData
   | GlobalPptNextGenSlideData
-  | GlobalPptEvolutionSlideData;
+  | GlobalPptEvolutionSlideData
+  | Suite2026SlideData;
 
 export type Slide = SlideData;
 

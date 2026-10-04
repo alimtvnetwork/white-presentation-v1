@@ -5,7 +5,7 @@ import { PRESENTATION_EASE } from '../../utils/motionPhysics';
 export interface SlideTransitionProps {
   transitionKey: string;
   direction: 1 | -1;
-  transitionType?: 'slide' | 'fade' | 'zoom' | 'rise' | 'flip';
+  transitionType?: 'slide' | 'fade' | 'zoom' | 'rise' | 'flip' | 'kinetic-morph';
   children: React.ReactNode;
 }
 
@@ -29,8 +29,15 @@ const getSlideVariants = (isForward: boolean) => ({
   exit: { x: getOffset(isForward, -80), opacity: 0 },
 });
 
+const getKineticMorphVariants = (isForward: boolean) => ({
+  enter: { opacity: 0, scale: 0.95, filter: 'blur(6px)', y: isForward ? 30 : -30 },
+  center: { opacity: 1, scale: 1, filter: 'blur(0px)', y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
+  exit: { opacity: 0, scale: 1.04, filter: 'blur(6px)', y: isForward ? -30 : 30, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } },
+});
+
 const createVariants = (direction: 1 | -1, transitionType: string) => {
   const isForward = direction > 0;
+  if (transitionType === 'kinetic-morph') return getKineticMorphVariants(isForward);
   if (transitionType === 'fade') return { enter: { opacity: 0 }, center: { opacity: 1 }, exit: { opacity: 0 } };
   if (transitionType === 'zoom') return { enter: { scale: 0.94, opacity: 0 }, center: { scale: 1, opacity: 1 }, exit: { scale: 1.04, opacity: 0 } };
   if (transitionType === 'rise') return getRiseVariants(isForward);
