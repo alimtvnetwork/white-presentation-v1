@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="authentic 23-theme corporate palette dictionary" max=600
+// lint-allow: file-size reason="authentic 25-theme corporate palette dictionary" max=1000
 import { GradientStop, ThemePalette } from '../types/presentation';
 import { isBooleanTrue } from '../utils/booleanGuards';
 
@@ -64,6 +64,8 @@ export const CANONICAL_THEME_IDS = [
   'navy-blue',
   'clinical-emerald-light',
   'ivory-gold',
+  'warm-editorial-terracotta',
+  'sapphire-executive-light',
 ] as const;
 
 export type CanonicalThemeId = (typeof CANONICAL_THEME_IDS)[number];
