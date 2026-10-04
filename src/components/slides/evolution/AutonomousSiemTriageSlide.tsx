@@ -40,7 +40,7 @@ export const AutonomousSiemTriageSlide: React.FC<{ slide?: AutonomousSiemTriageS
 
       <div className="grid grid-cols-4 gap-6 z-10 my-auto h-[550px] items-stretch">
         {incidents.map((inc) => (
-          <div key={inc.incidentId} className="plane-1-raised p-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] flex flex-col justify-between transition-all hover:scale-[1.01]">
+          <div key={inc.incidentId} className="plane-2-elevated p-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] flex flex-col justify-between transition-all hover:scale-[1.01]">
             <div className="flex items-center justify-between pb-3 border-b border-[var(--pres-border)]">
               <span className="font-mono text-sm font-bold text-violet-400">INCIDENT 0{inc.incidentIndex}</span>
               <span className="font-mono text-sm px-2.5 py-1 rounded bg-rose-500/10 text-rose-300 border border-rose-500/20">{inc.timeToContainSeconds}s MTTC</span>

@@ -16,6 +16,7 @@ import {
   getFlatGlobalSuiteSlideSteps,
   getGlobalPptExpansionSlideSteps,
   getGlobalPptMasterySlideSteps,
+  getGlobalPptEvolutionSlideSteps,
 } from '../utils/stepProgression';
 import { INITIAL_DECK } from './initialDeck';
 
@@ -33,6 +34,7 @@ export {
   getFlatGlobalSuiteSlideSteps,
   getGlobalPptExpansionSlideSteps,
   getGlobalPptMasterySlideSteps,
+  getGlobalPptEvolutionSlideSteps,
 };
 
 const computeSlideMaxSteps = (slide: any): number => {
@@ -170,8 +172,8 @@ export const useDeckStore = create<DeckStoreState>((set, get) => ({
     const { activeStep, isSoundEnabled, activeSlideIndex, deck } = get();
     const currentSlide = deck.slides[activeSlideIndex] as any;
     const maxSteps = computeSlideMaxSteps(currentSlide);
-    const canAdvance = activeStep < maxSteps - 1;
-    if (!canAdvance) {
+    const isAtLastStep = activeStep >= maxSteps - 1;
+    if (isAtLastStep) {
       get().nextSlide();
       return;
     }
@@ -195,8 +197,8 @@ export const useDeckStore = create<DeckStoreState>((set, get) => ({
   stepRewind: () => {
     const { activeStep, isSoundEnabled, activeSlideIndex, deck } = get();
     const currentSlide = deck.slides[activeSlideIndex] as any;
-    const canRewind = activeStep > 0;
-    if (!canRewind) {
+    const isAtFirstStep = activeStep <= 0;
+    if (isAtFirstStep) {
       get().prevSlide();
       return;
     }

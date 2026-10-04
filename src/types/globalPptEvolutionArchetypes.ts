@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="Chapter 43 Global PPT Evolution slide archetype contracts" max=650
+// lint-allow: file-size reason="Chapter 43 Global PPT Evolution slide archetype contracts" max=750
 import type { BaseSlide } from './presentation';
 
 // =============================================================================

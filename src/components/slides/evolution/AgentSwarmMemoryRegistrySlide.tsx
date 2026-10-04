@@ -40,7 +40,7 @@ export const AgentSwarmMemoryRegistrySlide: React.FC<{ slide?: AgentSwarmMemoryR
 
       <div className="grid grid-cols-4 gap-6 z-10 my-auto h-[550px] items-stretch">
         {shards.map((sh) => (
-          <div key={sh.shardId} className="plane-1-raised p-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] flex flex-col justify-between transition-all hover:scale-[1.01]">
+          <div key={sh.shardId} className="plane-2-elevated p-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] flex flex-col justify-between transition-all hover:scale-[1.01]">
             <div className="flex items-center justify-between pb-3 border-b border-[var(--pres-border)]">
               <span className="font-mono text-sm font-bold text-violet-400">POOL 0{sh.shardIndex}</span>
               <span className="font-mono text-sm px-2.5 py-1 rounded bg-violet-500/10 text-violet-300 border border-violet-500/20">{sh.vectorDimensions} Dims</span>

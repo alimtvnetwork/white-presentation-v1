@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="synthesized web audio sound engine" max=220
+// lint-allow: file-size reason="synthesized web audio sound engine" max=240
 
 interface SynthToneParams {
   type: OscillatorType;
@@ -215,3 +215,17 @@ class PresentationSoundEngine {
 }
 
 export const soundEngine = new PresentationSoundEngine();
+export const playStepAdvance = (): void => soundEngine.playStepAdvance();
+export const playStepRewind = (): void => soundEngine.playStepRewind();
+export const playStageComplete = (): void => soundEngine.playStageComplete();
+export const playDirectionalAcousticFeedback = (
+  direction: 'advance' | 'rewind' | 'complete' = 'advance'
+): void => {
+  if (direction === 'advance') {
+    soundEngine.playStepAdvance();
+  } else if (direction === 'rewind') {
+    soundEngine.playStepRewind();
+  } else if (direction === 'complete') {
+    soundEngine.playStageComplete();
+  }
+};

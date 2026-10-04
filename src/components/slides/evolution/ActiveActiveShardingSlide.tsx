@@ -65,7 +65,7 @@ export const ActiveActiveShardingSlide: React.FC<{ slide?: ActiveActiveShardingS
           <div className="space-y-3 font-mono text-sm my-3">
             {shards.map((sh) => (
               <div key={sh.id} className="p-3 rounded-xl bg-black/20 border border-[var(--pres-border)] space-y-1">
-                <div className="flex justify-between items-center"><span className="font-bold text-slate-200">{sh.regionCode}</span><span className={`text-sm font-bold ${sh.isLeaderNode ? 'text-amber-400' : 'text-sky-300'}`}>{sh.isLeaderNode ? 'RAFT LEADER' : 'FOLLOWER'}</span></div>
+                <div className="flex justify-between items-center"><span className="font-bold text-slate-200">{sh.regionCode}</span><span className={`text-sm font-bold ${sh.isLeaderNode ? 'text-violet-400' : 'text-sky-300'}`}>{sh.isLeaderNode ? 'RAFT LEADER' : 'FOLLOWER'}</span></div>
                 <div className="flex justify-between text-sm text-slate-400"><span>QPS: {sh.writeThroughputQps.toLocaleString()}</span><span className="text-emerald-400">{sh.replicationLagMilliseconds}ms lag</span></div>
               </div>
             ))}

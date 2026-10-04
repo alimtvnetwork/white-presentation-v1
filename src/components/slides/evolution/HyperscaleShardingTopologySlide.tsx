@@ -40,7 +40,7 @@ export const HyperscaleShardingTopologySlide: React.FC<{ slide?: HyperscaleShard
 
       <div className="grid grid-cols-4 gap-6 z-10 my-auto h-[550px] items-stretch">
         {partitions.map((pt) => (
-          <div key={pt.partitionId} className="plane-1-raised p-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] flex flex-col justify-between transition-all hover:scale-[1.01]">
+          <div key={pt.partitionId} className="plane-2-elevated p-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] flex flex-col justify-between transition-all hover:scale-[1.01]">
             <div className="flex items-center justify-between pb-3 border-b border-[var(--pres-border)]">
               <span className="font-mono text-sm font-bold text-violet-400">PARTITION 0{pt.partitionIndex}</span>
               <span className="font-mono text-sm px-2.5 py-1 rounded bg-sky-500/10 text-sky-300 border border-sky-500/20">{((pt.dataVolumeTerabytes) / 1000).toFixed(1)} PB</span>

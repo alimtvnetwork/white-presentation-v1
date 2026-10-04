@@ -40,7 +40,7 @@ export const EdgeFleetDensitySlide: React.FC<{ slide?: EdgeFleetDensitySlideData
 
       <div className="grid grid-cols-4 gap-6 z-10 my-auto h-[550px] items-stretch">
         {pops.map((pp) => (
-          <div key={pp.popId} className="plane-1-raised p-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] flex flex-col justify-between transition-all hover:scale-[1.01]">
+          <div key={pp.popId} className="plane-2-elevated p-6 rounded-2xl border border-[var(--pres-border)] bg-[var(--pres-bg-card)] flex flex-col justify-between transition-all hover:scale-[1.01]">
             <div className="flex items-center justify-between pb-3 border-b border-[var(--pres-border)]">
               <span className="font-mono text-sm font-bold text-violet-400">POP 0{pp.popIndex}</span>
               <span className="font-mono text-sm px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">{pp.powerUsageEffectiveness} PUE</span>

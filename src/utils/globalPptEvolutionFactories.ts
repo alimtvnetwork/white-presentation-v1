@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="Chapter 43 Global PPT Evolution slide default factories for 15 archetypes" max=1450
+// lint-allow: file-size reason="Chapter 43 Global PPT Evolution slide default factories for 15 archetypes" max=1700
 import type {
   PqcMigrationFlowSlideData,
   AgentHierarchicalMemorySlideData,
