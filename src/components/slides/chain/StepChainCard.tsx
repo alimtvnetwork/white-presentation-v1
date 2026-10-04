@@ -1,21 +1,6 @@
 import React from 'react';
 import type { StepsChainSlideData, ThemePalette } from '../../../types/presentation';
-
-const getStepChainStyle = (isActive: boolean, isCompleted: boolean, theme: ThemePalette): React.CSSProperties => {
-  if (isActive) {
-    return {
-      backgroundColor: theme.cardBg,
-      borderColor: theme.accentColor,
-      opacity: 1,
-      transform: 'translateY(0)',
-      boxShadow: `0 0 0 1px ${theme.accentColor}40, 0 0 24px -2px ${theme.accentColor}50`,
-    };
-  }
-  const borderColor = isCompleted ? theme.accentColor : theme.cardBorder;
-  const opacity = isCompleted ? 0.75 : 0.25;
-  const transform = isCompleted ? 'translateY(0)' : 'translateY(16px)';
-  return { backgroundColor: theme.cardBg, borderColor, opacity, transform };
-};
+import { getStepChainCardStyle } from '../../../utils/stepLifecycleStyles';
 
 export interface StepChainCardProps {
   step: StepsChainSlideData['steps'][0];
@@ -28,14 +13,24 @@ export interface StepChainCardProps {
 }
 
 export const StepChainCard: React.FC<StepChainCardProps> = ({
-  step, idx, isActive, isCompleted, totalSteps, theme, onSelect,
+  step,
+  idx,
+  isActive,
+  isCompleted,
+  totalSteps,
+  theme,
+  onSelect,
 }) => {
-  const cardStyle = getStepChainStyle(isActive, isCompleted, theme);
+  const cardStyle = getStepChainCardStyle(isActive, isCompleted, theme);
+  const statusLabel = isActive ? '● IN FOCUS' : isCompleted ? '✓ VERIFIED' : '○ PENDING';
+  const statusColor = isActive ? theme.accentColor : theme.subtextColor;
+  const stageLabel = step.duration || `Stage 0${step.stepNumber}`;
+
   return (
     <div
       onClick={() => onSelect(idx)}
       style={cardStyle}
-      className="border-2 rounded-2xl p-6 flex flex-col justify-between transition-all duration-500 cursor-pointer shadow-md hover:scale-[1.01]"
+      className="border-2 rounded-2xl p-6 flex flex-col justify-between transition-all duration-500 cursor-pointer shadow-md"
     >
       <div>
         <div className="flex items-center justify-between mb-3">
@@ -46,7 +41,7 @@ export const StepChainCard: React.FC<StepChainCardProps> = ({
             {step.stepNumber}
           </span>
           <span style={{ color: theme.accentColor }} className="text-xs font-mono font-bold uppercase">
-            {step.duration || `Stage 0${step.stepNumber}`}
+            {stageLabel}
           </span>
         </div>
         <h3 style={{ color: theme.textColor }} className="font-ubuntu text-[20px] font-bold mb-2">
@@ -58,8 +53,8 @@ export const StepChainCard: React.FC<StepChainCardProps> = ({
       </div>
       <div style={{ borderColor: theme.cardBorder }} className="pt-4 border-t flex items-center justify-between text-xs font-mono">
         <span style={{ color: theme.subtextColor }}>{idx + 1} of {totalSteps}</span>
-        <span style={{ color: isActive ? theme.accentColor : theme.subtextColor }} className="font-bold">
-          {isActive ? '● IN FOCUS' : isCompleted ? '✓ VERIFIED' : '○ PENDING'}
+        <span style={{ color: statusColor }} className="font-bold">
+          {statusLabel}
         </span>
       </div>
     </div>

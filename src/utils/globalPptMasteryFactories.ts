@@ -594,7 +594,7 @@ export const createExecutiveCompensationClawbackSlide = (id = `slide-${Date.now(
   leadArchitect: 'Alim Ul Karim',
   leadRole: 'Chief Software Engineer',
   hasSecRule10D1Compliant: true,
-  hasNoFaultEnforcement: true,
+  hasStrictFaultEnforcement: true,
   hasBoardCommitteeCertified: true,
   clawbackStages: [
     {

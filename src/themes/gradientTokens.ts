@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="authentic 27-theme corporate palette dictionary" max=1280
+// lint-allow: file-size reason="authentic 29-theme corporate palette dictionary" max=1350
 import { GradientStop, ThemePalette } from '../types/presentation';
 import { isBooleanTrue } from '../utils/booleanGuards';
 
@@ -68,6 +68,8 @@ export const CANONICAL_THEME_IDS = [
   'sapphire-executive-light',
   'global-executive-gold',
   'midnight-aurora',
+  'global-sapphire-executive',
+  'cyber-emerald-aurora',
 ] as const;
 
 export type CanonicalThemeId = (typeof CANONICAL_THEME_IDS)[number];
@@ -980,6 +982,74 @@ export const CANONICAL_THEMES: Record<string, ThemePalette> = {
       makeStop(9, 'Deep Arctic Void', '#030F14', 'hsl(196, 74%, 5%)', 'rgb(3, 15, 20)', 0.03, 1.0, '196 74% 5%'),
     ],
   },
+  'global-sapphire-executive': {
+    id: 'global-sapphire-executive',
+    name: 'Global Sapphire Executive',
+    description: 'Sovereign finance, global institutional banking, royal sapphire accent with crisp white/ice base.',
+    isDark: false,
+    canvasBg: '#FFFFFF',
+    canvasBgHsl: '0 0% 100%',
+    bgHsl: '0 0% 100%',
+    textColor: '#0F172A',
+    textHsl: '222 47% 11%',
+    subtextColor: '#334155',
+    subtextHsl: '215 25% 27%',
+    cardBg: 'rgba(248, 250, 252, 0.94)',
+    cardBgHsl: '210 40% 98%',
+    cardBorder: 'rgba(20, 71, 230, 0.18)',
+    cardBorderHsl: '225 84% 49%',
+    accentColor: '#1447E6',
+    accent: '#1447E6',
+    accentHsl: '225 84% 49%',
+    dotMatrix: false,
+    headerShadow: 'rgb(255 255 255) 1px 0.7px 0px',
+    stops: [
+      makeStop(0, 'Pure Ice-White Canvas', '#FFFFFF', 'hsl(0, 0%, 100%)', 'rgb(255, 255, 255)', 1.00, 1.0, '0 0% 100%'),
+      makeStop(1, 'Glacier Wash', '#F0F5FD', 'hsl(217, 73%, 97%)', 'rgb(240, 245, 253)', 0.94, 1.05, '217 73% 97%'),
+      makeStop(2, 'Sapphire Mist Surface', '#E1ECFA', 'hsl(215, 72%, 93%)', 'rgb(225, 236, 250)', 0.86, 1.15, '215 72% 93%'),
+      makeStop(3, 'Ice Azure Tint', '#C4DCFA', 'hsl(214, 84%, 88%)', 'rgb(196, 220, 250)', 0.72, 1.35, '214 84% 88%'),
+      makeStop(4, 'Azure Radiance', '#60A5FA', 'hsl(213, 94%, 68%)', 'rgb(96, 165, 250)', 0.52, 1.90, '213 94% 68%'),
+      makeStop(5, 'Royal Sapphire Executive', '#1447E6', 'hsl(225, 84%, 49%)', 'rgb(20, 71, 230)', 0.10, 6.82, '225 84% 49%'),
+      makeStop(6, 'Deep Sovereign Navy', '#1E40AF', 'hsl(224, 71%, 40%)', 'rgb(30, 64, 175)', 0.08, 8.20, '224 71% 40%'),
+      makeStop(7, 'Institutional Deep Navy', '#1E3A8A', 'hsl(224, 64%, 33%)', 'rgb(30, 58, 138)', 0.05, 12.5, '224 64% 33%'),
+      makeStop(8, 'Dark Steel Slate', '#1E293B', 'hsl(217, 33%, 17%)', 'rgb(30, 41, 59)', 0.03, 16.0, '217 33% 17%'),
+      makeStop(9, 'Deep Obsidian Ink', '#0F172A', 'hsl(222, 47%, 11%)', 'rgb(15, 23, 42)', 0.01, 20.0, '222 47% 11%'),
+    ],
+  },
+  'cyber-emerald-aurora': {
+    id: 'cyber-emerald-aurora',
+    name: 'Cyber Emerald Aurora',
+    description: 'Deep obsidian void with kinetic bioluminescent emerald and cyber cyan aurora accents.',
+    isDark: true,
+    canvasBg: '#050811',
+    canvasBgHsl: '225 55% 4%',
+    bgHsl: '225 55% 4%',
+    textColor: '#ECFDF5',
+    textHsl: '152 81% 96%',
+    subtextColor: '#34D399',
+    subtextHsl: '158 64% 52%',
+    cardBg: 'rgba(8, 17, 28, 0.90)',
+    cardBgHsl: '213 55% 7%',
+    cardBorder: 'rgba(16, 185, 129, 0.28)',
+    cardBorderHsl: '160 84% 39%',
+    accentColor: '#10B981',
+    accent: '#10B981',
+    accentHsl: '160 84% 39%',
+    dotMatrix: true,
+    headerShadow: 'rgb(0 0 0) 1px 0.7px 0px',
+    stops: [
+      makeStop(0, 'Glacial Aurora Glint', '#F0FDF4', 'hsl(138, 76%, 97%)', 'rgb(240, 253, 244)', 0.98, 19.6, '138 76% 97%'),
+      makeStop(1, 'Cyber Cyan Glint', '#A5F3FC', 'hsl(187, 92%, 81%)', 'rgb(165, 243, 252)', 0.86, 17.2, '187 92% 81%'),
+      makeStop(2, 'Kinetic Cyber Cyan', '#06B6D4', 'hsl(189, 94%, 43%)', 'rgb(6, 182, 212)', 0.65, 13.0, '189 94% 43%'),
+      makeStop(3, 'Bioluminescent Mint', '#34D399', 'hsl(158, 64%, 52%)', 'rgb(52, 211, 153)', 0.58, 11.6, '158 64% 52%'),
+      makeStop(4, 'Bioluminescent Emerald', '#10B981', 'hsl(160, 84%, 39%)', 'rgb(16, 185, 129)', 0.44, 8.8, '160 84% 39%'),
+      makeStop(5, 'Deep Sea Emerald', '#059669', 'hsl(161, 94%, 30%)', 'rgb(5, 150, 105)', 0.30, 6.0, '161 94% 30%'),
+      makeStop(6, 'Pine Core Aurora', '#047857', 'hsl(163, 94%, 24%)', 'rgb(4, 120, 87)', 0.18, 3.6, '163 94% 24%'),
+      makeStop(7, 'Nocturnal Cyan Abyss', '#083344', 'hsl(197, 79%, 15%)', 'rgb(8, 51, 68)', 0.10, 2.0, '197 79% 15%'),
+      makeStop(8, 'Smoked Obsidian Card', '#08111C', 'hsl(213, 55%, 7%)', 'rgb(8, 17, 28)', 0.05, 1.4, '213 55% 7%'),
+      makeStop(9, 'Deep Obsidian Void', '#050811', 'hsl(225, 55%, 4%)', 'rgb(5, 8, 17)', 0.02, 1.0, '225 55% 4%'),
+    ],
+  },
 };
 
 export const THEME_PALETTES: Record<string, ThemePalette> = {
@@ -1030,6 +1100,7 @@ export const THEME_FAMILIES: Record<ThemeFamilyType, readonly string[]> = {
     'sapphire-executive-light',
     'windows-11',
     'github-light',
+    'global-sapphire-executive',
   ],
   TechModern: [
     'true-dark',
@@ -1038,6 +1109,7 @@ export const THEME_FAMILIES: Record<ThemeFamilyType, readonly string[]> = {
     'dracula',
     'cyber-neon',
     'midnight-aurora',
+    'cyber-emerald-aurora',
   ],
   EditorialArchival: [
     'white-brand',

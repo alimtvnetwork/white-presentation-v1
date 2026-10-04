@@ -160,6 +160,8 @@ const KNOWN_LIGHT_ACCENTS: Record<string, string> = {
   'sapphire-executive-light': '#1E40AF',
   'global-executive-gold': '#B45309',
   'midnight-aurora': '#0F766E',
+  'global-sapphire-executive': '#1447E6',
+  'cyber-emerald-aurora': '#047857',
 };
 
 function getKnownLightAccent(themeId: string): string | null {

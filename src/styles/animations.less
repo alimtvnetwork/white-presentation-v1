@@ -1238,6 +1238,148 @@
   will-change: stroke-dashoffset, filter;
 }
 
+// ============================================================================
+// CHAPTER 47: SUITE 2029 GPU MOTION KINETICS & ADVANCED PROTOCOL ANIMATIONS
+// ============================================================================
+
+@keyframes quantumEntanglementWave {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 4px hsl(var(--pres-accent-hsl, 221 83% 42%) / 0.30));
+  }
+  25% {
+    transform: translate3d(-3px, -5px, 0) scale(1.015) rotate(-0.5deg);
+    filter: drop-shadow(0 0 10px hsl(var(--pres-accent-hsl, 221 83% 42%) / 0.55));
+  }
+  50% {
+    transform: translate3d(0, -9px, 0) scale(1.025) rotate(0deg);
+    filter: drop-shadow(0 0 16px hsl(var(--pres-accent-hsl, 221 83% 42%) / 0.70));
+  }
+  75% {
+    transform: translate3d(3px, -4px, 0) scale(1.01) rotate(0.5deg);
+    filter: drop-shadow(0 0 10px hsl(var(--pres-accent-hsl, 221 83% 42%) / 0.50));
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 4px hsl(var(--pres-accent-hsl, 221 83% 42%) / 0.30));
+  }
+}
+
+@keyframes neuromorphicSpikeTrace {
+  0% {
+    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+    opacity: 0.75;
+    filter: brightness(1);
+  }
+  15% {
+    transform: scale3d(1.06, 1.12, 1) translate3d(0, -6px, 0);
+    opacity: 1;
+    filter: brightness(1.4) drop-shadow(0 0 12px hsl(var(--pres-accent-hsl, 160 84% 39%) / 0.75));
+  }
+  30% {
+    transform: scale3d(0.98, 0.96, 1) translate3d(0, 2px, 0);
+    opacity: 0.85;
+    filter: brightness(0.95);
+  }
+  45% {
+    transform: scale3d(1.01, 1.01, 1) translate3d(0, -1px, 0);
+    opacity: 0.95;
+    filter: brightness(1.05);
+  }
+  60%, 100% {
+    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+    opacity: 0.75;
+    filter: brightness(1);
+  }
+}
+
+@keyframes hyperDimensionalIsometricSnap {
+  0% {
+    opacity: 0;
+    transform: perspective(1000px) rotateX(28deg) rotateY(-18deg) rotateZ(6deg) translate3d(0, 32px, -80px) scale(0.92);
+  }
+  65% {
+    opacity: 1;
+    transform: perspective(1000px) rotateX(-2deg) rotateY(1deg) rotateZ(-0.5deg) translate3d(0, -2px, 5px) scale(1.01);
+  }
+  85% {
+    transform: perspective(1000px) rotateX(0.5deg) rotateY(-0.5deg) rotateZ(0deg) translate3d(0, 0, 0) scale(0.998);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes agentDialecticConsensusLock {
+  0% {
+    box-shadow: 0 0 0 0 hsl(var(--pres-accent-hsl, 221 83% 42%) / 0.50),
+                0 0 0 0 hsl(189 94% 43% / 0.50);
+    transform: scale3d(0.98, 0.98, 1);
+  }
+  40% {
+    box-shadow: 0 0 0 8px hsl(var(--pres-accent-hsl, 221 83% 42%) / 0.25),
+                0 0 0 16px hsl(189 94% 43% / 0.10);
+    transform: scale3d(1.025, 1.025, 1);
+  }
+  70% {
+    box-shadow: 0 0 0 2px hsl(var(--pres-accent-hsl, 221 83% 42%) / 0.80),
+                0 0 24px 4px hsl(var(--pres-accent-hsl, 221 83% 42%) / 0.40);
+    transform: scale3d(0.995, 0.995, 1);
+  }
+  100% {
+    box-shadow: 0 0 0 1px hsl(var(--pres-accent-hsl, 221 83% 42%) / 0.60),
+                0 0 12px 1px hsl(var(--pres-accent-hsl, 221 83% 42%) / 0.20);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes zkProofAttestationIris {
+  0% {
+    clip-path: circle(0% at 50% 50%);
+    opacity: 0;
+    transform: scale(0.92);
+    filter: brightness(1.8);
+  }
+  50% {
+    clip-path: circle(65% at 50% 50%);
+    opacity: 0.95;
+    transform: scale(1.02);
+    filter: brightness(1.3);
+  }
+  100% {
+    clip-path: circle(100% at 50% 50%);
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+.animate-quantum-wave {
+  animation: quantumEntanglementWave 4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  will-change: transform, filter;
+}
+
+.animate-neuromorphic-spike {
+  animation: neuromorphicSpikeTrace 2.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  will-change: transform, opacity, filter;
+}
+
+.animate-isometric-snap {
+  animation: hyperDimensionalIsometricSnap 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+}
+
+.animate-consensus-lock {
+  animation: agentDialecticConsensusLock 0.75s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+  will-change: transform, box-shadow;
+}
+
+.animate-zk-iris {
+  animation: zkProofAttestationIris 0.6s cubic-bezier(0.19, 1, 0.22, 1) both;
+  will-change: clip-path, transform, opacity, filter;
+}
+
 // Reduced motion
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {

@@ -7,6 +7,8 @@ import { StepChainCard } from './chain/StepChainCard';
 export const StepsChainSlide: React.FC<{ slide: StepsChainSlideData }> = ({ slide }) => {
   const { activeStep, activeThemeId, jumpToStep } = useDeckStore();
   const currentTheme = THEME_PALETTES[activeThemeId] || THEME_PALETTES['white-brand'];
+  const hasSubtitle = Boolean(slide.subtitle);
+  const totalSteps = slide.steps.length;
 
   const handleStepSelect = (index: number) => {
     jumpToStep(index);
@@ -26,13 +28,13 @@ export const StepsChainSlide: React.FC<{ slide: StepsChainSlideData }> = ({ slid
             {slide.kicker || 'PROCESS & DELIVERY'}
           </span>
           <span style={{ color: currentTheme.subtextColor }} className="text-xs font-mono">
-            {slide.steps.length} Sequenced Phases
+            {totalSteps} Sequenced Phases
           </span>
         </div>
         <h2 className="font-ubuntu text-4xl font-extrabold tracking-tight mb-2">
           {slide.title}
         </h2>
-        {slide.subtitle ? (
+        {hasSubtitle ? (
           <p style={{ color: currentTheme.subtextColor }} className="font-poppins text-lg max-w-4xl">
             {slide.subtitle}
           </p>
@@ -47,7 +49,7 @@ export const StepsChainSlide: React.FC<{ slide: StepsChainSlideData }> = ({ slid
             idx={idx}
             isActive={idx === activeStep}
             isCompleted={idx < activeStep}
-            totalSteps={slide.steps.length}
+            totalSteps={totalSteps}
             theme={currentTheme}
             onSelect={handleStepSelect}
           />
@@ -58,7 +60,7 @@ export const StepsChainSlide: React.FC<{ slide: StepsChainSlideData }> = ({ slid
         style={{ borderColor: currentTheme.cardBorder, color: currentTheme.subtextColor }}
         className="pt-4 border-t flex items-center justify-between text-xs font-mono"
       >
-        <span>Tactile step-by-step kinetic progression active (Step {activeStep + 1} of {slide.steps.length})</span>
+        <span>Tactile step-by-step kinetic progression active (Step {activeStep + 1} of {totalSteps})</span>
         <span style={{ color: currentTheme.accentColor }}>Synthesized Global PPT & Flat Slide Architecture</span>
       </div>
     </div>
