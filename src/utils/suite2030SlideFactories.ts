@@ -46,10 +46,10 @@ export const createNeuromorphicSpikingNeuralMeshSlide = (id = `slide-${Date.now(
     { stepIndex: 3, stageName: 'Asynchronous Wavefront Readout', stageSubtitle: 'Spatio-temporal output pattern decoded into low-latency inference', synapticEventCount: 890000, energyJoulesPerSpikePj: 0.65, isActive: false, isCompleted: false },
   ],
   neuronNodes: [
-    { id: 'syn-01', neuronIdentifier: 'N-Sensory-01', membranePotentialMv: -52.4, spikeThresholdMv: -50.0, firingRateHz: 42.8, isSpikeActive: true, hasPlasticityUpdated: true },
-    { id: 'syn-02', neuronIdentifier: 'N-Interneuron-02', membranePotentialMv: -58.1, spikeThresholdMv: -50.0, firingRateHz: 12.5, isSpikeActive: false, hasPlasticityUpdated: true },
-    { id: 'syn-03', neuronIdentifier: 'N-Recurrent-03', membranePotentialMv: -49.6, spikeThresholdMv: -50.0, firingRateHz: 68.2, isSpikeActive: true, hasPlasticityUpdated: true },
-    { id: 'syn-04', neuronIdentifier: 'N-Motor-04', membranePotentialMv: -62.3, spikeThresholdMv: -50.0, firingRateHz: 8.0, isSpikeActive: false, hasPlasticityUpdated: false },
+    { id: 'syn-01', layerName: 'Sensory Cortex', membranePotentialMv: -52.4, thresholdPotentialMv: -50.0, synapticWeight: 0.88, isSpikeFired: true, hasPlasticityReinforced: true },
+    { id: 'syn-02', layerName: 'Associative Interneuron', membranePotentialMv: -58.1, thresholdPotentialMv: -50.0, synapticWeight: 0.72, isSpikeFired: false, hasPlasticityReinforced: true },
+    { id: 'syn-03', layerName: 'Recurrent Crossbar', membranePotentialMv: -49.6, thresholdPotentialMv: -50.0, synapticWeight: 0.94, isSpikeFired: true, hasPlasticityReinforced: true },
+    { id: 'syn-04', layerName: 'Motor Command Output', membranePotentialMv: -62.3, thresholdPotentialMv: -50.0, synapticWeight: 0.45, isSpikeFired: false, hasPlasticityReinforced: false },
   ],
 });
 

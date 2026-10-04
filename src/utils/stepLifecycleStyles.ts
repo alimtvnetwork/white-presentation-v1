@@ -149,4 +149,3 @@ export function getStepLifecycleStyle(
     pointerEvents: 'none',
   };
 }
-
