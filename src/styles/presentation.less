@@ -622,6 +622,142 @@
 }
 
 // ============================================================================
+// Suite 2033 Dual-Mode Semantic Architecture & Light-Theme Contrast Protectors
+// ============================================================================
+
+.suite2033-bento-panel,
+.suite2033-card {
+  background: var(--pres-bg-card);
+  border: 1px solid var(--pres-border);
+  color: var(--pres-text);
+  border-radius: @radius-md;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform 0.25s @ease-presentation, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.suite2033-header-zone {
+  color: var(--pres-text);
+}
+
+.suite2033-title {
+  font-family: var(--pres-font-display, @font-heading);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--pres-text);
+}
+
+.suite2033-subtitle {
+  font-family: var(--pres-font-body, @font-body);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--pres-subtext);
+}
+
+.suite2033-kicker {
+  font-family: var(--pres-font-mono, @font-mono);
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--pres-accent);
+}
+
+.suite2033-telemetry-panel {
+  background: var(--pres-bg-surface, var(--pres-bg-card));
+  border: 1px solid var(--pres-border);
+  color: var(--pres-text);
+  border-radius: @radius-md;
+}
+
+.suite2033-telemetry-mono {
+  font-family: var(--pres-font-mono, @font-mono);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--pres-text);
+}
+
+.suite2033-seal-stamp {
+  font-family: var(--pres-font-mono, @font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: @radius-sm;
+  background: hsl(var(--pres-accent-hsl, 262 83% 58%) / 0.12);
+  border: 1.5px solid var(--pres-accent);
+  color: var(--pres-accent);
+}
+
+// Light theme contrast protectors & zero dark-slab regression
+[data-appearance='light'],
+[data-is-dark='false'],
+.theme-light,
+[data-theme='paper-ink'],
+[data-theme='github-light'],
+[data-theme='white-brand'],
+[data-theme='corporate-clean'],
+[data-theme='paper-editorial'],
+[data-theme='warm-editorial-terracotta'],
+[data-theme='sapphire-executive-light'],
+[data-theme='clinical-emerald-light'],
+[data-theme='ivory-gold'],
+[data-theme='archival-monaco-cream'] {
+  .suite2033-bento-panel,
+  .suite2033-card,
+  .suite2033-telemetry-panel {
+    background: var(--pres-bg-card, rgba(255, 255, 255, 0.94)) !important;
+    border-color: var(--pres-border, rgba(15, 23, 42, 0.08)) !important;
+    color: var(--pres-text, hsl(222 47% 11%)) !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+  }
+
+  .suite2033-title {
+    color: var(--pres-text, hsl(222 47% 11%)) !important;
+    text-shadow: none;
+  }
+
+  .suite2033-subtitle {
+    color: var(--pres-subtext, hsl(215 16% 47%)) !important;
+  }
+
+  .suite2033-telemetry-mono {
+    color: var(--pres-text, hsl(222 47% 11%)) !important;
+  }
+
+  // Zero Yellow-on-Light contrast rule (WCAG AA >= 4.5:1)
+  .text-yellow-400,
+  .text-amber-400,
+  .text-yellow-300,
+  .text-amber-300,
+  .contrast-warning-text {
+    color: hsl(28 95% 26%) !important;
+  }
+
+  .badge-yellow,
+  .badge-amber,
+  .contrast-warning-badge {
+    background: rgba(120, 53, 15, 0.10) !important;
+    border-color: rgba(120, 53, 15, 0.35) !important;
+    color: #78350F !important;
+  }
+
+  .suite2033-step-active {
+    background: var(--pres-bg-card-hover, #ffffff) !important;
+    border-color: var(--pres-accent) !important;
+    box-shadow: 0 0 24px -2px var(--pres-accent-glow), 0 10px 25px -5px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .suite2033-step-future {
+    background: var(--pres-bg-card, rgba(255, 255, 255, 0.60)) !important;
+    border-color: var(--pres-border, rgba(15, 23, 42, 0.06)) !important;
+    opacity: 0.38 !important;
+  }
+}
+
+// ============================================================================
 // Print & PDF Export Engine
 // ============================================================================
 @media print {

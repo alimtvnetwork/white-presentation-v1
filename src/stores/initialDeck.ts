@@ -7,6 +7,7 @@ import {
   deckSegmentRevolutionMastery,
   deckSegmentSuites,
   SUITE_2032_SLIDES,
+  deckSegmentSuite2033,
 } from './deckSegments';
 
 export const INITIAL_DECK: PresentationDeck = {
@@ -28,6 +29,7 @@ export const INITIAL_DECK: PresentationDeck = {
     ...deckSegmentRevolutionMastery,
     ...deckSegmentSuites,
     ...SUITE_2032_SLIDES,
+    ...deckSegmentSuite2033,
   ],
 };
 

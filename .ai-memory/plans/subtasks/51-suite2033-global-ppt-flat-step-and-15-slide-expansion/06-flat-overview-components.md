@@ -59,6 +59,6 @@ Implement the 7 Flat Sovereign Overview slide components delivering immediate si
 ---
 
 ## 5. Acceptance Criteria
-- [ ] All 7 components compile cleanly with zero TypeScript errors.
-- [ ] File size of each `.tsx` file is $\le 100$ lines.
-- [ ] Renders fully at step 1 with complete data density and visual balance.
+- [x] All 7 components compile cleanly with zero TypeScript errors.
+- [x] File size of each `.tsx` file is $\le 100$ lines.
+- [x] Renders fully at step 1 with complete data density and visual balance.

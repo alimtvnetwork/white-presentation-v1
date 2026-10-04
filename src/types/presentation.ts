@@ -76,6 +76,11 @@ import type {
   Suite2032SlideType,
   Suite2032SlideData,
 } from './suite2032Archetypes';
+import {
+  type Suite2033SlideType,
+  type Suite2033SlideData,
+  SUITE_2033_SLIDE_TYPES,
+} from './suite2033Archetypes';
 export * from './archetypes';
 export * from './extendedArchetypes';
 export * from './expandedArchetypes';
@@ -99,9 +104,12 @@ export * from './suite2029Archetypes';
 export * from './suite2030Archetypes';
 export * from './suite2031Archetypes';
 export * from './suite2032Archetypes';
+export * from './suite2033Archetypes';
 export type { GoldenPathTemplate } from './nextGenArchetypes';
 export type { IncidentActionNode } from './suite2027Archetypes';
 export type { DistillationStage, Suite2029DistillationStage } from './suite2029Archetypes';
+export type { ShareholderClassItem, Suite2033ShareholderClassItem } from './suite2033Archetypes';
+export type { SaasUnitEconomicsBreakdownSlideData, Suite2033SaasUnitEconomicsBreakdownSlideData } from './suite2033Archetypes';
 
 export type SlideType =
   | 'white-master'
@@ -139,7 +147,8 @@ export type SlideType =
   | Suite2029SlideType
   | Suite2030SlideType
   | Suite2031SlideType
-  | Suite2032SlideType;
+  | Suite2032SlideType
+  | Suite2033SlideType;
 
 export type DockPosition =
   | 'bottom-center'
@@ -403,7 +412,8 @@ export type SlideData =
   | Suite2029SlideData
   | Suite2030SlideData
   | Suite2031SlideData
-  | Suite2032SlideData;
+  | Suite2032SlideData
+  | Suite2033SlideData;
 
 export type Slide = SlideData;
 

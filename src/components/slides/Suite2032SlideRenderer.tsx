@@ -1,6 +1,6 @@
 import React from 'react';
 import type { SlideData } from '../../types/presentation';
-import { WhiteMasterSlide } from './WhiteMasterSlide';
+import { Suite2033SlideRenderer } from './Suite2033SlideRenderer';
 import * as S from './suite2032';
 
 export const Suite2032SlideRenderer: React.FC<{ slide: SlideData; activeStep?: number }> = ({
@@ -23,6 +23,6 @@ export const Suite2032SlideRenderer: React.FC<{ slide: SlideData; activeStep?: n
     case 'risk-opportunity-quadrant': return <S.RiskOpportunityQuadrantSlide slide={slide as any} activeStep={activeStep} />;
     case 'api-spec-terminal-split': return <S.ApiSpecTerminalSplitSlide slide={slide as any} activeStep={activeStep} />;
     case 'commercial-tier-packaging': return <S.CommercialTierPackagingSlide slide={slide as any} activeStep={activeStep} />;
-    default: return <WhiteMasterSlide slide={slide as any} />;
+    default: return <Suite2033SlideRenderer slide={slide} activeStep={activeStep} />;
   }
 };

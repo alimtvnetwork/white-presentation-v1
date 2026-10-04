@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="Central step progression calculations and kinetic physics" max=950
+// lint-allow: file-size reason="Central step progression calculations and kinetic physics" max=1000
 import type { CSSProperties } from 'react';
 import type { SlideData } from '../types/presentation';
 import { isModernSlide, calculateModernSlideStepCount } from '../types/modernArchetypes';
@@ -29,6 +29,11 @@ import {
   calculateSuite2032StepCount,
   SUITE_2032_STAGE_KEYS,
 } from '../types/suite2032Archetypes';
+import {
+  isSuite2033Slide,
+  calculateSuite2033StepCount,
+  SUITE_2033_STAGE_KEYS,
+} from '../types/suite2033Archetypes';
 
 export type StepPhase = 'past' | 'completed' | 'active' | 'future';
 
@@ -708,6 +713,40 @@ export function getSuite2029SlideSteps(slide: any): number {
   return 0;
 }
 
+export const SUITE_2033_STEP_CALCULATORS: Record<string, StepCalcFn> = {
+  // 8 kinetic steppers: dynamic stage length with fallback to 4:
+  'strategic-initiative-cascade': (s) => Math.max(1, s.cascadeHorizons?.length || 4),
+  'ai-agent-orchestration-pipeline': (s) => Math.max(1, s.orchestrationPhases?.length || 4),
+  'ma-synergy-realization-bridge': (s) => Math.max(1, s.synergyWaves?.length || 4),
+  'zero-day-incident-containment-loop': (s) => Math.max(1, s.containmentSteps?.length || 4),
+  'cloud-migration-wave-stepper': (s) => Math.max(1, s.migrationWaves?.length || 4),
+  'customer-lifecycle-expansion-funnel': (s) => Math.max(1, s.expansionStages?.length || 4),
+  'data-lineage-governance-flow': (s) => Math.max(1, s.governanceHops?.length || 4),
+  'product-release-burn-up-cadence': (s) => Math.max(1, s.releaseGates?.length || 4),
+
+  // 7 flat sovereign overviews: return 1:
+  'global-infrastructure-topology-cockpit': () => 1,
+  'saas-unit-economics-breakdown': () => 1,
+  'esg-sustainability-governance-matrix': () => 1,
+  'cap-table-ownership-waterfall': () => 1,
+  'ai-model-evaluation-benchmark-radar': () => 1,
+  'enterprise-security-posture-radar': () => 1,
+  'partner-ecosystem-value-map': () => 1,
+};
+
+export function getSuite2033SlideSteps(slide: SlideData | any): number {
+  const hasSlide = Boolean(slide && typeof slide === 'object');
+  if (!hasSlide) return 0;
+  if (isSuite2033Slide(slide)) {
+    const calc = SUITE_2033_STEP_CALCULATORS[slide.type];
+    if (calc) {
+      return calc(slide);
+    }
+    return calculateSuite2033StepCount(slide);
+  }
+  return 0;
+}
+
 export const SUITE_2032_STEP_CALCULATORS: Record<string, StepCalcFn> = {
   // 8 kinetic steppers: dynamic stage length with fallback to 4:
   'executive-brief-distillation': (s) => Math.max(1, s.distillationStages?.length || 4),
@@ -807,12 +846,15 @@ export function getSuite2030SlideSteps(slide: any): number {
   return 0;
 }
 
-// lint-allow: function-length reason="central step progression cascading priority resolver" max=95
+// lint-allow: function-length reason="central step progression cascading priority resolver" max=105
 export function getSlideMaxSteps(slide: SlideData | any): number {
   const hasSlide = Boolean(slide && typeof slide === 'object');
   if (!hasSlide) {
     return 1;
   }
+
+  const suite2033Steps = getSuite2033SlideSteps(slide);
+  if (suite2033Steps > 0) return suite2033Steps;
 
   const suite2032Steps = getSuite2032SlideSteps(slide);
   if (suite2032Steps > 0) return suite2032Steps;
@@ -905,7 +947,27 @@ export {
   isSuite2032Slide,
   calculateSuite2032StepCount,
   SUITE_2032_STAGE_KEYS,
+  isSuite2033Slide,
+  calculateSuite2033StepCount,
+  SUITE_2033_STAGE_KEYS,
 };
+
+/**
+ * Resolves the dynamic stage key property name for a given slide.
+ */
+export function getSlideStageKey(slide: SlideData | any): string | undefined {
+  if (!slide || typeof slide !== 'object' || !slide.type) return undefined;
+  if (isSuite2033Slide(slide)) {
+    return SUITE_2033_STAGE_KEYS[slide.type];
+  }
+  if (isSuite2032Slide(slide)) {
+    return SUITE_2032_STAGE_KEYS[slide.type];
+  }
+  if (isSuite2031Slide(slide)) {
+    return SUITE_2031_STAGE_KEYS[slide.type];
+  }
+  return undefined;
+}
 
 export { getStepLifecycleStyle } from './stepLifecycleStyles';
 

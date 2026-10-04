@@ -1691,6 +1691,60 @@
   will-change: opacity, box-shadow;
 }
 
+// ============================================================================
+// Suite 2033 GPU Kinetic Keyframes & Utilities
+// ============================================================================
+
+// 1. Radar sweep pulse for spatial scanning, threat monitoring, and topology radars
+@keyframes radarSweepPulse {
+  0% { transform: rotate(0deg); opacity: 0.85; filter: drop-shadow(0 0 4px var(--pres-accent)); }
+  50% { opacity: 0.4; }
+  100% { transform: rotate(360deg); opacity: 0.85; filter: drop-shadow(0 0 12px var(--pres-accent)); }
+}
+
+// 2. Pipeline data flow for streaming ETL, real-time message routing, and event pipelines
+@keyframes pipelineDataFlow {
+  0% { stroke-dashoffset: 200; opacity: 0.35; filter: drop-shadow(0 0 2px var(--pres-accent)); }
+  50% { opacity: 1; filter: drop-shadow(0 0 8px var(--pres-accent)); }
+  100% { stroke-dashoffset: 0; opacity: 0.35; filter: drop-shadow(0 0 2px var(--pres-accent)); }
+}
+
+// 3. Cascade ramp glow for multi-tier liquidity waterfalls, capital tranches, and yield ramps
+@keyframes cascadeRampGlow {
+  0% { background-position: 0% 50%; box-shadow: 0 0 0 rgba(0, 0, 0, 0); }
+  50% { background-position: 100% 50%; box-shadow: 0 0 20px -2px var(--pres-accent-glow); }
+  100% { background-position: 200% 50%; box-shadow: 0 0 0 rgba(0, 0, 0, 0); }
+}
+
+// 4. Metric pulse beacon for distributed node health, consensus telemetry, and edge beacons
+@keyframes metricPulseBeacon {
+  0% { transform: scale(0.96); box-shadow: 0 0 0 0 var(--pres-accent-glow); opacity: 0.8; }
+  70% { transform: scale(1.04); box-shadow: 0 0 0 12px rgba(0, 0, 0, 0); opacity: 1; }
+  100% { transform: scale(0.96); box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); opacity: 0.8; }
+}
+
+.animate-radar-sweep {
+  animation: radarSweepPulse 4s linear infinite;
+  will-change: transform, filter;
+}
+
+.animate-pipeline-flow {
+  animation: pipelineDataFlow 2.5s ease-in-out infinite;
+  will-change: stroke-dashoffset, opacity, filter;
+}
+
+.animate-cascade-glow,
+.animate-cascade-ramp {
+  animation: cascadeRampGlow 3s ease infinite;
+  will-change: background-position, box-shadow;
+}
+
+.animate-beacon-pulse,
+.animate-metric-beacon {
+  animation: metricPulseBeacon 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  will-change: transform, box-shadow, opacity;
+}
+
 // Reduced motion
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
@@ -1698,5 +1752,18 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .animate-radar-sweep,
+  .animate-pipeline-flow,
+  .animate-cascade-glow,
+  .animate-cascade-ramp,
+  .animate-beacon-pulse,
+  .animate-metric-beacon {
+    animation: none !important;
+    transform: none !important;
+    filter: none !important;
+    box-shadow: none !important;
+    stroke-dashoffset: 0 !important;
   }
 }

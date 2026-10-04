@@ -55,7 +55,7 @@ Implement the first 4 Kinetic Multi-Step slide components adhering to the 4-plan
 ---
 
 ## 5. Acceptance Criteria
-- [ ] All 4 components compile with zero TypeScript errors.
-- [ ] File size of each `.tsx` file is $\le 100$ lines.
-- [ ] Step progression responds fluidly to `activeStep` (1 through 4).
-- [ ] Clicking any step card jumps to that step via `onStepChange`.
+- [x] All 4 components compile with zero TypeScript errors.
+- [x] File size of each `.tsx` file is $\le 100$ lines.
+- [x] Step progression responds fluidly to `activeStep` (1 through 4).
+- [x] Clicking any step card jumps to that step via `onStepChange`.

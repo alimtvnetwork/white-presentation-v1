@@ -50,7 +50,7 @@ Define the canonical TypeScript data contracts, interfaces, discriminated unions
 ---
 
 ## 4. Acceptance Criteria
-- [ ] TypeScript compilation passes with zero type errors.
-- [ ] Exactly 15 distinct slide types defined.
-- [ ] 100% positive affirmative booleans throughout all interfaces.
-- [ ] Discriminated union resolves cleanly in TypeScript switch statements.
+- [x] TypeScript compilation passes with zero type errors.
+- [x] Exactly 15 distinct slide types defined.
+- [x] 100% positive affirmative booleans throughout all interfaces.
+- [x] Discriminated union resolves cleanly in TypeScript switch statements.

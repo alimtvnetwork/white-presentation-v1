@@ -43,7 +43,7 @@ Construct the master slide dispatcher `Suite2033SlideRenderer.tsx`, wire it into
 ---
 
 ## 4. Acceptance Criteria
-- [ ] `npm run build` or `pnpm build` (or Vite typecheck) passes with zero errors.
-- [ ] All 15 slides display in the presentation navigator and can be toggled through.
-- [ ] Intra-slide step progression functions on all 8 kinetic multi-step slides.
-- [ ] 7 flat sovereign slides display full content without pagination.
+- [x] `npm run build` or `pnpm build` (or Vite typecheck) passes with zero errors.
+- [x] All 15 slides display in the presentation navigator and can be toggled through.
+- [x] Intra-slide step progression functions on all 8 kinetic multi-step slides.
+- [x] 7 flat sovereign slides display full content without pagination.

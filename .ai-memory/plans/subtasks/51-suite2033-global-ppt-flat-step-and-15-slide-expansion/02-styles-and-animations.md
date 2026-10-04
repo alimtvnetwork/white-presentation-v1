@@ -67,6 +67,6 @@ Implement the 4 signature hardware-accelerated GPU keyframe animations, responsi
 ---
 
 ## 4. Acceptance Criteria
-- [ ] LESS compilation succeeds without syntax errors.
-- [ ] Animations run with zero layout recalculations / layout thrashing.
-- [ ] Dual-mode light/dark themes adapt cleanly without dark slab artifacts.
+- [x] LESS compilation succeeds without syntax errors.
+- [x] Animations run with zero layout recalculations / layout thrashing.
+- [x] Dual-mode light/dark themes adapt cleanly without dark slab artifacts.
