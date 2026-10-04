@@ -237,6 +237,8 @@ import {
   createDeveloperExperienceFrictionIndexHeatmapSlide,
   createGeopoliticalSovereignCloudComplianceCompassSlide,
 } from '../utils/suite2028SlideFactories';
+import { createSuite2029Slides } from '../utils/suite2029SlideFactories';
+import { createSuite2030Slides } from '../utils/suite2030SlideFactories';
 
 export const INITIAL_DECK: PresentationDeck = {
   id: 'white-presentation-v1',
@@ -606,6 +608,8 @@ export const INITIAL_DECK: PresentationDeck = {
     createSaasExpansionRetentionWaterfallGaugeSlide('slide-272'),
     createDeveloperExperienceFrictionIndexHeatmapSlide('slide-273'),
     createGeopoliticalSovereignCloudComplianceCompassSlide('slide-274'),
+    ...createSuite2029Slides(275),
+    ...createSuite2030Slides(290),
   ],
 };
 

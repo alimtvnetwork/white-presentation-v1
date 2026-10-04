@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="authentic 29-theme corporate palette dictionary" max=1350
+// lint-allow: file-size reason="authentic 31-theme corporate palette dictionary" max=1400
 import { GradientStop, ThemePalette } from '../types/presentation';
 import { isBooleanTrue } from '../utils/booleanGuards';
 
@@ -70,6 +70,8 @@ export const CANONICAL_THEME_IDS = [
   'midnight-aurora',
   'global-sapphire-executive',
   'cyber-emerald-aurora',
+  'global-hyper-titanium',
+  'cyber-quantum-amethyst',
 ] as const;
 
 export type CanonicalThemeId = (typeof CANONICAL_THEME_IDS)[number];
@@ -1050,6 +1052,74 @@ export const CANONICAL_THEMES: Record<string, ThemePalette> = {
       makeStop(9, 'Deep Obsidian Void', '#050811', 'hsl(225, 55%, 4%)', 'rgb(5, 8, 17)', 0.02, 1.0, '225 55% 4%'),
     ],
   },
+  'global-hyper-titanium': {
+    id: 'global-hyper-titanium',
+    name: 'Global Hyper Titanium',
+    description: 'Ultra-dense aerospace titanium monochrome with high-precision luminescent slate and sovereign executive contrast.',
+    isDark: true,
+    canvasBg: '#070A10',
+    canvasBgHsl: '220 38% 5%',
+    bgHsl: '220 38% 5%',
+    textColor: '#F8FAFC',
+    textHsl: '210 40% 98%',
+    subtextColor: '#94A3B8',
+    subtextHsl: '215 16% 65%',
+    cardBg: 'rgba(15, 23, 42, 0.88)',
+    cardBgHsl: '222 47% 11%',
+    cardBorder: 'rgba(226, 232, 240, 0.22)',
+    cardBorderHsl: '214 32% 91%',
+    accentColor: '#E2E8F0',
+    accent: '#E2E8F0',
+    accentHsl: '214 32% 91%',
+    dotMatrix: true,
+    headerShadow: 'rgb(0 0 0) 1px 0.7px 0px',
+    stops: [
+      makeStop(0, 'Pure Titanium Glint', '#FFFFFF', 'hsl(0, 0%, 100%)', 'rgb(255, 255, 255)', 1.00, 20.0, '0 0% 100%'),
+      makeStop(1, 'Luminescent Titanium White', '#F8FAFC', 'hsl(210, 40%, 98%)', 'rgb(248, 250, 252)', 0.98, 19.6, '210 40% 98%'),
+      makeStop(2, 'Polished Titanium Sheen', '#E2E8F0', 'hsl(214, 32%, 91%)', 'rgb(226, 232, 240)', 0.88, 17.6, '214 32% 91%'),
+      makeStop(3, 'Brushed Chrome Luster', '#CBD5E1', 'hsl(216, 28%, 84%)', 'rgb(203, 213, 225)', 0.75, 15.0, '216 28% 84%'),
+      makeStop(4, 'Aerospace Alloy Slate', '#94A3B8', 'hsl(215, 16%, 65%)', 'rgb(148, 163, 184)', 0.54, 10.8, '215 16% 65%'),
+      makeStop(5, 'Monolithic Titanium Core', '#64748B', 'hsl(215, 16%, 47%)', 'rgb(100, 116, 139)', 0.38, 7.6, '215 16% 47%'),
+      makeStop(6, 'Hardened Carbon Steel', '#475569', 'hsl(215, 19%, 35%)', 'rgb(71, 85, 105)', 0.24, 4.8, '215 19% 35%'),
+      makeStop(7, 'Dark Titanium Border', '#334155', 'hsl(215, 25%, 27%)', 'rgb(51, 65, 85)', 0.14, 2.8, '215 25% 27%'),
+      makeStop(8, 'Smoked Titanium Plate', '#0F172A', 'hsl(222, 47%, 11%)', 'rgb(15, 23, 42)', 0.06, 1.5, '222 47% 11%'),
+      makeStop(9, 'Deep Titanium Void', '#070A10', 'hsl(220, 38%, 5%)', 'rgb(7, 10, 16)', 0.02, 1.0, '220 38% 5%'),
+    ],
+  },
+  'cyber-quantum-amethyst': {
+    id: 'cyber-quantum-amethyst',
+    name: 'Cyber Quantum Amethyst',
+    description: 'Deep quantum abyss with radiant violet-amethyst lasers and luminescent spectral neon accents.',
+    isDark: true,
+    canvasBg: '#06040C',
+    canvasBgHsl: '260 50% 4%',
+    bgHsl: '260 50% 4%',
+    textColor: '#F8FAFC',
+    textHsl: '210 40% 98%',
+    subtextColor: '#C084FC',
+    subtextHsl: '270 95% 75%',
+    cardBg: 'rgba(18, 11, 31, 0.90)',
+    cardBgHsl: '261 48% 8%',
+    cardBorder: 'rgba(168, 85, 247, 0.28)',
+    cardBorderHsl: '271 91% 65%',
+    accentColor: '#A855F7',
+    accent: '#A855F7',
+    accentHsl: '271 91% 65%',
+    dotMatrix: true,
+    headerShadow: 'rgb(0 0 0) 1px 0.7px 0px',
+    stops: [
+      makeStop(0, 'Luminescent Amethyst Spark', '#FAF5FF', 'hsl(270, 100%, 98%)', 'rgb(250, 245, 255)', 0.98, 19.6, '270 100% 98%'),
+      makeStop(1, 'Radiant Lilac Glint', '#F3E8FF', 'hsl(269, 100%, 95%)', 'rgb(243, 232, 255)', 0.91, 18.2, '269 100% 95%'),
+      makeStop(2, 'Quantum Violet Mist', '#E9D5FF', 'hsl(269, 100%, 92%)', 'rgb(233, 213, 255)', 0.81, 16.2, '269 100% 92%'),
+      makeStop(3, 'Spectral Lavender Foil', '#D8B4FE', 'hsl(270, 95%, 85%)', 'rgb(216, 180, 254)', 0.69, 13.8, '270 95% 85%'),
+      makeStop(4, 'Kinetic Quantum Violet', '#C084FC', 'hsl(270, 95%, 75%)', 'rgb(192, 132, 252)', 0.53, 10.6, '270 95% 75%'),
+      makeStop(5, 'Cyber Amethyst Core', '#A855F7', 'hsl(271, 91%, 65%)', 'rgb(168, 85, 247)', 0.39, 7.8, '271 91% 65%'),
+      makeStop(6, 'Deep Resonant Purple', '#7E22CE', 'hsl(272, 72%, 47%)', 'rgb(126, 34, 206)', 0.23, 4.6, '272 72% 47%'),
+      makeStop(7, 'Nocturnal Amethyst Border', '#581C87', 'hsl(273, 66%, 32%)', 'rgb(88, 28, 135)', 0.13, 2.6, '273 66% 32%'),
+      makeStop(8, 'Smoked Amethyst Card', '#120B1F', 'hsl(261, 48%, 8%)', 'rgb(18, 11, 31)', 0.05, 1.4, '261 48% 8%'),
+      makeStop(9, 'Deep Quantum Void', '#06040C', 'hsl(260, 50%, 4%)', 'rgb(6, 4, 12)', 0.02, 1.0, '260 50% 4%'),
+    ],
+  },
 };
 
 export const THEME_PALETTES: Record<string, ThemePalette> = {
@@ -1110,6 +1180,7 @@ export const THEME_FAMILIES: Record<ThemeFamilyType, readonly string[]> = {
     'cyber-neon',
     'midnight-aurora',
     'cyber-emerald-aurora',
+    'cyber-quantum-amethyst',
   ],
   EditorialArchival: [
     'white-brand',
@@ -1124,6 +1195,7 @@ export const THEME_FAMILIES: Record<ThemeFamilyType, readonly string[]> = {
     'midnight-luxe',
     'crimson-executive',
     'global-executive-gold',
+    'global-hyper-titanium',
   ],
   BioGrowth: [
     'clinical-emerald-light',

@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="Central step progression calculations and kinetic physics" max=800
+// lint-allow: file-size reason="Central step progression calculations and kinetic physics" max=950
 import type { CSSProperties } from 'react';
 import type { SlideData } from '../types/presentation';
 import { isModernSlide, calculateModernSlideStepCount } from '../types/modernArchetypes';
@@ -667,12 +667,80 @@ export function getSuite2028SlideSteps(slide: any): number {
   return 0;
 }
 
-// lint-allow: function-length reason="central step progression cascading priority resolver" max=85
+export const SUITE_2029_STEP_CALCULATORS: Record<string, StepCalcFn> = {
+  // Flat Sovereign Overviews (1 Step)
+  'deep-space-optical-ground-station-mesh': () => 1,
+  'neuromorphic-event-vision-pipeline': () => 1,
+  'zero-emission-hyperscale-cooling-grid': () => 1,
+  'enterprise-ai-safety-red-teaming-evals': () => 1,
+  'multi-region-active-active-failover-radar': () => 1,
+  'ai-agent-swarms-governance-audit-flow': () => 1,
+
+  // Kinetic Multi-Step Workflows
+  'speculative-decoding-inference-engine': (s) => Math.max(1, s.decodingStages?.length || 4),
+  'autonomous-agent-swarm-consensus-loop': (s) => Math.max(1, s.consensusStages?.length || 4),
+  'distributed-consensus-state-replication': (s) => Math.max(1, s.replicationStages?.length || 4),
+  'quantum-resistant-key-exchange-stepper': (s) => Math.max(1, s.keyExchangeStages?.length || 4),
+  'realtime-crossborder-settlement-fabric': (s) => Math.max(1, s.settlementStages?.length || 4),
+  'ebpf-kernel-telemetry-anomaly-flow': (s) => Math.max(1, s.telemetryStages?.length || 4),
+  'rag-continuous-knowledge-distillation-loop': (s) => Math.max(1, s.distillationStages?.length || 4),
+  'confidential-compute-attestation-pipeline': (s) => Math.max(1, s.attestationStages?.length || 4),
+  'high-frequency-order-book-matcher': (s) => Math.max(1, s.matchingStages?.length || 4),
+};
+
+export function getSuite2029SlideSteps(slide: any): number {
+  const hasSlide = Boolean(slide && typeof slide === 'object');
+  if (!hasSlide) return 0;
+  const calc = SUITE_2029_STEP_CALCULATORS[slide.type];
+  if (calc) {
+    return calc(slide);
+  }
+  return 0;
+}
+
+export const SUITE_2030_STEP_CALCULATORS: Record<string, StepCalcFn> = {
+  // 9 kinetic steppers: dynamic stage length with fallback to 4:
+  'neuromorphic-spiking-neural-mesh': (s) => Math.max(1, s.spikingStages?.length || 4),
+  'quantum-annealing-portfolio-optimizer': (s) => Math.max(1, s.annealingStages?.length || 4),
+  'autonomous-synthetic-data-foundry': (s) => Math.max(1, s.foundryStages?.length || 4),
+  'zero-knowledge-rollup-prover-cluster': (s) => Math.max(1, s.proverStages?.length || 4),
+  'photonic-interconnect-optical-mesh': (s) => Math.max(1, s.opticalStages?.length || 4),
+  'decentralized-oracle-consensus-spine': (s) => Math.max(1, s.oracleStages?.length || 4),
+  'ebpf-cloud-native-ddos-shield': (s) => Math.max(1, s.mitigationStages?.length || 4),
+  'enterprise-rag-graph-hybrid-traversal': (s) => Math.max(1, s.traversalStages?.length || 4),
+  'continuous-ai-agent-eval-harness': (s) => Math.max(1, s.evalStages?.length || 4),
+
+  // 6 flat sovereign overviews: return 1:
+  'hyperscale-datacenter-liquid-cooling-telemetry': () => 1,
+  'global-sovereign-ai-compute-reserve-grid': () => 1,
+  'post-quantum-pki-certificate-hierarchy-radar': () => 1,
+  'zero-trust-cloud-workload-entitlement-graph': () => 1,
+  'frontier-multimodal-alignment-matrix': () => 1,
+  'enterprise-saas-efficiency-rule-of-40-quadrant': () => 1,
+};
+
+export function getSuite2030SlideSteps(slide: any): number {
+  const hasSlide = Boolean(slide && typeof slide === 'object');
+  if (!hasSlide) return 0;
+  const calc = SUITE_2030_STEP_CALCULATORS[slide.type];
+  if (calc) {
+    return calc(slide);
+  }
+  return 0;
+}
+
+// lint-allow: function-length reason="central step progression cascading priority resolver" max=95
 export function getSlideMaxSteps(slide: SlideData | any): number {
   const hasSlide = Boolean(slide && typeof slide === 'object');
   if (!hasSlide) {
     return 1;
   }
+
+  const suite2030Steps = getSuite2030SlideSteps(slide);
+  if (suite2030Steps > 0) return suite2030Steps;
+
+  const suite2029Steps = getSuite2029SlideSteps(slide);
+  if (suite2029Steps > 0) return suite2029Steps;
 
   const suite2028Steps = getSuite2028SlideSteps(slide);
   if (suite2028Steps > 0) return suite2028Steps;
@@ -748,6 +816,8 @@ export {
   isSuite2028Slide,
   calculateSuite2028StepCount,
 };
+
+export { getStepLifecycleStyle } from './stepLifecycleStyles';
 
 export type MotionVariant = 'lift' | 'slide' | 'parallax';
 

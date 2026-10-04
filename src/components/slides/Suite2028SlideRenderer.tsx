@@ -1,6 +1,6 @@
 import React from 'react';
 import type { SlideData } from '../../types/presentation';
-import { WhiteMasterSlide } from './WhiteMasterSlide';
+import { Suite2029SlideRenderer } from './Suite2029SlideRenderer';
 import * as S from './suite2028';
 
 export const Suite2028SlideRenderer: React.FC<{ slide: SlideData; activeStep?: number }> = ({
@@ -39,6 +39,6 @@ export const Suite2028SlideRenderer: React.FC<{ slide: SlideData; activeStep?: n
     case 'geopolitical-sovereign-cloud-compliance-compass':
       return <S.GeopoliticalSovereignCloudComplianceCompassSlide slide={slide as any} activeStep={activeStep} />;
     default:
-      return <WhiteMasterSlide slide={slide as any} />;
+      return <Suite2029SlideRenderer slide={slide} activeStep={activeStep} />;
   }
 };

@@ -70,6 +70,8 @@ export * from './globalPptEvolutionFactories';
 export * from './suite2026SlideFactories';
 export * from './suite2027SlideFactories';
 export * from './suite2028SlideFactories';
+export * from './suite2029SlideFactories';
+export * from './suite2030SlideFactories';
 import { EXPANSION_FACTORIES } from './globalPptExpansionFactories';
 import { KINETIC_REVOLUTION_FACTORIES, KINETIC_REVOLUTION_ARCHETYPE_OPTIONS } from './kineticRevolutionFactories';
 import { GLOBAL_PPT_MASTERY_FACTORIES, GLOBAL_PPT_MASTERY_ARCHETYPE_OPTIONS } from './globalPptMasteryFactories';
@@ -114,6 +116,14 @@ import {
   createDeveloperExperienceFrictionIndexHeatmapSlide,
   createGeopoliticalSovereignCloudComplianceCompassSlide,
 } from './suite2028SlideFactories';
+import {
+  SUITE_2029_FACTORIES,
+  SUITE_2029_ARCHETYPE_OPTIONS,
+} from './suite2029SlideFactories';
+import {
+  SUITE_2030_FACTORIES,
+  SUITE_2030_ARCHETYPE_OPTIONS,
+} from './suite2030SlideFactories';
 
 export const ORIGINAL_ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   { type: 'metric-grid', label: 'Metric Grid Matrix', category: 'Strategy & Metrics', desc: '4-6 quantitative KPI cards with delta trends', icon: 'BarChart3' },
@@ -187,6 +197,8 @@ export const ARCHETYPE_OPTIONS: ArchetypeOption[] = [
   ...SUITE_2026_ARCHETYPE_OPTIONS,
   ...SUITE_2027_ARCHETYPE_OPTIONS,
   ...SUITE_2028_ARCHETYPE_OPTIONS,
+  ...SUITE_2029_ARCHETYPE_OPTIONS,
+  ...SUITE_2030_ARCHETYPE_OPTIONS,
 ];
 
 // =============================================================================
@@ -778,6 +790,12 @@ const createFallbackTitleSlide = (id: string): SlideData => ({
 });
 
 export const createArchetypeSlide = (type: SlideType, id = `slide-${Date.now()}`): SlideData => {
+  if (type in SUITE_2030_FACTORIES) {
+    return SUITE_2030_FACTORIES[type as keyof typeof SUITE_2030_FACTORIES](id);
+  }
+  if (type in SUITE_2029_FACTORIES) {
+    return SUITE_2029_FACTORIES[type as keyof typeof SUITE_2029_FACTORIES](id);
+  }
   if (type in SUITE_2028_FACTORIES) {
     return SUITE_2028_FACTORIES[type as keyof typeof SUITE_2028_FACTORIES](id);
   }

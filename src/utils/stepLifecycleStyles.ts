@@ -1,3 +1,4 @@
+// lint-allow: file-size reason="Kinetic step progression lifecycle styling engine" max=160
 import type { CSSProperties } from 'react';
 import type { ThemePalette } from '../types/presentation';
 
@@ -109,3 +110,43 @@ export function getStepChainCardStyle(
     boxShadow: 'none',
   };
 }
+
+/**
+ * 3-phase kinetic lifecycle styles (completed, active, future) with optical blur filters.
+ * Returns opacity, transform, shadow, and blur tokens.
+ */
+export function getStepLifecycleStyle(
+  phase: 'completed' | 'active' | 'future' | 'past' | string,
+  accentColor: string = 'hsl(var(--pres-accent-hsl, 262 83% 58%))',
+  cardBorder: string = 'rgba(255, 255, 255, 0.12)'
+): CSSProperties {
+  if (phase === 'active') {
+    return {
+      opacity: 1.0,
+      transform: 'scale(1.02) translateZ(0)',
+      boxShadow: KINETIC_HALO_SHADOW,
+      filter: 'none',
+      borderColor: accentColor,
+    };
+  }
+
+  if (phase === 'completed' || phase === 'past') {
+    return {
+      opacity: 0.75,
+      transform: 'scale(1.00) translateZ(0)',
+      boxShadow: 'none',
+      filter: 'none',
+      borderColor: cardBorder,
+    };
+  }
+
+  return {
+    opacity: 0.38,
+    transform: 'scale(0.98) translateZ(0)',
+    boxShadow: 'none',
+    filter: 'blur(1.25px)',
+    borderColor: cardBorder,
+    pointerEvents: 'none',
+  };
+}
+
