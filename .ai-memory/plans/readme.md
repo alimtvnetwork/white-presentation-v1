@@ -1,9 +1,10 @@
 # Plans Directory
 
 ## Pending Plans
-- [51-suite2033-global-ppt-flat-step-and-15-slide-expansion.md](pending/51-suite2033-global-ppt-flat-step-and-15-slide-expansion.md)
+*(None)*
 
 ## Completed Plans
+- [51-suite2033-global-ppt-flat-step-and-15-slide-expansion.md](completed/51-suite2033-global-ppt-flat-step-and-15-slide-expansion.md)
 - [50-suite2032-global-ppt-and-15-slide-expansion.md](completed/50-suite2032-global-ppt-and-15-slide-expansion.md)
 - [49-suite2031-kinetic-presentation-expansion.md](completed/49-suite2031-kinetic-presentation-expansion.md)
 - [48-suite2030-kinetic-presentation-expansion.md](completed/48-suite2030-kinetic-presentation-expansion.md)
