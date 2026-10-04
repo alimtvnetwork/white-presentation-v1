@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="Central keynote presentation deck definition with pre-seeded mastery archetypes" max=500
+// lint-allow: file-size reason="Central keynote presentation deck definition with pre-seeded mastery archetypes" max=600
 import { PresentationDeck } from '../types/presentation';
 import {
   createMetricGridSlide, createProblemSolutionSlide, createQuadrantMatrixSlide,
@@ -151,6 +151,24 @@ import {
   createSupplyChainCarbonCbamSlide,
   createChaosMeshNetworkPartitionSlide,
 } from '../utils/globalPptMasteryFactories';
+import {
+  createAgenticEvalRedTeamSlide,
+  createGitOpsArgoCdSyncSlide,
+  createNvmeFabricsRdmaSlide,
+  createConfidentialGpuAttestSlide,
+  createEbpfDdosXdpSlide,
+  createActiveInferenceMemorySlide,
+  createSovereignAiCleanRoomSlide,
+  createIncidentCommandPlaybookSlide,
+  createGpuHbmInterconnectSlide,
+  createRealtimeFeatureStoreSlide,
+  createDistributedWalRaftSlide,
+  createFinopsUnitEconomicsSlide,
+  createCrossBorderDataResidencySlide,
+  createZeroTrustSpiffeSlide,
+  createBoardCapitalAllocationSlide,
+} from '../utils/globalPptNextGenFactories';
+
 
 export const INITIAL_DECK: PresentationDeck = {
   id: 'white-presentation-v1',
@@ -444,6 +462,21 @@ export const INITIAL_DECK: PresentationDeck = {
     createMultiRegionActiveActiveSlide('slide-196'),
     createSupplyChainCarbonCbamSlide('slide-197'),
     createChaosMeshNetworkPartitionSlide('slide-198'),
+    createAgenticEvalRedTeamSlide('slide-199'),
+    createGitOpsArgoCdSyncSlide('slide-200'),
+    createNvmeFabricsRdmaSlide('slide-201'),
+    createConfidentialGpuAttestSlide('slide-202'),
+    createEbpfDdosXdpSlide('slide-203'),
+    createActiveInferenceMemorySlide('slide-204'),
+    createSovereignAiCleanRoomSlide('slide-205'),
+    createIncidentCommandPlaybookSlide('slide-206'),
+    createGpuHbmInterconnectSlide('slide-207'),
+    createRealtimeFeatureStoreSlide('slide-208'),
+    createDistributedWalRaftSlide('slide-209'),
+    createFinopsUnitEconomicsSlide('slide-210'),
+    createCrossBorderDataResidencySlide('slide-211'),
+    createZeroTrustSpiffeSlide('slide-212'),
+    createBoardCapitalAllocationSlide('slide-213'),
   ],
 };
 

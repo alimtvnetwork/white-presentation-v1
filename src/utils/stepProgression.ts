@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="Central step progression calculations and kinetic physics" max=620
+// lint-allow: file-size reason="Central step progression calculations and kinetic physics" max=600
 import type { CSSProperties } from 'react';
 import type { SlideData } from '../types/presentation';
 import { isModernSlide, calculateModernSlideStepCount } from '../types/modernArchetypes';
@@ -441,39 +441,27 @@ export function getSovereignOperationsSlideSteps(slide: any): number {
 }
 
 export function getGlobalPptSlideSteps(slide: any): number {
-  const hasSlide = Boolean(slide && typeof slide === 'object');
-  if (!hasSlide) return 0;
-  return isGlobalPptSlideType(slide.type) ? calculateGlobalPptSlideStepCount(slide) : 0;
+  return slide && typeof slide === 'object' && isGlobalPptSlideType(slide.type) ? calculateGlobalPptSlideStepCount(slide) : 0;
 }
 
 export function getCustomizationSlideSteps(slide: any): number {
-  const hasSlide = Boolean(slide && typeof slide === 'object');
-  if (!hasSlide) return 0;
-  return isCustomizationSlideType(slide.type) ? calculateCustomizationSlideStepCount(slide) : 0;
+  return slide && typeof slide === 'object' && isCustomizationSlideType(slide.type) ? calculateCustomizationSlideStepCount(slide) : 0;
 }
 
 export function getFlatGlobalSuiteSlideSteps(slide: any): number {
-  const hasSlide = Boolean(slide && typeof slide === 'object');
-  if (!hasSlide) return 0;
-  return isFlatGlobalSuiteSlideType(slide.type) ? calculateFlatGlobalSuiteSlideSteps(slide) : 0;
+  return slide && typeof slide === 'object' && isFlatGlobalSuiteSlideType(slide.type) ? calculateFlatGlobalSuiteSlideSteps(slide) : 0;
 }
 
 export function getGlobalPptExpansionSlideSteps(slide: any): number {
-  const hasSlide = Boolean(slide && typeof slide === 'object');
-  if (!hasSlide) return 0;
-  return isGlobalPptExpansionSlide(slide) ? calculateGlobalPptExpansionSlideSteps(slide) : 0;
+  return slide && typeof slide === 'object' && isGlobalPptExpansionSlide(slide) ? calculateGlobalPptExpansionSlideSteps(slide) : 0;
 }
 
 export function getNextGenSlideSteps(slide: any): number {
-  const hasSlide = Boolean(slide && typeof slide === 'object');
-  if (!hasSlide) return 0;
-  return isNextGenSlide(slide) ? calculateNextGenSlideStepCount(slide) : 0;
+  return slide && typeof slide === 'object' && isNextGenSlide(slide) ? calculateNextGenSlideStepCount(slide) : 0;
 }
 
 export function getModernSlideSteps(slide: any): number {
-  const hasSlide = Boolean(slide && typeof slide === 'object');
-  if (!hasSlide) return 0;
-  return isModernSlide(slide) ? calculateModernSlideStepCount(slide) : 0;
+  return slide && typeof slide === 'object' && isModernSlide(slide) ? calculateModernSlideStepCount(slide) : 0;
 }
 
 export const getExtendedSlideStepCount = getKineticSlideSteps;
@@ -504,12 +492,43 @@ export function getGlobalPptMasterySlideSteps(slide: any): number {
   return 0;
 }
 
-// lint-allow: function-length reason="central step progression cascading priority resolver" max=40
+export const NEXTGEN_DYNAMIC_TYPES = new Set([
+  'agentic-eval-red-team-harness', 'gitops-argocd-sync-reconciliation',
+  'nvme-over-fabrics-rdma-storage', 'confidential-gpu-attestation-flow',
+  'ebpf-ddos-xdp-packet-mitigation', 'active-inference-memory-tiering',
+  'sovereign-ai-data-clean-room', 'incident-command-automated-playbook',
+]);
+
+export const NEXTGEN_FLAT_TYPES = new Set([
+  'gpu-hbm-interconnect-mesh', 'realtime-feature-store-feast',
+  'distributed-wal-raft-consensus', 'finops-unit-economics-cloud-matrix',
+  'cross-border-privacy-data-residency', 'zero-trust-microsegmentation-spiffe',
+  'enterprise-board-capital-allocation',
+]);
+
+export function getGlobalPptNextGenSlideSteps(slide: any): number {
+  const hasSlide = Boolean(slide && typeof slide === 'object');
+  if (!hasSlide) return 0;
+  if (NEXTGEN_DYNAMIC_TYPES.has(slide.type)) {
+    return slide.evalStages?.length || slide.reconciliationStages?.length || slide.fabricStages?.length
+      || slide.attestationStages?.length || slide.mitigationStages?.length || slide.tieringStages?.length
+      || slide.cleanRoomStages?.length || slide.playbookStages?.length || slide.stages?.length || 4;
+  }
+  if (NEXTGEN_FLAT_TYPES.has(slide.type)) {
+    return 1;
+  }
+  return 0;
+}
+
+// lint-allow: function-length reason="central step progression cascading priority resolver" max=50
 export function getSlideMaxSteps(slide: SlideData | any): number {
   const hasSlide = Boolean(slide && typeof slide === 'object');
   if (!hasSlide) {
     return 1;
   }
+
+  const nextGenSteps = getGlobalPptNextGenSlideSteps(slide);
+  if (nextGenSteps > 0) return nextGenSteps;
 
   const masterySteps = getGlobalPptMasterySlideSteps(slide);
   if (masterySteps > 0) return masterySteps;

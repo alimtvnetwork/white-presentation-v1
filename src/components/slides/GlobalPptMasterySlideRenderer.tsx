@@ -1,6 +1,7 @@
 import React from 'react';
 import type { SlideData } from '../../types/presentation';
 import { WhiteMasterSlide } from './WhiteMasterSlide';
+import { GlobalPptNextGenSlideRenderer } from './GlobalPptNextGenSlideRenderer';
 import {
   LlmAgenticWorkflowSlide,
   ZeroDowntimeBlueGreenSlide,
@@ -52,6 +53,6 @@ export const GlobalPptMasterySlideRenderer: React.FC<{ slide: SlideData }> = ({ 
     case 'chaos-mesh-network-partition-drill':
       return <ChaosMeshNetworkPartitionSlide slide={slide as any} />;
     default:
-      return <WhiteMasterSlide slide={slide as any} />;
+      return <GlobalPptNextGenSlideRenderer slide={slide as any} />;
   }
 };

@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="authentic 22-theme corporate palette dictionary" max=1000
+// lint-allow: file-size reason="authentic 23-theme corporate palette dictionary" max=600
 import { GradientStop, ThemePalette } from '../types/presentation';
 import { isBooleanTrue } from '../utils/booleanGuards';
 
