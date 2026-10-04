@@ -154,6 +154,8 @@ function getKnownLightAccent(themeId: string): string | null {
   if (themeId === 'corporate-clean') return '#4338CA';
   if (themeId === 'clinical-emerald-light') return '#047857';
   if (themeId === 'ivory-gold') return '#B45309';
+  if (themeId === 'warm-editorial-terracotta') return '#9A3412';
+  if (themeId === 'sapphire-executive-light') return '#1E40AF';
   return null;
 }
 
