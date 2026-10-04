@@ -1355,7 +1355,7 @@ export interface ExecutiveCompensationClawbackMatrixSlideData extends BaseSlide 
   hurdleMetrics: ExecutiveHurdleMetric[];
   clawbackCovenants: ClawbackCovenantRule[];
   hasSecRule10D1Compliant: boolean;
-  hasNoFaultEnforcement: boolean;
+  hasStrictFaultEnforcement: boolean;
   hasBoardCommitteeCertified: boolean;
 }
 ```
@@ -1412,7 +1412,7 @@ export interface ExecutiveCompensationClawbackMatrixSlideData extends BaseSlide 
   "leadArchitect": "Alim Ul Karim",
   "leadRole": "Chief Software Engineer",
   "hasSecRule10D1Compliant": true,
-  "hasNoFaultEnforcement": true,
+  "hasStrictFaultEnforcement": true,
   "hasBoardCommitteeCertified": true,
   "clawbackStages": [
     {
