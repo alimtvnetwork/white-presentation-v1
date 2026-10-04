@@ -19,6 +19,10 @@ import {
   isSuite2028Slide,
   calculateSuite2028StepCount,
 } from '../types/suite2028Archetypes';
+import {
+  isSuite2031Slide,
+  calculateSuite2031StepCount,
+} from '../types/suite2031Archetypes';
 
 export type StepPhase = 'past' | 'completed' | 'active' | 'future';
 
@@ -698,6 +702,40 @@ export function getSuite2029SlideSteps(slide: any): number {
   return 0;
 }
 
+export const SUITE_2031_STEP_CALCULATORS: Record<string, StepCalcFn> = {
+  // 9 kinetic steppers: dynamic stage length with fallback to 4:
+  'dna-data-storage-codec-pipeline': (s) => Math.max(1, s.codecStages?.length || 4),
+  'superconducting-qubit-calibration-flow': (s) => Math.max(1, s.calibrationStages?.length || 4),
+  'wafer-scale-engine-interconnect-routing': (s) => Math.max(1, s.routingStages?.length || 4),
+  'decentralized-ai-compute-slashing-protocol': (s) => Math.max(1, s.slashingStages?.length || 4),
+  'orbital-laser-satellite-constellation-routing': (s) => Math.max(1, s.constellationStages?.length || 4),
+  'agentic-codebase-migration-factory': (s) => Math.max(1, s.migrationStages?.length || 4),
+  'chiplet-uci-e-interconnect-pipeline': (s) => Math.max(1, s.chipletStages?.length || 4),
+  'ambient-iot-energy-harvesting-telemetry': (s) => Math.max(1, s.harvestingStages?.length || 4),
+  'federated-homomorphic-analytics-enclave': (s) => Math.max(1, s.enclaveStages?.length || 4),
+
+  // 6 flat sovereign overviews: return 1:
+  'geothermal-nuclear-smr-datacenter-grid': () => 1,
+  'spaceborne-ai-edge-payload-telemetry': () => 1,
+  'sovereign-ai-silicon-supply-chain-chokepoint-radar': () => 1,
+  'neuromorphic-brain-computer-interface-telemetry': () => 1,
+  'autonomous-cyber-threat-hunting-matrix': () => 1,
+  'enterprise-ai-total-cost-of-ownership-quadrant': () => 1,
+};
+
+export function getSuite2031SlideSteps(slide: SlideData | any): number {
+  const hasSlide = Boolean(slide && typeof slide === 'object');
+  if (!hasSlide) return 0;
+  if (isSuite2031Slide(slide)) {
+    const calc = SUITE_2031_STEP_CALCULATORS[slide.type];
+    if (calc) {
+      return calc(slide);
+    }
+    return calculateSuite2031StepCount(slide);
+  }
+  return 0;
+}
+
 export const SUITE_2030_STEP_CALCULATORS: Record<string, StepCalcFn> = {
   // 9 kinetic steppers: dynamic stage length with fallback to 4:
   'neuromorphic-spiking-neural-mesh': (s) => Math.max(1, s.spikingStages?.length || 4),
@@ -735,6 +773,9 @@ export function getSlideMaxSteps(slide: SlideData | any): number {
   if (!hasSlide) {
     return 1;
   }
+
+  const suite2031Steps = getSuite2031SlideSteps(slide);
+  if (suite2031Steps > 0) return suite2031Steps;
 
   const suite2030Steps = getSuite2030SlideSteps(slide);
   if (suite2030Steps > 0) return suite2030Steps;

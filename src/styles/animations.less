@@ -1494,6 +1494,129 @@
   will-change: transform, opacity, filter;
 }
 
+// =============================================================================
+// Suite 2031 GPU Keyframe Animations (Chapter 49)
+// =============================================================================
+
+@keyframes quantumInterferenceShimmer {
+  0% {
+    filter: brightness(1) drop-shadow(0 0 0px hsl(var(--pres-accent-hsl, 234 89% 74%) / 0));
+    transform: perspective(1000px) translate3d(0, 0, 0) scale3d(1, 1, 1);
+  }
+  33% {
+    filter: brightness(1.25) drop-shadow(0 0 14px hsl(var(--pres-accent-hsl, 234 89% 74%) / 0.55));
+    transform: perspective(1000px) translate3d(0, -2px, 6px) scale3d(1.015, 1.015, 1);
+  }
+  66% {
+    filter: brightness(0.95) drop-shadow(0 0 6px hsl(var(--pres-accent-hsl, 234 89% 74%) / 0.25));
+    transform: perspective(1000px) translate3d(0, 1px, -2px) scale3d(0.995, 0.995, 1);
+  }
+  100% {
+    filter: brightness(1) drop-shadow(0 0 0px hsl(var(--pres-accent-hsl, 234 89% 74%) / 0));
+    transform: perspective(1000px) translate3d(0, 0, 0) scale3d(1, 1, 1);
+  }
+}
+
+@keyframes gravitonLensingDistort {
+  0% {
+    transform: perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);
+    box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.25);
+  }
+  25% {
+    transform: perspective(1200px) rotateX(1.8deg) rotateY(-2.2deg) scale3d(1.02, 1.02, 1);
+    box-shadow: 0 12px 32px -4px hsl(var(--pres-accent-hsl, 234 89% 74%) / 0.35);
+  }
+  50% {
+    transform: perspective(1200px) rotateX(-1.5deg) rotateY(1.8deg) scale3d(1.025, 1.025, 1);
+    box-shadow: 0 16px 40px -6px hsl(var(--pres-accent-hsl, 234 89% 74%) / 0.45);
+  }
+  75% {
+    transform: perspective(1200px) rotateX(1.2deg) rotateY(1.5deg) scale3d(1.01, 1.01, 1);
+    box-shadow: 0 10px 28px -4px hsl(var(--pres-accent-hsl, 234 89% 74%) / 0.3);
+  }
+  100% {
+    transform: perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);
+    box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.25);
+  }
+}
+
+@keyframes tachyonBeamTraverse {
+  0% {
+    transform: perspective(1000px) translate3d(-100%, 0, 0) skewX(-20deg) scale3d(0.9, 1, 1);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.95;
+    filter: brightness(1.4) drop-shadow(0 0 12px var(--pres-accent));
+  }
+  80% {
+    opacity: 0.95;
+    filter: brightness(1.4) drop-shadow(0 0 12px var(--pres-accent));
+  }
+  100% {
+    transform: perspective(1000px) translate3d(200%, 0, 0) skewX(-20deg) scale3d(1.1, 1, 1);
+    opacity: 0;
+  }
+}
+
+@keyframes plasmaFluxPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 hsl(var(--pres-accent-hsl, 234 89% 74%) / 0.35),
+                inset 0 0 6px hsl(var(--pres-accent-hsl, 234 89% 74%) / 0.2);
+    filter: brightness(1);
+    transform: perspective(1000px) translate3d(0, 0, 0) scale3d(1, 1, 1);
+  }
+  50% {
+    box-shadow: 0 0 32px 8px hsl(var(--pres-accent-hsl, 234 89% 74%) / 0.65),
+                inset 0 0 18px hsl(var(--pres-accent-hsl, 234 89% 74%) / 0.4);
+    filter: brightness(1.3);
+    transform: perspective(1000px) translate3d(0, -2px, 8px) scale3d(1.02, 1.02, 1);
+  }
+}
+
+@keyframes cryoCrystallineSnap {
+  0% {
+    transform: perspective(1000px) translate3d(0, 14px, -10px) scale3d(0.96, 0.96, 1);
+    opacity: 0.3;
+    filter: blur(3px) brightness(0.9);
+  }
+  60% {
+    transform: perspective(1000px) translate3d(0, -2px, 4px) scale3d(1.02, 1.02, 1);
+    opacity: 1;
+    filter: blur(0px) brightness(1.2);
+  }
+  100% {
+    transform: perspective(1000px) translate3d(0, 0, 0) scale3d(1, 1, 1);
+    opacity: 1;
+    filter: blur(0px) brightness(1);
+  }
+}
+
+.animate-quantum-interference {
+  animation: quantumInterferenceShimmer 3.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  will-change: transform, filter;
+}
+
+.animate-graviton-lensing {
+  animation: gravitonLensingDistort 6.4s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+  will-change: transform, box-shadow;
+}
+
+.animate-tachyon-beam {
+  animation: tachyonBeamTraverse 2.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  will-change: transform, opacity, filter;
+}
+
+.animate-plasma-flux {
+  animation: plasmaFluxPulse 2.8s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
+  will-change: transform, box-shadow, filter;
+}
+
+.animate-cryo-snap {
+  animation: cryoCrystallineSnap 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity, filter;
+}
+
 // Reduced motion
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {

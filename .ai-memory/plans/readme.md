@@ -1,7 +1,7 @@
 # Plans Directory
 
 ## Pending Plans
-None.
+- [49-suite2031-kinetic-presentation-expansion.md](49-suite2031-kinetic-presentation-expansion.md)
 
 ## Completed Plans
 - [48-suite2030-kinetic-presentation-expansion.md](completed/48-suite2030-kinetic-presentation-expansion.md)

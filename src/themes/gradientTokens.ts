@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="authentic 31-theme corporate palette dictionary" max=1400
+// lint-allow: file-size reason="authentic 33-theme corporate palette dictionary" max=1450
 import { GradientStop, ThemePalette } from '../types/presentation';
 import { isBooleanTrue } from '../utils/booleanGuards';
 
@@ -72,6 +72,8 @@ export const CANONICAL_THEME_IDS = [
   'cyber-emerald-aurora',
   'global-hyper-titanium',
   'cyber-quantum-amethyst',
+  'global-stellar-plasma',
+  'archival-monaco-cream',
 ] as const;
 
 export type CanonicalThemeId = (typeof CANONICAL_THEME_IDS)[number];
@@ -1120,6 +1122,74 @@ export const CANONICAL_THEMES: Record<string, ThemePalette> = {
       makeStop(9, 'Deep Quantum Void', '#06040C', 'hsl(260, 50%, 4%)', 'rgb(6, 4, 12)', 0.02, 1.0, '260 50% 4%'),
     ],
   },
+  'global-stellar-plasma': {
+    id: 'global-stellar-plasma',
+    name: 'Global Stellar Plasma',
+    description: 'Deep cosmic stellar void with radiant plasma cyan-violet fusion, high-luminance telemetry glints, and sovereign astrophysic keynote authority.',
+    isDark: true,
+    canvasBg: '#04060C',
+    canvasBgHsl: '225 50% 5%',
+    bgHsl: '225 50% 5%',
+    textColor: '#F8FAFC',
+    textHsl: '210 40% 98%',
+    subtextColor: '#A5B4FC',
+    subtextHsl: '228 100% 82%',
+    cardBg: 'rgba(13, 17, 34, 0.90)',
+    cardBgHsl: '229 45% 9%',
+    cardBorder: 'rgba(129, 140, 248, 0.28)',
+    cardBorderHsl: '234 89% 74%',
+    accentColor: '#818CF8',
+    accent: '#818CF8',
+    accentHsl: '234 89% 74%',
+    dotMatrix: true,
+    headerShadow: 'rgb(0 0 0) 1px 0.7px 0px',
+    stops: [
+      makeStop(0, 'Stellar Glint White', '#FFFFFF', 'hsl(0, 0%, 100%)', 'rgb(255, 255, 255)', 1.00, 20.0, '0 0% 100%'),
+      makeStop(1, 'Radiant Plasma Luminescence', '#F0F4FF', 'hsl(224, 100%, 97%)', 'rgb(240, 244, 255)', 0.94, 18.8, '224 100% 97%'),
+      makeStop(2, 'Ionized Stellar Cyan', '#C7D2FE', 'hsl(226, 100%, 89%)', 'rgb(199, 210, 254)', 0.82, 16.4, '226 100% 89%'),
+      makeStop(3, 'Plasma Beam Violet', '#818CF8', 'hsl(234, 89%, 74%)', 'rgb(129, 140, 248)', 0.65, 13.0, '234 89% 74%'),
+      makeStop(4, 'Kinetic Cosmic Core', '#6366F1', 'hsl(239, 84%, 67%)', 'rgb(99, 102, 241)', 0.52, 10.4, '239 84% 67%'),
+      makeStop(5, 'Deep Stellar Fusion', '#4F46E5', 'hsl(243, 75%, 59%)', 'rgb(79, 70, 229)', 0.38, 7.6, '243 75% 59%'),
+      makeStop(6, 'Pulsar Magnetosphere', '#3730A3', 'hsl(244, 55%, 41%)', 'rgb(55, 48, 163)', 0.24, 4.8, '244 55% 41%'),
+      makeStop(7, 'Sub-Orbital Boundary', '#1E1B4B', 'hsl(244, 47%, 20%)', 'rgb(30, 27, 75)', 0.14, 2.8, '244 47% 20%'),
+      makeStop(8, 'Smoked Stellar Card Base', '#0D1122', 'hsl(229, 45%, 9%)', 'rgb(13, 17, 34)', 0.06, 1.5, '229 45% 9%'),
+      makeStop(9, 'Deep Cosmic Void', '#04060C', 'hsl(225, 50%, 5%)', 'rgb(4, 6, 12)', 0.02, 1.0, '225 50% 5%'),
+    ],
+  },
+  'archival-monaco-cream': {
+    id: 'archival-monaco-cream',
+    name: 'Archival Monaco Cream',
+    description: 'Prestigious Mediterranean archival ivory cream, sovereign terracotta-gold embossing, classical high-fidelity typography, and Riviera luxury heritage.',
+    isDark: false,
+    canvasBg: '#FDFBF7',
+    canvasBgHsl: '40 50% 98%',
+    bgHsl: '40 50% 98%',
+    textColor: '#1A1510',
+    textHsl: '30 24% 8%',
+    subtextColor: '#786D5F',
+    subtextHsl: '36 12% 42%',
+    cardBg: 'rgba(255, 253, 250, 0.94)',
+    cardBgHsl: '38 60% 99%',
+    cardBorder: 'rgba(180, 83, 9, 0.20)',
+    cardBorderHsl: '36 90% 37%',
+    accentColor: '#B45309',
+    accent: '#B45309',
+    accentHsl: '36 90% 37%',
+    dotMatrix: false,
+    headerShadow: 'rgb(255 255 255) 1px 0.7px 0px',
+    stops: [
+      makeStop(0, 'Monaco Alabaster Canvas', '#FDFBF7', 'hsl(40, 50%, 98%)', 'rgb(253, 251, 247)', 0.99, 1.0, '40 50% 98%'),
+      makeStop(1, 'Warm Ivory Sheen', '#F8F4EB', 'hsl(42, 45%, 95%)', 'rgb(248, 244, 235)', 0.94, 1.05, '42 45% 95%'),
+      makeStop(2, 'Archival Parchment Surface', '#F0E8D5', 'hsl(41, 46%, 89%)', 'rgb(240, 232, 213)', 0.85, 1.18, '41 46% 89%'),
+      makeStop(3, 'Champagne Gold Mist', '#E2D4B7', 'hsl(40, 42%, 80%)', 'rgb(226, 212, 183)', 0.74, 1.35, '40 42% 80%'),
+      makeStop(4, 'Riviera Terracotta Wash', '#C99A6B', 'hsl(30, 48%, 60%)', 'rgb(201, 154, 107)', 0.55, 1.82, '30 48% 60%'),
+      makeStop(5, 'Sovereign Monaco Terracotta', '#B45309', 'hsl(36, 90%, 37%)', 'rgb(180, 83, 9)', 0.36, 2.78, '36 90% 37%'),
+      makeStop(6, 'Deep Archival Umber', '#8D3D06', 'hsl(24, 92%, 29%)', 'rgb(141, 61, 6)', 0.24, 4.17, '24 92% 29%'),
+      makeStop(7, 'Muted Sepia Quill', '#574738', 'hsl(29, 21%, 28%)', 'rgb(87, 71, 56)', 0.16, 6.25, '29 21% 28%'),
+      makeStop(8, 'Charcoal Espresso Shadow', '#2E241B', 'hsl(28, 26%, 15%)', 'rgb(46, 36, 27)', 0.09, 11.1, '28 26% 15%'),
+      makeStop(9, 'Deep Monaco Ink', '#1A1510', 'hsl(30, 24%, 8%)', 'rgb(26, 21, 16)', 0.04, 24.8, '30 24% 8%'),
+    ],
+  },
 };
 
 export const THEME_PALETTES: Record<string, ThemePalette> = {
@@ -1181,12 +1251,14 @@ export const THEME_FAMILIES: Record<ThemeFamilyType, readonly string[]> = {
     'midnight-aurora',
     'cyber-emerald-aurora',
     'cyber-quantum-amethyst',
+    'global-stellar-plasma',
   ],
   EditorialArchival: [
     'white-brand',
     'paper-ink',
     'warm-editorial-terracotta',
     'nord-frost',
+    'archival-monaco-cream',
   ],
   ExecutivePrestige: [
     'ivory-gold',
