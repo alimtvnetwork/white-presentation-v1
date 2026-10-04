@@ -149,16 +149,21 @@ export function isYellowish(color: string): boolean {
   return r >= 180 && g >= 140 && b <= 110;
 }
 
+const KNOWN_LIGHT_ACCENTS: Record<string, string> = {
+  'github-light': '#0969DA',
+  'paper-ink': '#8A5A0E',
+  'white-brand': '#6D28D9',
+  'corporate-clean': '#4338CA',
+  'clinical-emerald-light': '#047857',
+  'ivory-gold': '#B45309',
+  'warm-editorial-terracotta': '#9A3412',
+  'sapphire-executive-light': '#1E40AF',
+  'global-executive-gold': '#B45309',
+  'midnight-aurora': '#0F766E',
+};
+
 function getKnownLightAccent(themeId: string): string | null {
-  if (themeId === 'github-light') return '#0969DA';
-  if (themeId === 'paper-ink') return '#8A5A0E';
-  if (themeId === 'white-brand') return '#6D28D9';
-  if (themeId === 'corporate-clean') return '#4338CA';
-  if (themeId === 'clinical-emerald-light') return '#047857';
-  if (themeId === 'ivory-gold') return '#B45309';
-  if (themeId === 'warm-editorial-terracotta') return '#9A3412';
-  if (themeId === 'sapphire-executive-light') return '#1E40AF';
-  return null;
+  return KNOWN_LIGHT_ACCENTS[themeId] || null;
 }
 
 export function resolveAccentTextColor(theme: ThemePalette, isDark: boolean): string {

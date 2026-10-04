@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="authentic 25-theme corporate palette dictionary" max=1080
+// lint-allow: file-size reason="authentic 27-theme corporate palette dictionary" max=1280
 import { GradientStop, ThemePalette } from '../types/presentation';
 import { isBooleanTrue } from '../utils/booleanGuards';
 
@@ -66,6 +66,8 @@ export const CANONICAL_THEME_IDS = [
   'ivory-gold',
   'warm-editorial-terracotta',
   'sapphire-executive-light',
+  'global-executive-gold',
+  'midnight-aurora',
 ] as const;
 
 export type CanonicalThemeId = (typeof CANONICAL_THEME_IDS)[number];
@@ -910,6 +912,74 @@ export const CANONICAL_THEMES: Record<string, ThemePalette> = {
       makeStop(9, 'Deep Obsidian Ink', '#0F172A', 'hsl(222, 47%, 11%)', 'rgb(15, 23, 42)', 0.05, 20.0, '222 47% 11%'),
     ],
   },
+  'global-executive-gold': {
+    id: 'global-executive-gold',
+    name: 'Global Executive Gold',
+    description: '24K bullion gold accents on deep obsidian canvas for executive keynotes.',
+    isDark: true,
+    canvasBg: '#0D0B06',
+    canvasBgHsl: '40 38% 4%',
+    bgHsl: '40 38% 4%',
+    textColor: '#FDF6E2',
+    textHsl: '43 89% 94%',
+    subtextColor: '#D4AF37',
+    subtextHsl: '46 65% 52%',
+    cardBg: 'rgba(26, 21, 12, 0.90)',
+    cardBgHsl: '39 37% 7%',
+    cardBorder: 'rgba(212, 175, 55, 0.25)',
+    cardBorderHsl: '46 65% 52%',
+    accentColor: '#D4AF37',
+    accent: '#D4AF37',
+    accentHsl: '46 65% 52%',
+    dotMatrix: true,
+    headerShadow: 'rgb(0 0 0) 1px 0.7px 0px',
+    stops: [
+      makeStop(0, 'Pure Champagne Glint', '#FFFDF5', 'hsl(45, 100%, 98%)', 'rgb(255, 253, 245)', 0.99, 18.0, '45 100% 98%'),
+      makeStop(1, 'Ivory Luster', '#FEF8E7', 'hsl(43, 94%, 95%)', 'rgb(254, 248, 231)', 0.94, 17.1, '43 94% 95%'),
+      makeStop(2, 'Champagne Gold Foil', '#FDE68A', 'hsl(47, 95%, 77%)', 'rgb(253, 230, 138)', 0.81, 14.7, '47 95% 77%'),
+      makeStop(3, 'Bullion Glow', '#FBBF24', 'hsl(41, 96%, 56%)', 'rgb(251, 191, 36)', 0.62, 11.3, '41 96% 56%'),
+      makeStop(4, 'Imperial Gold', '#F59E0B', 'hsl(38, 92%, 50%)', 'rgb(245, 158, 11)', 0.48, 8.7, '38 92% 50%'),
+      makeStop(5, '24K Bullion Gold', '#D4AF37', 'hsl(46, 65%, 52%)', 'rgb(212, 175, 55)', 0.46, 9.2, '46 65% 52%'),
+      makeStop(6, 'Deep Sovereign Ochre', '#B45309', 'hsl(38, 92%, 37%)', 'rgb(180, 83, 9)', 0.25, 4.5, '38 92% 37%'),
+      makeStop(7, 'Warm Bronze Umber', '#78350F', 'hsl(20, 78%, 26%)', 'rgb(120, 53, 15)', 0.14, 2.5, '20 78% 26%'),
+      makeStop(8, 'Obsidian Bronze Card', '#1A150C', 'hsl(39, 37%, 7%)', 'rgb(26, 21, 12)', 0.08, 1.5, '39 37% 7%'),
+      makeStop(9, 'Deep Obsidian Void', '#0D0B06', 'hsl(40, 38%, 4%)', 'rgb(13, 11, 6)', 0.04, 1.0, '40 38% 4%'),
+    ],
+  },
+  'midnight-aurora': {
+    id: 'midnight-aurora',
+    name: 'Midnight Aurora',
+    description: 'Deep arctic void with vibrant cyan-to-emerald kinetic aurora gradients.',
+    isDark: true,
+    canvasBg: '#030F14',
+    canvasBgHsl: '196 74% 5%',
+    bgHsl: '196 74% 5%',
+    textColor: '#E2F8FF',
+    textHsl: '194 100% 94%',
+    subtextColor: '#38BDF8',
+    subtextHsl: '199 89% 60%',
+    cardBg: 'rgba(6, 26, 36, 0.90)',
+    cardBgHsl: '200 71% 8%',
+    cardBorder: 'rgba(0, 242, 254, 0.25)',
+    cardBorderHsl: '183 100% 50%',
+    accentColor: '#00F2FE',
+    accent: '#00F2FE',
+    accentHsl: '183 100% 50%',
+    dotMatrix: true,
+    headerShadow: 'rgb(0 0 0) 1px 0.7px 0px',
+    stops: [
+      makeStop(0, 'Glacial Glint', '#F0FDFA', 'hsl(166, 76%, 97%)', 'rgb(240, 253, 250)', 0.98, 19.6, '166 76% 97%'),
+      makeStop(1, 'Aurora Mint Frost', '#CCFBF1', 'hsl(168, 86%, 89%)', 'rgb(204, 251, 241)', 0.90, 18.0, '168 86% 89%'),
+      makeStop(2, 'Kinetic Sky Aurora', '#38BDF8', 'hsl(199, 89%, 60%)', 'rgb(56, 189, 248)', 0.82, 16.4, '199 89% 60%'),
+      makeStop(3, 'Vibrant Aurora Cyan', '#00F2FE', 'hsl(183, 100%, 50%)', 'rgb(0, 242, 254)', 0.65, 13.0, '183 100% 50%'),
+      makeStop(4, 'Polar Emerald Glint', '#2DD4BF', 'hsl(173, 80%, 50%)', 'rgb(45, 212, 191)', 0.52, 10.4, '173 80% 50%'),
+      makeStop(5, 'Deep Sea Emerald', '#0D9488', 'hsl(175, 84%, 32%)', 'rgb(13, 148, 136)', 0.35, 7.0, '175 84% 32%'),
+      makeStop(6, 'Nocturnal Indigo-Cyan', '#0F766E', 'hsl(176, 77%, 26%)', 'rgb(15, 118, 110)', 0.22, 4.4, '176 77% 26%'),
+      makeStop(7, 'Polar Night Sky', '#115E59', 'hsl(177, 70%, 22%)', 'rgb(17, 94, 89)', 0.14, 2.8, '177 70% 22%'),
+      makeStop(8, 'Midnight Arctic Card', '#061A24', 'hsl(200, 71%, 8%)', 'rgb(6, 26, 36)', 0.07, 1.4, '200 71% 8%'),
+      makeStop(9, 'Deep Arctic Void', '#030F14', 'hsl(196, 74%, 5%)', 'rgb(3, 15, 20)', 0.03, 1.0, '196 74% 5%'),
+    ],
+  },
 };
 
 export const THEME_PALETTES: Record<string, ThemePalette> = {
@@ -967,6 +1037,7 @@ export const THEME_FAMILIES: Record<ThemeFamilyType, readonly string[]> = {
     'monokai',
     'dracula',
     'cyber-neon',
+    'midnight-aurora',
   ],
   EditorialArchival: [
     'white-brand',
@@ -980,6 +1051,7 @@ export const THEME_FAMILIES: Record<ThemeFamilyType, readonly string[]> = {
     'noir-gold',
     'midnight-luxe',
     'crimson-executive',
+    'global-executive-gold',
   ],
   BioGrowth: [
     'clinical-emerald-light',

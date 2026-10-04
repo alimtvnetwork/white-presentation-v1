@@ -1135,6 +1135,109 @@
   will-change: transform, opacity;
 }
 
+// ============================================================================
+// CHAPTER 46: SUITE 2028 GPU MOTION KINETICS
+// ============================================================================
+
+@keyframes kineticStepReveal {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0) scale(0.97);
+    filter: blur(4px);
+  }
+  60% {
+    opacity: 0.95;
+    transform: translate3d(0, -2px, 0) scale(1.005);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+@keyframes perspective3dFlip {
+  0% {
+    opacity: 0;
+    transform: perspective(1200px) rotateY(-24deg) translateZ(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1200px) rotateY(0deg) translateZ(0px);
+  }
+}
+
+@keyframes lensFocusGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 2px var(--pres-accent),
+                0 0 20px -2px var(--pres-accent-glow),
+                0 16px 40px -8px rgba(0, 0, 0, 0.40);
+  }
+  50% {
+    box-shadow: 0 0 0 3.5px var(--pres-accent),
+                0 0 38px 4px var(--pres-accent-glow),
+                0 24px 50px -10px rgba(0, 0, 0, 0.60);
+  }
+}
+
+@keyframes metricCountPulse {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.7;
+  }
+  45% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+  75% {
+    transform: scale(0.99);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes topologyFlow {
+  0% {
+    stroke-dashoffset: 48;
+    filter: drop-shadow(0 0 2px var(--pres-accent));
+  }
+  50% {
+    filter: drop-shadow(0 0 6px var(--pres-accent));
+  }
+  100% {
+    stroke-dashoffset: 0;
+    filter: drop-shadow(0 0 2px var(--pres-accent));
+  }
+}
+
+.animate-kinetic-step-reveal {
+  animation: kineticStepReveal 0.45s @ease-presentation both;
+  will-change: transform, opacity, filter;
+}
+
+.animate-perspective-3d-flip {
+  animation: perspective3dFlip 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+}
+
+.animate-lens-focus-glow {
+  animation: lensFocusGlow 2.8s ease-in-out infinite;
+  will-change: box-shadow;
+}
+
+.animate-metric-count-pulse {
+  animation: metricCountPulse 0.42s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  will-change: transform, opacity;
+}
+
+.animate-topology-flow {
+  animation: topologyFlow 1.8s linear infinite;
+  will-change: stroke-dashoffset, filter;
+}
+
 // Reduced motion
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {

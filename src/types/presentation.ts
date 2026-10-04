@@ -56,6 +56,10 @@ import type {
   Suite2027SlideType,
   Suite2027SlideData,
 } from './suite2027Archetypes';
+import type {
+  Suite2028SlideType,
+  Suite2028SlideData,
+} from './suite2028Archetypes';
 export * from './archetypes';
 export * from './extendedArchetypes';
 export * from './expandedArchetypes';
@@ -74,7 +78,9 @@ export * from './globalPptNextGenArchetypes';
 export * from './globalPptEvolutionArchetypes';
 export * from './suite2026Archetypes';
 export * from './suite2027Archetypes';
+export * from './suite2028Archetypes';
 export type { GoldenPathTemplate } from './nextGenArchetypes';
+export type { IncidentActionNode } from './suite2027Archetypes';
 
 export type SlideType =
   | 'white-master'
@@ -107,7 +113,8 @@ export type SlideType =
   | GlobalPptNextGenSlideType
   | GlobalPptEvolutionSlideType
   | Suite2026SlideType
-  | Suite2027SlideType;
+  | Suite2027SlideType
+  | Suite2028SlideType;
 
 export type DockPosition =
   | 'bottom-center'
@@ -366,7 +373,8 @@ export type SlideData =
   | GlobalPptNextGenSlideData
   | GlobalPptEvolutionSlideData
   | Suite2026SlideData
-  | Suite2027SlideData;
+  | Suite2027SlideData
+  | Suite2028SlideData;
 
 export type Slide = SlideData;
 
