@@ -13,10 +13,21 @@
 Chapter 44 establishes the next-generation evolution of the **White Presentation Platform**, synthesizing boardroom-grade narrative authority from `global-ppt-v1` with the low-latency, declarative agility of `flat-slide-show`. It introduces the **Motion Kinetic-Morph Transition Engine**, 5 unified **Theme Families**, full **Semantic Status Ramps**, and an exhaustive library of **16 brand-new enterprise slide archetypes**.
 
 ### 1.1 The 60/30/10 Spatial Balance Rule
-Every presentation canvas strictly adheres to the golden spatial distribution ratio:
-* **60% Dominant Canvas Foundation (Plane 0):** Uncluttered base canvas surface, background gradients, structural negative space, and ambient watermark geometry that allows executive eyes to relax.
-* **30% Structural Hierarchy (Plane 1):** Structured layout elements including data cards, glassmorphic panels, waterfall grids, matrix containers, dividing rails, and table frameworks.
-* **10% Intentional Focal Accent (Planes 2 & 3):** High-luminance accents reserved strictly for primary metrics, active step indicator halos, status badge pills, kinetic pulse beacons, and call-to-action levers.
+To maintain boardroom aesthetic authority and eliminate cognitive fatigue during executive keynotes, every slide canvas, modal, and presenter surface strictly adheres to the **60/30/10 Spatial Balance Rule**:
+
+```
+Visual Distribution Budget:
+┌────────────────────────────────────────────────────────────────────────┐
+│ 60% Dominant Background Wash & Canvas Field (Plane 0)                  │
+│ (Negative space, ambient gradient wash, subtle dot matrix grid)        │
+├────────────────────────────────────────────────────────────────────────┤
+│ 30% Structural Cards, Dividers & Data Panels (Plane 1)                 │
+│ (Glassmorphic surfaces, Bento containers, table rows, timelines)       │
+├────────────────────────────────────────────────────────────────────────┤
+│ 10% Vivid Focal Accents & Interaction Highlights (Planes 2 & 3)        │
+│ (Primary CTA buttons, active step pins, illuminated badges, KPI stats) │
+└────────────────────────────────────────────────────────────────────────┘
+```
 
 ```
 +-----------------------------------------------------------------------------------------+
@@ -32,26 +43,233 @@ Every presentation canvas strictly adheres to the golden spatial distribution ra
 |      |      +-------------------------------------------------------------+      |      |
 |      +---------------------------------------------------------------------------+      |
 |                                                                                         |
-|  [Plane 3: Presenter Overlay & HUD (Keyboard Shortcuts, Modal Lightbox, Zoom Inspect)]  |
+|  [Plane 3: Floating Presenter HUD (Keyboard Shortcuts, Lightbox, Zoom Inspect)]        |
 +-----------------------------------------------------------------------------------------+
 ```
 
-### 1.2 The 4-Plane Depth Hierarchy
-To guarantee optical depth without visual clutter, every slide is organized across four distinct elevation planes:
-* **Plane 0: Canvas Base ($Z=0$):** Primary background fill, dynamic radial gradients, ambient geometry, and subtle brand watermarks. Zero interactive elements.
-* **Plane 1: Structural Grid & Surface ($Z=10$):** Card containers, backdrop filters (`backdrop-filter: blur(12px)`), card borders (`1px solid var(--pres-card-border)`), and data partitions.
-* **Plane 2: Semantic Content & Active Elements ($Z=20$):** Selectable live DOM typography, SVG vector charts, active stage halos (`box-shadow: 0 0 24px var(--pres-accent-glow)`), and numerical counters.
-* **Plane 3: Presenter Overlay & Modal HUD ($Z=30$):** Isolated presenter controls (`--chrome-*`), keyboard shortcut hints (`?`), interactive modal lightboxes, and focal inspection overlays.
+#### 1.1.1 The 60% Dominant Canvas Wash (Plane 0)
+- **Role:** Establishes ambient mood and maximizes negative space around presentation content, giving executive audiences visual breathing room.
+- **Tokens Consumed:** `--pres-bg`, `--pres-bg-surface`.
+- **Light Modes:** Pure crisp white (`#FFFFFF`) or warm parchment editorial wash (`#F5F0E6`, HSL `38 30% 96%`).
+- **Dark Modes:** Deep obsidian slate (`#020617`, `#0B192C`, `#1E1B4B`) with optional organic wave ribbons or subtle dot-matrix grids.
+- **Constraint:** Never fill more than $40\%$ of the canvas with solid high-contrast foreground containers.
 
-### 1.3 Pure Live DOM Typography Mandate
+#### 1.1.2 The 30% Structural Panels & Containers (Plane 1)
+- **Role:** Groups semantic information into scannable Bento cards, comparison columns, data matrices, and timeline rails.
+- **Tokens Consumed:** `--pres-bg-card`, `--pres-border`, `--pres-text-muted`.
+- **Styling:** Subtle glassmorphic fills (`backdrop-filter: blur(12px)`), hairline borders (`1px solid var(--pres-border)`), and soft drop shadows (`0 10px 25px -5px rgba(0, 0, 0, 0.05)`).
+- **Contrast Boundary:** Structural borders must maintain subtle contrast ($C_R \le 2.0:1$ against the canvas background) so they cleanly frame content without competing with typography.
+
+#### 1.1.3 The 10% Vivid Focal Accents (Planes 2 & 3)
+- **Role:** Guides the viewer's eye directly to key decision points, active step progression, and critical ROI metrics.
+- **Tokens Consumed:** `--pres-accent`, `--pres-accent-glow`, `--pres-accent-hover`.
+- **Application Scope:**
+  - Active step indicator badges, pulse beacons, and connecting progress rails.
+  - Primary call-to-action levers and interactive navigation triggers.
+  - Large display stat callout figures (e.g., `+284%`, `$4.2M ARR`).
+  - Active tab borders, stage highlight halos, and focus inspection pins.
+- **Constraint:** Accent colors must never cover more than $10\%$ of total slide surface area to prevent visual exhaustion.
+
+---
+
+### 1.2 The 4-Plane Depth Hierarchy
+Spatial depth in the presentation interface is structured across four non-overlapping planes. Each plane possesses discrete $z$-index coordinates, background treatments, and elevation shadow tokens:
+
+```
+Plane Hierarchy:
+▲ [Plane 3: Floating Plane]  - z-index: 50+  (SlideCreatorModal, Tooltips, Presenter HUD)
+│ [Plane 2: Elevated Plane]  - z-index: 20   (Active Steps, Hovered Cards, Detail Panes)
+│ [Plane 1: Raised Plane]    - z-index: 10   (Bento Cards, Timeline Rails, Tables)
+▼ [Plane 0: Surface Plane]   - z-index: 0    (Canvas Background, Wave Ribbons, Grids)
+```
+
+#### 1.2.1 Plane 0: Surface Plane (Canvas Base)
+- **Z-Index:** `0`
+- **Elements:** Root slide stage container, organic SVG wave ribbons, ambient radial glow spotlights, dot-matrix grids.
+- **Visual Characteristics:**
+  - Background: `var(--pres-bg)`
+  - Shadows: `none`
+  - Borders: `none`
+  - Optical Anchor: Provides calm foundational grounding with zero interactive elements.
+
+#### 1.2.2 Plane 1: Raised Plane (Structural Cards & Bento Grids)
+- **Z-Index:** `10`
+- **Elements:** Inactive Bento feature cards, timeline nodes, comparison table columns, talent pyramid tiers, P&L rows.
+- **Visual Characteristics:**
+  - Background: `var(--pres-bg-card)` (translucent fill: `rgba(..., 0.85)`)
+  - Border: `1px solid var(--pres-border)`
+  - Shadow: `0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.04)`
+  - Backdrop Filter: `blur(8px)` (or `blur(12px)` on dense glass)
+  - Border Radius: `12px` (Cards) / `6px` (Pills & Chips)
+
+#### 1.2.3 Plane 2: Elevated Plane (Active Content & Interactive Focus)
+- **Z-Index:** `20`
+- **Elements:** Active step card in kinetic multi-step slides, hovered Bento cards, expanded detail panes, active timeline pins, live DOM typography.
+- **Visual Characteristics:**
+  - Background: `var(--pres-bg-card-hover)`
+  - Border: `1.5px solid var(--pres-border-hover)`
+  - Shadow: `0 20px 35px -10px var(--pres-accent-glow), 0 10px 10px -5px rgba(0, 0, 0, 0.08)`
+  - Transform: `translateY(-4px) scale(1.01)`
+  - Transition: `transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1)`
+
+#### 1.2.4 Plane 3: Floating Plane (Overlays, Modals & Presenter HUD)
+- **Z-Index:** `50+`
+- **Elements:** `SlideCreatorModal`, presenter HUD navigation controls (`NavigationControls.tsx`), audio volume popovers, export dialogs, keyboard shortcut hints.
+- **Visual Characteristics:**
+  - Background: Solid surface with high opacity (`rgba(..., 0.96)`) bound to `--chrome-*` tokens
+  - Border: `1px solid var(--pres-border-hover)`
+  - Shadow: `0 25px 50px -12px rgba(0, 0, 0, 0.40)`
+  - Backdrop Filter: `blur(16px)`
+
+---
+
+### 1.3 Fluid Typography Scale, Northern UI/UX Standard & Pure Live DOM Mandate
+
+#### 1.3.1 Pure Live DOM Typography Mandate
 * **Zero Rasterized Text:** Rendering titles, numbers, or labels as PNG/JPEG/WebP images or `<canvas>` 2D context (`fillText`) is strictly prohibited.
 * **Semantic HTML:** All text must be native HTML elements (`<h1>`, `<h2>`, `<h3>`, `<p>`, `<span>`, `<code>`, `<div>`) enabling OS text scaling, full clipboard copying, and screen-reader accessibility.
-* **Fluid Typography Floor ($V_{\min} \ge 14\text{px}$):** Micro-copy must never fall below $14\text{px}$ on standard 1080p projection, preventing unreadable labels:
-  $$\text{font-size} = \text{clamp}(14\text{px}, 0.8\text{vw} + 6\text{px}, 18\text{px})$$
-* **Typography Pairing Standard:**
-  * **Headlines & Metric Callouts:** `Ubuntu` (700 bold / 800 extra bold / italic display options).
-  * **Interface Labels & Body Prose:** `Poppins` (400 regular / 500 medium / 600 semi-bold / 700 bold).
-  * **Technical Telemetry & Code:** `JetBrains Mono` / `Fira Code`.
+
+#### 1.3.2 Fluid Type Scale Formula & Token Mappings
+Typography is dynamically computed using CSS `clamp()` expressions anchored to the $1920 \times 1080$ virtual canvas:
+
+$$\text{Font Size} = \text{clamp}(V_{\min}, V_{\text{preferred}}, V_{\max})$$
+
+| Typographic Level | Token Name | Fluid CSS Expression | Line Height | Letter Spacing | Primary Font Family |
+|:---|:---|:---|:---:|:---:|:---|
+| **Display Hero** | `--font-display-hero` | `clamp(56px, 5.5vw, 112px)` | 1.05 | `-0.03em` | Display Font (`Ubuntu`, Bold Italic) |
+| **Slide Title (H1)** | `--font-slide-title` | `clamp(36px, 3.6vw, 68px)` | 1.10 | `-0.02em` | Display Font (`Ubuntu`, Bold) |
+| **Section Header (H2)**| `--font-section-head` | `clamp(24px, 2.2vw, 40px)` | 1.20 | `-0.01em` | Display Font (`Ubuntu`, SemiBold) |
+| **Card Headline (H3)** | `--font-card-head` | `clamp(18px, 1.6vw, 26px)` | 1.30 | `0.00em` | Body Font (`Poppins`, SemiBold) |
+| **Subtitle / Lead** | `--font-lead-body` | `clamp(16px, 1.4vw, 22px)` | 1.55 | `0.00em` | Body Font (`Poppins`, Regular) |
+| **Standard Body** | `--font-standard-body`| `clamp(14px, 1.0vw + 4px, 18px)` | 1.60 | `0.01em` | Body Font (`Poppins`, Regular) |
+| **Caption / Badge** | `--font-caption-mono` | `clamp(14px, 0.75vw + 6px, 16px)`| 1.40 | `0.04em` | Code Font (`JetBrains Mono`, Medium) |
+
+#### 1.3.3 Northern UI/UX Typography Standard & Strict $\ge 14\text{px}$ Floor
+To maximize executive focus and eliminate cognitive clutter during fast presentations:
+* **Strict $\ge 14\text{px}$ Floor:** Kickers, micro-copy, telemetry tags, and status badges must be at least $14\text{px}$ (`text-sm font-bold uppercase tracking-[0.2em]`). Never use tiny, illegible $10\text{px}–11\text{px}$ micro-text.
+* **Slide Headings:** $44\text{px}–56\text{px}$ with strong visual weight and italic dynamic drive where appropriate.
+* **Single-Item Focus & Reduced Item Density:** Rather than dumping 4–6 complex competing cards on a slide, present a focused active card with large typography and smooth CSS3 transitions on hover/click.
+* **Font Family Token Mappings:**
+  1. **Display & Heading Font:** `'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif` (warm, authoritative editorial personality with italic kinetic drive).
+  2. **Body & Interface Font:** `'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif` (open geometric apertures and tall x-height ensuring crisp legibility).
+  3. **Monospace & Metric Badges:** `'JetBrains Mono', 'Fira Code', Consolas, monospace` (tabular numeric alignment for financial benchmarks, timestamps, and version badges).
+
+---
+
+### 1.4 Button Variants & Magnetic Tactile Physics
+Buttons serve as primary interaction points for deck navigation, template creation, and audience calls-to-action. Chapter 44 standardizes three button variants paired with kinetic micro-interactions:
+
+#### 1.4.1 Button Variant Taxonomy
+```
+Button Variant Taxonomy:
+├── Primary Accent Button: High-visibility solid CTA with accent glow
+├── Secondary Glass Button: Frosted container with subtle border
+└── Ghost Outline Button: Minimal hairline border with hover wash
+```
+
+* **Variant 1: Primary Accent Button (`.btn-primary-accent`):**
+  - Application: Main presentation CTA, "Create Deck", "Confirm", "Launch".
+  - Styling:
+    ```less
+    .btn-primary-accent {
+      background: var(--pres-accent);
+      color: #FFFFFF;
+      border: 1px solid var(--pres-accent);
+      box-shadow: 0 4px 14px var(--pres-accent-glow);
+      font-weight: 600;
+      border-radius: 8px;
+      padding: 10px 22px;
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, background-color 0.2s ease;
+
+      &:hover {
+        background: var(--pres-accent-hover);
+        box-shadow: 0 8px 24px var(--pres-accent-glow);
+        transform: translateY(-2px) scale(1.02);
+      }
+
+      &:active {
+        transform: translateY(0px) scale(0.98);
+      }
+    }
+    ```
+
+* **Variant 2: Secondary Glass Button (`.btn-secondary-glass`):**
+  - Application: Secondary actions, step navigators ("Next Step", "Previous").
+  - Styling:
+    ```less
+    .btn-secondary-glass {
+      background: var(--pres-bg-card);
+      color: var(--pres-text);
+      border: 1px solid var(--pres-border);
+      backdrop-filter: blur(8px);
+      font-weight: 500;
+      border-radius: 8px;
+      padding: 10px 20px;
+      transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+
+      &:hover {
+        background: var(--pres-bg-card-hover);
+        border-color: var(--pres-border-hover);
+        transform: translateY(-1px);
+      }
+    }
+    ```
+
+* **Variant 3: Ghost Outline Button (`.btn-ghost-outline`):**
+  - Application: Tertiary tools, copy code, close modals, icon-only actions.
+  - Styling:
+    ```less
+    .btn-ghost-outline {
+      background: transparent;
+      color: var(--pres-text-muted);
+      border: 1px solid transparent;
+      border-radius: 6px;
+      padding: 8px 14px;
+      transition: all 0.15s ease;
+
+      &:hover {
+        color: var(--pres-text);
+        background: rgba(124, 58, 237, 0.08);
+        border-color: var(--pres-border);
+      }
+    }
+    ```
+
+#### 1.4.2 Magnetic Tactile Micro-Interactions
+Interactive buttons and active step stations implement spring physics attraction:
+
+```typescript
+export interface MagneticState {
+  hasMagneticPull: boolean;
+  offsetX: number;
+  offsetY: number;
+}
+
+export function computeMagneticOffset(
+  cursorX: number,
+  cursorY: number,
+  elementRect: DOMRect,
+  pullRadius = 35
+): { offsetX: number; offsetY: number } {
+  const elementCenterX = elementRect.left + elementRect.width / 2;
+  const elementCenterY = elementRect.top + elementRect.height / 2;
+
+  const deltaX = cursorX - elementCenterX;
+  const deltaY = cursorY - elementCenterY;
+  const distance = Math.hypot(deltaX, deltaY);
+
+  if (distance < pullRadius && distance > 0) {
+    const attractionFactor = 0.28 * (1 - distance / pullRadius);
+    return {
+      offsetX: deltaX * attractionFactor,
+      offsetY: deltaY * attractionFactor,
+    };
+  }
+
+  return { offsetX: 0, offsetY: 0 };
+}
+```
+When cursor enters the proximity bounding radius ($35\text{px}$), the element gently translates toward the pointer, generating tactile physical presence and high feedback fidelity.
 
 ---
 
@@ -127,7 +345,7 @@ When navigating between related slides (e.g. overview to deep-dive) or stepping 
 
 ## 4. Flat Slides vs Step-by-Step Slides Design Guidelines
 
-Chapter 44 slides strictly categorize into two operational paradigms: **Kinetic Step-by-Step Workflows** and **Flat Sovereign Overviews**.
+Chapter 44 slides strictly categorize into two operational paradigms: **Kinetic Multi-Step Workflows** ($N$ Steps) and **Flat Sovereign Overviews** ($1$ Step).
 
 ```
 +-----------------------------------------------------------------------------------------+
@@ -141,21 +359,32 @@ Chapter 44 slides strictly categorize into two operational paradigms: **Kinetic 
 +-----------------------------------------------------------------------------------------+
 ```
 
-### 4.1 Step Lifecycle State Matrix
+### 4.1 Flat Sovereign (1 Step) vs Kinetic Multi-Step (N Steps) Architectural Paradigm
+
+| Architectural Dimension | Flat Sovereign Overview ($1$ Step) | Kinetic Multi-Step Workflow ($N$ Steps) |
+|:---|:---|:---|
+| **Primary Intent** | High-density executive situational awareness; instant complete posture visibility | Guided chronological narrative reveal; structured progressive disclosure |
+| **Cognitive Strategy** | Zero cognitive gating; viewer scans full matrix/topology simultaneously | Focused single-item spotlight; eliminates cognitive overload during keynotes |
+| **Step Count Formula** | Strictly evaluated as $\mathbf{1}$ (`stepsCount = 1`) | Evaluated as $\max(\mathbf{stages.length}, \mathbf{1})$ (typically $4$ steps) |
+| **Micro-Interactions** | Hover micro-elevations (`translateY(-2px)`), card expanders, tooltips | Active stage halos (`0 0 24px var(--pres-accent-glow)`), pulse beacons, rail progression |
+| **Archetype Exemplars** | `competitive-feature-heatmap`, `global-data-jurisdiction-boundary`, `modular-consumption-pricing-calculator`, `enterprise-risk-taxonomy-heatmap`, `talent-competency-gap-heatmap`, `weighted-decision-tradeoff-matrix` | `executive-pnl-waterfall-table`, `customer-persona-archetype-split`, `hardware-interface-blueprint`, `multi-horizon-value-realization-bridge`, `two-sided-ecosystem-flywheel`, `ishikawa-root-cause-fishbone`, `live-product-viewport-walkthrough`, `global-partner-tiering-ladder`, `slo-error-budget-burn-waterfall`, `customer-churn-intervention-ladder` |
+
+### 4.2 3-Phase Kinetic Step Lifecycle State Matrix
 For all multi-step workflows, elements transition across three distinct visual phases:
 
 | Step Lifecycle State | Visual Treatment | CSS Classes & Properties | Focus & Interaction |
 |:---|:---|:---|:---|
 | **Active Step** | Full color saturation, glowing boundary halo, $1.02\times$ elevation lift, pulse beacon | `.step-active`, `box-shadow: 0 0 24px var(--pres-accent-glow)`, `opacity: 1.0` | Primary visual focus; keyboard actions interact with this element |
 | **Completed Step** | Retained context, $75\%$ opacity, checked badge indicator, muted border | `.step-completed`, `opacity: 0.75`, `border-color: var(--pres-border-subtle)` | Contextual reference; fully readable without competing with active step |
-| **Future Step** | $1.25\text{px}$ optical blur, $40\%$ opacity, $25\%$ desaturation | `.step-future`, `filter: blur(1.25px)`, `opacity: 0.40` | Anticipatory preview; signals forthcoming narrative stages |
+| **Future Step** | $1.25\text{px}$ optical blur, $40\%$ opacity, $25\%$ desaturation | `.step-future`, `filter: blur(1.25px) saturate(0.75)`, `opacity: 0.40` | Anticipatory preview; signals forthcoming narrative stages |
 
-### 4.2 Step Progression Rules & Shortcuts
-1. **Zero Phantom Steps:** The slide step count strictly equals the length of its declared stage array (`max(stages.length, 1)`). Flat slides always evaluate to $1$.
-2. **Deterministic Step Jumps:** Pressing numbers `1` through `9` jumps immediately to step $N - 1$.
-3. **Linear Traversal:** `ArrowRight`, `Space`, or `PageDown` advances step; `ArrowLeft` or `PageUp` steps back.
+### 4.3 Step Progression Rules, Clickable Rails & Acoustic Feedback
+1. **Zero Phantom Steps:** The slide step count strictly equals the length of its declared stage array (`max(stages.length, 1)`). Flat slides always evaluate to $1$. Phantom ghost steps ($> N$) are strictly prohibited.
+2. **Deterministic Step Jumps:** Pressing numbers `1` through `9` jumps immediately to step $N - 1$ without sequential lag.
+3. **Linear Traversal:** `ArrowRight`, `Space`, or `PageDown` advances step forward; `ArrowLeft` or `PageUp` steps backward.
 4. **Boundary Navigation:** Advancing past the final step navigates to the next slide; stepping back past step 0 navigates to the previous slide.
 5. **Interactive Clickable Rails:** Clicking any step station or indicator directly jumps to that step with an acoustic feedback cue.
+6. **Permanent Dark HUD Chrome Integration:** The HUD step indicator strictly tracks intra-slide steps (e.g. `Step 2 of 4`) using `--chrome-*` tokens isolated from slide canvas styles.
 
 ---
 
@@ -909,23 +1138,189 @@ export interface CustomerChurnInterventionLadderSlideData {
 
 ---
 
-## 6. Quality Verification Gates & Strict Compliance Rules
+## 6. Design System Contrast Compliance & Affirmative Semantics
 
-### 6.1 Zero Yellow-on-Light Guarantee ($C_R \ge 4.5:1$)
-* **Strict Inversion Rule:** When any light theme is active (`CorporateClean`, `EditorialArchival`, `BioGrowth`), amber/yellow accents are automatically converted to deep umber or royal navy ink for text labels and numeric values.
-* **Background Pill Fallback:** Yellow or gold badges on light surfaces must always render with a high-contrast dark text foreground (`#1e293b`) inside an opaque background pill (`hsl(38 92% 50% / 0.15)`), ensuring contrast ratio $C_R \ge 7.0:1$.
+### 6.1 Zero Yellow-on-Light Contrast Rule (Non-Negotiable)
+Under NO circumstances should yellow, amber, or gold light text, borders, or badge foregrounds ever be placed on light, white, or off-white background canvases or cards.
+
+* **Strictly Prohibited on Light Surfaces:**
+  - `text-amber-200`, `text-amber-300`, `text-amber-400`
+  - `text-yellow-200`, `text-yellow-300`, `text-yellow-400`
+  - `bg-amber-400/20 text-amber-300`, `border-amber-300`
+* **Contrast Failure Proof:** Light yellow/amber text on white backgrounds achieves an optical contrast ratio of only $\approx 1.4:1$, catastrophically failing WCAG AA ($4.5:1$) and AAA ($7.0:1$) standards on auditoriums and conference displays.
+* **Automated Inversion Rules:**
+  - **Light Surfaces (`isDark === false`):** High-luminance accent colors are automatically inverted to deep amber-brown (`#78350F` / `hsl(28 73% 26%)`), deep slate ink (`text-slate-900`), or royal executive navy/violet (`text-violet-700` / `text-violet-800` paired with `bg-violet-100`).
+  - **Background Pill Fallback:** Yellow or gold status pills on light surfaces must always render with a high-contrast dark text foreground (`#1E293B`) encased in a soft tinted pill container (`hsl(38 92% 50% / 0.15)`), guaranteeing contrast ratio $C_R \ge 7.0:1$.
+  - **Dark Surfaces (`isDark === true`):** Warm gold and brand amber (`text-amber-400`, `#F5A623`) are fully permitted on dark slate (`#0B0B0E`) backgrounds since they naturally achieve high-luminance contrast with $C_R \ge 9.5:1$.
 
 ### 6.2 100% Affirmative Positive Boolean Semantics
-* In accordance with coding guideline standards, all boolean fields in props, data interfaces, and local hooks must use affirmative positive names (`isEnabled`, `isActive`, `hasHeader`, `isRecommended`, `isAudited`, `isVisible`).
-* Negative identifiers (`disabled`, `hidden`, `isNotActive`, `isNotCompliant`) and explicit boolean equality checks (`=== true`, `=== false`) are strictly prohibited.
+All data properties, component configuration flags, and state management hooks must strictly adhere to affirmative positive naming semantics:
 
-### 6.3 Strict TypeScript Contracts & Discriminated Unions
-* All 16 slide types are registered in `Chapter44SlideType` and unified into `Chapter44SlideData` discriminated union types.
-* Zero `any` types permitted. All mock data fixtures must pass strict TypeScript type validation.
+| Pattern Domain | Prohibited Negative Identifier | Required Positive Standard |
+|:---|:---|:---|
+| Theme Mode | `isNotDark: boolean` | `isDark: boolean` |
+| Backdrop Glow | `hasNoGlow: boolean` | `hasGlow: boolean` |
+| Dot Matrix Grid | `isGridDisabled: boolean` | `hasDotMatrix: boolean` |
+| Component Visibility | `isNotVisible: boolean` | `isVisible: boolean` |
+| Interactive State | `disabled: boolean` | `isInteractive: boolean` |
+| Audio Feedback | `hasNoAudio: boolean` | `hasAudioEnabled: boolean` |
+| Audit Verification | `isUnaudited: boolean` | `isAudited: boolean` |
+| Recommendation Tag | `isNotRecommended: boolean` | `isRecommended: boolean` |
 
-### 6.4 Modular File Cap (CODE-RED-006R)
+Conditional evaluations must evaluate positive state directly without explicit boolean equality comparisons:
+- ❌ BAD: `if (slide.hasPresenterNotes === true)`
+- ✅ GOOD: `if (slide.hasPresenterNotes)`
+- ❌ BAD: `if (theme.isDark == false)`
+- ✅ GOOD: `if (!theme.isDark)`
+
+---
+
+## 7. Runtime Wiring Pipeline Architecture
+
+The 16 slide archetypes of Chapter 44 are integrated into the active presentation runtime through an end-to-end pipeline spanning barrel exports, dispatcher routers, factory generators, deck stores, and step progression engines:
+
+```mermaid
+flowchart TD
+    A[presentationDeck / initialDeck.ts] -->|SlideData with type| B[GlobalPptEvolutionSlideRenderer.tsx]
+    B -->|Default Fallback / Delegation| C[Suite2026SlideRenderer.tsx]
+    C -->|Exhaustive Switch-Case| D[16 Suite 2026 Components in suite2026/index.ts]
+    E[slideArchetypeFactories.ts] -->|createArchetypeSlide| F[suite2026SlideFactories.ts]
+    F -->|Mock Slide Generator| A
+    G[stepProgression.ts] -->|SUITE_2026_STEP_CALCULATORS| H[NavigationControls.tsx]
+    H -->|jumpToStep / nextStep| D
+```
+
+### 7.1 Barrel Export: `src/components/slides/suite2026/index.ts`
+All 16 slide components are exported cleanly from a centralized barrel file to avoid circular imports:
+```typescript
+export { ExecutivePnlWaterfallTableSlide } from './ExecutivePnlWaterfallTableSlide';
+export { CompetitiveFeatureHeatmapSlide } from './CompetitiveFeatureHeatmapSlide';
+export { CustomerPersonaArchetypeSplitSlide } from './CustomerPersonaArchetypeSplitSlide';
+export { GlobalDataJurisdictionBoundarySlide } from './GlobalDataJurisdictionBoundarySlide';
+export { HardwareInterfaceBlueprintSlide } from './HardwareInterfaceBlueprintSlide';
+export { MultiHorizonValueRealizationBridgeSlide } from './MultiHorizonValueRealizationBridgeSlide';
+export { TwoSidedEcosystemFlywheelSlide } from './TwoSidedEcosystemFlywheelSlide';
+export { IshikawaRootCauseFishboneSlide } from './IshikawaRootCauseFishboneSlide';
+export { ModularConsumptionPricingCalculatorSlide } from './ModularConsumptionPricingCalculatorSlide';
+export { LiveProductViewportWalkthroughSlide } from './LiveProductViewportWalkthroughSlide';
+export { EnterpriseRiskTaxonomyHeatmapSlide } from './EnterpriseRiskTaxonomyHeatmapSlide';
+export { GlobalPartnerTieringLadderSlide } from './GlobalPartnerTieringLadderSlide';
+export { TalentCompetencyGapHeatmapSlide } from './TalentCompetencyGapHeatmapSlide';
+export { SloErrorBudgetBurnWaterfallSlide } from './SloErrorBudgetBurnWaterfallSlide';
+export { WeightedDecisionTradeoffMatrixSlide } from './WeightedDecisionTradeoffMatrixSlide';
+export { CustomerChurnInterventionLadderSlide } from './CustomerChurnInterventionLadderSlide';
+```
+
+### 7.2 Dispatcher Router: `src/components/slides/Suite2026SlideRenderer.tsx`
+A dedicated switch router component accepts `{ slide: SlideData }` and dispatches to the corresponding leaf component with full type safety:
+```typescript
+import React from 'react';
+import type { SlideData } from '../../types/presentation';
+import { WhiteMasterSlide } from './WhiteMasterSlide';
+import * as S from './suite2026';
+
+export const Suite2026SlideRenderer: React.FC<{ slide: SlideData }> = ({ slide }) => {
+  switch (slide.type) {
+    case 'executive-pnl-waterfall-table':
+      return <S.ExecutivePnlWaterfallTableSlide slide={slide as any} />;
+    case 'competitive-feature-heatmap':
+      return <S.CompetitiveFeatureHeatmapSlide slide={slide as any} />;
+    case 'customer-persona-archetype-split':
+      return <S.CustomerPersonaArchetypeSplitSlide slide={slide as any} />;
+    case 'global-data-jurisdiction-boundary':
+      return <S.GlobalDataJurisdictionBoundarySlide slide={slide as any} />;
+    case 'hardware-interface-blueprint':
+      return <S.HardwareInterfaceBlueprintSlide slide={slide as any} />;
+    case 'multi-horizon-value-realization-bridge':
+      return <S.MultiHorizonValueRealizationBridgeSlide slide={slide as any} />;
+    case 'two-sided-ecosystem-flywheel':
+      return <S.TwoSidedEcosystemFlywheelSlide slide={slide as any} />;
+    case 'ishikawa-root-cause-fishbone':
+      return <S.IshikawaRootCauseFishboneSlide slide={slide as any} />;
+    case 'modular-consumption-pricing-calculator':
+      return <S.ModularConsumptionPricingCalculatorSlide slide={slide as any} />;
+    case 'live-product-viewport-walkthrough':
+      return <S.LiveProductViewportWalkthroughSlide slide={slide as any} />;
+    case 'enterprise-risk-taxonomy-heatmap':
+      return <S.EnterpriseRiskTaxonomyHeatmapSlide slide={slide as any} />;
+    case 'global-partner-tiering-ladder':
+      return <S.GlobalPartnerTieringLadderSlide slide={slide as any} />;
+    case 'talent-competency-gap-heatmap':
+      return <S.TalentCompetencyGapHeatmapSlide slide={slide as any} />;
+    case 'slo-error-budget-burn-waterfall':
+      return <S.SloErrorBudgetBurnWaterfallSlide slide={slide as any} />;
+    case 'weighted-decision-tradeoff-matrix':
+      return <S.WeightedDecisionTradeoffMatrixSlide slide={slide as any} />;
+    case 'customer-churn-intervention-ladder':
+      return <S.CustomerChurnInterventionLadderSlide slide={slide as any} />;
+    default:
+      return <WhiteMasterSlide slide={slide as any} />;
+  }
+};
+```
+
+### 7.3 Master Renderer Delegation
+In `GlobalPptEvolutionSlideRenderer.tsx`, unhandled slide types or explicit calls to `isSuite2026Slide(slide)` cleanly delegate down to `Suite2026SlideRenderer`:
+```typescript
+import { Suite2026SlideRenderer } from './Suite2026SlideRenderer';
+
+// In master switch-case default branch:
+default:
+  return <Suite2026SlideRenderer slide={slide} />;
+```
+
+### 7.4 Factory Registry: `src/utils/suite2026SlideFactories.ts`
+Authentic, boardroom-grade mock factory functions generate fully typed data structures for each archetype:
+* `createExecutivePnlWaterfallTableSlide(id: string)`
+* `createCompetitiveFeatureHeatmapSlide(id: string)`
+* `createCustomerPersonaArchetypeSplitSlide(id: string)`
+* `createGlobalDataJurisdictionBoundarySlide(id: string)`
+* `createHardwareInterfaceBlueprintSlide(id: string)`
+* `createMultiHorizonValueRealizationBridgeSlide(id: string)`
+* `createTwoSidedEcosystemFlywheelSlide(id: string)`
+* `createIshikawaRootCauseFishboneSlide(id: string)`
+* `createModularConsumptionPricingCalculatorSlide(id: string)`
+* `createLiveProductViewportWalkthroughSlide(id: string)`
+* `createEnterpriseRiskTaxonomyHeatmapSlide(id: string)`
+* `createGlobalPartnerTieringLadderSlide(id: string)`
+* `createTalentCompetencyGapHeatmapSlide(id: string)`
+* `createSloErrorBudgetBurnWaterfallSlide(id: string)`
+* `createWeightedDecisionTradeoffMatrixSlide(id: string)`
+* `createCustomerChurnInterventionLadderSlide(id: string)`
+
+### 7.5 Global Archetype Integration: `src/utils/slideArchetypeFactories.ts`
+Suite 2026 factories are registered into `SUITE_2026_FACTORIES` and exposed in `SUITE_2026_ARCHETYPE_OPTIONS`. When a presenter adds a slide via `SlideCreatorModal`, `createArchetypeSlide(type, id)` dynamically produces an authentic instance with pre-populated enterprise data.
+
+### 7.6 Initial Deck Seeding: `src/stores/initialDeck.ts`
+The canonical default presentation deck seeds high-impact instances of Suite 2026 slides, allowing instant out-of-the-box demonstration and verification across all 25 theme palettes.
+
+### 7.7 Step Progression Engine Integration: `src/utils/stepProgression.ts`
+The engine registers `isSuite2026Slide(slide)` and `getSuite2026SlideSteps(slide)`. It enforces:
+* $1$ step for the $6$ Flat Sovereign Overviews (`stepsCount = 1`).
+* $4$ steps for the $10$ Kinetic Multi-Step Workflows (`stepsCount = stages.length = 4`).
+
+---
+
+## 8. Quality Verification Gates & Strict Compliance Rules
+
+### 8.1 Zero Yellow-on-Light Guarantee ($C_R \ge 7.0:1$)
+* Strictly verified via automated contrast check scripts. Text elements on light surfaces must never utilize light amber/yellow tokens.
+* Auto-inversion to deep amber-brown or slate ink guarantees WCAG AAA accessibility.
+
+### 8.2 100% Affirmative Positive Boolean Semantics
+* All boolean identifiers in props, data interfaces, and local hooks must begin with `is*` or `has*`.
+* Explicit boolean equality checks (`=== true`, `=== false`) are flagged as lint errors.
+
+### 8.3 Strict TypeScript Contracts & Discriminated Unions
+* All 16 slide types are registered in `Suite2026SlideType` and unified into `Suite2026SlideData` discriminated union types under `src/types/suite2026Archetypes.ts`.
+* Zero `any` types permitted in component props.
+
+### 8.4 Modular File Cap (CODE-RED-006R)
 * Every `.tsx` component file must remain $\le 100$ physical lines of code.
-* Complex layouts must be decomposed into dedicated leaf subcomponents under `src/components/slides/<archetype>/` (e.g. `PnlWaterfallHeader.tsx`, `PnlWaterfallRow.tsx`, `PnlWaterfallTotals.tsx`).
+* Complex visual cards are factored into leaf subcomponents in `src/components/slides/suite2026/` or sub-folders.
 
-### 6.5 Executive Persona Standardization (Rule R11)
+### 8.5 Executive Persona Standardization (Rule R11)
 * Alim Ul Karim must be designated exclusively as **"Chief Software Engineer"** in all mock metadata, presenter notes, and audit blocks.
+
+### 8.6 Rule R1 Zero Build & Zero Test Compliance
+* Verification turns must never execute full project builds (`npm run build`) or global unit tests. Only targeted AST static checks and Python line scripts are permitted.

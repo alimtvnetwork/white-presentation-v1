@@ -2,6 +2,7 @@
 import React from 'react';
 import type { SlideData } from '../../types/presentation';
 import { WhiteMasterSlide } from './WhiteMasterSlide';
+import { Suite2026SlideRenderer } from './Suite2026SlideRenderer';
 import {
   PqcMigrationFlowSlide,
   AgentHierarchicalMemorySlide,
@@ -20,7 +21,10 @@ import {
   BoardFiduciaryEsgHorizonSlide,
 } from './evolution';
 
-export const GlobalPptEvolutionSlideRenderer: React.FC<{ slide: SlideData }> = ({ slide }) => {
+export const GlobalPptEvolutionSlideRenderer: React.FC<{ slide: SlideData; activeStep?: number }> = ({
+  slide,
+  activeStep = 0,
+}) => {
   switch (slide.type) {
     case 'pqc-migration-orchestration-flow':
       return <PqcMigrationFlowSlide slide={slide as any} />;
@@ -53,6 +57,6 @@ export const GlobalPptEvolutionSlideRenderer: React.FC<{ slide: SlideData }> = (
     case 'executive-board-fiduciary-esg-horizon':
       return <BoardFiduciaryEsgHorizonSlide slide={slide as any} />;
     default:
-      return <WhiteMasterSlide slide={slide as any} />;
+      return <Suite2026SlideRenderer slide={slide} activeStep={activeStep} />;
   }
 };

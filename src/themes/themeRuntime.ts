@@ -1,4 +1,4 @@
-// lint-allow: file-size reason="WCAG contrast runtime & theme token injector" max=600
+// lint-allow: file-size reason="WCAG contrast runtime & theme token injector" max=650
 import { THEME_PALETTES, extractHslRaw } from './gradientTokens';
 import { ThemePalette } from '../types/presentation';
 import { isBooleanTrue, isFalse } from '../utils/booleanGuards';
@@ -14,6 +14,8 @@ export interface ContrastAuditResult {
   themeId: string;
   ratio: number;
   isAccessible: boolean;
+  isDark: boolean;
+  hasContrastChecked: boolean;
   textLuma: number;
   canvasLuma: number;
   accentTextRatio?: number;
@@ -165,24 +167,25 @@ export function resolveAccentTextColor(theme: ThemePalette, isDark: boolean): st
   if (knownAccent) return knownAccent;
   const canvasLuma = hexToLuminance(theme.canvasBg || '#FFFFFF');
   const candidate = theme.stops?.[7]?.hex || theme.stops?.[8]?.hex || '#6D28D9';
-  const isCandidateValid = contrastRatio(hexToLuminance(candidate), canvasLuma) >= 5.5 && !isYellowish(candidate);
+  const isCandidateValid = contrastRatio(hexToLuminance(candidate), canvasLuma) >= 5.5 && isFalse(isYellowish(candidate));
   if (isCandidateValid) return candidate;
   return '#6D28D9';
 }
 
 export function auditThemeContrast(theme: ThemePalette): ContrastAuditResult {
+  const isDark = Boolean(theme.isDark);
   const textLuma = hexToLuminance(theme.textColor);
   const canvasLuma = hexToLuminance(theme.canvasBg);
   const ratio = contrastRatio(textLuma, canvasLuma);
   const isAccessible = ratio >= 4.5;
   logContrastAudit(theme.id, ratio, isAccessible);
 
-  const isDark = Boolean(theme.isDark);
   const accentTextColor = resolveAccentTextColor(theme, isDark);
   const accentLuma = hexToLuminance(accentTextColor);
   const accentTextRatio = contrastRatio(accentLuma, canvasLuma);
   const isAccentTextAccessible = accentTextRatio >= 4.5;
-  const isZeroYellowCompliant = isDark || !isYellowish(accentTextColor);
+  const isZeroYellowCompliant = isDark || isFalse(isYellowish(accentTextColor));
+  const hasContrastChecked = true;
 
   if (isAccentTextAccessible && isZeroYellowCompliant) {
     console.info(`[ThemeContrast] ${theme.id} accent-text passes WCAG AA (${accentTextRatio.toFixed(2)}:1)`);
@@ -204,6 +207,8 @@ export function auditThemeContrast(theme: ThemePalette): ContrastAuditResult {
     themeId: theme.id,
     ratio,
     isAccessible,
+    isDark,
+    hasContrastChecked,
     textLuma,
     canvasLuma,
     accentTextRatio,
@@ -216,12 +221,19 @@ export function auditThemeContrast(theme: ThemePalette): ContrastAuditResult {
   };
 }
 
+export function verifyThemeContrast(theme: ThemePalette): boolean {
+  const result = auditThemeContrast(theme);
+  const hasValidText = isBooleanTrue(result.isAccessible);
+  const hasValidAccent = isBooleanTrue(result.isAccentTextAccessible);
+  return hasValidText && hasValidAccent;
+}
+
 function getCanvasRatioVars(isDark: boolean): Record<string, string> {
   return {
     '--pres-dominant-ratio': '60%',
     '--pres-structural-ratio': '30%',
     '--pres-accent-ratio': '10%',
-    '--step-phase-future-opacity': '0.40',
+    '--step-phase-future-opacity': '0.38',
     '--step-phase-past-opacity': '0.75',
     '--step-phase-active-opacity': '1.00',
     '--pres-canvas-gradient': isDark
@@ -414,6 +426,7 @@ const MANAGED_PRES_VARIABLE_PREFIXES = [
   '--accent-',
   '--step-',
   '--text-shadow-',
+  '--chrome-',
 ];
 
 export function cleanPreviousThemeVariables(rootEl?: HTMLElement | null): void {
@@ -444,9 +457,21 @@ export function cleanPreviousThemeVariables(rootEl?: HTMLElement | null): void {
   });
 }
 
-export function cleanRootThemeVariables(targetRoot: HTMLElement): void {
-  cleanPreviousThemeVariables(targetRoot);
+export function purgePresentationVariables(rootEl?: HTMLElement | null): void {
+  if (rootEl) {
+    cleanPreviousThemeVariables(rootEl);
+    return;
+  }
+  if (typeof document !== 'undefined') {
+    cleanPreviousThemeVariables(document.documentElement);
+    const presRoot = document.getElementById('presentation-root');
+    if (presRoot) {
+      cleanPreviousThemeVariables(presRoot);
+    }
+  }
 }
+
+export const cleanRootThemeVariables = purgePresentationVariables;
 
 function buildStopVars(stops: ThemePalette['stops']): Record<string, string> {
   const vars: Record<string, string> = {};
@@ -505,7 +530,7 @@ export function injectSemanticStatusVars(root: HTMLElement, isDark: boolean): vo
 
 export function applyThemeRuntimeVariables(theme: ThemePalette, rootEl: HTMLElement): void {
   const isDark = Boolean(theme.isDark);
-  cleanRootThemeVariables(rootEl);
+  purgePresentationVariables(rootEl);
   const vars = assembleThemeVars(theme, isDark);
   Object.entries(vars).forEach(([key, val]) => {
     rootEl.style.setProperty(key, val);
@@ -527,7 +552,7 @@ function applyVarsToRoot(vars: Record<string, string>, isDark: boolean): void {
   toggleThemeClass(root, isDark);
   const presRoot = document.getElementById('presentation-root');
   if (presRoot) {
-    cleanRootThemeVariables(presRoot);
+    purgePresentationVariables(presRoot);
     Object.entries(vars).forEach(([key, val]) => presRoot.style.setProperty(key, val));
     toggleThemeClass(presRoot, isDark);
   }
@@ -548,7 +573,7 @@ export function applyTheme(id: string, isFromBroadcast = false): ThemePalette {
   const isDark = Boolean(theme.isDark);
   const root = document.documentElement;
   setRootThemeAttributes(root, theme, isDark);
-  cleanRootThemeVariables(root);
+  purgePresentationVariables();
   applyThemeToRoot(theme);
   applyVarsToRoot(assembleThemeVars(theme, isDark), isDark);
   injectSemanticStatusVars(root, isDark);

@@ -418,34 +418,60 @@
 // ============================================================================
 
 .step-phase-future {
-  opacity: var(--step-phase-future-opacity, 0.40);
-  transform: translateZ(8px) scale(0.98);
+  opacity: var(--step-phase-future-opacity, 0.38);
+  transform: translateZ(0px) scale(0.98);
   filter: blur(1.25px);
+  border: 1px solid var(--pres-border);
   box-shadow: none;
   pointer-events: none;
-  transition: all 0.4s @ease-presentation;
+  user-select: none;
+  transition: opacity 0.4s @ease-presentation,
+              transform 0.4s @ease-presentation,
+              filter 0.4s @ease-presentation,
+              border-color 0.3s ease;
   will-change: transform, opacity, filter;
 }
 
 .step-phase-active {
   opacity: var(--step-phase-active-opacity, 1.0);
-  transform: translateY(-4px) translateZ(24px) scale(1.02);
+  transform: translateY(-3px) translateZ(24px) scale(1.02);
   filter: blur(0px);
-  background: var(--pres-bg-card);
-  border-color: var(--pres-border-hover);
-  box-shadow: 0 20px 35px -10px var(--pres-accent-glow), 0 0 0 1px hsl(var(--pres-accent-hsl) / 0.40);
+  background: var(--pres-bg-card-hover, var(--pres-bg-card));
+  border: 1.5px solid var(--pres-accent);
+  box-shadow: 0 0 24px -2px var(--pres-accent-glow), 0 16px 36px -8px rgba(0, 0, 0, 0.35);
   z-index: 20;
-  transition: all 0.4s @ease-presentation;
+  pointer-events: auto;
+  transition: opacity 0.35s @ease-presentation,
+              transform 0.35s @ease-presentation,
+              box-shadow 0.35s @ease-presentation,
+              border-color 0.35s ease;
   will-change: transform, opacity, box-shadow;
 }
 
-.step-phase-past {
+.step-phase-past,
+.step-phase-completed {
   opacity: var(--step-phase-past-opacity, 0.75);
   transform: translateZ(8px) scale(1.00);
   filter: none;
-  box-shadow: none;
-  transition: all 0.4s @ease-presentation;
+  background: var(--pres-bg-card);
+  border: 1px solid var(--pres-border);
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.05);
+  pointer-events: auto;
+  transition: opacity 0.35s @ease-presentation,
+              transform 0.35s @ease-presentation,
+              border-color 0.35s ease,
+              box-shadow 0.35s ease;
   will-change: transform, opacity;
+
+  .step-check-indicator,
+  .check-indicator,
+  .step-indicator-completed {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pres-accent);
+    opacity: 1;
+  }
 }
 
 // ============================================================================
@@ -514,7 +540,9 @@
   }
 }
 
-// Light theme dark-slab elimination safeguard
+// Light theme dark-slab elimination safeguard & step phase adjustments
+[data-appearance='light'],
+[data-is-dark='false'],
 .theme-light {
   .surface-30-structure,
   .glass-card-interactive {
@@ -522,6 +550,25 @@
     border-color: var(--pres-border, rgba(0, 0, 0, 0.10));
     color: var(--pres-text, #0f172a);
     box-shadow: var(--pres-card-shadow, 0 8px 30px rgba(0, 0, 0, 0.05));
+  }
+
+  .step-phase-active {
+    background: var(--pres-bg-card-hover, #ffffff);
+    border-color: var(--pres-accent);
+    box-shadow: 0 0 24px -2px var(--pres-accent-glow), 0 12px 28px -6px rgba(0, 0, 0, 0.08);
+  }
+
+  .step-phase-past,
+  .step-phase-completed {
+    background: var(--pres-bg-card, rgba(255, 255, 255, 0.90));
+    border-color: var(--pres-border, rgba(0, 0, 0, 0.12));
+    box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.04);
+  }
+
+  .step-phase-future {
+    background: var(--pres-bg-card, rgba(255, 255, 255, 0.60));
+    border-color: var(--pres-border, rgba(0, 0, 0, 0.08));
+    opacity: var(--step-phase-future-opacity, 0.38);
   }
 }
 
